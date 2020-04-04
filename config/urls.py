@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from home.views import Home
+from action.views import ActionListView, ActionDetailView, ActionCreateView, ActionUpdateView, ActionDeleteView
 
 urlpatterns = [
+    path('', Home.as_view(), name='home'),
+    path('action/', ActionListView.as_view(), name='action-list'),
+    path('action/create/', ActionCreateView.as_view(), name='action-create'),
+    path('action/<int:pk>/update', ActionUpdateView.as_view(), name='action-update'),
+    path('action/<int:pk>/delete', ActionDeleteView.as_view(), name='action-delete'),
+    path('action/<int:pk>/', ActionDetailView.as_view(), name='action-detail'),
     path('admin/', admin.site.urls),
 ]

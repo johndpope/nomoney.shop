@@ -1,3 +1,9 @@
+/db.sqlite3
+/.project
+/.pydevproject
+.gitignore~
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
