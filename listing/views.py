@@ -13,9 +13,6 @@ class ListingListView(ListView):
 class ListingDetailView(DetailView):
     model = Listing
 
-    def get_queryset(self):
-        import pdb; pdb.set_trace()  # <---------
-        return get_object_or_404(Listing, pk=self.kwargs['pk'])
 
 
 class ListingCreateView(CreateView):

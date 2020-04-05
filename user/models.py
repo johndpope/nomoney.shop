@@ -43,15 +43,15 @@ class Deal:
     def __init__(self, me_, user):
         self.me_ = me_
         self.user = user
-        self.pushs = self.get_matching_pushs()  # push from that user
-        self.pulls = self.get_matching_pulls()  # pull to that user
+        self.pushs = self.get_matching_pushs()  # push to that user
+        self.pulls = self.get_matching_pulls()  # pull from that user
         self.level = self.set_level()
 
     def get_matching_pushs(self):
-        return [push for push in self.me_.pushs if push in self.user.pulls]
+        return [push for push in self.user.pulls if push in self.me_.pushs]
 
     def get_matching_pulls(self):
-        return [pull for pull in self.me_.pulls if pull in self.user.pushs]
+        return [pull for pull in self.user.pushs if pull in self.me_.pulls]
 
     def set_level(self):
         level = 0
@@ -68,42 +68,16 @@ class User(AbstractUser):
         return User.objects.all().exclude(pk=self.pk)
 
     @property
-    def pulls(self):
-        return self.pull_set.all()
+    def pushs(self):
+        return self.listing_set.filter(type='push')
 
     @property
-    def pushs(self):
-        return self.push_set.all()
+    def pulls(self):
+        return self.listing_set.filter(type='pull')
 
     @property
     def calculator(self):
         return Calculator(self, self.other_users)
-    #[Deal(self, user) for user in self.other_users]
-
-
-    #===========================================================================
-    # @property
-    # def first_level(self):
-    #     """ Direct exchange possibilities """
-    #     for user in self.other_users:
-    #         #print(self.pushs, user.pulls)
-    #         #pushs = [push for push in self.pushs if push in user.pulls]
-    #         #print(self.pulls, user.pushs)
-    #         #pulls = [pull for pull in self.pulls if pull in user.pushs]
-    #         pushs = []
-    #         for push in self.pushs:
-    #             if push in user.pulls:
-    #                 pushs.append(push)
-    #         
-    #         pulls = []
-    #         for pull in self.pulls:
-    #             if pull in user.pushs:
-    #                 pulls.append(pull)
-    #         
-    #         if pushs and pulls:
-    #             print(pushs, pulls)
-    #             return {'pushs': pushs, 'pulls': pulls}
-    #===========================================================================
 
 
 class Feedback(models.Model):

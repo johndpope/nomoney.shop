@@ -1,0 +1,21 @@
+<span type="button" class="btn btn-{% if user == request.user %}success{% else %}info{% endif %} btn-sm" data-placement="bottom" data-toggle="popover" data-trigger="click" data-container="body"> 
+  {{ user }}
+  <div class="d-none popover-content">
+    <ul class="list-group">
+      <li class="list-group-item">Biete:<br>
+        {% for push in user.pushs %}
+          {% with listing=push%}
+            {% include 'listing/listing_badge.html' %}
+          {% endwith %}
+        {% endfor %}
+      </li>
+      <li class="list-group-item">Suche:<br>
+        {% for pull in user.pulls %}
+          {% with listing=pull%}
+            {% include 'listing/listing_badge.html' %}
+          {% endwith %}
+        {% endfor %}
+      </li>
+    </ul>
+  </div>
+</span>

@@ -1,43 +1,34 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 <h1>Tauschmöglichkeiten</h1>
-<h2>Direkte Tauschmöglichkeiten:</h2>
+<h2>Direkt:</h2>
+<table class="table">
+  <tbody>
 {% with calc=request.user.calculator %}
 {% for deal in calc.level2 %}
-{% include 'user/user_badge.html' %}
-  
-  {{ deal.pushs }}
-  {{ deal.pulls }}
+    <tr>
+      <td>{% with user=request.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
+      <td>{% for listing in deal.pushs %}{% include 'listing/listing_badge.html' %}{% endfor %}</td>
+      <td><img src={% static 'logo.png' %} height="30px"></td>
+      <td>{% for listing in deal.pulls %}{% include 'listing/listing_badge.html' %}{% endfor %}</td>
+      <td>{% with user=deal.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
+    </tr>
 {% endfor %}
+  </tbody>
+</table>
 
-{% for deal in calc.level1 %}
-  {{ deal.user }}
-  {{ deal.pushs }}
-  {{ deal.pulls }}
-{% endfor %}
-{% endwith %}
-
-{% for push in request.user.pushs %}
-  {% for deal in push.first_level %}
-    <span class="badge badge-primary badge-pill">{{ push }} ({{ push.user }})</span>  <>  
-    <span class="badge badge-secondary badge-pill">{{ deal }} ({{ deal.user }})</span>
-    <br>
-  {% endfor %}
-{% endfor %}
-
-{% for pull in request.user.pulls %}
-  {% for deal in request.user.first_level %}
-    <span class="badge badge-secondary badge-pill">{{ deal }} ({{ deal.user }})</span> <>
-    <span class="badge badge-primary badge-pill">{{ pull }} ({{ pull.user }})</span> 
-  {% endfor %}
-{% endfor %}
 <!-- 
 <h2>Indirekte Tauschmöglichkeiten:</h2>
 <h2>Weitere Tauschmöglichkeiten</h2>
  -->
 <h2>Einseitig:</h2>
-{% for x in request.user.one_side %}
-{{x.type}}{{x}}
+{% for deal in calc.level1 %}
+  {% include 'user/user_popover.html' %}
+  {{ deal.user }}{{deal.level}}
+  {{ deal.pushs }}
+  {{ deal.pulls }}
 {% endfor %}
+{% endwith %}
 {% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{% if object.type == 'push' %}Biete{% else %}Suche{% endif %} {{ object.title }} von {{ object.user }}</h1>
+<p>Kategorie: {{ object.category }}</p>
+<p>Menge: {{ object.count }}{{ object.unit }}</p>
+<p>Beschreibung: {{ object.description }}</p>
+<p>Erstellt: {{ object.created }}</p>
+{% if object.created is not object.modified %}
+<p>Aktualisiert: {{ object.modified }}</p>
+{% endif %}
+{% endblock %}

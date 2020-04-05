@@ -1,6 +1,6 @@
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
-from listing.models import Pull, Category
+from listing.models import Category
 
 
 class Home(TemplateView):

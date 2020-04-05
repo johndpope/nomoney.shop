@@ -3,6 +3,11 @@ from django.db import models
 from django.core.validators import MinValueValidator
 from config.settings import AUTH_USER_MODEL
 
+TYPES = (
+    ('push', 'Biete'),
+    ('pull', 'Suche'),
+    )
+
 
 class Category(models.Model):
     parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
@@ -11,11 +16,11 @@ class Category(models.Model):
 
     @property
     def pushs(self):
-        return self.push_set.all()
+        return self.listing_set.filter(type='push')
 
     @property
     def pulls(self):
-        return self.pull_set.all()
+        return self.listing_set.filter(type='pull')
 
     @property
     def path(self):
@@ -57,8 +62,8 @@ class Listing(models.Model):
         AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         )
+    type = models.CharField(max_length=4, choices=TYPES)
     title = models.CharField(max_length=50)
-    description = models.TextField(null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     count = models.DecimalField(
         decimal_places=2,
@@ -66,24 +71,16 @@ class Listing(models.Model):
         validators=[MinValueValidator(Decimal('0.01'))]
         )
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
+    description = models.TextField(null=True, blank=True)
     reviews = models.ForeignKey(Review, null=True, blank=True, on_delete=models.CASCADE)
-    type = None
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    def __hash__(self):
+        return hash(self.pk)
 
     def __eq__(self, other):
         return self.category == other.category
 
     def __str__(self):
         return self.title
-
-    class Meta:
-        abstract = True
-
-
-class Push(Listing):
-    """ Offers to push into the nomoney.shop """
-    type = 'push'
-
-
-class Pull(Listing):
-    """ Search listings to Pull out of the nomoney.shop """
-    type = 'pull'
