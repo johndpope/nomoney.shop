@@ -16,7 +16,10 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="logo.svg">
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="/home/frank/Rastergrafik.png"
+   inkscape:export-xdpi="9.6000004"
+   inkscape:export-ydpi="9.6000004">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -26,9 +29,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.16"
-     inkscape:cx="597.98255"
-     inkscape:cy="1457.8323"
+     inkscape:zoom="0.32"
+     inkscape:cx="1432.9009"
+     inkscape:cy="888.12948"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"

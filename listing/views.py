@@ -15,7 +15,7 @@ class ListingDetailView(DetailView):
 
     def get_queryset(self):
         import pdb; pdb.set_trace()  # <---------
-        return get_object_or_404(Listing, self.kwargs['pk'])
+        return get_object_or_404(Listing, pk=self.kwargs['pk'])
 
 
 class ListingCreateView(CreateView):
