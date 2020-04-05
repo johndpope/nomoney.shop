@@ -25,4 +25,14 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/default.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript">
+$(function () {
+	  $('[data-toggle="popover"]').popover({
+			html: true,
+			content: function(){
+				return $(this).find('.popover-content').html();
+			}
+		})
+	})
+</script>
 </html>

@@ -1,0 +1,19 @@
+<span type="button" class="btn btn-secondary" data-placement="bottom" data-toggle="popover" data-trigger="click" data-title="Benutzerdetails" data-container="body"> 
+  {{ deal.user }}
+  <div class="d-none popover-content">
+    <ul class="list-group">
+      <li class="list-group-item">Angebote:
+        {% for push in deal.user.pushs %}
+          <a href="{% url 'listing-detail' push.pk %}"><span class="badge badge-primary">{{ push.category.title }}</span></a>
+        {% endfor %}
+      </li>
+      <li class="list-group-item">Suchanfragen:
+        {% for pull in deal.user.pulls %}
+          <span class="badge badge-secondary">{{ pull.category.title }}</span>
+        {% endfor %}
+      </li>
+    </ul>
+  </div>
+</span>
+
+

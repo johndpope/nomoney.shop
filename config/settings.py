@@ -26,7 +26,7 @@ SECRET_KEY = 'r0gq=9-=+5tmsmi*8ko73#z5o&99snk6na8==g&&ed@-vgohwf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nec-li']
+ALLOWED_HOSTS = ['localhost', 'nec-li']
 
 
 # Application definition

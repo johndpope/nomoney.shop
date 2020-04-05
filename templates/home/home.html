@@ -11,7 +11,7 @@
 
     {% if category.pushs %}
       <div class="collapse border border-primary m-3 p-3" id="category{{category.pk}}">
-      <b>Biete (push):</b>
+      <b>Angebote:</b>
       {% for push in category.pushs %}
         <div>{{ push.title }}
         {% for pull in push.user.pulls %}
@@ -24,7 +24,7 @@
 
     {% if category.pulls %}
       <div class="collapse border border-secondary m-3 p-3" id="category{{category.pk}}">
-      <b>Suche (pull):</b>
+      <b>Suchanfragen:</b>
       {% for pull in category.pulls %}
         <div>{{ pull.title }}
         {% for push in pull.user.pushs %}
@@ -37,5 +37,9 @@
 
     </div>
   {% endfor %}
+</div>
+<div class="container">
+<span class="badge badge-primary badge-pill">1</span>=Angebote; 
+<span class="badge badge-secondary badge-pill">2</span>=Suchanfragen
 </div>
 {% endblock %}

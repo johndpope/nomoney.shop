@@ -67,12 +67,16 @@ class Listing(models.Model):
         )
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
     reviews = models.ForeignKey(Review, null=True, blank=True, on_delete=models.CASCADE)
+    type = None
 
-    class Meta:
-        abstract = True
+    def __eq__(self, other):
+        return self.category == other.category
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        abstract = True
 
 
 class Push(Listing):
