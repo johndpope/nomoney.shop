@@ -4,17 +4,33 @@ from django.core.validators import MinValueValidator
 from config.settings import AUTH_USER_MODEL
 
 
-class Type(models.Model):
-    title = models.CharField(max_length=50)
-    description = models.TextField()
-
-
 class Category(models.Model):
+    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
+
+    @property
+    def pushs(self):
+        return self.push_set.all()
+
+    @property
+    def pulls(self):
+        return self.pull_set.all()
+
+    @property
+    def path(self):
+        obj = self
+        title = self.title
+        while obj.parent:
+            title = obj.parent.title + '/' + title
+            obj = obj.parent
+        return title
+
+    def __lt__(self, other):
+        return str(self) < str(other)
 
     def __str__(self):
-        return self.title
+        return self.path
 
     class Meta:
         verbose_name_plural = "Categories"
@@ -22,7 +38,7 @@ class Category(models.Model):
 
 class Review(models.Model):
     title = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     score = models.PositiveSmallIntegerField()
 
     def __str__(self):
@@ -42,8 +58,7 @@ class Listing(models.Model):
         on_delete=models.CASCADE,
         )
     title = models.CharField(max_length=50)
-    description = models.TextField()
-    type = models.ForeignKey(Type, on_delete=models.CASCADE)
+    description = models.TextField(null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     count = models.DecimalField(
         decimal_places=2,
@@ -51,7 +66,20 @@ class Listing(models.Model):
         validators=[MinValueValidator(Decimal('0.01'))]
         )
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
-    reviews = models.ForeignKey(Review, on_delete=models.CASCADE)
+    reviews = models.ForeignKey(Review, null=True, blank=True, on_delete=models.CASCADE)
+
+    class Meta:
+        abstract = True
 
     def __str__(self):
         return self.title
+
+
+class Push(Listing):
+    """ Offers to push into the nomoney.shop """
+    type = 'push'
+
+
+class Pull(Listing):
+    """ Search listings to Pull out of the nomoney.shop """
+    type = 'pull'

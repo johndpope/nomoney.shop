@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="list-group">
+  {% for category in categories %}
+    <div class="list-group-item">
+    <span class="btn btn-link text-left" data-toggle="collapse" data-target="#category{{category.pk}}">{{ category }}
+      <span class="badge badge-primary badge-pill">{{ category.pushs | length }}</span>
+      <span class="badge badge-secondary badge-pill">{{ category.pulls | length }}</span>
+    </span>
+
+    {% if category.pushs %}
+      <div class="collapse border border-primary m-3 p-3" id="category{{category.pk}}">
+      <b>Biete (push):</b>
+      {% for push in category.pushs %}
+        <div>{{ push.title }}
+        {% for pull in push.user.pulls %}
+          <span class="badge badge-secondary badge-pill">{{ pull }}</span>
+        {% endfor %}
+        </div>
+      {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if category.pulls %}
+      <div class="collapse border border-secondary m-3 p-3" id="category{{category.pk}}">
+      <b>Suche (pull):</b>
+      {% for pull in category.pulls %}
+        <div>{{ pull.title }}
+        {% for push in pull.user.pushs %}
+          <span class="badge badge-primary badge-pill">{{ push }}</span>
+        {% endfor %}
+        </div>
+      {% endfor %}
+      </div>
+    {% endif %}
+
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
