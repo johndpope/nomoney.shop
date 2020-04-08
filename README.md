@@ -85,7 +85,7 @@ We use [SemVer](http://semver.org/) for versioning.
 ## Authors
 * **Me** - *Initial work* - [Snake-Soft](https://github.com/snake-soft)
 
-See also the list of [contributors](https://github.com/snake-soft/imap-storage/graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/snake-soft/nomoney.shop/graphs/contributors) who participated in this project.
 
 
 ## License
