@@ -32,7 +32,7 @@ Have a look at the [documentation](https://nomoneyshop.readthedocs.io/en/latest/
 
 
 ### Prerequisites
-It should work Python3.4+ but tests are running on 3.5 and 3.7.
+It should work with lower Python versions but tests are running on 3.5 and 3.8.
 
 This project makes use of the following libraries:
 * [Django](https://docs.djangoproject.com/en/) - The web framework for perfectionists with deadlines.

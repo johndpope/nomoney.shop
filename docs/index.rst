@@ -11,6 +11,10 @@ Welcome to nomoney.shop's documentation!
    :caption: Contents:
 
 
+* :ref:`genindex`
+* :ref:`modindex`
+
+
 
 Indices and tables
 ==================
@@ -18,3 +22,5 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+.. mdinclude:: ../README.md
