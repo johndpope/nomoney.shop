@@ -1,10 +1,10 @@
 # nomoney.shop
 [![Build Status](https://travis-ci.org/snake-soft/nomoney.shop.svg?branch=master)](https://travis-ci.org/snake-soft/nomoney.shop)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Documentation Status](https://readthedocs.org/projects/nomoneyshop/badge/?version=latest)](https://nomoneyshop.readthedocs.io/en/latest/?badge=latest)
 [![Coverage Status](https://coveralls.io/repos/github/snake-soft/nomoney.shop/badge.svg?branch=master)](https://coveralls.io/github/snake-soft/nomoney.shop?branch=master)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-This year, 2020, the world economy as a guaranto of wealth is going to get damaged.
+This year, 2020, the world economy as a guarant of wealth is going to get damaged.
 Currently the 'experts' have a huge spread of future predictions.
 
 That is why I created this project.
@@ -41,13 +41,13 @@ This project makes use of the following libraries:
 ### Installing
 You can install the latest release from pip:
 ```
-pip install ...
+pip install nomoney.shop
 ```
 
 
 ### Short example
 ```python
-
+...
 ```
 
 

@@ -4,9 +4,15 @@ os:
   - linux
 
 python:
-  - "3.5"
-  - "3.7"
+  - "2.7"
+  - "3.4"
+  - "3.8"
+
 cache: pip
+
+env:
+  - DJANGO_VERSION=2
+  - DJANGO_VERSION=3
 
 install:
   - pip install -r requirements.txt
