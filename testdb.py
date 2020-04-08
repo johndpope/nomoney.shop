@@ -1,4 +1,10 @@
-""" Creation of a demo database also for testing purposes """
+""" Creation of a demo database also for testing purposes
+
+To fill your development database with these sample data, do:
+python manage.py shell
+from testdb import TestDB
+TestDB.setup()
+"""
 from random import randint
 from user.models import User
 from listing.models import Unit, Listing, Category
@@ -52,7 +58,7 @@ class TestDB:
                 )
             count = randint(1, 1000)
             unit = Unit.objects.all()[randint(0, len(cls.UNITS) - 1)]
-            title = '{} {}{}'.format(category, count, unit)
+            title = '{} {}{}'.format(category.title, count, unit)
             Listing.objects.create(
                 user=user,
                 type=type_,
@@ -73,7 +79,3 @@ class TestDB:
         """ must be run before listing db """
         for unit in cls.UNITS:
             Unit.objects.create(title=unit)
-
-
-if __name__ == '__main__':
-    TestDB.setup()
