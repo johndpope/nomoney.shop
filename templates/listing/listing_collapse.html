@@ -1,0 +1,16 @@
+  <div class="">
+    <div class="" id="listing{{ listing.pk }}">
+        <button class="btn btn-link m-0 p-0" type="button" data-toggle="collapse" data-target="#collapse{{ listing.pk }}" aria-expanded="true" aria-controls="collapseOne">
+          {{ listing.user }} {% if listing.type == 'push' %}bietet{% else %}sucht{% endif %} {{ listing.title }}
+        </button>
+        {% for listing in listing.actions %}
+          {% include 'listing/listing_link.html' %}
+        {% endfor %}
+    </div>
+
+    <div id="collapse{{ listing.pk }}" class="card collapse" aria-labelledby="listing{{ listing.pk }}" data-parent="#accordionExample">
+      <div class="card-body">
+      dsf
+      </div>
+    </div>
+  </div>

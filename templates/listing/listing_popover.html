@@ -1,5 +1,6 @@
-<span type="button" class="btn btn-{% if user == request.user %}primary{% else %}secondary{% endif %} btn-sm" data-placement="bottom" data-toggle="popover" data-trigger="click" data-container="body"> 
-  {{ user }}
+
+<span type="button" class="badge badge-{% if listing.type == 'push' %}primary{% else %}secondary{% endif %}" data-placement="bottom" data-toggle="popover" data-trigger="click" data-container="body"> 
+  {{ listing }}
   <div class="d-none popover-content">
     <ul class="list-group">
       <li class="list-group-item">Biete:<br>

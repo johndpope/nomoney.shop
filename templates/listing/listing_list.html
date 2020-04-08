@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="list-group">
+  {% for category in categories %}
+    <div class="list-group-item">
+      <span class="category btn btn-link text-dark text-left" data-toggle="collapse" data-target="#category{{category.pk}}">{{ category }}
+      
+        <span class="badges">
+          <span class="badge badge-primary badge-pill">{{ category.pushs | length }}</span>
+          <span class="badge badge-secondary badge-pill">{{ category.pulls | length }}</span>
+        </span>
+      </span>
+
+      <div class="collapse container" id="category{{category.pk}}">
+        <div class="row ml-3">
+          <div class="col">
+            {% if category.pushs %}
+              <div class="">
+                <b>Biete:</b>
+                <div class="accordion" id="accordionExample">
+                  {% for push in category.pushs %}
+                    {% with listing=push %}{% include 'listing/listing_collapse.html' %}{% endwith %}
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+
+        <div class="col">
+            {% if category.pulls %}
+              <div class="">
+                <b>Suche:</b>
+                <div class="accordion" id="accordionExample">
+                  {% for pull in category.pulls %}
+                    {% with listing=pull %}{% include 'listing/listing_collapse.html' %}{% endwith %}
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<div class="container">
+<span class="badge badge-primary badge-pill">1</span>=Angebote; 
+<span class="badge badge-secondary badge-pill">2</span>=Suchanfragen
+</div>
+
+
+
+
+{% endblock %}

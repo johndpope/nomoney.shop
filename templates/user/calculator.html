@@ -10,9 +10,9 @@
 {% for deal in calc.level2 %}
     <tr>
       <td>{% with user=request.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
-      <td>{% for listing in deal.pushs %}{% include 'listing/listing_badge.html' %}{% endfor %}</td>
+      <td>{% for listing in deal.pushs %}{% include 'listing/listing_link.html' %}{% endfor %}</td>
       <td><img src={% static 'logo.png' %} height="30px"></td>
-      <td>{% for listing in deal.pulls %}{% include 'listing/listing_badge.html' %}{% endfor %}</td>
+      <td>{% for listing in deal.pulls %}{% include 'listing/listing_link.html' %}{% endfor %}</td>
       <td>{% with user=deal.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
     </tr>
 {% endfor %}

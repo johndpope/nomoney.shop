@@ -4,10 +4,13 @@ from django.views.generic.detail import DetailView
 from .models import Listing
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls.base import reverse_lazy
+from listing.models import Category
 
 
 class ListingListView(ListView):
-    model = Listing
+    model = Category
+    template_name = 'listing/listing_list.html'
+    context_object_name = 'categories'
 
 
 class ListingDetailView(DetailView):

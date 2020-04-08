@@ -20,12 +20,13 @@ from listing.views import ListingListView, ListingDetailView, ListingCreateView,
 from user.views import CalculatorView, PushView, PullView
 
 urlpatterns = [
-    path('', Home.as_view(), name='home'),
+    #path('', Home.as_view(), name='home'),
 
     path('calc/', CalculatorView.as_view(), name='calculator'),
     path('push/', PushView.as_view(), name='push'),
     path('pull/', PullView.as_view(), name='pull'),
 
+    path('', ListingListView.as_view(), name='listing-list'),
     path('listing/', ListingListView.as_view(), name='listing-list'),
     path('listing/create/', ListingCreateView.as_view(), name='listing-create'),
     path('listing/<int:pk>/update', ListingUpdateView.as_view(), name='listing-update'),

@@ -76,6 +76,9 @@ class Listing(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
+    def actions(self):
+        return __class__.objects.filter(user=self.user).exclude(type=self.type)
+
     def __hash__(self):
         return hash(self.pk)
 
