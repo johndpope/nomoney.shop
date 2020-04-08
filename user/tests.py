@@ -1,11 +1,11 @@
 from django.test import TestCase
-from test_db import Test_db
+from testdb import TestDB
 from .models import User
 
 
 class UserTestCase(TestCase):
     def setUp(self):
-        Test_db.setup()
+        TestDB.setup()
 
     def test_user_db(self):
-        self.assertIs(len(User.objects.all()), Test_db.USER_COUNT)
+        self.assertIs(len(User.objects.all()), TestDB.USER_COUNT)
