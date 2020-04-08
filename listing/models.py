@@ -16,11 +16,11 @@ class Category(models.Model):
 
     @property
     def pushs(self):
-        return self.listing_set.filter(type='push')
+        return Listing.objects.filter(category=self, type='push')
 
     @property
     def pulls(self):
-        return self.listing_set.filter(type='pull')
+        return Listing.objects.filter(category=self, type='pull')
 
     @property
     def path(self):
@@ -79,8 +79,8 @@ class Listing(models.Model):
     def actions(self):
         return __class__.objects.filter(user=self.user).exclude(type=self.type)
 
-    def __hash__(self):
-        return hash(self.pk)
+#    def __hash__(self):
+#        return hash(self.pk)
 
     def __eq__(self, other):
         return self.category == other.category

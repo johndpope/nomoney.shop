@@ -1,10 +1,20 @@
-from django.test import TestCase
+""" Abstract TestCase for all app tests """
+from abc import ABC
+from django.test import TestCase as BaseTestCase
 from testdb import TestDB
-from .models import Location
 
 
-class UserTestCase(TestCase):
+class TestCase(ABC, BaseTestCase):
+    """ inherit this class for all tests """
+
+    def run(self, *args, **kwargs):  # pylint: disable=arguments-differ
+        response = None
+        if self.__module__ != 'tests_abc':
+            response = super().run(*args, **kwargs)
+        return response
+
     def setUp(self):
+        self.testdb = TestDB
         TestDB.setup()
 
     def test_apps(self):

@@ -15,10 +15,7 @@ class Calculator:
     """
     def __init__(self, me_, users):
         self.me_ = me_
-        if isinstance(users, str):
-            self.users = [users]  # users to deal with
-        else:
-            self.users = users  # users to deal with
+        self.users = users  # users to deal with
         self._deals = None  # cached
 
     def deals(self):
@@ -37,7 +34,7 @@ class Calculator:
 
 
 class Deal:
-    """ These deals are only two persons, ever!
+    """ These deals are for only two persons, ever!
     So level3 and up needs multiple Deals
     """
     def __init__(self, me_, user):

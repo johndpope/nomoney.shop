@@ -11,9 +11,6 @@ class CalculatorView(TemplateView):
 class PushView(ListView):
     model = Listing
 
-    def get_queryset(self):
-        return ListView.get_queryset(self)
-
 
 class PullView(ListView):
     model = Listing
