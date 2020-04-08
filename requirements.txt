@@ -3,3 +3,4 @@ pylint
 pylint-django
 coverage
 coveralls
+m2r
