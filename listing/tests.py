@@ -1,4 +1,3 @@
-from random import randint
 from tests_abc import TestCase
 from .models import Listing, Category
 from django.db.models.query import QuerySet
