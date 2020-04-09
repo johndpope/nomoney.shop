@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 <div class="list-group">
   {% for category in categories %}
     <div class="list-group-item">
@@ -14,16 +13,34 @@
       </span>
 
       <div class="collapse container" id="category{{category.pk}}">
-        <div class="row ml-3">
+        <div class="row">
           <div class="col">
             {% if category.pushs %}
               <div class="">
-                <b>Biete:</b>
-                <div class="accordion" id="accordionExample">
-                  {% for push in category.pushs %}
-                    {% with listing=push %}{% include 'listing/listing_collapse.html' %}{% endwith %}
-                  {% endfor %}
-                </div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Benutzer</th>
+                      <th scope="col">Bietet</th>
+                      <th scope="col">Sucht dafür</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for push in category.pushs %}
+                          {% with listing=push %}       
+                      <tr>
+                        <td>{% with user=listing.user %}{% include 'user/user_link.html' %}{% endwith %}</td>
+                        <td>{% include 'listing/listing_link.html' %}</td>
+                        <td>
+                            {% for listing in listing.actions %}
+                              {% include 'listing/listing_badge_link.html' %}
+                            {% endfor %}
+                        </td>
+                      </tr>
+                          {% endwith %}
+                    {% endfor %}
+                  </tbody>
+              </table>
               </div>
             {% endif %}
           </div>
@@ -31,12 +48,30 @@
         <div class="col">
             {% if category.pulls %}
               <div class="">
-                <b>Suche:</b>
-                <div class="accordion" id="accordionExample">
-                  {% for pull in category.pulls %}
-                    {% with listing=pull %}{% include 'listing/listing_collapse.html' %}{% endwith %}
-                  {% endfor %}
-                </div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Benutzer</th>
+                      <th scope="col">Sucht</th>
+                      <th scope="col">Bietet dafür</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for pull in category.pulls %}
+                          {% with listing=pull %}       
+                      <tr>
+                        <td>{% with user=listing.user %}{% include 'user/user_link.html' %}{% endwith %}</td>
+                        <td>{% include 'listing/listing_link.html' %}</td>
+                        <td>
+                            {% for listing in listing.actions %}
+                              {% include 'listing/listing_badge_link.html' %}
+                            {% endfor %}
+                        </td>
+                      </tr>
+                          {% endwith %}
+                    {% endfor %}
+                  </tbody>
+              </table>
               </div>
             {% endif %}
         </div>
@@ -49,8 +84,4 @@
 <span class="badge badge-primary badge-pill">1</span>=Angebote; 
 <span class="badge badge-secondary badge-pill">2</span>=Suchanfragen
 </div>
-
-
-
-
 {% endblock %}

@@ -12,8 +12,8 @@ from listing.models import Unit, Listing, Category
 
 class TestDB:
     """ Management class for creating the database
-    Install complete test/demo database with:
-    from test_db import TestDB
+    Install complete test/demo database with (needs working empty database):
+    from testdb import TestDB
     TestDB.setup()
 
     It's possible to install app specific databases if necessary:
@@ -21,8 +21,8 @@ class TestDB:
     """
     USER_COUNT = 10
     LISTING_COUNT = 100
-    CATEGORIES = ['Apples', 'Bananas', 'Raspberrys', 'Bread', 'Water']
-    UNITS = ['kg', 'g', 'pcs', 'litres']
+    CATEGORIES = ['Äpfel', 'Bananen', 'Erdbeeren', 'Brot', 'Wasser']
+    UNITS = ['kg', 'g', 'stück', 'liter']
 
     @classmethod
     def setup(cls):
@@ -58,7 +58,7 @@ class TestDB:
                 )
             count = randint(1, 1000)
             unit = Unit.objects.all()[randint(0, len(cls.UNITS) - 1)]
-            title = '{} {}{}'.format(category.title, count, unit)
+            title = '{} bla'.format(category.title, count, unit)
             Listing.objects.create(
                 user=user,
                 type=type_,
@@ -70,7 +70,7 @@ class TestDB:
 
     @classmethod
     def _setup_listing_category_db(cls):
-        parent = Category.objects.create(title='food')
+        parent = Category.objects.create(title='Nahrungsmittel')
         for category in cls.CATEGORIES:
             Category.objects.create(title=category, parent=parent)
 

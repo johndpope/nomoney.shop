@@ -1,18 +1,18 @@
-<span type="button" class="btn btn-{% if user == request.user %}primary{% else %}secondary{% endif %} btn-sm" data-placement="bottom" data-toggle="popover" data-trigger="click" data-container="body"> 
-  {{ user }}
+<span class="btn btn-link text-dark" data-placement="bottom" data-toggle="popover" data-trigger="click" data-container="body"> 
+  <i class="fas fa-user-tie"></i> {{ user }}
   <div class="d-none popover-content">
     <ul class="list-group">
-      <li class="list-group-item">Biete:<br>
+      <li class="list-group-item">Bietet:<br>
         {% for push in user.pushs %}
           {% with listing=push%}
-            {% include 'listing/listing_link.html' %}
+            {% include 'listing/listing_badge_link.html' %}
           {% endwith %}
         {% endfor %}
       </li>
-      <li class="list-group-item">Suche:<br>
+      <li class="list-group-item">Sucht:<br>
         {% for pull in user.pulls %}
           {% with listing=pull%}
-            {% include 'listing/listing_link.html' %}
+            {% include 'listing/listing_badge_link.html' %}
           {% endwith %}
         {% endfor %}
       </li>

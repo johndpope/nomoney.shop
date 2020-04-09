@@ -1,5 +1,3 @@
-<a href="{% url 'listing-detail' listing.pk %}">
-  <span class="badge badge-{% if listing.type == 'push' %}primary{% else %}secondary{% endif %}">
-    {{ listing.category.title }}
-  </span>
+<a class="text-dark" href="{% url 'listing-detail' listing.pk %}">
+  <i class="fas fa-box"></i> {{ listing.title }}
 </a>

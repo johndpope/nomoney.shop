@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Username</th>
+          <th scope="col">Bietet</th>
+          <th scope="col">Sucht</th>
+        </tr>
+      </thead>
+      <tbody>
+  {% for user in users %}
+        <tr>
+          <th scope="row">{{ user.pk }}</th>
+          <td>{% include 'user/user_link.html' %}</td>
+          <td>
+            {% for listing in user.pushs %}{% include 'listing/listing_popover.html' %}{% endfor %}
+          </td>
+          <td>
+            {% for listing in user.pulls %}{% include 'listing/listing_popover.html' %}{% endfor %}
+          </td>
+        </tr>
+  {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}

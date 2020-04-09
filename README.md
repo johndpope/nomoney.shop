@@ -16,9 +16,9 @@ If there is another user, offering the things you search and searching what your
 
 Often these kind of deals aren't possible.
 The following constellation is more common:
-A needs Potatoes and offers Water
-B needs Strawberries and offers Potatoes
-C needs Water and offers Strawberries
+- A needs Potatoes and offers Water
+- B needs Strawberries and offers Potatoes
+- C needs Water and offers Strawberries
 
 Being not easy to be calculated this kind of deal is easy to calculate for a computer.
 
@@ -39,6 +39,16 @@ This project makes use of the following libraries:
 
 
 ### Installing
+Local install running the development server:
+```
+git clone git@github.com:snake-soft/nomoney.shop.git
+cd nomoney.shop
+pip install -r requirements.txt
+python3 manage.py createsuperuser
+python3 manage.py migrate
+python3 manage.py runserver
+```
+
 You can install the latest release from pip:
 ```
 pip install nomoney.shop
