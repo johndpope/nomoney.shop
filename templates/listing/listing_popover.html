@@ -7,6 +7,10 @@
       <p class="card-subtitle">{{ listing.count }} {{ listing.unit }}</p>
     </div>
     <ul class="list-group">
+      <li class="list-group-item">
+        Benutzer:<br>
+        {{ listing.user }}
+      </li>
       {% if listing.description %}
       <li class="list-group-item">
         Beschreibung:<br>

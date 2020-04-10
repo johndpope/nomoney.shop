@@ -76,8 +76,37 @@ class Listing(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._actions = {0: set(), 1: set(), 2: set(), 3: set()}
+
     def actions(self):
-        return __class__.objects.filter(user=self.user).exclude(type=self.type)
+        """ An action is a possible dealable listing.
+        It must be from another user and another type.
+        """
+        actions = {0: set(), 1: set(), 2: set(), 3: set()}
+        if not self._actions or True:  # disable cache for testing
+            objects = __class__.objects.filter(category=self.category)
+            objects = objects.exclude(type=self.type).exclude(user=self.user)
+            for action in objects:
+                if action not in self.user.listings.exclude(type=action.type):
+                    actions[1].add(action)
+                if 
+            import pdb; pdb.set_trace()  # <---------
+        return self._actions
+
+    def level1(self):
+        """ returns set of level 1 dealsets """
+        import pdb; pdb.set_trace()  # <---------
+        return self.actions()
+
+    def level2(self):
+        actions = set()
+        for action in self.actions():
+            possible_actions = action.user.listings.exclude(type=action.type)
+            if action in possible_actions:
+                actions.add(action)
+        return actions
 
 #    def __hash__(self):
 #        return hash(self.pk)
@@ -85,5 +114,8 @@ class Listing(models.Model):
     def __eq__(self, other):
         return self.category == other.category
 
+    def __hash__(self):  # TODO: equaling items have different hashs?
+        return hash(self.pk)
+
     def __str__(self):
-        return self.title
+        return self.type + ': ' + self.title

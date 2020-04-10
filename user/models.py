@@ -16,21 +16,71 @@ class Calculator:
     def __init__(self, me_, users):
         self.me_ = me_
         self.users = users  # users to deal with
-        self._deals = None  # cached
+        self._dealsets = set()  # cached
 
-    def deals(self):
-        if not self._deals:
-            self._deals = [Deal(self.me_, user) for user in self.users]
-        return self._deals
+    def get_dealsets(self, level=None):
+        if not self._dealsets:
+            for user in self.users:
+                self._dealsets.add(DealSet(self.me_, user))
+        #self.me_.level1()
+        self.me_.pulls[0].level2()
+        #[self._dealsets.add(ds) for ds in self.create_level3_dealsets()]
+        dealsets = self._dealsets
+        if level == 1:
+            dealsets = {ds for ds in self._dealsets if ds.level == 1}
+        elif level == 2:
+            dealsets = {ds for ds in self._dealsets if ds.level == 2}
+        elif level == 3:
+            dealsets = {ds for ds in self._dealsets if ds.level == 3}
+        return dealsets
+
+    def create_level3_dealsets(self):
+        dealsets = set()
+        for pull in self.me_.pulls:
+            for action in pull.actions():
+                user = action.user
+                dealsets.add(action)
+        print(dealsets)
+        return dealsets
 
     def level1(self):
         """ One side exchange possibilities
         Added this to give the chance to find another item to change
         """
-        return [deal for deal in self.deals() if deal.level == 1]
+        listings = set()
+        for listing in self.me_.listings:
+            for action in listing.level1():
+                listings.add(action)
+        dealsets = set()
+        for listing in listings:
+            dealsets.add(DealSet(self.me_, listing.user))
+        return dealsets  # self.get_dealsets(level=1)
 
     def level2(self):
-        return [deal for deal in self.deals() if deal.level == 2]
+        return self.get_dealsets(level=2)
+
+    def level3(self):
+        return self.get_dealsets(level=3)
+
+
+class DealSet:
+    def __init__(self, me_, users):
+        self.me_ = me_
+        self.users = [users] if isinstance(users, User) else users
+        self.level = 0
+        self.deals = self.get_deals()
+
+    def get_deals(self):
+        """ Calculate all deal constellations """
+        deals = set()
+        for user in self.users:
+            deals.add(Deal(self.me_, user))
+        if len(self.users) >= 2:
+            pass
+        for deal in deals:
+            if deal.level:
+                self.level = deal.level
+        return deals
 
 
 class Deal:
@@ -58,8 +108,19 @@ class Deal:
             level = 1
         return level
 
+    def __repr__(self):
+        return str(self)
+
+    def __str__(self):
+        return '{} vs. {}'.format(self.me_, self.user)
+
 
 class User(AbstractUser):
+
+    @property
+    def listings(self):
+        return self.listing_set.all()
+
     @property
     def other_users(self):
         return User.objects.all().exclude(pk=self.pk)
@@ -75,6 +136,11 @@ class User(AbstractUser):
     @property
     def calculator(self):
         return Calculator(self, self.other_users)
+
+    #===========================================================================
+    # def __hash__(self):
+    #     return hash(self.username)
+    #===========================================================================
 
 
 class Feedback(models.Model):
