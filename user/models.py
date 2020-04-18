@@ -1,8 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from listing.models import Listing
 
 
-class Calculator:
+class DealSet:
     """
     Levels:
         0 - No Deal match
@@ -13,73 +14,26 @@ class Calculator:
 
     users represent all users taking part at this deal
     """
-    def __init__(self, me_, users):
+    def __init__(self, me_, user, middle=None):
         self.me_ = me_
-        self.users = users  # users to deal with
-        self._dealsets = set()  # cached
-
-    def get_dealsets(self, level=None):
-        if not self._dealsets:
-            for user in self.users:
-                self._dealsets.add(DealSet(self.me_, user))
-        #self.me_.level1()
-        self.me_.pulls[0].level2()
-        #[self._dealsets.add(ds) for ds in self.create_level3_dealsets()]
-        dealsets = self._dealsets
-        if level == 1:
-            dealsets = {ds for ds in self._dealsets if ds.level == 1}
-        elif level == 2:
-            dealsets = {ds for ds in self._dealsets if ds.level == 2}
-        elif level == 3:
-            dealsets = {ds for ds in self._dealsets if ds.level == 3}
-        return dealsets
-
-    def create_level3_dealsets(self):
-        dealsets = set()
-        for pull in self.me_.pulls:
-            for action in pull.actions():
-                user = action.user
-                dealsets.add(action)
-        print(dealsets)
-        return dealsets
-
-    def level1(self):
-        """ One side exchange possibilities
-        Added this to give the chance to find another item to change
-        """
-        listings = set()
-        for listing in self.me_.listings:
-            for action in listing.level1():
-                listings.add(action)
-        dealsets = set()
-        for listing in listings:
-            dealsets.add(DealSet(self.me_, listing.user))
-        return dealsets  # self.get_dealsets(level=1)
-
-    def level2(self):
-        return self.get_dealsets(level=2)
-
-    def level3(self):
-        return self.get_dealsets(level=3)
-
-
-class DealSet:
-    def __init__(self, me_, users):
-        self.me_ = me_
-        self.users = [users] if isinstance(users, User) else users
+        self.user = user
+        self.middle = middle
         self.level = 0
-        self.deals = self.get_deals()
+        self.first_deal = None
+        self.second_deal = None
+        self.get_deals()
 
     def get_deals(self):
         """ Calculate all deal constellations """
         deals = set()
-        for user in self.users:
-            deals.add(Deal(self.me_, user))
-        if len(self.users) >= 2:
-            pass
-        for deal in deals:
-            if deal.level:
-                self.level = deal.level
+        if self.middle:
+            self.first_deal = Deal(self.me_, self.middle)
+            self.second_deal = Deal(self.me_, self.user)
+            self.level = 3
+        else:
+            self.first_deal = Deal(self.me_, self.user)
+            if self.first_deal.level:
+                self.level = self.first_deal.level
         return deals
 
 
@@ -90,17 +44,17 @@ class Deal:
     def __init__(self, me_, user):
         self.me_ = me_
         self.user = user
-        self.pushs = self.get_matching_pushs()  # push to that user
-        self.pulls = self.get_matching_pulls()  # pull from that user
-        self.level = self.set_level()
+        self.pushs = self._get_matching_pushs()  # push to that user
+        self.pulls = self._get_matching_pulls()  # pull from that user
+        self.level = self._set_level()
 
-    def get_matching_pushs(self):
+    def _get_matching_pushs(self):
         return [push for push in self.user.pulls if push in self.me_.pushs]
 
-    def get_matching_pulls(self):
+    def _get_matching_pulls(self):
         return [pull for pull in self.user.pushs if pull in self.me_.pulls]
 
-    def set_level(self):
+    def _set_level(self):
         level = 0
         if self.pushs and self.pulls:
             level = 2
@@ -109,7 +63,7 @@ class Deal:
         return level
 
     def __repr__(self):
-        return str(self)
+        return 'Deal: ' + str(self)
 
     def __str__(self):
         return '{} vs. {}'.format(self.me_, self.user)
@@ -117,31 +71,75 @@ class Deal:
 
 class User(AbstractUser):
 
-    @property
-    def listings(self):
-        return self.listing_set.all()
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.all_listings = Listing.objects.all()
+        self.listings = self.listing_set.all()
+        self.other_users = User.objects.all().exclude(pk=self.pk)
+        #self._level1 = set()
+        #self._level2 = set()
 
-    @property
-    def other_users(self):
-        return User.objects.all().exclude(pk=self.pk)
+    def actions(self, type_=None, reverse=False):
+        """ all possible actions with self.listings """
+        result = None
+        if type_ and not reverse:  # return all own listings of same type
+            result = self.listings.filter(type=type_)
+        elif type_ and reverse:  # return all own listings of other type
+            result = self.listings.exclude(type=type_)
+        else:  # return all own listings
+            result = self.listings
+        return result
 
+    def matches(self):
+        users = set()
+        for listing in self.listings:
+            for user in {x.user for x in listing.matches()}:
+                users.add(user)
+        return users
+
+    def find_dealers(self, pushs, pulls):
+        users = {pull.user for pull in self.all_listings.filter(category__in=[push.category for push in pushs], type='pull')}
+        dealers = set()
+        for user in users:
+            if user.pulls.filter(category__in=[pull.category for pull in pulls]):
+                dealers.add(user)
+        return dealers
+            
     @property
     def pushs(self):
-        return self.listing_set.filter(type='push')
+        return self.actions(type_='push')
 
     @property
     def pulls(self):
-        return self.listing_set.filter(type='pull')
+        return self.actions(type_='pull')
 
-    @property
-    def calculator(self):
-        return Calculator(self, self.other_users)
+    def calculate(self, level_1_2):
+        dealsets = set()
+        for user in self.matches():
+            dealset = DealSet(self, user)
+            if dealset.level == level_1_2:
+                dealsets.add(dealset)
+        return dealsets
 
-    #===========================================================================
-    # def __hash__(self):
-    #     return hash(self.username)
-    #===========================================================================
+    def level1(self):
+        return self.calculate(1)
 
+    def level2(self):
+        return self.calculate(2)
+
+    def level3(self):
+        level1 = self.level1()
+        level3 = set()
+        for dealset in level1:
+            deal = dealset.first_deal
+            if not deal.pushs:
+                middle = self.find_dealers(self.pushs, deal.user.pulls)
+                # suche listings pulls=self.pushs, pushs=deal.user.pulls
+                for user in middle:
+                    level3.add(DealSet(self, deal.user, middle=user))
+            elif not deal.pulls:
+                pass
+        return level3
 
 class Feedback(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,)

@@ -18,9 +18,4 @@ class UserTestCase(TestCase):
         self.assertIs(len(User.objects.all()), TestDB.USER_COUNT)
 
     def test_user_model(self):
-        calculator = self.user.calculator
-        # Need rework:
-        self.assertIs(len(calculator.deals()), len(User.objects.all()) - 1)
-
-        self.assertIsInstance(calculator.level1(), list)
-        self.assertIsInstance(calculator.level2(), list)
+        self.assertIs(len(self.user.matches()), len(User.objects.all()) - 1)
