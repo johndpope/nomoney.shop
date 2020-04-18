@@ -43,11 +43,20 @@ Local install running the development server:
 ```
 git clone git@github.com:snake-soft/nomoney.shop.git
 cd nomoney.shop
+
+virtualenv -p python3 venv
+source venv/bin/activate
+
 pip install -r requirements.txt
+
 python3 manage.py createsuperuser
 python3 manage.py migrate
 python3 manage.py runserver
 ```
+
+After that go into config/settings directory. 
+Copy data_sample.py to data.py, open and modify the data inside.
+
 
 You can install the latest release from pip:
 ```
