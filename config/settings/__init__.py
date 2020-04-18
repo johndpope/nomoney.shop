@@ -10,7 +10,7 @@ from builtins import ModuleNotFoundError
 
 try:
     import config.settings.data as DATA
-except ModuleNotFoundError:
+except (ImportError, ModuleNotFoundError):
     DATA = False
 
 
