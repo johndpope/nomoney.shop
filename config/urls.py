@@ -15,15 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic.base import TemplateView
 from listing.views import ListingListView, ListingDetailView, ListingCreateView, ListingUpdateView, ListingDeleteView
 from user.views import CalculatorView, PushView, PullView, UserDetailView, UserListView, UserUpdateView
 
 urlpatterns = [
+    path('', TemplateView.as_view(template_name='home/home.html'), name='home'),
+
     path('calc/', CalculatorView.as_view(), name='calculator'),
     path('push/', PushView.as_view(), name='push'),
     path('pull/', PullView.as_view(), name='pull'),
 
-    path('', ListingListView.as_view(), name='home'),
     path('listing/', ListingListView.as_view(), name='listing-list'),
     path('listing/create/', ListingCreateView.as_view(), name='listing-create'),
     path('listing/<int:pk>/update', ListingUpdateView.as_view(), name='listing-update'),

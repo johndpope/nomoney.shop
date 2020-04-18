@@ -2,6 +2,7 @@
 Cut out important data from git repository
 base.py holds all default data
 data.py holds all private data (needs to be copied from data_sample.py first
+alternatively you can use environmentals
 """
 from os import environ
 from .base import *
