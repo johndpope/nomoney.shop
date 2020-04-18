@@ -2,9 +2,10 @@ from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from listing.models import Listing
-from .models import User
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, CreateView, FormView
 from django.urls.base import reverse_lazy
+from .models import User
+from .forms import UserCreationForm
 
 
 class CalculatorView(TemplateView):
@@ -32,4 +33,10 @@ class UserDetailView(DetailView):
 class UserUpdateView(UpdateView):
     model = User
     fields = ['email', 'username']
+    success_url = reverse_lazy('home')
+
+
+class UserCreateView(FormView):
+    form_class = UserCreationForm
+    template_name = 'user/user_create.html'
     success_url = reverse_lazy('home')

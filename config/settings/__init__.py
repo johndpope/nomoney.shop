@@ -6,6 +6,8 @@ alternatively you can use environmentals
 """
 from os import environ
 from .base import *
+from builtins import ModuleNotFoundError
+
 try:
     import config.settings.data as DATA
 except ModuleNotFoundError:

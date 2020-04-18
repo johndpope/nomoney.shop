@@ -17,7 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from django.views.generic.base import TemplateView
 from listing.views import ListingListView, ListingDetailView, ListingCreateView, ListingUpdateView, ListingDeleteView
-from user.views import CalculatorView, PushView, PullView, UserDetailView, UserListView, UserUpdateView
+from user.views import CalculatorView, PushView, PullView, UserDetailView, UserListView, UserUpdateView,\
+    UserCreateView
+from django.contrib.auth.views import LoginView, LogoutView
+
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='home/home.html'), name='home'),
@@ -35,6 +38,17 @@ urlpatterns = [
     path('user/', UserListView.as_view(), name='user-list'),
     path('user/<int:pk>/', UserDetailView.as_view(), name='user-detail'),
     path('user/<int:pk>/update', UserUpdateView.as_view(), name='user-update'),
+    path('user/create/', UserCreateView.as_view(), name='user-create'),
+    path('user/login/', LoginView.as_view(template_name='user/user_login.html'), name='user-login'),
+    path('user/logout/', LogoutView.as_view(), name='user-logout'),
+
+#===============================================================================
+#     path('user/login/', LoginView.as_view(
+#         template_name='account/login.html',), name='login'),
+# 
+#     path('user/logout/', LogoutView.as_view(
+#         template_name='account/logout.html',), name='logout'),
+#===============================================================================
 
     path('admin/', admin.site.urls),
 ]

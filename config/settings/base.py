@@ -127,3 +127,7 @@ MESSAGE_TAGS = {
     message_constants.DEBUG: 'dark'
     }
 MESSAGE_LEVEL = message_constants.DEBUG
+
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = LOGIN_URL
