@@ -9,7 +9,7 @@ from .base import *
 
 try:
     import config.settings.data as DATA
-except (ImportError, ModuleNotFoundError):
+except ImportError:
     DATA = False
 
 
