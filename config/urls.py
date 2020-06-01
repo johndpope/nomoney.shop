@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.views.generic.base import TemplateView
 from listing.views import ListingListView, ListingDetailView, ListingCreateView, ListingUpdateView, ListingDeleteView
-from user.views import CalculatorView, PushView, PullView, UserDetailView, UserListView, UserUpdateView,\
+from user.views import UserListingsView, CalculatorView, PushView, PullView, UserDetailView, UserListView, UserUpdateView,\
     UserCreateView
 from django.contrib.auth.views import LoginView, LogoutView
 
@@ -38,6 +38,7 @@ urlpatterns = [
     path('user/', UserListView.as_view(), name='user-list'),
     path('user/<int:pk>/', UserDetailView.as_view(), name='user-detail'),
     path('user/<int:pk>/update', UserUpdateView.as_view(), name='user-update'),
+    path('user/<int:pk>/listings', UserListingsView.as_view(), name='user-listings'),
     path('user/create/', UserCreateView.as_view(), name='user-create'),
     path('user/login/', LoginView.as_view(template_name='user/user_login.html'), name='user-login'),
     path('user/logout/', LogoutView.as_view(), name='user-logout'),

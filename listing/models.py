@@ -133,4 +133,4 @@ class Listing(models.Model):
         return hash(self.category)
 
     def __str__(self):
-        return self.type + ': ' + self.title
+        return self.user.username + ' ' + self.type + ': ' + self.title

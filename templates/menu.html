@@ -15,10 +15,9 @@
           {{ request.user }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{% url 'calculator' %}">Handelsrechner</a>
-          <a class="dropdown-item" href="{% url 'push' %}">Ich biete</a>
-          <a class="dropdown-item" href="{% url 'pull' %}">Ich suche</a>
-          <a class="dropdown-item" href="#">History</a>
+          <a class="dropdown-item" href="{% url 'user-detail' pk=request.user.pk %}">Listings</a>
+          <a class="dropdown-item" href="{% url 'calculator' %}">Deals</a>
+          <!-- <a class="dropdown-item" href="#">History</a> -->
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{% url 'user-update' request.user.pk %}">Mein Profil</a>
           <a class="dropdown-item" href="{% url 'user-logout' %}">Ausloggen</a>
@@ -31,9 +30,6 @@
         <a class="nav-link" href="{% url 'user-login' %}">Anmelden</a>
       </li>
       {% endif %}
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'calculator' %}">Deals</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'listing-list' %}">Übersicht</a>

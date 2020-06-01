@@ -47,3 +47,15 @@ class UserCreateView(FormView):
         user = form.save()
         login(self.request, user)
         return redirect('home')
+
+class UserListingsView(ListView):
+    model = Listing
+    template_name = 'user/user_listings.html'
+    context_object_name = 'listings'
+
+    def get(self, request, *args, **kwargs):
+        return ListView.get(self, request, *args, **kwargs)
+
+    def get_queryset(self):
+        user = User.objects.get(pk=self.kwargs.get('pk'))
+        return Listing.objects.filter(user=user)

@@ -141,6 +141,7 @@ class User(AbstractUser):
                 pass
         return level3
 
+
 class Feedback(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,)
     score = models.PositiveSmallIntegerField()
