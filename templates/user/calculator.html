@@ -2,97 +2,107 @@
 {% load static %}
 
 {% block content %}
-<h1>Tauschmöglichkeiten / Deals</h1>
+<div class="container-fluid bg-white border my-3">
+  <h1>Tauschmöglichkeiten / Deals</h1>
+  
+  <h2>Zweiseitig</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Benutzer</th>
+        <th scope="col">Tauscht</th>
+        <th scope="col"></th>
+        <th scope="col">Gegen</th>
+        <th scope="col">Mit</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+  {% for dealset in request.user.level2 %}
+    {% with deal=dealset.first_deal %}
+      <tr>
+        <td>{% with user=request.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
+        <td>{% for listing in deal.pushs %}{% include 'listing/listing_badge_link.html' %}{% endfor %}</td>
+        <td><img src={% static 'logo.png' %} height="30px"></td>
+        <td>{% for listing in deal.pulls %}{% include 'listing/listing_badge_link.html' %}{% endfor %}</td>
+        <td>{% with user=deal.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
+        <td><a class="btn btn-outline-primary btn-sm" href="#" role="button"><i class="fas fa-exchange-alt"></i> Deal</a></td>
+      </tr>
+    {% endwith %}
+  {% endfor %}
+    </tbody>
+  </table>
+</div>
 
-<h2>Zweiseitig</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Benutzer</th>
-      <th scope="col">Tauscht</th>
-      <th scope="col"></th>
-      <th scope="col">Gegen</th>
-      <th scope="col">Mit</th>
-    </tr>
-  </thead>
-  <tbody>
-{% for dealset in request.user.level2 %}
-  {% with deal=dealset.first_deal %}
-    <tr>
-      <td>{% with user=request.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
-      <td>{% for listing in deal.pushs %}{% include 'listing/listing_badge_link.html' %}{% endfor %}</td>
-      <td><img src={% static 'logo.png' %} height="30px"></td>
-      <td>{% for listing in deal.pulls %}{% include 'listing/listing_badge_link.html' %}{% endfor %}</td>
-      <td>{% with user=deal.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
-    </tr>
-  {% endwith %}
-{% endfor %}
-  </tbody>
-</table>
+<div class="container-fluid bg-white border my-3">
+  <h2>Einseitig</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Benutzer</th>
+        <th scope="col">Tauscht</th>
+        <th scope="col"></th>
+        <th scope="col">Gegen</th>
+        <th scope="col">Mit</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+  {% for dealset in request.user.level1 %}
+    {% with deal=dealset.first_deal %}
+      <tr>
+        <td>{% with user=request.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
+        <td>{% for listing in deal.pushs %}{% include 'listing/listing_badge_link.html' %}{% endfor %}</td>
+        <td><img src={% static 'logo.png' %} height="30px"></td>
+        <td>{% for listing in deal.pulls %}{% include 'listing/listing_badge_link.html' %}{% endfor %}</td>
+        <td>{% with user=deal.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
+        <td><a class="btn btn-outline-primary btn-sm" href="#" role="button"><i class="fas fa-exchange-alt"></i> Deal</a></td>
+      </tr>
+    {% endwith %}
+  {% endfor %}
+    </tbody>
+  </table>
+</div>
 
-<h2>Einseitig</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Benutzer</th>
-      <th scope="col">Tauscht</th>
-      <th scope="col"></th>
-      <th scope="col">Gegen</th>
-      <th scope="col">Mit</th>
-    </tr>
-  </thead>
-  <tbody>
-{% for dealset in request.user.level1 %}
-  {% with deal=dealset.first_deal %}
-    <tr>
-      <td>{% with user=request.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
-      <td>{% for listing in deal.pushs %}{% include 'listing/listing_badge_link.html' %}{% endfor %}</td>
-      <td><img src={% static 'logo.png' %} height="30px"></td>
-      <td>{% for listing in deal.pulls %}{% include 'listing/listing_badge_link.html' %}{% endfor %}</td>
-      <td>{% with user=deal.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
-    </tr>
-  {% endwith %}
-{% endfor %}
-  </tbody>
-</table>
-
-<h2>Dreiseitig Funktioniert noch nicht!!!</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Benutzer</th>
-      <th scope="col">Tauscht</th>
-      <th scope="col"></th>
-      <th scope="col">Gegen</th>
-      <th scope="col">Mit</th>
-      <th scope="col"></th>
-      <th scope="col">Benutzer</th>
-      <th scope="col">Tauscht</th>
-      <th scope="col"></th>
-      <th scope="col">Gegen</th>
-      <th scope="col">Mit</th>
-    </tr>
-  </thead>
-  <tbody>
-{% for dealset in request.user.level3 %}
-    <tr>
-      {% with deal=dealset.first_deal %}
-      <td>{% with user=request.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
-      <td>{% for listing in deal.pushs %}{% include 'listing/listing_badge_link.html' %}{% endfor %}</td>
-      <td><img src={% static 'logo.png' %} height="30px"></td>
-      <td>{% for listing in deal.pulls %}{% include 'listing/listing_badge_link.html' %}{% endfor %}</td>
-      <td>{% with user=deal.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
-      {% endwith %}
-      <td>|</td>
-      {% with deal=dealset.second_deal %}
-      <td>{% with user=request.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
-      <td>{% for listing in deal.pushs %}{% include 'listing/listing_badge_link.html' %}{% endfor %}</td>
-      <td><img src={% static 'logo.png' %} height="30px"></td>
-      <td>{% for listing in deal.pulls %}{% include 'listing/listing_badge_link.html' %}{% endfor %}</td>
-      <td>{% with user=deal.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
-      {% endwith %}
-    </tr>
-{% endfor %}
-  </tbody>
-</table>
+<div class="container-fluid bg-white border my-3">
+  <h2>Dreiseitig Funktioniert noch nicht!!!</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Benutzer</th>
+        <th scope="col">Tauscht</th>
+        <th scope="col"></th>
+        <th scope="col">Gegen</th>
+        <th scope="col">Mit</th>
+        <th scope="col"></th>
+        <th scope="col">Benutzer</th>
+        <th scope="col">Tauscht</th>
+        <th scope="col"></th>
+        <th scope="col">Gegen</th>
+        <th scope="col">Mit</th>
+      </tr>
+    </thead>
+    <tbody>
+  {% for dealset in request.user.level3 %}
+      <tr>
+        {% with deal=dealset.first_deal %}
+        <td>{% with user=request.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
+        <td>{% for listing in deal.pushs %}{% include 'listing/listing_badge_link.html' %}{% endfor %}</td>
+        <td><img src={% static 'logo.png' %} height="30px"></td>
+        <td>{% for listing in deal.pulls %}{% include 'listing/listing_badge_link.html' %}{% endfor %}</td>
+        <td>{% with user=deal.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
+        {% endwith %}
+        <td>|</td>
+        {% with deal=dealset.second_deal %}
+        <td>{% with user=request.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
+        <td>{% for listing in deal.pushs %}{% include 'listing/listing_badge_link.html' %}{% endfor %}</td>
+        <td><img src={% static 'logo.png' %} height="30px"></td>
+        <td>{% for listing in deal.pulls %}{% include 'listing/listing_badge_link.html' %}{% endfor %}</td>
+        <td>{% with user=deal.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
+        {% endwith %}
+      </tr>
+  {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}

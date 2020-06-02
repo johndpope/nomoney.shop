@@ -1,84 +1,86 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="list-group">
-  {% for category in categories %}
-    <div class="list-group-item">
-      <span class="category btn btn-link text-dark text-left" data-toggle="collapse" data-target="#category{{category.pk}}">{{ category }}
-      
-        <span class="badges">
-          <span class="badge badge-primary badge-pill">{{ category.pushs | length }}</span>
-          <span class="badge badge-secondary badge-pill">{{ category.pulls | length }}</span>
+<div class="container-fluid bg-white">
+  <div class="list-group">
+    {% for category in categories %}
+      <div class="list-group-item">
+        <span class="category btn btn-link text-dark text-left" data-toggle="collapse" data-target="#category{{category.pk}}">{{ category }}
+        
+          <span class="badges">
+            <span class="badge badge-primary badge-pill">{{ category.pushs | length }}</span>
+            <span class="badge badge-secondary badge-pill">{{ category.pulls | length }}</span>
+          </span>
         </span>
-      </span>
-
-      <div class="collapse container" id="category{{category.pk}}">
-        <div class="row">
+  
+        <div class="collapse container-fluid pl-5" id="category{{category.pk}}">
+          <div class="row mt-3">
+            <div class="col">
+              {% if category.pushs %}
+                <div class="">
+                  <table class="table table-striped table-bordered table-sm">
+                    <thead class="table-primary">
+                      <tr>
+                        <th scope="col">Benutzer</th>
+                        <th scope="col">Bietet</th>
+                        <th scope="col">Sucht dafür</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for push in category.pushs %}
+                            {% with listing=push %}       
+                        <tr>
+                          <td>{% with user=listing.user %}{% include 'user/user_link.html' %}{% endwith %}</td>
+                          <td>{% include 'listing/listing_link.html' %}</td>
+                          <td>
+                              {% for listing in listing.actions %}
+                                {% include 'listing/listing_badge_link.html' %}
+                              {% endfor %}
+                          </td>
+                        </tr>
+                            {% endwith %}
+                      {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+              {% endif %}
+            </div>
+  
           <div class="col">
-            {% if category.pushs %}
-              <div class="">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Benutzer</th>
-                      <th scope="col">Bietet</th>
-                      <th scope="col">Sucht dafür</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for push in category.pushs %}
-                          {% with listing=push %}       
+              {% if category.pulls %}
+                <div class="">
+                  <table class="table table-striped table-bordered table-sm">
+                    <thead class="table-secondary">
                       <tr>
-                        <td>{% with user=listing.user %}{% include 'user/user_link.html' %}{% endwith %}</td>
-                        <td>{% include 'listing/listing_link.html' %}</td>
-                        <td>
-                            {% for listing in listing.actions %}
-                              {% include 'listing/listing_badge_link.html' %}
-                            {% endfor %}
-                        </td>
+                        <th scope="col">Benutzer</th>
+                        <th scope="col">Sucht</th>
+                        <th scope="col">Bietet dafür</th>
                       </tr>
-                          {% endwith %}
-                    {% endfor %}
-                  </tbody>
-              </table>
-              </div>
-            {% endif %}
+                    </thead>
+                    <tbody>
+                      {% for pull in category.pulls %}
+                            {% with listing=pull %}       
+                        <tr>
+                          <td>{% with user=listing.user %}{% include 'user/user_link.html' %}{% endwith %}</td>
+                          <td>{% include 'listing/listing_link.html' %}</td>
+                          <td>
+                              {% for listing in listing.actions %}
+                                {% include 'listing/listing_badge_link.html' %}
+                              {% endfor %}
+                          </td>
+                        </tr>
+                            {% endwith %}
+                      {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+              {% endif %}
           </div>
-
-        <div class="col">
-            {% if category.pulls %}
-              <div class="">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Benutzer</th>
-                      <th scope="col">Sucht</th>
-                      <th scope="col">Bietet dafür</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for pull in category.pulls %}
-                          {% with listing=pull %}       
-                      <tr>
-                        <td>{% with user=listing.user %}{% include 'user/user_link.html' %}{% endwith %}</td>
-                        <td>{% include 'listing/listing_link.html' %}</td>
-                        <td>
-                            {% for listing in listing.actions %}
-                              {% include 'listing/listing_badge_link.html' %}
-                            {% endfor %}
-                        </td>
-                      </tr>
-                          {% endwith %}
-                    {% endfor %}
-                  </tbody>
-              </table>
-              </div>
-            {% endif %}
         </div>
       </div>
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
 </div>
 <div class="container">
 <span class="badge badge-primary badge-pill">1</span>=Angebote; 
