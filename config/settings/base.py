@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'user',
     'listing',
     'location',
+    'bid',
     'chat',
 ]
 
