@@ -20,6 +20,7 @@ from listing.views import ListingListView, ListingDetailView, ListingCreateView,
 from user.views import UserListingsView, CalculatorView, PushView, PullView, UserDetailView, UserListView, UserUpdateView,\
     UserCreateView
 from django.contrib.auth.views import LoginView, LogoutView
+from bid.views import BidCreateView
 
 
 urlpatterns = [
@@ -42,7 +43,9 @@ urlpatterns = [
     path('user/create/', UserCreateView.as_view(), name='user-create'),
     path('user/login/', LoginView.as_view(template_name='user/user_login.html'), name='user-login'),
     path('user/logout/', LogoutView.as_view(), name='user-logout'),
-
+    
+    path('bid/create/<int:push_pk>/<int:pull_pk>/', BidCreateView.as_view(), name='bid-create'),
+    
 #===============================================================================
 #     path('user/login/', LoginView.as_view(
 #         template_name='account/login.html',), name='login'),

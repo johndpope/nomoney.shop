@@ -26,7 +26,7 @@
         <td><img src={% static 'logo.png' %} height="30px"></td>
         <td>{% for listing in deal.pulls %}{% include 'listing/listing_badge_link.html' %}{% endfor %}</td>
         <td>{% with user=deal.user %}{% include 'user/user_popover.html' %}{% endwith %}</td>
-        <td><a class="btn btn-outline-primary btn-sm" href="#" role="button"><i class="fas fa-exchange-alt"></i> Deal</a></td>
+        <td><a class="btn btn-outline-primary btn-sm" href="{% url 'bid-create' 1 2 %}" role="button"><i class="fas fa-exchange-alt"></i> Deal</a></td>
       </tr>
     {% endwith %}
   {% endfor %}
