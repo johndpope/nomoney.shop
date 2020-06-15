@@ -80,57 +80,14 @@ class Listing(models.Model):
         super().__init__(*args, **kwargs)
         self._actions = {0: set(), 1: set(), 2: set(), 3: set()}
 
-#    def __hash__(self):
-#        return hash(self.pk)
-
-    #===========================================================================
-    # def level1(self):
-    #     """ returns matches with only one side to deal """
-    #     result = []
-    #     users = {match.user for match in self.matches()}
-    #     level = 0
-    #     for user in users:
-    #         for push in self.user.pushs:
-    #             import pdb; pdb.set_trace()  # <---------
-    #             if push in user.pulls:
-    #                 level += 1
-    #         for pull in self.user.pulls:
-    #             if pull in user.pushs:
-    #                 level +=1
-    #===========================================================================
-        #=======================================================================
-        # for user in users:
-        #     self.user.matches(user)
-        #     for listing in user.listings:
-        #         listing_users = {bla.user for bla in listing.matches()}
-        #         if self.user in listing_users:
-        #             print('level2')
-        #         else:
-        #             print('level1')
-        #     
-        # for match in self.matches():
-        #     if self.user in [submatch.user for submatch in match.matches()]:
-        #         result.append(match)
-        #         
-        #=======================================================================
-
     def matches(self):
         """ Returns same category objects of other users with other type """
         return __class__.objects.filter(category=self.category
                                         ).exclude(type=self.type
                                                   ).exclude(user=self.user)
 
-    #===========================================================================
-    # def mediator(self):
-    #     # 
-    #     result = __class__.objects.filter()
-    #===========================================================================
-
     def __eq__(self, other):
         return self.category == other.category  # and self.type == other.type
-
-    def __hash__(self):  # TODO: equaling items have different hashs?
-        return hash(self.category)
 
     def __str__(self):
         return self.user.username + ' ' + self.type + ': ' + self.title
