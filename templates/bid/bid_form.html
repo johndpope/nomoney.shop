@@ -1,4 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container bg-white p-5 border">
+<h1>Gebot {% if user == request.user %}an{% else %}von{% endif %} {{ partner }}</h1>
 <form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
+  <div class="form-group col">
+    <h2>Ich biete</h2>
+  </div>
+  {% for listing in pushs %}
+  <div class="border p-5">
+    <div class="form-row">
+      <div class="form-group col">
+        <p>{% include 'listing/listing_link.html' %}</p>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col">
+        <label for="ammount-{{ listing.pk }}">Menge</label>
+        <input type="number" class="form-control" id="ammount-{{ listing.pk }}">
+      </div>
+      <div class="form-group col">
+        <label for="unit-{{ listing.pk }}">Einheit</label>
+        <select class="form-control" id="unit-{{ listing.pk }}">
+          {% for unit in units %}
+            <option>{{ unit }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+  <div class="form-group col mt-5">
+    <h2>und möchte dafür</h2>
+  </div>
+  {% for listing in pulls %}
+  <div class="border p-5">
+    <div class="form-row">
+      <div class="form-group col">
+        <p>{% include 'listing/listing_link.html' %}</p>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col">
+        <label for="ammount-{{ listing.pk }}">Menge</label>
+        <input type="number" class="form-control" id="ammount-{{ listing.pk }}">
+      </div>
+      <div class="form-group col">
+        <label for="unit-{{ listing.pk }}">Einheit</label>
+        <select class="form-control" id="unit-{{ listing.pk }}">
+          {% for unit in units %}
+            <option>{{ unit }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+  <div class="form-group mt-5">
+    <label for="comment">Bemerkungen</label>
+    <textarea class="form-control" id="comment" rows="3"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+</div>
+{% endblock %}

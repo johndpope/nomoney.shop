@@ -44,7 +44,7 @@ urlpatterns = [
     path('user/login/', LoginView.as_view(template_name='user/user_login.html'), name='user-login'),
     path('user/logout/', LogoutView.as_view(), name='user-logout'),
     
-    path('bid/create/<int:push_pk>/<int:pull_pk>/', BidCreateView.as_view(), name='bid-create'),
+    path('bid/create/<int:partner_pk>/', BidCreateView.as_view(), name='bid-create'),
     
 #===============================================================================
 #     path('user/login/', LoginView.as_view(

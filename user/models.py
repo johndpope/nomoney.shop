@@ -74,10 +74,12 @@ class User(AbstractUser):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.all_listings = Listing.objects.all()
-        self.listings = self.listing_set.all()
+        #self.listings = self.listing_set.all()
         self.other_users = User.objects.all().exclude(pk=self.pk)
-        #self._level1 = set()
-        #self._level2 = set()
+
+    @property
+    def listings(self):
+        return self.listing_set.all()
 
     def actions(self, type_=None, reverse=False):
         """ all possible actions with self.listings """
@@ -97,6 +99,11 @@ class User(AbstractUser):
                 users.add(user)
         return users
 
+    #===========================================================================
+    # def matches_with_partner(self, partner_user):
+    #     import pdb; pdb.set_trace()  # <---------
+    #===========================================================================
+
     def find_dealers(self, pushs, pulls):
         users = {pull.user for pull in self.all_listings.filter(category__in=[push.category for push in pushs], type='pull')}
         dealers = set()
@@ -104,7 +111,7 @@ class User(AbstractUser):
             if user.pulls.filter(category__in=[pull.category for pull in pulls]):
                 dealers.add(user)
         return dealers
-            
+
     @property
     def pushs(self):
         return self.actions(type_='push')
