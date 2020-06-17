@@ -1,9 +1,17 @@
 from django.contrib import admin
-from .models import Bid, BidPosition
+from .models import Bid, BidPush, BidPull
 
-class BidPositionAdmin(admin.ModelAdmin):
-    model= BidPosition
-    #filter_horizontal = ('positions',) #If you don't specify this, you will get a multiple select widget.
 
-admin.site.register(BidPosition)
-admin.site.register(Bid, BidPositionAdmin)
+class BidPushAdmin(admin.TabularInline):
+    model = BidPush
+
+
+class BidPullAdmin(admin.TabularInline):
+    model = BidPull
+
+
+class BidAdmin(admin.ModelAdmin):
+    inlines = [BidPushAdmin, BidPullAdmin, ]
+
+
+admin.site.register(Bid, BidAdmin)

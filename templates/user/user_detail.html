@@ -14,12 +14,10 @@
     <tbody>
       <tr>
         <th scope="row">{{ user.pk }}</th>
-        <td>{% include 'user/user_link.html' %}</td>
+        <td></td>
         <td>
-          {% for listing in user.pushs %}{% include 'listing/listing_link.html' %}{% endfor %}
         </td>
         <td>
-          {% for listing in user.pulls %}{% include 'listing/listing_link.html' %}{% endfor %}
         </td>
       </tr>
     </tbody>

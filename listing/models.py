@@ -8,7 +8,6 @@ TYPES = (
     ('pull', 'Suche'),
     )
 
-
 class Category(models.Model):
     parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
@@ -16,11 +15,11 @@ class Category(models.Model):
 
     @property
     def pushs(self):
-        return Listing.objects.filter(category=self, type='push')
+        return Push.objects.filter(category=self)
 
     @property
     def pulls(self):
-        return Listing.objects.filter(category=self, type='pull')
+        return Pull.objects.filter(category=self)
 
     @property
     def path(self):
@@ -62,19 +61,18 @@ class Listing(models.Model):
         AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         )
-    type = models.CharField(max_length=4, choices=TYPES)
     title = models.CharField(max_length=50)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    count = models.DecimalField(
+    quantity = models.DecimalField(
         decimal_places=2,
         max_digits=12,
         validators=[MinValueValidator(Decimal('0.01'))]
         )
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
     description = models.TextField(null=True, blank=True)
-    reviews = models.ForeignKey(Review, null=True, blank=True, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    type = None
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -82,12 +80,27 @@ class Listing(models.Model):
 
     def matches(self):
         """ Returns same category objects of other users with other type """
-        return __class__.objects.filter(category=self.category
-                                        ).exclude(type=self.type
-                                                  ).exclude(user=self.user)
+        import pdb; pdb.set_trace()  # <---------
+        #=======================================================================
+        # return __class__.objects.filter(category=self.category
+        #                                 ).exclude(type=self.type
+        #                                           ).exclude(user=self.user)
+        #=======================================================================
+
+    def opposite_type(self):
+        return {'push': 'pull', 'pull': 'push'}.get(self.type)
 
     def __eq__(self, other):
         return self.category == other.category  # and self.type == other.type
 
     def __str__(self):
-        return self.user.username + ' ' + self.type + ': ' + self.title
+        return '{} {} {}'.format(self.user.username, self.type, self.title)
+
+    class Meta:
+        abstract = True
+
+class Push(Listing):
+    type = 'push'
+
+class Pull(Listing):
+    type = 'pull'

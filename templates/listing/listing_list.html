@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container-fluid bg-white">
   <div class="list-group">
     {% for category in categories %}
       <div class="list-group-item">
@@ -30,13 +29,9 @@
                       {% for push in category.pushs %}
                             {% with listing=push %}       
                         <tr>
-                          <td>{% with user=listing.user %}{% include 'user/user_link.html' %}{% endwith %}</td>
-                          <td>{% include 'listing/listing_link.html' %}</td>
-                          <td>
-                              {% for listing in listing.actions %}
-                                {% include 'listing/listing_badge_link.html' %}
-                              {% endfor %}
-                          </td>
+                          <td><a href="{% url 'user_detail' listing.user.pk %}">{{ listing.user }}</a></td>
+                          <td></td>
+                          <td></td>
                         </tr>
                             {% endwith %}
                       {% endfor %}
@@ -61,13 +56,9 @@
                       {% for pull in category.pulls %}
                             {% with listing=pull %}       
                         <tr>
-                          <td>{% with user=listing.user %}{% include 'user/user_link.html' %}{% endwith %}</td>
-                          <td>{% include 'listing/listing_link.html' %}</td>
-                          <td>
-                              {% for listing in listing.actions %}
-                                {% include 'listing/listing_badge_link.html' %}
-                              {% endfor %}
-                          </td>
+                          <td><a href="{% url 'user_detail' listing.user.pk %}">{{ listing.user }}</a></td>
+                          <td>{% for user_pull in listing.user.pulls %}<a href="{% url 'listing_detail' user_pull.type user_pull.pk %}">{{ user_pull }}</a>{% endfor %}</td>
+                          <td></td>
                         </tr>
                             {% endwith %}
                       {% endfor %}
@@ -81,9 +72,10 @@
     </div>
     {% endfor %}
   </div>
-</div>
 <div class="container">
 <span class="badge badge-primary badge-pill">1</span>=Angebote; 
 <span class="badge badge-secondary badge-pill">2</span>=Suchanfragen
 </div>
+<a href="{% url 'listing_create' 'push' %}">Neues Angebot</a>
+<a href="{% url 'listing_create' 'pull' %}">Neue Anfrage</a>
 {% endblock %}

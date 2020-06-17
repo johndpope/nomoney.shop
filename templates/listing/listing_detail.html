@@ -10,4 +10,6 @@
 {% if object.created is not object.modified %}
 <p>Aktualisiert: {{ object.modified }}</p>
 {% endif %}
+
+{% if object.user == request.user%}<a href="{% url 'listing_update' object.type object.pk %}">Bearbeiten</a>{% endif %}
 {% endblock %}

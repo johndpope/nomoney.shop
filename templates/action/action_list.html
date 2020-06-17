@@ -1,8 +1,0 @@
-<h1>Actions</h1>
-<ul>
-{% for action in object_list %}
-    <li><a href="{% url 'action-detail' action.pk %}">{{ action.title }}</a></li>
-{% empty %}
-    <li>No action yet.</li>
-{% endfor %}
-</ul>

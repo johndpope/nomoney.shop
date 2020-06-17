@@ -15,27 +15,29 @@
           {{ request.user }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{% url 'user-detail' pk=request.user.pk %}">Listings</a>
-          <a class="dropdown-item" href="{% url 'calculator' %}">Deals</a>
+          <a class="dropdown-item" href="{% url 'listing_list' %}">Listings</a>
           <!-- <a class="dropdown-item" href="#">History</a> -->
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{% url 'user-update' request.user.pk %}">Mein Profil</a>
-          <a class="dropdown-item" href="{% url 'user-logout' %}">Ausloggen</a>
+          <a class="dropdown-item" href="{% url 'user_update' request.user.pk %}">Mein Profil</a>
+          <a class="dropdown-item" href="{% url 'user_pw' request.user.pk %}">Passwort ändern</a>
+          <a class="dropdown-item" href="{% url 'user_logout' %}">Ausloggen</a>
         </div>
       {% else %}
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'user-create' %}">Registrieren</a>
+        <a class="nav-link" href="{% url 'user_create' %}">Registrieren</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'user-login' %}">Anmelden</a>
+        <a class="nav-link" href="{% url 'user_login' %}">Anmelden</a>
       </li>
       {% endif %}
       </li>
+
+
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'listing-list' %}">Übersicht</a>
+        <a class="nav-link" href="{% url 'listing_list' %}">Liste</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'user-list' %}">Benutzerliste</a>
+        <a class="nav-link" href="{% url 'user_list' %}">Benutzerliste</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">

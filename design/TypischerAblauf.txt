@@ -1,0 +1,32 @@
+Registrieren/einloggen
+Listings anlegen
+Passende deals suchen
+Möglichst einfach Angebot abgeben
+
+
+
+Anfrage-Prozess:
+Wähle Handelspartner aus
+gebe kombinierte Anfrage ab
+Partner gibt gegenangebot ab, nimmt an oder lehnt ab
+
+Warte auf Reaktion -> Meine Deals - Offen
+Wenn angenommen -> Meine Deals - Angenommen
+Wenn abgelehnt -> Meine Deals - Abgelehnt
+
+
+Bid Form
+benötigt keine spalten von Bid, da sie automatisch ausgefüllt werden.
+Für jede BidPosition wird benötigt:
+listing
+quantity
+unit
+
+Listings: pushs, die der partner pullt und alle push vom partner
+
+<form>
+for listing in request.user.listing:
+    Display listing
+    <input float> quantity
+    <input dropdown> unit
+</form>

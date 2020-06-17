@@ -3,13 +3,12 @@ from django.utils.timezone import now
 from config.settings import AUTH_USER_MODEL
 
 
-class BidPosition(models.Model):
+class BidPositionBase(models.Model):
+    push = None
+    pull = None
+
     bid = models.ForeignKey(
         'Bid',
-        on_delete=models.CASCADE,
-        )
-    listing = models.ForeignKey(
-        'listing.Listing',
         on_delete=models.CASCADE,
         )
     quantity = models.DecimalField(
@@ -18,6 +17,23 @@ class BidPosition(models.Model):
         )
     unit = models.ForeignKey(
         'listing.Unit',
+        on_delete=models.CASCADE,
+        )
+
+    class Meta:
+        abstract = True
+
+
+class BidPush(BidPositionBase):
+    push = models.ForeignKey(
+        'listing.Push',
+        on_delete=models.CASCADE,
+        )
+
+
+class BidPull(BidPositionBase):
+    pull = models.ForeignKey(
+        'listing.Pull',
         on_delete=models.CASCADE,
         )
 
@@ -31,16 +47,28 @@ class StatusCode(models.IntegerChoices):
 
 
 class Bid(models.Model):
+    pushs = models.ManyToManyField(
+        'listing.Push',
+        through=BidPush,
+        through_fields=('bid', 'push'),
+        )
+
+    pulls = models.ManyToManyField(
+        'listing.Pull',
+        through=BidPull,
+        through_fields=('bid', 'pull'),
+        )
+
     user = models.ForeignKey(
         AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name = 'bids_sent'
+        related_name='bids_sent',
         )
 
     partner = models.ForeignKey(
         AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name = 'bids_received'
+        related_name = 'bids_received',
         )
 
     datetime = models.DateTimeField(default=now, editable=False)

@@ -15,13 +15,9 @@
   {% for user in users %}
         <tr>
           <th scope="row">{{ user.pk }}</th>
-          <td>{% include 'user/user_link.html' %}</td>
-          <td>
-            {% for listing in user.pushs %}{% include 'listing/listing_popover.html' %}{% endfor %}
-          </td>
-          <td>
-            {% for listing in user.pulls %}{% include 'listing/listing_popover.html' %}{% endfor %}
-          </td>
+          <td><a href="{% url 'user_detail' user.pk %}">{{ user }}</a></td>
+          <td>{{ user.pushs }}</td>
+          <td>{{ user.pulls }}</td>
         </tr>
   {% endfor %}
       </tbody>

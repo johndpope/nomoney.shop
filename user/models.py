@@ -73,24 +73,9 @@ class User(AbstractUser):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.all_listings = Listing.objects.all()
+        ##self.all_listings = Listing.objects.all()
         #self.listings = self.listing_set.all()
         self.other_users = User.objects.all().exclude(pk=self.pk)
-
-    @property
-    def listings(self):
-        return self.listing_set.all()
-
-    def actions(self, type_=None, reverse=False):
-        """ all possible actions with self.listings """
-        result = None
-        if type_ and not reverse:  # return all own listings of same type
-            result = self.listings.filter(type=type_)
-        elif type_ and reverse:  # return all own listings of other type
-            result = self.listings.exclude(type=type_)
-        else:  # return all own listings
-            result = self.listings
-        return result
 
     def matches(self):
         users = set()
@@ -114,11 +99,11 @@ class User(AbstractUser):
 
     @property
     def pushs(self):
-        return self.actions(type_='push')
+        return self.push_set.all()
 
     @property
     def pulls(self):
-        return self.actions(type_='pull')
+        return self.pull_set.all()
 
     def calculate(self, level_1_2):
         dealsets = set()
