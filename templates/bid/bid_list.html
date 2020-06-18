@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid bg-white">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Username</th>
+          <th scope="col">Bietet</th>
+          <th scope="col">Sucht</th>
+        </tr>
+      </thead>
+      <tbody>
+  {% for bid in bids %}
+        <tr>
+          <th scope="row">{{ bid.pk }}</th>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+  {% endfor %}
+      </tbody>
+    </table>
+</div>
+{% endblock %}

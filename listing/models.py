@@ -3,10 +3,6 @@ from django.db import models
 from django.core.validators import MinValueValidator
 from config.settings import AUTH_USER_MODEL
 
-TYPES = (
-    ('push', 'Biete'),
-    ('pull', 'Suche'),
-    )
 
 class Category(models.Model):
     parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
@@ -50,13 +46,14 @@ class Review(models.Model):
 
 
 class Unit(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=20)
+    short = models.CharField(max_length=5)
 
     def __str__(self):
         return self.title
 
 
-class Listing(models.Model):
+class ListingBase(models.Model):
     user = models.ForeignKey(
         AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -87,8 +84,14 @@ class Listing(models.Model):
         #                                           ).exclude(user=self.user)
         #=======================================================================
 
-    def opposite_type(self):
-        return {'push': 'pull', 'pull': 'push'}.get(self.type)
+    @property
+    def opposite_class(self):
+        return {'push': Pull, 'pull': Push}.get(self.type)
+
+    def get_matches(self):
+        cls = self.opposite_class
+        return cls.objects.filter(category=self.category
+                                  ).exclude(user=self.user)
 
     def __eq__(self, other):
         return self.category == other.category  # and self.type == other.type
@@ -99,8 +102,10 @@ class Listing(models.Model):
     class Meta:
         abstract = True
 
-class Push(Listing):
+
+class Push(ListingBase):
     type = 'push'
 
-class Pull(Listing):
+
+class Pull(ListingBase):
     type = 'pull'

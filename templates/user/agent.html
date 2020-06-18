@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Zweiseitige Deals</h2>
+<table class="table mb-5">
+  <thead>
+    <tr>
+      <th scope="col">Qualität</th>
+      <th scope="col">Partner</th>
+      <th scope="col">Geben</th>
+      <th scope="col">Nehmen</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for dealset in level2_deals %}
+  {% with deal=dealset.deal %}
+    <tr>
+      <th scope="row">{{ deal.quality }}</th>
+      <td><a href="{% url 'user_detail' deal.partner.pk %}">{{ deal.partner }}</a></td>
+      <td>{% for push in deal.pushs %}
+        <a href="{% url 'listing_detail' push.type push.pk %}">{{ push.title }}</a>,<nbsp>
+      {% endfor %}</td>
+      <td>{% for pull in deal.pulls %}<a href="{% url 'listing_detail' pull.type pull.pk %}">{{ pull.title }}</a>,<nbsp>{% endfor %}</td>
+      <td><a class="btn btn-outline-primary" href="{% url 'bid_create' deal.partner.pk %}" role="button">Zum Deal</a></td>
+    </tr>
+    {% endwith %}
+    {% endfor %}
+  </tbody>
+</table>
+
+<h2>Einseitige Deals</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Quality</th>
+      <th scope="col">Partner</th>
+      <th scope="col">Geben</th>
+      <th scope="col">Nehmen</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for dealset in level1_deals %}
+  {% with deal=dealset.deal %}
+    <tr>
+      <th scope="row">{{ deal.quality }}</th>
+      <td><a href="{% url 'user_detail' deal.partner.pk %}">{{ deal.partner }}</a></td>
+      <td>{% for push in deal.pushs %}
+        <a href="{% url 'listing_detail' push.type push.pk %}">{{ push.title }}</a>,<nbsp>
+      {% endfor %}</td>
+      <td>{% for pull in deal.pulls %}<a href="{% url 'listing_detail' pull.type pull.pk %}">{{ pull.title }}</a>,<nbsp>{% endfor %}</td>
+    </tr>
+    {% endwith %}
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

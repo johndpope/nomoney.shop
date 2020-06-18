@@ -5,6 +5,8 @@ from django.urls.base import reverse_lazy
 from django.contrib.auth import login, forms
 from django.shortcuts import redirect
 from .models import User
+from django.views.generic.base import TemplateView
+
 FIELDS = ['username', 'first_name', 'last_name', 'email']
 
 
@@ -33,3 +35,16 @@ class UserUpdateView(UpdateView):
 
 class UserDetailView(DetailView):
     model = User
+
+
+class AgentView(TemplateView):
+    template_name = 'user/agent.html'
+
+    def get_context_data(self, **kwargs):
+        context = TemplateView.get_context_data(self, **kwargs)
+        user = self.request.user
+        _, level1, level2, level3 = user.get_dealsets()
+        context['level1_deals'] = level1
+        context['level2_deals'] = level2
+        context['level3_deals'] = level3
+        return context

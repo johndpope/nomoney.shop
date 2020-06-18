@@ -19,7 +19,7 @@ from django.views.generic.base import TemplateView
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from listing.views import ListingListView, ListingDetailView, \
     ListingCreateView, ListingUpdateView, ListingDeleteView
-from user.views import UserListView, UserCreateView, UserUpdateView, UserDetailView
+from user.views import UserListView, UserCreateView, UserUpdateView, UserDetailView, AgentView
 from bid.views import BidOverView, BidListView, BidCreateView, BidDetailView, BidDeleteView
 
 urlpatterns = [
@@ -36,6 +36,8 @@ urlpatterns = [
     path('bid/<int:partner_pk>/new/', BidCreateView.as_view(), name='bid_create'),
     path('bid/<int:bid_pk>/', BidDetailView.as_view(), name='bid_detail'),
     path('bid/<int:bid_pk>/delete/', BidDeleteView.as_view(), name='bid_delete'),
+
+    path('agent/', AgentView.as_view(), name='agent_list'),
 
     path('user/', UserListView.as_view(), name='user_list'),
     path('user/new/', UserCreateView.as_view(), name='user_create'),

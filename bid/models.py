@@ -20,6 +20,10 @@ class BidPositionBase(models.Model):
         on_delete=models.CASCADE,
         )
 
+    @property
+    def listing(self):
+        return self.push or self.pull
+
     class Meta:
         abstract = True
 
