@@ -83,4 +83,4 @@ class Bid(models.Model):
         #validators=[status_validator]
         )
 
-    comment = models.TextField(default='')
+    comment = models.TextField(default='', blank=True)

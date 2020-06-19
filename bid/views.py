@@ -19,7 +19,7 @@ class BidListView(ListView):
     context_object_name = 'bids'
 
 
-class BidCreateView(TemplateView):
+class BidCreateView(FormView):
     """ Create new Bid """
     template_name = 'bid/bid_form.html'
     partner = None
@@ -31,33 +31,33 @@ class BidCreateView(TemplateView):
         self.dealset = request.user.get_dealset_from_partner(self.partner)
         return TemplateView.dispatch(self, request, *args, **kwargs)
 
+    def get_forms(self):
+        push_forms, pull_forms = [], []
+        for push in self.dealset.deal.pushs:
+            push_forms.append(BidPushForm(push, self.request.POST or None))
+        for pull in self.dealset.deal.pulls:
+            pull_forms.append(BidPullForm(pull, self.request.POST or None))
+        return push_forms, pull_forms, BidForm(self.partner)
 
     def get_context_data(self, **kwargs):
         context = TemplateView.get_context_data(self, **kwargs)
-        push_forms = []
-        for push in self.dealset.deal.pushs:
-            push_forms.append(BidPushForm(push, self.request.POST or None))
-        context['push_forms'] = push_forms
-
-        pull_forms = []
-        for pull in self.dealset.deal.pulls:
-            pull_forms.append(BidPullForm(pull, self.request.POST or None))
-        context['pull_forms'] = pull_forms
-
-        context['form'] = BidForm(self.partner)
+        forms = self.get_forms()
+        context['push_forms'], context['pull_forms'], context['form'] = forms
         return context
 
-    #form_class = BidForm
-    #partner = None
-
-
-    #===========================================================================
-    # def get_form(self, form_class=None):
-    #     """Return an instance of the form to be used in this view."""
-    #     if form_class is None:
-    #         form_class = self.get_form_class()
-    #     return form_class(self.partner, **self.get_form_kwargs())
-    #===========================================================================
+    def post(self, *args, **kwargs):
+        push_forms, pull_forms, bid_form = self.get_forms()
+        if bid_form.is_valid():
+            bid = bid_form.save(commit=True)
+        import pdb; pdb.set_trace()  # <---------
+        for form in push_forms + pull_forms:
+            if form.is_valid():
+                obj = form.save(bid=bid)
+            
+        #
+        # jeweils für push und pull save bidpositions wenmn valid
+        # save bid mit positions if valid
+        return super().post(*args, **kwargs)
 
 
 class BidDetailView(DetailView):
