@@ -1,0 +1,19 @@
+<span class="btn btn-link text-dark p-0" data-placement="bottom" data-toggle="popover" data-trigger="click" data-container="body"> 
+  <div style="white-space: nowrap"><i class="fas fa-user-tie"></i> {{ user }}</div>
+  <div class="d-none popover-content">
+    <ul class="list-group">
+      <li class="list-group-item">{% include 'user/inc/link.html' %}
+      </li>
+      <li class="list-group-item">Gibt:<br>
+        {% for listing in user.pushs %}
+          {% include 'listing/inc/link.html' %}
+        {% endfor %}
+      </li>
+      <li class="list-group-item">Nimmt:<br>
+        {% for listing in user.pulls %}
+            {% include 'listing/inc/link.html' %}
+        {% endfor %}
+      </li>
+    </ul>
+  </div>
+</span>

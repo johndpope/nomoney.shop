@@ -18,15 +18,22 @@ class ListingListView(ListView):
     template_name = 'listing/listing_list.html'
     context_object_name = 'categories'
 
+    def get_queryset(self):
+        return ListView.get_queryset(self)
+
 
 class ListingCreateView(CreateView):
     model = None
     template_name = 'listing/listing_form.html'
     fields = FIELDS
     success_url = reverse_lazy('listing_list')
+    category = None
 
     def dispatch(self, request, *args, **kwargs):
         self.model = {'push': Push, 'pull': Pull}.get(kwargs.get('type'))
+        self.category = kwargs.get('category_id', None)
+        if self.category:
+            self.initial['category'] = self.category#Category.objects.get(category=self.category+1)
         return DetailView.dispatch(self, request, *args, **kwargs)
 
 
@@ -38,7 +45,7 @@ class ListingUpdateView(UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         self.model = {'push': Push, 'pull': Pull}.get(kwargs.get('type'))
-        self.extra_context = {'pk': kwargs.get('pk'), 'type': kwargs.get('type')}
+        self.extra_context = {'type': kwargs.get('type')}
         return DetailView.dispatch(self, request, *args, **kwargs)
 
 

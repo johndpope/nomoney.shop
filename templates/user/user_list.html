@@ -9,15 +9,17 @@
           <th scope="col">Username</th>
           <th scope="col">Bietet</th>
           <th scope="col">Sucht</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
   {% for user in users %}
         <tr>
           <th scope="row">{{ user.pk }}</th>
-          <td><a href="{% url 'user_detail' user.pk %}">{{ user }}</a></td>
-          <td>{{ user.pushs }}</td>
-          <td>{{ user.pulls }}</td>
+          <td>{% include 'user/inc/link.html' %}</td>
+          <td>{% for listing in user.pushs %}{% include 'listing/inc/link.html' %} {% endfor %}</td>
+          <td>{% for listing in user.pulls %}{% include 'listing/inc/link.html' %} {% endfor %}</td>
+          <td><a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' user.pk %}" role="button">handeln</a></td>
         </tr>
   {% endfor %}
       </tbody>

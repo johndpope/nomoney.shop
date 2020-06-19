@@ -6,18 +6,18 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Username</th>
-          <th scope="col">Bietet</th>
-          <th scope="col">Sucht</th>
+          <th scope="col">Von</th>
+          <th scope="col">An</th>
+          <th scope="col">Zeit</th>
         </tr>
       </thead>
       <tbody>
   {% for bid in bids %}
         <tr>
-          <th scope="row">{{ bid.pk }}</th>
-          <td></td>
-          <td></td>
-          <td></td>
+          <th scope="row"><a href="{% url 'bid_detail' bid.pk %}">{{ bid.pk }}</a></th>
+          <td>{{ bid.user }}</td>
+          <td>{{ bid.partner }}</td>
+          <td>{{ bid.datetime }}</td>
         </tr>
   {% endfor %}
       </tbody>

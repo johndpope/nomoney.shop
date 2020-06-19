@@ -1,0 +1,35 @@
+<span type="button" class="badge badge-{% if listing.type == 'push' %}primary{% else %}secondary{% endif %}" data-placement="bottom" data-toggle="popover" data-trigger="click" data-container="body"> 
+  {{ listing.category.title }}
+  <div class="card d-none popover-content">
+    <div class="card-header">
+      <h5 class="card-title">{{ listing.title }}</h5>
+      <p class="card-subtitle">{{ listing.count }} {{ listing.unit }}</p>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item">
+        Benutzer:<br>
+        {{ listing.user }}
+      </li>
+      {% if listing.description %}
+      <li class="list-group-item">
+        Beschreibung:<br>
+        {{ listing.description }}
+      </li>
+      {% endif %}
+      <li class="list-group-item">Biete:<br>
+        {% for push in user.pushs %}
+          {% with listing=push%}
+            {% include 'listing/inc/link.html' %}
+          {% endwith %}
+        {% endfor %}
+      </li>
+      <li class="list-group-item">Suche:<br>
+        {% for pull in user.pulls %}
+          {% with listing=pull%}
+            {% include 'listing/inc/link.html' %}
+          {% endwith %}
+        {% endfor %}
+      </li>
+    </ul>
+  </div>
+</span>

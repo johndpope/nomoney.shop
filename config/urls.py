@@ -28,13 +28,14 @@ urlpatterns = [
     path('list/', ListingListView.as_view(), name='listing_list'),
     path('list/<slug:type>/new/', ListingCreateView.as_view(), name='listing_create'),
     path('list/<slug:type>/<int:pk>/', ListingDetailView.as_view(), name='listing_detail'),
+    path('list/<slug:type>/<int:category_id>/new/', ListingCreateView.as_view(), name='listing_create'),
     path('list/<slug:type>/<int:pk>/update/', ListingUpdateView.as_view(), name='listing_update'),
     path('list/<slug:type>/<int:pk>/delete', ListingDeleteView.as_view(), name='listing_delete'),
 
     path('bid/', BidOverView.as_view(), name='bid_overview'),
-    path('bid/<int:partner_pk>/', BidListView.as_view(), name='bid_list'),
-    path('bid/<int:partner_pk>/new/', BidCreateView.as_view(), name='bid_create'),
-    path('bid/<int:bid_pk>/', BidDetailView.as_view(), name='bid_detail'),
+    path('bid/partner/<int:partner_pk>/', BidListView.as_view(), name='bid_list'),
+    path('bid/partner/<int:partner_pk>/new/', BidCreateView.as_view(), name='bid_create'),
+    path('bid/<int:pk>/', BidDetailView.as_view(), name='bid_detail'),
     path('bid/<int:bid_pk>/delete/', BidDeleteView.as_view(), name='bid_delete'),
 
     path('agent/', AgentView.as_view(), name='agent_list'),

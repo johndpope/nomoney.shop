@@ -1,9 +1,11 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, DeleteView, FormView
+from django.views.generic.edit import DeleteView, FormView
 from .models import Bid
 from .forms import BidForm, BidPushForm, BidPullForm
 from django.views.generic.base import TemplateView
+from django.urls.base import reverse_lazy
+from django.shortcuts import redirect
 
 MODEL = Bid
 
@@ -11,12 +13,24 @@ MODEL = Bid
 class BidOverView(ListView):
     """ View all Bids from or to me """
     model = MODEL
+    context_object_name = 'bids'
 
 
 class BidListView(ListView):
     """ List Bids of me from or to one partner """
     model = MODEL
     context_object_name = 'bids'
+    partner = None
+
+    def dispatch(self, request, *args, **kwargs):
+        partner_pk = kwargs.get('partner_pk')
+        user_class = request.user.__class__
+        self.partner = user_class.objects.get(pk=partner_pk)
+        return ListView.dispatch(self, request, *args, **kwargs)
+
+    def get_queryset(self):
+        filter_ = (self.request.user, self.partner)
+        return self.model.objects.filter(user__in=filter_, partner__in=filter_)
 
 
 class BidCreateView(FormView):
@@ -47,17 +61,18 @@ class BidCreateView(FormView):
 
     def post(self, *args, **kwargs):
         push_forms, pull_forms, bid_form = self.get_forms()
-        if bid_form.is_valid():
-            bid = bid_form.save(commit=True)
-        import pdb; pdb.set_trace()  # <---------
-        for form in push_forms + pull_forms:
-            if form.is_valid():
-                obj = form.save(bid=bid)
-            
-        #
-        # jeweils für push und pull save bidpositions wenmn valid
-        # save bid mit positions if valid
-        return super().post(*args, **kwargs)
+        bid = bid_form.save(commit=False)
+        bid.user = self.request.user
+        bid.partner = self.partner
+        bid.save()
+        for push_form in push_forms:
+            if push_form.is_valid():
+                push_form.save(bid)
+        for pull_form in pull_forms:
+            if pull_form.is_valid():
+                pull_form.save(bid)
+        bid.save()
+        return redirect(reverse_lazy('home'))
 
 
 class BidDetailView(DetailView):

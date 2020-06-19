@@ -9,11 +9,10 @@ class BidForm(forms.ModelForm):
     def __init__(self, partner, *args, **kwargs):
         self.partner = partner
         super().__init__(*args, **kwargs)
-        import pdb; pdb.set_trace()  # <---------
 
     class Meta:
         model = Bid
-        exclude = ['user', 'partner', 'datetime', 'status']
+        exclude = ['user', 'partner', 'datetime', 'status', 'pushs', 'pulls']
         #fields = ['comment']
 
 
@@ -29,6 +28,12 @@ class BidPositionFormBase(forms.ModelForm):
             return 0
         elif field_name == 'unit':
             return self.listing.unit.pk
+
+    def save(self, bid, commit=True):
+        obj = super().save(commit=False)
+        obj.listing = self.listing
+        obj.bid = bid
+        obj.save()
 
 
 class BidPushForm(BidPositionFormBase, forms.ModelForm):

@@ -4,8 +4,15 @@ from config.settings import AUTH_USER_MODEL
 
 
 class BidPositionBase(models.Model):
-    push = None
-    pull = None
+    listing = None
+
+    @property
+    def push(self):
+        return self.listing
+
+    @property
+    def pull(self):
+        return self.listing
 
     bid = models.ForeignKey(
         'Bid',
@@ -20,23 +27,19 @@ class BidPositionBase(models.Model):
         on_delete=models.CASCADE,
         )
 
-    @property
-    def listing(self):
-        return self.push or self.pull
-
     class Meta:
         abstract = True
 
 
 class BidPush(BidPositionBase):
-    push = models.ForeignKey(
+    listing = models.ForeignKey(
         'listing.Push',
         on_delete=models.CASCADE,
         )
 
 
 class BidPull(BidPositionBase):
-    pull = models.ForeignKey(
+    listing = models.ForeignKey(
         'listing.Pull',
         on_delete=models.CASCADE,
         )
@@ -54,13 +57,13 @@ class Bid(models.Model):
     pushs = models.ManyToManyField(
         'listing.Push',
         through=BidPush,
-        through_fields=('bid', 'push'),
+        through_fields=('bid', 'listing'),
         )
 
     pulls = models.ManyToManyField(
         'listing.Pull',
         through=BidPull,
-        through_fields=('bid', 'pull'),
+        through_fields=('bid', 'listing'),
         )
 
     user = models.ForeignKey(
@@ -84,3 +87,11 @@ class Bid(models.Model):
         )
 
     comment = models.TextField(default='', blank=True)
+
+    @property
+    def push_positions(self):
+        return self.bidpush_set.all()
+
+    @property
+    def pull_positions(self):
+        return self.bidpull_set.all()

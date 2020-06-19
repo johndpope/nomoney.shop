@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Anfrage von {{object.user}} an {{object.partner}}</h2>
+<p>Gibt: {{ object.push_positions }}</p>
+<p>Nimmt: {{ object.pull_positions }}</p>
+<p>Beschreibung: {{ object.comment }}</p>
+<p>Erstellt: {{ object.datetime }}</p>
+
+{% if object.user == request.user%}<a href="#">Bearbeiten</a>{% endif %}
+{% endblock %}

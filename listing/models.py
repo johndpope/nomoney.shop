@@ -1,4 +1,5 @@
 from decimal import Decimal
+from itertools import chain
 from django.db import models
 from django.core.validators import MinValueValidator
 from config.settings import AUTH_USER_MODEL
@@ -8,6 +9,7 @@ class Category(models.Model):
     parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     description = models.TextField(null=True, blank=True)
+    hidden = models.BooleanField(default=False)
 
     @property
     def pushs(self):
@@ -18,6 +20,10 @@ class Category(models.Model):
         return Pull.objects.filter(category=self)
 
     @property
+    def listings(self):
+        return list(chain(self.pushs, self.pulls))
+
+    @property
     def path(self):
         obj = self
         title = self.title
@@ -26,8 +32,11 @@ class Category(models.Model):
             obj = obj.parent
         return title
 
+    def count_actions(self):
+        return len(self.listings)
+
     def __lt__(self, other):
-        return str(self) < str(other)
+        return self.count_actions() < other.count_actions()
 
     def __str__(self):
         return self.path
@@ -94,7 +103,10 @@ class ListingBase(models.Model):
                                   ).exclude(user=self.user)
 
     def __eq__(self, other):
-        return self.category == other.category  # and self.type == other.type
+        try:
+            return self.category == other.category  # and self.type == other.type
+        except AttributeError as e:
+            print(e)
 
     def __str__(self):
         return '{} {} {}'.format(self.user.username, self.type, self.title)
