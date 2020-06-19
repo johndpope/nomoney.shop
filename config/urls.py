@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls.conf import include
 from django.views.generic.base import TemplateView
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from listing.views import ListingListView, ListingDetailView, \
@@ -47,6 +48,8 @@ urlpatterns = [
     path('user/<int:pk>/pw/', PasswordChangeView.as_view(template_name='user/user_form.html'), name='user_pw'),
     path('user/login/', LoginView.as_view(template_name='user/user_form.html'), name='user_login'),
     path('user/logout/', LogoutView.as_view(), name='user_logout'),
+
+    path('search/', include('search.urls')),
 
     path('admin/', admin.site.urls),
 ]

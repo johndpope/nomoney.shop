@@ -1,26 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container-fluid bg-white">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Username</th>
-        <th scope="col">Biete</th>
-        <th scope="col">Suche</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">{{ user.pk }}</th>
-        <td></td>
-        <td>
-        </td>
-        <td>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">Biete</th>
+      <th scope="col">Suche</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{ user.pk }}</th>
+      <td></td>
+      <td>
+      </td>
+      <td>
+      </td>
+    </tr>
+  </tbody>
+</table>
 {% endblock %}
