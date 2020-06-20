@@ -2,24 +2,15 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls.base import reverse_lazy
-from .models import Push, Pull, Category
+from .models import Push, Pull
 
-FIELDS = ['title', 'category', 'quantity', 'unit', 'description', ]
+FIELDS = ['title', 'category', 'quantity', 'unit', 'description', 'image']
 """
 listing_list - list pushs and pulls
 listing_create
 listing_update
 listing_detail
 """
-
-
-class ListingListView(ListView):
-    model = Category
-    template_name = 'listing/listing_list.html'
-    context_object_name = 'categories'
-
-    def get_queryset(self):
-        return ListView.get_queryset(self)
 
 
 class ListingCreateView(CreateView):

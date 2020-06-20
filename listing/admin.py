@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Category, Push, Pull, Review, Unit
+from category.models import Category
+from .models import Push, Pull, Review, Unit
 
 
 class PushAdmin(admin.TabularInline):

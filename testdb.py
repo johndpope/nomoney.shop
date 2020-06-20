@@ -2,12 +2,15 @@
 
 To fill your development database with these sample data, do:
 python manage.py shell
-from testdb import TestDB
-TestDB.setup()
+from testdb import TestDB;TestDB.setup()
+
+Oneline:
+python manage.py shell -c "from testdb import TestDB;TestDB.setup()"
 """
 from random import randint
 from user.models import User
-from listing.models import Unit, Push, Pull, Category
+from listing.models import Unit, Push, Pull
+from category.models import Category
 
 
 class TestDB:
@@ -46,6 +49,9 @@ class TestDB:
     @classmethod
     def setup_user_db(cls):
         """ Setup User database only """
+        user = User.objects.create(username='demo')
+        user.set_password('demo123')
+        user.save()
         for i in range(cls.USER_COUNT):
             i = str(i + 1)
             User.objects.create(
