@@ -1,12 +1,15 @@
 from tests_abc import TestCase
-from .models import Listing, Category
+from .models import Push, Pull, Category
 from django.db.models.query import QuerySet
 
 
 class UserTestCase(TestCase):
 
     def test_user_db(self):
-        self.assertEqual(len(Listing.objects.all()), self.testdb.LISTING_COUNT)
+        self.assertEqual(
+            len(Push.objects.all()) + len(Pull.objects.all()),
+            self.testdb.LISTING_COUNT
+            )
 
 
 class CategoryTestCase(TestCase):
@@ -22,7 +25,3 @@ class CategoryTestCase(TestCase):
         self.assertIsInstance(pulls, QuerySet)
         self.assertIsInstance(category.path, str)
         self.assertIn('/', str(category))
-        self.assertEqual(
-            sorted(Category.objects.all()),
-            sorted(Category.objects.all(), key=lambda x: x.path)
-            )

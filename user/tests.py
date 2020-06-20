@@ -17,5 +17,7 @@ class UserTestCase(TestCase):
     def test_user_db(self):
         self.assertIs(len(User.objects.all()), TestDB.USER_COUNT)
 
-    def test_user_model(self):
-        self.assertIs(len(self.user.matches()), len(User.objects.all()) - 1)
+    #===========================================================================
+    # def test_user_model(self):
+    #     self.assertIs(len(self.user.matches()), len(User.objects.all()) - 1)
+    #===========================================================================

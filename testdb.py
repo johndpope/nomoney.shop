@@ -7,7 +7,7 @@ TestDB.setup()
 """
 from random import randint
 from user.models import User
-from listing.models import Unit, Listing, Category
+from listing.models import Unit, Push, Pull, Category
 
 
 class TestDB:
@@ -19,15 +19,28 @@ class TestDB:
     It's possible to install app specific databases if necessary:
     TestDB.setup_appname_db()
     """
-    USER_COUNT = 10
-    LISTING_COUNT = 100
-    CATEGORIES = ['Äpfel', 'Bananen', 'Erdbeeren', 'Brot', 'Wasser']
-    UNITS = ['kg', 'g', 'stück', 'liter']
+    USER_COUNT = 50
+    LISTING_COUNT = 1000
+    CATEGORIES = {
+        'Lebensmittel': ['Äpfel', 'Bananen', 'Erdbeeren', 'Brot', 'Wasser',
+                         'Mehl', 'Eier', 'Pepperoni', 'Tomaten', 'Kopfsalat'],
+        'Dienstleistung': ['Rasenmähen', 'Heckenschnitt', 'IT-Service', ]
+        }
+
+    UNITS = [
+        ('Kilogramm', 'kg'),
+        ('Gramm', 'g'),
+        ('Stück', 'stk'),
+        ('Liter', 'l'),
+        ('Milliiter', 'ml'),
+        ]
 
     @classmethod
     def setup(cls):
         """ Setup complete test/demo database """
         cls.setup_user_db()
+        cls.setup_unit_db()
+        cls.setup_category_db()
         cls.setup_listing_db()
 
     @classmethod
@@ -43,39 +56,37 @@ class TestDB:
                 )
 
     @classmethod
+    def setup_unit_db(cls):
+        for title, short in cls.UNITS:
+            Unit.objects.create(title=title, short=short)
+
+    @classmethod
+    def setup_category_db(cls):
+        for category_str, sub_categories in cls.CATEGORIES.items():
+            category = Category.objects.create(title=category_str)
+            for sub_cat in sub_categories:
+                Category.objects.create(parent=category, title=sub_cat)
+
+    @classmethod
     def setup_listing_db(cls):
         """ Setup Listing database with all related models
         (Category and Unit)
         """
-        cls._setup_listing_category_db()
-        cls._setup_listing_unit_db()
-        for i in range(cls.LISTING_COUNT):
-            i = str(i + 1)
-            type_ = ('push', 'pull')[randint(0, 1)]
-            user = User.objects.all()[randint(0, cls.USER_COUNT - 1)]
-            category = Category.objects.get(
-                title=cls.CATEGORIES[randint(0, len(cls.CATEGORIES) - 1)]
-                )
-            count = randint(1, 1000)
-            unit = Unit.objects.all()[randint(0, len(cls.UNITS) - 1)]
-            title = '{} bla'.format(category.title, count, unit)
-            Listing.objects.create(
+        for _ in range(cls.LISTING_COUNT):
+            listing_class = (Push, Pull)[randint(0, 1)]
+            category = cls.random_object(Category)
+            user = cls.random_object(User)
+            quantity = randint(1, 2147483647)
+            unit = cls.random_object(Unit)
+
+            listing_class.objects.create(
+                category=category,
                 user=user,
-                type=type_,
-                unit=unit,
-                title=title,
-                count=count,
-                category=category
+                quantity=quantity,
+                unit=unit
                 )
 
-    @classmethod
-    def _setup_listing_category_db(cls):
-        parent = Category.objects.create(title='Nahrungsmittel')
-        for category in cls.CATEGORIES:
-            Category.objects.create(title=category, parent=parent)
-
-    @classmethod
-    def _setup_listing_unit_db(cls):
-        """ must be run before listing db """
-        for unit in cls.UNITS:
-            Unit.objects.create(title=unit)
+    @staticmethod
+    def random_object(model):
+        objects = model.objects.all()
+        return objects[randint(0, len(objects)-1)]
