@@ -13,12 +13,12 @@
     * {box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;}
   </style>
 </head>
-<body class="bg-light shadow">
+<body class="bg-light">
   {% include "menu.html" %}
   <div class="container-fluid">
   <div class="row">
     <div class="col">{% block left %}{% endblock %}</div>
-    <div class="col-12 col-sm-11 col-md-9 col-xl-8 bg-white border">
+    <div class="col-12 col-sm-12 col-md-10 col-xl-8 p-3 p-xl-5 p-xl-5 bg-white border shadow mb-5">
       {% block content %}{% endblock %}
     </div>
     <div class="col">{% block right %}{% endblock %}</div>

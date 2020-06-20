@@ -21,7 +21,7 @@ urlpatterns = [
 
     path(
         '<slug:type>/<int:pk>/',
-        ListingUpdateView.as_view(),
+        ListingDetailView.as_view(),
         name='listing_detail'
         ),
 

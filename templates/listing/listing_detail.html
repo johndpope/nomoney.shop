@@ -1,15 +1,34 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1>{% if object.type == 'push' %}Biete{% else %}Suche{% endif %} {{ object.title }} von {{ object.user }}</h1>
-<p>Kategorie: {{ object.category }}</p>
-<p>Menge: {{ object.count }}{{ object.unit }}</p>
-<p>Beschreibung: {{ object.description }}</p>
-<p>Erstellt: {{ object.created }}</p>
-{% if object.created is not object.modified %}
-<p>Aktualisiert: {{ object.modified }}</p>
-{% endif %}
-
+<div class="card">
+  <!-- BILD <img src="..." class="card-img-top" alt="...">-->
+  <div class="card-body">
+    <h5 class="card-title">{% if object.type == 'push' %}Biete{% else %}Suche{% endif %} {{ object.title }} von {{ object.user }}</h5>
+    <p>Kategorie: {{ listing.category }}</p>
+    <p>Menge: {{ listing.count }}{{ listing.unit }}</p>
+    <p>Beschreibung: {{ listing.description }}</p>
+    <p>Erstellt: {{ listing.created }}</p>
+    <p>Aktualisiert: {{ listing.modified }}</p>
+    <hr>
+    <p class="card-text">Ich gebe: {% for listing in listing.user.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</p>
+    <p class="card-text">Ich nehme: {% for listing in listing.user.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</p>
+    <hr>
+    
+    <div class="card-text">
+      <div class=container-fluid>
+        <div class="row">
+          <div class="col">Möglicher Deal:</div>
+        </div>
+        <div class="row">
+          <div class="col">{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
+          <div class="col-1">vs.</div>
+          <div class="col">{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
+          <div class="col-1"><a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' user.pk %}" role="button">handeln</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% if object.user == request.user%}<a href="{% url 'listing_update' object.type object.pk %}">Bearbeiten</a>{% endif %}
 {% endblock %}

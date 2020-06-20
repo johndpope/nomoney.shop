@@ -1,24 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Username</th>
-      <th scope="col">Biete</th>
-      <th scope="col">Suche</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">{{ user.pk }}</th>
-      <td></td>
-      <td>
-      </td>
-      <td>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="card">
+  <!-- BILD <img src="..." class="card-img-top" alt="...">-->
+  <div class="card-body">
+    <h5 class="card-title">{{ user }}</h5>
+    <p class="card-text">Ich gebe: {% for listing in user.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</p>
+    <p class="card-text">Ich nehme: {% for listing in user.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</p>
+    <hr>
+    <div class=container-fluid>
+      <div class="row">
+        <div class="col">Möglicher Deal:</div>
+      </div>
+      <div class="row">
+        <div class="col">{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
+        <div class="col-1">vs.</div>
+        <div class="col">{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
+        <div class="col-1"><a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' user.pk %}" role="button">handeln</a></div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

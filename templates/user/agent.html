@@ -18,35 +18,7 @@
     {% with deal=dealset.deal %}
       <tr>
         <th scope="row">{{ deal.quality }}</th>
-        <td>{% with user=deal.partner %}{% include 'user/inc/popover.html' %}{% endwith %}</td>
-        <td>{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
-        <td>{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
-        <td><a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' deal.partner.pk %}" role="button">handeln</a></td>
-      </tr>
-      {% endwith %}
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
-
-<h2>Einseitige Deals</h2>
-<div class=" table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Quality</th>
-        <th scope="col">Partner</th>
-        <th scope="col">Geben</th>
-        <th scope="col">Nehmen</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for dealset in level1_deals %}
-    {% with deal=dealset.deal %}
-      <tr>
-        <th scope="row">{{ deal.quality }}</th>
-        <td>{% with user=deal.partner %}{% include 'user/inc/popover.html' %}{% endwith %}</td>
+        <td>{% with user=deal.partner %}{% include 'user/inc/link.html' %}{% endwith %}</td>
         <td>{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
         <td>{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
         <td><a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' deal.partner.pk %}" role="button">handeln</a></td>

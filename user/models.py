@@ -109,9 +109,9 @@ class User(AbstractUser):
             level.get(dealset.level).append(dealset)
 
         return [], \
-            sorted(level[1], key=lambda x: x.quality), \
-            sorted(level[2], key=lambda x: x.quality), \
-            sorted(level[3], key=lambda x: x.quality)
+            sorted(level[1], key=lambda x: x.quality, reverse=True), \
+            sorted(level[2], key=lambda x: x.quality, reverse=True), \
+            sorted(level[3], key=lambda x: x.quality, reverse=True)
 
     def get_matches(self):
         matches = []

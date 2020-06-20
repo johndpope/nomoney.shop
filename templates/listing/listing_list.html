@@ -19,7 +19,7 @@
         <td>
           {% for listing in category.pushs %}
             {% with user=listing.user %}
-              {% include 'user/inc/popover.html' %}&nbsp;
+              {% include 'user/inc/link.html' %}&nbsp;
             {% endwith %}
           {% endfor %}
           <a class="text-info" href="{% url 'category_listing_create' 'push' category.pk %}"><i class="fas fa-plus"></i></a>
@@ -27,7 +27,7 @@
         <td>
           {% for listing in category.pulls %}
             {% with user=listing.user %}
-              {% include 'user/inc/popover.html' %}&nbsp;
+              {% include 'user/inc/link.html' %}&nbsp;
             {% endwith %}
           {% endfor %}
           <a class="text-info" href="{% url 'category_listing_create' 'pull' category.pk %}"><i class="fas fa-plus"></i></i></a>
