@@ -1,11 +1,13 @@
 from django.urls import path
-from listing.views import ListingDetailView, ListingCreateView, \
-    ListingUpdateView, ListingDeleteView, ListingListView
+from .views import ListingDetailView, ListingCreateView, ListingUpdateView, \
+    ListingDeleteView, ListingListView, ListingTypeListView
 
 
 # /listing/
 urlpatterns = [
     path('', ListingListView.as_view(), name='listing_list'),
+
+    path('<slug:type>/', ListingTypeListView.as_view(), name='listing_type_list'),
 
     path(
         '<slug:type>/new/',

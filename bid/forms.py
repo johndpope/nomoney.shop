@@ -25,7 +25,7 @@ class BidPositionFormBase(forms.ModelForm):
 
     def get_initial_for_field(self, field, field_name):
         if field_name == 'quantity':
-            return 0
+            return 0  # Vorheriges gebot
         elif field_name == 'unit':
             return self.listing.unit.pk
 

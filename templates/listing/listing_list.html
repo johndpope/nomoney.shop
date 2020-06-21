@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'actions.html' %}
+<div class="container-fluid">
+  {% for listing in object_list %}
+    {% include 'listing/inc/link.html' %}
+  {% endfor %}
+</div>
+{% endblock %}

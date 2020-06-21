@@ -22,7 +22,7 @@ class TestDB:
     It's possible to install app specific databases if necessary:
     TestDB.setup_appname_db()
     """
-    USER_COUNT = 50
+    USER_COUNT = 100
     LISTING_COUNT = 1000
     CATEGORIES = {
         'Lebensmittel': ['Äpfel', 'Bananen', 'Erdbeeren', 'Brot', 'Wasser',
@@ -36,6 +36,11 @@ class TestDB:
         ('Stück', 'stk'),
         ('Liter', 'l'),
         ('Milliiter', 'ml'),
+        ]
+
+    TITLE_SUFFIX = [
+        'frisch', 'frische Ernte', 'beschte', 'Original','Super Qualität',
+        'erntefrisch', 'hervorragende Qualität'
         ]
 
     @classmethod
@@ -84,10 +89,13 @@ class TestDB:
             user = cls.random_object(User)
             quantity = randint(1, 2147483647)
             unit = cls.random_object(Unit)
+            title = category.title + ' ' + \
+                TestDB.TITLE_SUFFIX[randint(0, len(TestDB.TITLE_SUFFIX)-1)]
 
             listing_class.objects.create(
                 category=category,
                 user=user,
+                title=title,
                 quantity=quantity,
                 unit=unit
                 )

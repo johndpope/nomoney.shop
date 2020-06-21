@@ -48,6 +48,10 @@ class ListingBase(models.Model):
         return cls.objects.filter(category=self.category
                                   ).exclude(user=self.user)
 
+    @staticmethod
+    def get_all():
+        return list(chain(Push.objects.all(), Pull.objects.all()))
+
     def __eq__(self, other):
         try:
             return self.category == other.category  # and self.type == other.type

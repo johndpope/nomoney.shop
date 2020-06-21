@@ -1,11 +1,11 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, FormView
-from .models import Bid
-from .forms import BidForm, BidPushForm, BidPullForm
 from django.views.generic.base import TemplateView
 from django.urls.base import reverse_lazy
 from django.shortcuts import redirect
+from .models import Bid
+from .forms import BidForm, BidPushForm, BidPullForm
 
 MODEL = Bid
 

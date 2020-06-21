@@ -1,3 +1,4 @@
+from itertools import chain
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -12,7 +13,26 @@ listing_update
 listing_detail
 """
 class ListingListView(ListView):
-    pass
+    template_name = 'listing/listing_list.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        return DetailView.dispatch(self, request, *args, **kwargs)
+
+    def get_queryset(self):
+        return Push.get_all()
+
+
+class ListingTypeListView(ListView):
+    model = None
+    template_name = 'listing/listing_list.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.model = {'push': Push, 'pull': Pull}.get(kwargs.get('type'))
+        return DetailView.dispatch(self, request, *args, **kwargs)
+
+    def get_queryset(self):
+        return self.model.objects.all()
+
 
 class ListingCreateView(CreateView):
     model = None
