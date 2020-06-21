@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from lib import timer
 
 
 class DealSet:
@@ -50,7 +51,7 @@ class Deal:
         self.level = self.get_level()
         self.quality = self.get_quality()
 
-    def get_level(self):
+    def get_level_and_quality(self):
         level = 0
         if self.intersection(self.user.pushs, self.partner.pulls):
             level += 1
@@ -58,21 +59,28 @@ class Deal:
             level += 1
         return level
 
+    def get_level(self):
+        level = 0
+        if self.pushs:
+            level += 1
+        if self.pulls:
+            level += 1
+        return level
+
     def get_quality(self):
-        quality = 0
-        quality += len(self.intersection(self.user.pushs, self.partner.pulls))
-        quality += len(self.intersection(self.user.pulls, self.partner.pushs))
-        return quality
+        return len(list(self.pushs) + list(self.pulls))
 
     def get_intersecting(self):
-        pushs = self.intersection(self.user.pushs, self.partner.pulls)
-        pulls = self.intersection(self.user.pulls, self.partner.pushs)
-        return pushs, pulls
+        """ returns intersecting pushs, pulls """
+        return self.intersection(self.user.pushs, self.partner.pulls), \
+            self.intersection(self.user.pulls, self.partner.pushs)
 
     @staticmethod
     def intersection(lst1, lst2):
         """ returns intersecting elements """
-        return [element for element in lst1 if element in lst2]
+        for element in lst1:
+            if element in lst2:
+                yield element
 
     def __repr__(self):
         return 'Deal: ' + str(self)

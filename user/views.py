@@ -9,7 +9,7 @@ from django.shortcuts import redirect
 from django.contrib.auth import get_user_model
 from .forms import CustomUserCreationForm
 
-User = get_user_model()
+User = get_user_model()  # pylint: disable=invalid-name
 FIELDS = ['username', 'first_name', 'last_name', 'email']
 
 
@@ -59,4 +59,7 @@ class AgentView(LoginRequiredMixin, TemplateView):
         context['level1_deals'] = level1
         context['level2_deals'] = level2
         context['level3_deals'] = level3
+        context['level2_quality_factor'] = 100 / max((
+            dealset.quality for dealset in level2
+            ))
         return context
