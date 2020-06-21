@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls.base import reverse_lazy
 from .models import Push, Pull
 
-FIELDS = ['title', 'category', 'quantity', 'unit', 'description', 'image']
+FIELDS = ['title', 'image', 'category', 'quantity', 'unit', 'description']
 """
 listing_list - list pushs and pulls
 listing_create
@@ -43,7 +43,7 @@ class ListingCreateView(CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         self.model = {'push': Push, 'pull': Pull}.get(kwargs.get('type'))
-        self.category = kwargs.get('category_id', None)
+        self.category = kwargs.get('category_pk', None)
         if self.category:
             self.initial['category'] = self.category#Category.objects.get(category=self.category+1)
         return DetailView.dispatch(self, request, *args, **kwargs)

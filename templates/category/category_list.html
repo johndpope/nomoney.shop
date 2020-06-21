@@ -14,7 +14,7 @@
     <tbody>
     {% for category in categories %}
       <tr>
-        <td><a href="{% url 'category_detail' category.pk %}">{{ category.title }}</a></td>
+        <td>{% include 'category/inc/link.html' %}</td>
         <td>{{ category.count_actions }}</td>
         <td>
           {% for listing in category.pushs %}
@@ -35,10 +35,10 @@
       </tr>
     {% endfor %}
       <tr>
+        <td><a class="text-info" href="{% url 'category_create' %}"><i class="fas fa-plus"></i> Kategorie</a></td>
         <td></td>
-        <td></td>
-        <td><a class="text-info" href="{% url 'listing_create' 'push' %}"><i class="fas fa-plus"></i> Neues Angebot</a></td>
-        <td><a class="text-info" href="{% url 'listing_create' 'pull' %}"><i class="fas fa-plus"></i> Neue Anfrage</a></td>
+        <td><a class="text-info" href="{% url 'listing_create' 'push' %}"><i class="fas fa-plus"></i> Angebot</a></td>
+        <td><a class="text-info" href="{% url 'listing_create' 'pull' %}"><i class="fas fa-plus"></i> Anfrage</a></td>
         <td></td>
       </tr>
     </tbody>
