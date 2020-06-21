@@ -1,12 +1,15 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, FormView
-from django.urls.base import reverse_lazy
-from django.contrib.auth import login, forms
-from django.shortcuts import redirect
-from .models import User
 from django.views.generic.base import TemplateView
+from django.urls.base import reverse_lazy
+from django.contrib.auth import login
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
+from django.contrib.auth import get_user_model
+from .forms import CustomUserCreationForm
 
+User = get_user_model()
 FIELDS = ['username', 'first_name', 'last_name', 'email']
 
 
@@ -16,7 +19,7 @@ class UserListView(ListView):
 
 
 class UserCreateView(FormView):
-    form_class = forms.UserCreationForm
+    form_class = CustomUserCreationForm
     template_name = 'user/user_form.html'
     success_url = reverse_lazy('home')
 
@@ -26,14 +29,14 @@ class UserCreateView(FormView):
         return redirect('home')
 
 
-class UserUpdateView(UpdateView):
+class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = User
     fields = FIELDS
     template_name = 'user/user_form.html'
     success_url = reverse_lazy('home')
 
 
-class UserDetailView(DetailView):
+class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
     context_object_name = 'user'
 
@@ -46,7 +49,7 @@ class UserDetailView(DetailView):
         return DetailView.dispatch(self, request, *args, **kwargs)
 
 
-class AgentView(TemplateView):
+class AgentView(LoginRequiredMixin, TemplateView):
     template_name = 'user/agent.html'
 
     def get_context_data(self, **kwargs):
