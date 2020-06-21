@@ -22,8 +22,10 @@ class TestDB:
     It's possible to install app specific databases if necessary:
     TestDB.setup_appname_db()
     """
-    USER_COUNT = 100
-    LISTING_COUNT = 1000
+    USER_NAME = 'demo'
+    USER_PASSWORD = 'demo123'
+    USER_COUNT = 20
+    LISTING_COUNT = 200
     CATEGORIES = {
         'Lebensmittel': ['Äpfel', 'Bananen', 'Erdbeeren', 'Brot', 'Wasser',
                          'Mehl', 'Eier', 'Pepperoni', 'Tomaten', 'Kopfsalat'],
@@ -54,8 +56,8 @@ class TestDB:
     @classmethod
     def setup_user_db(cls):
         """ Setup User database only """
-        user = User.objects.create(username='demo')
-        user.set_password('demo123')
+        user = User.objects.create(username=TestDB.USER_NAME)
+        user.set_password(TestDB.USER_PASSWORD)
         user.save()
         for i in range(cls.USER_COUNT):
             i = str(i + 1)

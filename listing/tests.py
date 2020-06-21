@@ -1,5 +1,6 @@
 from tests_abc import TestCase
-from .models import Push, Pull, Category
+from .models import Push, Pull
+from category.models import Category
 from django.db.models.query import QuerySet
 
 
