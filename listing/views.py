@@ -11,7 +11,8 @@ listing_create
 listing_update
 listing_detail
 """
-
+class ListingListView(ListView):
+    pass
 
 class ListingCreateView(CreateView):
     model = None

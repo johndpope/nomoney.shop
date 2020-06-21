@@ -1,8 +1,12 @@
 from django.urls import path
-from user.views import AgentView
-
+from .views import CategoryListView, CategoryCreateView, CategoryDetailView, \
+    CategoryDeleteView, CategoryUpdateView
 
 urlpatterns = [
-    path('', AgentView.as_view(), name='agent_list'),
+    path('', CategoryListView.as_view(), name='category_list'),
+    path('new/', CategoryCreateView.as_view(), name='category_create'),
+    path('<int:pk>/', CategoryDetailView.as_view(), name='category_detail'),
+    path('<int:pk>/update/', CategoryUpdateView.as_view(), name='category_update'),
+    path('<int:pk>/delete/', CategoryDeleteView.as_view(), name='category_delete'),
 ]
 

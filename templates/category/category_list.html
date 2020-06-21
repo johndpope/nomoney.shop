@@ -14,7 +14,7 @@
     <tbody>
     {% for category in categories %}
       <tr>
-        <td>{{ category.title }}</td>
+        <td><a href="{% url 'category_detail' category.pk %}">{{ category.title }}</a></td>
         <td>{{ category.count_actions }}</td>
         <td>
           {% for listing in category.pushs %}

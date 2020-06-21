@@ -17,12 +17,15 @@ from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
 from django.views.generic.base import TemplateView
+from user.views import AgentView
 
 
 urlpatterns = [
     path(
         '', TemplateView.as_view(template_name='home/home.html'), name='home'
         ),
+
+    path('agent/', AgentView.as_view(), name='agent_list'),
 
     path('bid/', include('bid.urls')),
     path('user/', include('user.urls')),
