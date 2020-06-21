@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
 from config.settings import AUTH_USER_MODEL
+from enum import Enum
 
 
 class BidPositionBase(models.Model):
@@ -45,12 +46,16 @@ class BidPull(BidPositionBase):
         )
 
 
-class StatusCode(models.IntegerChoices):
+class StatusCode():
     UNSEEN = 0, 'unseen'
     SEEN = 10, 'seen'
     ACCEPTED = 20, 'accepted'
     ANSWERED = 30, 'answered'
     REJECTED = 40, 'rejected'
+
+    @classmethod
+    def choices(cls):
+        return (cls.UNSEEN, cls.SEEN, cls.ACCEPTED, cls.ANSWERED, cls.REJECTED)
 
 
 class Bid(models.Model):
@@ -81,8 +86,8 @@ class Bid(models.Model):
     datetime = models.DateTimeField(default=now, editable=False)
 
     status = models.PositiveSmallIntegerField(
-        default=StatusCode.UNSEEN,
-        choices = StatusCode.choices,
+        default=StatusCode.UNSEEN[0],
+        choices = StatusCode.choices(),
         #validators=[status_validator]
         )
 
