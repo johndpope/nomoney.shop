@@ -1,8 +1,5 @@
 """
-Cut out important data from git repository
-base.py holds all default data
-data.py holds all private data (needs to be copied from data_sample.py first
-alternatively you can use environmentals
+load environmental vars and base config
 """
 from os import environ
 from .base import *
@@ -13,16 +10,7 @@ except ImportError:
     DATA = False
 
 
-DEFAULT_DATA = {
-    'ALLOWED_HOSTS': [],
-    'DEBUG': False,
-    'SECRET_KEY': ''
-    }
-
-for attr, default in DEFAULT_DATA.items():
-    if DATA and hasattr(DATA, attr):
-        globals()[attr] = getattr(DATA, attr)
-    elif environ.get(attr):
-        globals()[attr] = environ.get(attr).split(',')
-    else:
-        globals()[attr] = DEFAULT_DATA.get(attr)
+DEBUG = environ.get('DEBUG') in ('True', 'true')
+SECRET_KEY = environ.get('SECRET_KEY', '')
+ALLOWED_HOSTS = environ.get('ALLOWED_HOSTS').split(',') \
+    if 'ALLOWED_HOSTS' in environ else []
