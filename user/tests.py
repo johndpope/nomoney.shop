@@ -10,13 +10,13 @@ class UserTestCase(TestCase):
 
     def test_urls(self):
         # user_list
-        self.assertIs(self.anon.get_name('user_list').status_code, 200)
+        self.anon.get200('user_list')
 
         #user_create
         new_user_name = 'demo2'
         new_user_pw = 'BuBuBu1234'
-        self.assertIs(self.anon.get_name('user_create').status_code, 200)
-        self.assertIs(self.user.get_name('user_create').status_code, 200)
+        self.user.get200('user_create')
+        self.anon.get200('user_create')
         self.anon.post(
             reverse('user_create'),
             {'username': new_user_name,

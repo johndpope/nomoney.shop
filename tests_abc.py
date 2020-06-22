@@ -6,17 +6,32 @@ from testdb import TestDB
 from django.urls.base import reverse
 
 
+class DummyTestCase(BaseTestCase):
+    pass
+
+
 class Client(BaseClient):
+
     def __init__(self, *args, **kwargs):
-        BaseClient.__init__(self, *args, **kwargs)
+        self.tester = DummyTestCase()
+        super(Client, self).__init__(*args, **kwargs)
 
-    def get_name(self, url_name, *args, data=None, **extra):
-        url = reverse(url_name, args=args)
-        return BaseClient.get(self, url, data=data, **extra)
+    def get200(self, url_name, url_args=None, url_kwargs=None, data=None):
+        url = self.url(url_name, url_args, url_kwargs)
+        self.tester.assertIs(self.get(url).status_code, 200)
 
-    def post_name(self, url_name, *args, data=None, **extra):
-        url = reverse(url_name, args=args)
-        return BaseClient.post(self, url, data=data**extra)
+    def post302(self, url_name, url_args=None, url_kwargs=None, data=None):
+        url = self.url(url_name, url_args, url_kwargs)
+        self.tester.assertEqual(self.post(url, data=data).status_code, 302)
+
+    def getpost(self, url_name, url_args=None, url_kwargs=None, data=None):
+        self.get200(url_name, url_args=url_args, url_kwargs=url_kwargs)
+        self.post302(url_name, url_args=url_args, url_kwargs=url_kwargs,
+                     data=data)
+
+    def url(self, url_name, url_args, url_kwargs):
+        url_args = (url_args, ) if isinstance(url_args, str) else url_args
+        return reverse(url_name, args=url_args, kwargs=url_kwargs)
 
 
 class TestCase(ABC, BaseTestCase):
