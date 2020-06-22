@@ -1,10 +1,10 @@
+from copy import copy
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView,\
-    FormView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls.base import reverse_lazy
 from .models import Push, Pull
-from .forms import PushForm
+from category.models import Category
 
 FIELDS = ['title', 'image', 'category', 'quantity', 'unit', 'description']
 """
@@ -13,6 +13,8 @@ listing_create
 listing_update
 listing_detail
 """
+
+
 class ListingListView(ListView):
     template_name = 'listing/listing_list.html'
 
@@ -35,42 +37,28 @@ class ListingTypeListView(ListView):
         return self.model.objects.all()
 
 
-class ListingCreateView(FormView):
-    #model = None
-    form_class = PushForm
+class ListingCreateView(CreateView):
+    model = None
+    fields = FIELDS
     template_name = 'listing/listing_form.html'
-    #fields = FIELDS
     success_url = reverse_lazy('listing_list')
     category = None
 
-    def dispatch(self, request, *args, **kwargs):
-        #self.model = {'push': Push, 'pull': Pull}.get(kwargs.get('type'))
-        self.category = kwargs.get('category_pk', None)
+    def setup(self, request, *args, **kwargs):
+        CreateView.setup(self, request, *args, **kwargs)
+        self.model = {'push': Push, 'pull': Pull}.get(self.kwargs.get('type'))
+        if 'category_pk' in self.kwargs:
+            self.category = Category.objects.get(
+                pk=self.kwargs.get('category_pk')
+                )
+            self.fields = copy(ListingCreateView.fields)
+            self.fields.remove('category')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
         if self.category:
-            self.initial['category'] = self.category
-        return DetailView.dispatch(self, request, *args, **kwargs)
-
-    def get_form(self):
-        return self.form_class(request=self.request)
-
-        #=======================================================================
-        # title = form.cleaned_data.get('title')
-        # image = form.cleaned_data.get('image')
-        # category = form.cleaned_data.get('category')
-        # quantity = form.cleaned_data.get('quantity')
-        # unit = form.cleaned_data.get('unit')
-        # description = form.cleaned_data.get('description')
-        # user = self.request.user
-        # self.model.objects.create(
-        #     title=title,
-        #     image=image,
-        #     category=category,
-        #     quantity=quantity,
-        #     unit=unit,
-        #     description=description,
-        #     user=user
-        #     )
-        #=======================================================================
+            form.instance.category = self.category
+        return CreateView.form_valid(self, form)
 
 
 class ListingUpdateView(UpdateView):
