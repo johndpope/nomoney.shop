@@ -17,20 +17,21 @@
         <td>{% include 'category/inc/link.html' %}</td>
         <td>{{ category.count_actions }}</td>
         <td>
+          <a class="btn btn-info btn-sm text-white py-0 px-2" href="{% url 'category_listing_create' 'push' category.pk %}"><i class="fas fa-plus"></i></a>
+          
           {% for listing in category.pushs %}
             {% with user=listing.user %}
               {% include 'user/inc/link.html' %}&nbsp;
             {% endwith %}
           {% endfor %}
-          <a class="text-info" href="{% url 'category_listing_create' 'push' category.pk %}"><i class="fas fa-plus"></i></a>
         </td>
         <td>
+          <a class="btn btn-info btn-sm text-white py-0 px-2" href="{% url 'category_listing_create' 'pull' category.pk %}"><i class="fas fa-plus"></i></i></a>
           {% for listing in category.pulls %}
             {% with user=listing.user %}
               {% include 'user/inc/link.html' %}&nbsp;
             {% endwith %}
           {% endfor %}
-          <a class="text-info" href="{% url 'category_listing_create' 'pull' category.pk %}"><i class="fas fa-plus"></i></i></a>
         </td>
       </tr>
     {% endfor %}

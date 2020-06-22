@@ -59,12 +59,12 @@ class Deal:
         return level
 
     def get_quality(self):
-        return len(list(self.pushs) + list(self.pulls))
+        return len(self.pushs + self.pulls)
 
     def get_intersecting(self):
         """ returns intersecting pushs, pulls """
-        return self.intersection(self.user.pushs, self.partner.pulls), \
-            self.intersection(self.user.pulls, self.partner.pushs)
+        return list(self.intersection(self.user.pushs, self.partner.pulls)), \
+            list(self.intersection(self.user.pulls, self.partner.pushs))
 
     @staticmethod
     def intersection(lst1, lst2):
