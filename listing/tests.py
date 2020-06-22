@@ -2,7 +2,6 @@ from category.models import Category
 from django.db.models.query import QuerySet
 from tests_abc import TestCase
 from .models import Push, Pull
-from django.urls.base import reverse
 from listing.models import Unit
 
 

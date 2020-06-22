@@ -2,8 +2,8 @@
 from abc import ABC
 from django.test import TestCase as BaseTestCase
 from django.test import Client as BaseClient
-from testdb import TestDB
 from django.urls.base import reverse
+from testdb import TestDB
 
 
 class DummyTestCase(BaseTestCase):
