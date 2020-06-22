@@ -1,3 +1,4 @@
+snakelib
 django>=2
 pylint
 pylint-django

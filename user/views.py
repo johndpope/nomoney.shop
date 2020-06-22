@@ -59,7 +59,6 @@ class AgentView(LoginRequiredMixin, TemplateView):
         context['level1_deals'] = level1
         context['level2_deals'] = level2
         context['level3_deals'] = level3
-        context['level2_quality_factor'] = 100 / max((
-            dealset.quality for dealset in level2
-            ))
+        quality = [dealset.quality for dealset in level2]
+        context['level2_quality_factor'] = 100 / max(quality) if quality else 0
         return context

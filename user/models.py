@@ -1,6 +1,5 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from lib import timer
 
 
 class DealSet:
@@ -50,14 +49,6 @@ class Deal:
         self.pushs, self.pulls = self.get_intersecting()
         self.level = self.get_level()
         self.quality = self.get_quality()
-
-    def get_level_and_quality(self):
-        level = 0
-        if self.intersection(self.user.pushs, self.partner.pulls):
-            level += 1
-        if self.intersection(self.user.pulls, self.partner.pushs):
-            level += 1
-        return level
 
     def get_level(self):
         level = 0
