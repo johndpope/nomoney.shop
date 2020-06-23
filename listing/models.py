@@ -1,17 +1,6 @@
-from decimal import Decimal
 from itertools import chain
 from django.db import models
-from django.core.validators import MinValueValidator
 from config.settings import AUTH_USER_MODEL
-
-
-class Review(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.TextField(null=True, blank=True)
-    score = models.PositiveSmallIntegerField()
-
-    def __str__(self):
-        return self.title
 
 
 class Unit(models.Model):
@@ -53,11 +42,12 @@ class ListingBase(models.Model):
 
     def __eq__(self, other):
         try:
-            return self.category == other.category  # and self.type == other.type
+            return self.category == other.category
         except AttributeError as e:
             print(e)
 
     def __str__(self):
+        # pylint: disable=no-member
         return '{} {} {}'.format(self.user.username, self.type, self.title)
 
     class Meta:

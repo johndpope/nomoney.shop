@@ -78,18 +78,15 @@ class Bid(models.Model):
     partner = models.ForeignKey(
         AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name = 'bids_received',
+        related_name='bids_received',
         )
 
     datetime = models.DateTimeField(default=now, editable=False)
 
     status = models.PositiveSmallIntegerField(
         default=StatusCode.UNSEEN[0],
-        choices = StatusCode.choices(),
-        #validators=[status_validator]
+        choices=StatusCode.choices(),
         )
-
-    comment = models.TextField(default='', blank=True)
 
     @property
     def push_positions(self):
