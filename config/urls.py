@@ -32,6 +32,8 @@ urlpatterns = [
     path('category/', include('category.urls')),
     path('listing/', include('listing.urls')),
     path('search/', include('search.urls')),
+    path('chat/', include('chat.urls')),
+    path('deal/', include('deal.urls')),
 
     path('admin/', admin.site.urls),
 ]
