@@ -3,10 +3,10 @@
 {% block content %}
 
 <h2>Anfrage von {{object.user}} an {{object.partner}}</h2>
-<p>Gibt: {{ object.push_positions }}</p>
-<p>Nimmt: {{ object.pull_positions }}</p>
+<p>Ich gebe: {% for listing in object.pushs.all %}{% include 'listing/inc/link.html' %}{% endfor %}</p>
+<p>Ich nehme: {% for listing in object.pulls.all %}{% include 'listing/inc/link.html' %}{% endfor %}</p>
 <p>Beschreibung: {{ object.comment }}</p>
 <p>Erstellt: {{ object.datetime }}</p>
 
-{% if object.user == request.user%}<a href="#">Bearbeiten</a>{% endif %}
+{% if object.is_latest %}<a href="#">Bearbeiten</a>{% endif %}
 {% endblock %}

@@ -95,6 +95,13 @@ class User(AbstractUser):
         """ returns list of listings (pushs and pulls) """
         return list(self.pushs) + list(self.pulls)
 
+    @property
+    def bids(self):
+        return sorted(
+            {*self.bids_sent.all(), *self.bids_received.all()},
+            key=lambda x: x.datetime
+            )
+
     def get_partners(self):
         """ returns users with matching push or pull """
         return {x.user for x in self.get_matches()}

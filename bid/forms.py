@@ -30,6 +30,7 @@ class BidPositionFormBase(forms.ModelForm):
             return self.listing.unit.pk
 
     def save(self, bid, commit=True):
+        print(self.cleaned_data)
         obj = super().save(commit=False)
         obj.listing = self.listing
         obj.bid = bid
