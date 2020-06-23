@@ -102,6 +102,10 @@ class User(AbstractUser):
             key=lambda x: x.datetime
             )
 
+    @property
+    def deals(self):  # TEST!!!
+        return self.deals_user1.all() | self.deals_user2.all()
+
     def get_partners(self):
         """ returns users with matching push or pull """
         return {x.user for x in self.get_matches()}

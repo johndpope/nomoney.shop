@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class=" table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Titel</th>
+        <th scope="col">Teilnehmer</th>
+        <th scope="col">Nachrichten</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+{% for chat in object_list %}
+      <tr>
+        <td>{% include 'chat/inc/link.html' %}</td>
+        <th>{% for user in chat.users.all %}{% include 'user/inc/link.html' %}, {% endfor %}</th>
+        <td>{{ chat.messages|length }}</td>
+        <td><a class="btn btn-outline-primary btn-sm" href="{% url 'chat_detail' chat.pk %}" role="button">Betreten</a></td>
+      </tr>
+{% endfor %}
+    </tbody>
+  </table>
+</div>
+<a class="btn btn-outline-primary btn-sm" href="{% url 'chat_create' %}" role="button">+</a>
+{% endblock %}

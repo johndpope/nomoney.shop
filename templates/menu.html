@@ -15,7 +15,7 @@
           {{ request.user }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{% url 'listing_list' %}">Meine Deals</a>
+          <a class="dropdown-item" href="{% url 'chat_list' %}">Chat</a>
           <!-- <a class="dropdown-item" href="#">History</a> -->
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{% url 'user_update' request.user.pk %}">Mein Profil</a>
@@ -35,6 +35,9 @@
       {% endif %}
 
 
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'deal_list' %}">Deals</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'bid_overview' %}">Gebote</a>
       </li>
