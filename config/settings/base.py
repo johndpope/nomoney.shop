@@ -35,6 +35,10 @@ INSTALLED_APPS = [
     'category',
     'listing',
     'bid',
+    'chat',
+    'feedback',
+    'deal',
+    'location',
 ]
 
 MIDDLEWARE = [

@@ -3,7 +3,6 @@ from itertools import chain
 from django.db import models
 from django.core.validators import MinValueValidator
 from config.settings import AUTH_USER_MODEL
-from user.models import User
 
 
 class Review(models.Model):
@@ -24,7 +23,7 @@ class Unit(models.Model):
 
 
 class ListingBase(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, )
+    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, )
     title = models.CharField(max_length=50)
     category = models.ForeignKey('category.Category', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
