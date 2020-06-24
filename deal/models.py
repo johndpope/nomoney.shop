@@ -34,6 +34,10 @@ class DealSet(models.Model):
     def set_pov(self, user):
         self.get_or_create_deals(self.users, pov_user=user)
 
+    @classmethod
+    def by_users(cls, users):
+        import pdb; pdb.set_trace()  # <---------
+
 
 def dealset_users_changed(sender, **kwargs):
     print(sender)
@@ -66,9 +70,9 @@ class Deal(models.Model):
         else:
             raise AttributeError("Cannot get partner without knowing user")
 
-    def set_pov(self, user):
-        if user in self.users.all():
-            self.user = user
+    @property
+    def bids(self):
+        return self.bid_set.all()
 
     @property
     def pushs(self):
@@ -78,10 +82,9 @@ class Deal(models.Model):
     def pulls(self):
         return list(self.intersection(self.user.pulls, self.partner.pushs))
 
-    @property
-    def pov(self):
-        self.user = self
-        self.partner
+    def set_pov(self, user):
+        if user in self.users.all():
+            self.user = user
 
     @staticmethod
     def intersection(lst1, lst2):
@@ -89,3 +92,6 @@ class Deal(models.Model):
         for element in lst1:
             if element in lst2:
                 yield element
+    @classmethod
+    def by_users(cls, users):
+        import pdb; pdb.set_trace()  # <---------

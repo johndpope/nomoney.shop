@@ -5,7 +5,6 @@ from config.settings import AUTH_USER_MODEL
 
 class BidPositionBase(models.Model):
     listing = None
-    deal = models.ForeignKey('deal.Deal', on_delete=models.CASCADE)
     bid = models.ForeignKey(
         'Bid',
         on_delete=models.CASCADE,
@@ -16,13 +15,15 @@ class BidPositionBase(models.Model):
         on_delete=models.CASCADE,
         )
 
-    @property
-    def push(self):
-        return self.listing
-
-    @property
-    def pull(self):
-        return self.listing
+#===============================================================================
+#     @property
+#     def push(self):
+#         return self.listing
+# 
+#     @property
+#     def pull(self):
+#         return self.listing
+#===============================================================================
 
     class Meta:
         abstract = True

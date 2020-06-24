@@ -2,9 +2,9 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, FormView
 from django.shortcuts import redirect
-from .models import Bid
+from .models import Bid, BidPush, BidPull
 from .forms import BidForm, BidPushForm, BidPullForm
-from deal.models import DealSet
+from deal.models import Deal
 
 MODEL = Bid
 
@@ -25,15 +25,17 @@ class BidCreateView(FormView):
     def setup(self, request, *args, **kwargs):
         FormView.setup(self, request, *args, **kwargs)
         deal_pk = kwargs.get('deal_pk')
-        self.deal = DealSet.objects.get(pk=deal_pk)
+        self.deal = Deal.objects.get(pk=deal_pk)
 
     def get_forms(self):
         push_forms, pull_forms = [], []
         for push in self.deal.pushs:
-            push_forms.append(BidPushForm(push, self.request.POST or None))
+            push_form = BidPushForm(push, self.request.POST or None)
+            push_forms.append(push_form)
         for pull in self.deal.pulls:
-            pull_forms.append(BidPullForm(pull, self.request.POST or None))
-        return push_forms, pull_forms, BidForm(self.deal)
+            pull_form = BidPullForm(pull, self.request.POST or None)
+            pull_forms.append(pull_form)
+        return push_forms, pull_forms, BidForm(self.deal, self.request.user)
 
     def get_form(self, form_class=None):
         return self.get_forms()[2]
@@ -45,21 +47,18 @@ class BidCreateView(FormView):
         return context
 
     def post(self, request, *args, **kwargs):
-        deal = Deal.open((self.request.user, self.partner))
-        push_forms, pull_forms, bid_form = self.get_forms()
-        bid = bid_form.save(commit=False)
-        bid.deal = deal
-        bid.creator = self.request.user
-        bid.save()
+        push_forms, pull_forms, _ = self.get_forms()
+        bid = Bid.objects.create(deal=self.deal, creator=request.user)
         for push_form in push_forms:
             if push_form.is_valid() and push_form.cleaned_data['quantity']:
-                import pdb; pdb.set_trace()  # <---------
                 push_form.save(bid)
+                bid.pushs.add()
+ 
         for pull_form in pull_forms:
             if pull_form.is_valid() and pull_form.cleaned_data['quantity']:
-                pull_form.save(bid)
+                bid.pulls.add(pull_form.save(bid))
         bid.save()
-        return redirect('bid_list', partner_pk=self.partner.pk)
+        return redirect('deal_detail', partner_pk=self.deal.dealset.pk)
 
 
 class BidDetailView(DetailView):

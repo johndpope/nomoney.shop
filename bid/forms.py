@@ -6,9 +6,10 @@ BID_POSITION_FIELDS = ['quantity', 'unit']
 
 class BidForm(forms.ModelForm):
 
-    def __init__(self, deal, *args, **kwargs):
-        self.deal = deal
+    def __init__(self, deal, creator, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.instance.deal = deal
+        self.instance.creator = creator
 
     class Meta:
         model = Bid
@@ -19,20 +20,20 @@ class BidForm(forms.ModelForm):
 class BidPositionFormBase(forms.ModelForm):
 
     def __init__(self, listing, *args, **kwargs):
-        self.listing = listing
         super().__init__(*args, **kwargs)
+        self.instance.listing = listing
 
-    def get_initial_for_field(self, field, field_name):
-        if field_name == 'quantity':
-            return 0  # Vorheriges gebot
-        elif field_name == 'unit':
-            return self.listing.unit.pk
+    #===========================================================================
+    # def get_initial_for_field(self, field, field_name):
+    #     if field_name == 'quantity':
+    #         return 0  # Vorheriges gebot
+    #     elif field_name == 'unit':
+    #         return self.listing.unit.pk
+    #===========================================================================
 
     def save(self, bid, commit=True):
-        obj = super().save(commit=False)
-        obj.listing = self.listing
-        obj.bid = bid
-        obj.save()
+        self.instance.bid = bid
+        return forms.ModelForm.save(self, commit=commit)
 
 
 class BidPushForm(BidPositionFormBase, forms.ModelForm):
