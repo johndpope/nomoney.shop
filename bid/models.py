@@ -1,21 +1,11 @@
 from django.db import models
 from django.utils.timezone import now
 from config.settings import AUTH_USER_MODEL
-from django.db.models import Q
-from _ast import Not
 
 
 class BidPositionBase(models.Model):
     listing = None
-
-    @property
-    def push(self):
-        return self.listing
-
-    @property
-    def pull(self):
-        return self.listing
-
+    deal = models.ForeignKey('deal.Deal', on_delete=models.CASCADE)
     bid = models.ForeignKey(
         'Bid',
         on_delete=models.CASCADE,
@@ -25,6 +15,14 @@ class BidPositionBase(models.Model):
         'listing.Unit',
         on_delete=models.CASCADE,
         )
+
+    @property
+    def push(self):
+        return self.listing
+
+    @property
+    def pull(self):
+        return self.listing
 
     class Meta:
         abstract = True
@@ -57,6 +55,8 @@ class StatusCode:
 
 
 class Bid(models.Model):
+    deal = models.ForeignKey('deal.Deal', on_delete=models.CASCADE)
+
     pushs = models.ManyToManyField(
         'listing.Push',
         through=BidPush,
@@ -69,16 +69,9 @@ class Bid(models.Model):
         through_fields=('bid', 'listing'),
         )
 
-    user = models.ForeignKey(
+    creator = models.ForeignKey(
         AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name='bids_sent',
-        )
-
-    partner = models.ForeignKey(
-        AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name='bids_received',
         )
 
     datetime = models.DateTimeField(default=now, editable=False)
@@ -98,48 +91,25 @@ class Bid(models.Model):
 
     @property
     def is_latest(self):
-        return self.topic.latest_bid == self
+        return self.get_latest() == self
 
-    @property
-    def topic(self):
-        return self.topic_by_users((self.user, self.partner))
+    def get_latest(self):
+        return self.deal.bid_set.latest()  # .order_by('datetime')
 
-    @classmethod
-    def topic_by_users(cls, users):
-        return BidTopic((users))
+    def get_users(self):
+        return self.deal.users.all()
 
-    @classmethod
-    def topics_by_user(cls, user):
-        return [BidTopic((user, partner)) for partner in cls.users_with_topic()]
+    def same_constellation(self):
+        print("Rework")
+        return self.deal.bid_set.all()
 
     @classmethod
-    def users_with_topic(cls):
-        return {bid.user for bid in Bid.objects.all()}
+    def by_user(cls, user):
+        return user.bid_set.all()
 
     def __lt__(self, other):
         return self.datetime < other.datetime
 
     class Meta:
         ordering = ['-datetime']
-
-
-class BidTopic:
-    def __init__(self, users):
-        self.users = users
-        self.pk = self.latest_bid.pk
-
-    @property
-    def bids(self):
-        return Bid.objects.filter(
-            Q(user__in=self.users) | Q(partner__in=self.users)
-            ).exclude(Q(user__in=self.users) & Q(partner__in=self.users))
-
-    @property
-    def latest_bid(self):
-        return self.bids.latest('datetime')
-
-    def __eq__(self, other):
-        return self.users == other.users
-
-    def __hash__(self):
-        return hash(self.users)
+        get_latest_by = ['-datetime']

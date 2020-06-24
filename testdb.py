@@ -11,6 +11,7 @@ from random import randint
 from user.models import User
 from listing.models import Unit, Push, Pull
 from category.models import Category
+from deal.models import DealSet
 
 
 class TestDB:
@@ -26,6 +27,7 @@ class TestDB:
     USER_PASSWORD = 'demo123'
     USER_COUNT = 20
     LISTING_COUNT = 200
+    DEAL_COUNT = 20  # creates double and triple deals
     CATEGORIES = {
         'Lebensmittel': ['Äpfel', 'Bananen', 'Erdbeeren', 'Brot', 'Wasser',
                          'Mehl', 'Eier', 'Pepperoni', 'Tomaten', 'Kopfsalat'],
@@ -52,12 +54,15 @@ class TestDB:
         cls.setup_unit_db()
         cls.setup_category_db()
         cls.setup_listing_db()
+        cls.setup_deal_db()
 
     @classmethod
     def setup_user_db(cls):
         """ Setup User database only """
         user = User.objects.create(username=TestDB.USER_NAME)
         user.set_password(TestDB.USER_PASSWORD)
+        user.is_superuser=True
+        user.is_staff=True
         user.save()
         for i in range(cls.USER_COUNT):
             i = str(i + 1)
@@ -101,6 +106,24 @@ class TestDB:
                 quantity=quantity,
                 unit=unit
                 )
+
+    @classmethod
+    def setup_deal_db(cls):
+        users = User.objects.filter(username__in=('demo', 'test1'))
+        dealset = DealSet.objects.create()
+        dealset.users.set(users)
+        dealset.save()
+        for _ in range(cls.DEAL_COUNT):
+            users = cls.random_object(User), cls.random_object(User)
+            dealset = DealSet.objects.create()
+            dealset.users.set(users)
+            dealset.save()
+        for _ in range(cls.DEAL_COUNT):
+            users = cls.random_object(User), cls.random_object(User), \
+                cls.random_object(User)
+            dealset = DealSet.objects.create()
+            dealset.users.set(users)
+            dealset.save()
 
     @staticmethod
     def random_object(model):

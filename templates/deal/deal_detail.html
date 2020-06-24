@@ -1,16 +1,56 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{{object}}
-{% for deal in object.deals %}
+<h2>Deal</h2>
+<h3 class="mt-5">Übersicht</h3>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Teilnehmer</th>
+        <th scope="col">Gibt</th>
+        <th scope="col">Nimmt</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for user in object.users.all %}
+      <tr>
+        <td>{% include 'user/inc/link.html' %}</td>
+        <td>{% for listing in user.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
+        <td>{% for listing in user.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
+        <td></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+<h3 class="mt-5">Handelbare Positionen</h3>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Gibt</th>
+        <th scope="col">Nimmt</th>
+        <th scope="col">An/Von</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for deal in object.deals %}
+      <tr>
+        <td>{% with user=deal.user %}{% include 'user/inc/link.html' %}{% endwith %}</td>
+        <td>{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
+        <td>{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
+        <td>{% with user=deal.partner %}{% include 'user/inc/link.html' %}{% endwith %}</td>
+        <td><a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' deal.pk %}" role="button">bieten</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
 
-<h2>Deal von {{object.user}} an {{object.partner}}</h2>
-<p>Ich gebe: {% for listing in object.pushs.all %}{% include 'listing/inc/link.html' %}{% endfor %}</p>
-<p>Ich nehme: {% for listing in object.pulls.all %}{% include 'listing/inc/link.html' %}{% endfor %}</p>
-<p>Beschreibung: {{ object.comment }}</p>
-<p>Erstellt: {{ object.datetime }}</p>
-
-{% endfor %}
 
 {% if object.is_latest %}<a href="#">Bearbeiten</a>{% endif %}
 {% endblock %}

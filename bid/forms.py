@@ -6,18 +6,17 @@ BID_POSITION_FIELDS = ['quantity', 'unit']
 
 class BidForm(forms.ModelForm):
 
-    def __init__(self, partner, *args, **kwargs):
-        self.partner = partner
+    def __init__(self, deal, *args, **kwargs):
+        self.deal = deal
         super().__init__(*args, **kwargs)
 
     class Meta:
         model = Bid
-        exclude = ['user', 'partner', 'datetime', 'status', 'pushs', 'pulls']
+        fields = []
         #fields = ['comment']
 
 
 class BidPositionFormBase(forms.ModelForm):
-    listing = None
 
     def __init__(self, listing, *args, **kwargs):
         self.listing = listing
@@ -30,7 +29,6 @@ class BidPositionFormBase(forms.ModelForm):
             return self.listing.unit.pk
 
     def save(self, bid, commit=True):
-        print(self.cleaned_data)
         obj = super().save(commit=False)
         obj.listing = self.listing
         obj.bid = bid

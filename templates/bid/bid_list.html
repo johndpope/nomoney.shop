@@ -7,15 +7,14 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Von</th>
-          <th scope="col">An</th>
           <th scope="col">Zeit</th>
         </tr>
       </thead>
       <tbody>
-  {% for bid in bids %}
+  {% for bid in object_list %}
         <tr>
           <th scope="row"><a href="{% url 'bid_detail' bid.pk %}">{{ bid.pk }}</a></th>
-          <td>{{ bid.user }}</td>
+          <td>{% for user in bid.get_users %}{% include 'user/inc/link.html' %}{% endfor %}</td>
           <td>{{ bid.partner }}</td>
           <td>{{ bid.datetime }}</td>
           <td>{{bid.is_latest}}</td>
@@ -23,5 +22,6 @@
   {% endfor %}
       </tbody>
     </table>
+    <a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' %}" role="button">Gebot erstellen</a>
 </div>
 {% endblock %}

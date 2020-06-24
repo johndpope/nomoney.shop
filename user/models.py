@@ -103,14 +103,18 @@ class User(AbstractUser):
             )
 
     @property
-    def deals(self):  # TEST!!!
-        return self.deals_user1.all() | self.deals_user2.all()
+    def dealsets(self):
+        dealsets = self.dealset_set.all()
+        for dealset in dealsets:
+            dealset.set_pov(self)
+        return dealsets
 
     def get_partners(self):
         """ returns users with matching push or pull """
         return {x.user for x in self.get_matches()}
 
     def get_dealsets(self):
+        import pdb; pdb.set_trace()  # <---------
         level = {1: [], 2: [], 3: []}
 
         for partner in self.get_partners():
@@ -128,7 +132,10 @@ class User(AbstractUser):
             matches += listing.get_matches()
         return matches
 
-    def get_dealset_from_partner(self, partner):
+    def get_matches_by_partner(self, partner):
+        import pdb; pdb.set_trace()  # <---------
+
+    def get_dealset_from_partner(self, partner):  # WEG?
         """ returns a Dealset for a Deal between self and partner """
         return DealSet(self, partner)
 

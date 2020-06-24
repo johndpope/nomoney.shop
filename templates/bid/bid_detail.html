@@ -9,4 +9,5 @@
 <p>Erstellt: {{ object.datetime }}</p>
 
 {% if object.is_latest %}<a href="#">Bearbeiten</a>{% endif %}
+<a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' object.pk %}" role="button">Gebot erstellen</a>
 {% endblock %}

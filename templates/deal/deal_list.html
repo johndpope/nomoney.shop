@@ -7,8 +7,7 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Benutzer</th>
-        <th scope="col">Gibt</th>
+        <th scope="col">Teilnehmer</th>
         <th scope="col"></th>
         <th scope="col">Sucht</th>
         <th scope="col">Nimmt</th>
@@ -16,13 +15,13 @@
       </tr>
     </thead>
     <tbody>
-{% for deal in object_list %}
+{% for dealset in object_list %}
       <tr>
-        <th scope="row">{{ deal.pk }}</th>
-        <td>{% include 'user/inc/link.html' %}</td>
-        <td>{% for listing in user.pushs %}{% include 'listing/inc/link.html' %} {% endfor %}</td>
-        <td>{% for listing in user.pulls %}{% include 'listing/inc/link.html' %} {% endfor %}</td>
-        <td><a class="btn btn-outline-primary btn-sm" href="{% url 'deal_detail' deal.pk %}" role="button">Details</td>
+        <th scope="row">{{ dealset.pk }}</th>
+        <td>{% for user in dealset.users.all %}{% include 'user/inc/link.html' %}{% endfor %}</td>
+        <td>{% for listing in dealset.pushs %}{% include 'listing/inc/link.html' %} {% endfor %}</td>
+        <td>{% for listing in dealset.pulls %}{% include 'listing/inc/link.html' %} {% endfor %}</td>
+        <td><a class="btn btn-outline-primary btn-sm" href="{% url 'deal_detail' dealset.pk %}" role="button">Details</td>
       </tr>
 {% endfor %}
     </tbody>
