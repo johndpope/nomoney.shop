@@ -1,5 +1,5 @@
-<span>
-  <a class="text-dark" href="{% url 'user_detail' user.pk %}">
-    <i class="fas fa-user-tie"></i> {{ user }}
+<div>
+  <a class="text-dark" style="white-space:nowrap;" href="{% url 'user_detail' user.pk %}">
+    <span><i class="fas fa-user-tie"></i></span><span> {{ user }}</span>
   </a>
-</span>
+</div>

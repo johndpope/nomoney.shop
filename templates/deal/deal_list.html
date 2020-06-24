@@ -1,31 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{{object_list}}
+<h1>Deals Übersicht</h1>
 <div class=" table-responsive">
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
         <th scope="col">Teilnehmer</th>
-        <th scope="col"></th>
         <th scope="col">Sucht</th>
         <th scope="col">Nimmt</th>
+        <th scope="col">Gebote</th>
         <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
 {% for dealset in object_list %}
       <tr>
-        <th scope="row">{{ dealset.pk }}</th>
         <td>{% for user in dealset.users.all %}{% include 'user/inc/link.html' %}{% endfor %}</td>
         <td>{% for listing in dealset.pushs %}{% include 'listing/inc/link.html' %} {% endfor %}</td>
         <td>{% for listing in dealset.pulls %}{% include 'listing/inc/link.html' %} {% endfor %}</td>
+        <td>{{dealset.bids|length}}</td>
         <td><a class="btn btn-outline-primary btn-sm" href="{% url 'deal_detail' dealset.pk %}" role="button">Details</td>
       </tr>
 {% endfor %}
     </tbody>
   </table>
-  <a class="btn btn-outline-primary btn-sm" href="{% url 'deal_create' %}" role="button">Deal erstellen</a>
+<!-- <a class="btn btn-outline-primary btn-sm" href="{% url 'deal_create' %}" role="button">Deal erstellen</a> -->
 </div>
 {% endblock %}

@@ -15,16 +15,6 @@ class BidPositionBase(models.Model):
         on_delete=models.CASCADE,
         )
 
-#===============================================================================
-#     @property
-#     def push(self):
-#         return self.listing
-# 
-#     @property
-#     def pull(self):
-#         return self.listing
-#===============================================================================
-
     class Meta:
         abstract = True
 
@@ -58,17 +48,19 @@ class StatusCode:
 class Bid(models.Model):
     deal = models.ForeignKey('deal.Deal', on_delete=models.CASCADE)
 
-    pushs = models.ManyToManyField(
-        'listing.Push',
-        through=BidPush,
-        through_fields=('bid', 'listing'),
-        )
-
-    pulls = models.ManyToManyField(
-        'listing.Pull',
-        through=BidPull,
-        through_fields=('bid', 'listing'),
-        )
+#===============================================================================
+#     pushs = models.ManyToManyField(
+#         'listing.BidPush',
+#         through=BidPush,
+#         through_fields=('bid', 'listing'),
+#         )
+# 
+#     pulls = models.ManyToManyField(
+#         'listing.BidPull',
+#         through=BidPull,
+#         through_fields=('bid', 'listing'),
+#         )
+#===============================================================================
 
     creator = models.ForeignKey(
         AUTH_USER_MODEL,

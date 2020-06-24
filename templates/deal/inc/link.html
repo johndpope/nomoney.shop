@@ -1,5 +1,10 @@
 <span>
   <a class="text-dark" href="{% url 'deal_detail' deal.pk %}">
-    <i class="fas fa-balance-scale"></i> {{ deal }}
+    {% if deal.accepted %}
+      <i class="fas fa-balance-scale"></i>
+    {% else %}
+      <i class="fas fa-balance-scale-right"></i>
+      {% endif %} 
+      {{ deal }}
   </a>
 </span>

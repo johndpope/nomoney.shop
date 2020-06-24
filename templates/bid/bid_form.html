@@ -6,28 +6,28 @@
       <tr>
         <td colspan=3><h3>Gebe</h3></td>
       </tr>
-    {% for form in push_forms %}
+      {% for field in push_form %}
       <tr>
-        <td>{{ form.listing.title }}</td>
-        {% for field in form %}
-          <td>{{ field }}</td>
-        {% endfor %}
+        <td>{% with listing=field.field.listing %}{% include 'listing/inc/link.html' %}{% endwith %}
+          {{ field.field.listing.title }}
+        </td>
+        <td>{{ field }}</td>
+        <td>{{ field.field.unit.title }} ({{ field.field.unit.short }})</td>
       </tr>
-    {% endfor %}
-
+      {% endfor %}
 
       <tr>
         <td colspan=3 class="pt-5"><h3>Nehme</h3></td>
       </tr>
-    {% for form in pull_forms %}
+      {% for field in pull_form %}
       <tr>
-        <td>{{ form.listing.title }}</td>
-        {% for field in form %}
-          <td>{{ field }}</td>
-        {% endfor %}
+        <td>{% with listing=field.field.listing %}{% include 'listing/inc/link.html' %}{% endwith %}
+          {{ field.field.listing.title }}
+        </td>
+        <td>{{ field }}</td>
+        <td>{{ field.field.unit.title }} ({{ field.field.unit.short }})</td>
       </tr>
-    {% endfor %}
-
+      {% endfor %}
 
     <tr>
       <td>Bemerkungen:</td>
@@ -35,4 +35,12 @@
     <tr><td colspan=3 class="pt-5"><input type="submit" value="Save"></td></tr>
 </table>
 </form>
+<!-- 
+<form>
+  <div class="form-group">
+    <label for="formControlRange">Example Range input</label>
+    <input type="range" class="form-control-range" id="formControlRange">
+  </div>
+</form>
+ -->
 {% endblock %}

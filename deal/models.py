@@ -22,6 +22,16 @@ class DealSet(models.Model):
         pull_qs = [user.pulls for user in self.users.all()]
         return pull_qs[0].union(*pull_qs)
 
+    @property
+    def bids(self):
+        #deals_qs = [deal.bids for deal in self.deals]
+        # return deals_qs[0].union(*deals_qs)
+        bids = []
+        for deal in self.deals:
+            for bid in deal.bids:
+                bids.append(bid)
+        return bids
+
     def get_or_create_deals(self, users, pov_user=None):
         if not self.deal_set.all():
             for user_combi in combinations(users, 2):
