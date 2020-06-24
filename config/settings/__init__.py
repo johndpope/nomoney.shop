@@ -5,6 +5,7 @@ data.py holds all private data (needs to be copied from data_sample.py first
 alternatively you can use environmentals
 """
 from os import environ
+from django.core.management.utils import get_random_secret_key
 from .base import *
 
 try:
@@ -16,7 +17,7 @@ except ImportError:
 DEFAULT_DATA = {
     'ALLOWED_HOSTS': [],
     'DEBUG': False,
-    'SECRET_KEY': ''
+    'SECRET_KEY': get_random_secret_key(),
     }
 
 for attr, default in DEFAULT_DATA.items():
