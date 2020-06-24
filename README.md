@@ -1,11 +1,11 @@
 # nomoney.shop
+[![Django CI](https://github.com/snake-soft/nomoney.shop/workflows/Django%20CI/badge.svg)](https://github.com/snake-soft/nomoney.shop/actions)
 [![Build Status](https://travis-ci.org/snake-soft/nomoney.shop.svg?branch=master)](https://travis-ci.org/snake-soft/nomoney.shop)
-![Django CI](https://github.com/snake-soft/nomoney.shop/workflows/Django%20CI/badge.svg)
 [![Documentation Status](https://readthedocs.org/projects/nomoneyshop/badge/?version=latest)](https://nomoneyshop.readthedocs.io/en/latest/?badge=latest)
 [![Coverage Status](https://coveralls.io/repos/github/snake-soft/nomoney.shop/badge.svg?branch=master)](https://coveralls.io/github/snake-soft/nomoney.shop?branch=master)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-This year, 2020, the world economy as a guarant of wealth is going to get damaged.
+:us: This year, 2020, the world economy as a guarant of wealth is going to get damaged.
 Currently the 'experts' have a huge spread of future predictions.
 
 That is why I created this project.
@@ -17,11 +17,29 @@ If there is another user, offering the things you search and searching what your
 
 Often these kind of deals aren't possible.
 The following constellation is more common:
-- A needs Potatoes and offers Water
-- B needs Strawberries and offers Potatoes
-- C needs Water and offers Strawberries
+- A has what B needs and needs what C has
+- B  has what C needs and needs what A has
+- C  has what A needs and needs what B has
 
 Being not easy to be calculated this kind of deal is easy to calculate for a computer.
+
+
+:de: In diesem Jahr, 2020, steht die Weltwirtschaft als Garant für unseren Wohlstand auf einer harten Probe. Derzeit haben die "Experten" eine große Bandbreite an Zukunftsprognosen.
+
+Deshalb habe ich dieses Projekt erstellt.
+
+Ziel ist es, dass die Menschen sich mit den benötigten Waren und Dienstleistungen versorgen können, auch wenn kein Geld als Zahlungsmittel mehr vorhanden ist. 
+
+Liste einfach die Dinge auf, nach denen du suchst, und mache dasselbe mit den Dingen, die du dafür anbieten können.
+Wenn es einen anderen Benutzer gibt, der die von Ihnen gesuchten Dinge anbietet und nach Ihrem Angebot sucht, haben Sie es erraten. Dies zeigt Ihnen das mögliche Geschäft.
+
+Oft sind solche Geschäfte nicht möglich. Die folgende Konstellation ist häufiger:
+- A hat was B braucht und braucht was C hat
+- B hat was C braucht und braucht was A hat
+- C hat was A braucht und braucht was B hat
+
+Da es nicht einfach ist, diese Art von Geschäft zu berechnen, überlassen wir das der Rechenmaschine.
+
 
 
 ## Getting Started
