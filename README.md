@@ -4,7 +4,7 @@
 [![Documentation Status](https://readthedocs.org/projects/nomoneyshop/badge/?version=latest)](https://nomoneyshop.readthedocs.io/en/latest/?badge=latest)
 [![Coverage Status](https://coveralls.io/repos/github/snake-soft/nomoney.shop/badge.svg?branch=master)](https://coveralls.io/github/snake-soft/nomoney.shop?branch=master)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-
+---
 :us: This year, 2020, the world economy as a guarant of wealth is going to get damaged.
 Currently the 'experts' have a huge spread of future predictions.
 
@@ -23,7 +23,7 @@ The following constellation is more common:
 
 Being not easy to be calculated this kind of deal is easy to calculate for a computer.
 
-
+---
 :de: In diesem Jahr, 2020, steht die Weltwirtschaft als Garant für unseren Wohlstand auf einer harten Probe. Derzeit haben die "Experten" eine große Bandbreite an Zukunftsprognosen.
 
 Deshalb habe ich dieses Projekt erstellt.
@@ -41,7 +41,7 @@ Oft sind solche Geschäfte nicht möglich. Die folgende Konstellation ist häufi
 Da es nicht einfach ist, diese Art von Geschäft zu berechnen, überlassen wir das der Rechenmaschine.
 
 
-
+---
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 Have a look at the [documentation](https://nomoneyshop.readthedocs.io/en/latest/).
