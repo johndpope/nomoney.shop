@@ -14,8 +14,8 @@
       </tr>
     </thead>
     <tbody>
-    {% for dealset in level2_deals %}
-    {% with deal=dealset.deal %}
+    {% for dealset in request.user.virtual_dealsets %}
+    {% for deal in dealset.deals %}
       <tr>
         <th scope="row">
           <div class="progress">
@@ -27,7 +27,7 @@
         <td>{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
         <td><a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' deal.partner.pk %}" role="button">handeln</a></td>
       </tr>
-      {% endwith %}
+      {% endfor %}
       {% endfor %}
     </tbody>
   </table>

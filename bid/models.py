@@ -105,4 +105,4 @@ class Bid(models.Model):
 
     class Meta:
         ordering = ['-datetime']
-        get_latest_by = ['-datetime']
+        get_latest_by = ['datetime']

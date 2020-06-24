@@ -6,40 +6,25 @@
     <thead>
       <tr>
         <th scope="col">Kategorie</th>
-        <th scope="col">Aktivität</th>
-        <th scope="col">Anbieter</th>
-        <th scope="col">Abnehmer</th>
+        <th scope="col">Angebote / Anfragen / Gesamt</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
     {% for category in categories %}
       <tr>
         <td>{% include 'category/inc/link.html' %}</td>
-        <td>{{ category.count_actions }}</td>
         <td>
-          <a class="btn btn-info btn-sm text-white py-0 px-2" href="{% url 'category_listing_create' 'push' category.pk %}"><i class="fas fa-plus"></i></a>
-          
-          {% for listing in category.pushs %}
-            {% with user=listing.user %}
-              {% include 'user/inc/link.html' %}&nbsp;
-            {% endwith %}
-          {% endfor %}
+{{ category.pushs|length }} / {{ category.pulls|length }} / {{ category.listings|length }}
         </td>
-        <td>
-          <a class="btn btn-info btn-sm text-white py-0 px-2" href="{% url 'category_listing_create' 'pull' category.pk %}"><i class="fas fa-plus"></i></i></a>
-          {% for listing in category.pulls %}
-            {% with user=listing.user %}
-              {% include 'user/inc/link.html' %}&nbsp;
-            {% endwith %}
-          {% endfor %}
-        </td>
+        <td><a class="btn btn-info btn-sm text-white py-0 px-2" href="{% url 'category_listing_create' 'push' category.pk %}"><i class="fas fa-plus"></i> Angebot erstellen</a></td>
+        <td><a class="btn btn-info btn-sm text-white py-0 px-2" href="{% url 'category_listing_create' 'pull' category.pk %}"><i class="fas fa-plus"></i>Anfrage erstellen</a></td>
       </tr>
     {% endfor %}
       <tr>
         <td><a class="text-info" href="{% url 'category_create' %}"><i class="fas fa-plus"></i> Kategorie</a></td>
         <td></td>
-        <td><a class="text-info" href="{% url 'listing_create' 'push' %}"><i class="fas fa-plus"></i> Angebot</a></td>
-        <td><a class="text-info" href="{% url 'listing_create' 'pull' %}"><i class="fas fa-plus"></i> Anfrage</a></td>
         <td></td>
       </tr>
     </tbody>

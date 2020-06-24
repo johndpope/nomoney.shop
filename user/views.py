@@ -55,10 +55,9 @@ class AgentView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = TemplateView.get_context_data(self, **kwargs)
         user = self.request.user
-        _, level1, level2, level3 = user.get_dealsets()
-        context['level1_deals'] = level1
-        context['level2_deals'] = level2
-        context['level3_deals'] = level3
-        quality = [dealset.quality for dealset in level2]
+        context['level1_deals'] = 'level1'
+        context['level2_deals'] = user.virtual_dealsets
+        context['level3_deals'] = 'level3'
+        quality = [dealset.quality for dealset in context['level2_deals']]
         context['level2_quality_factor'] = 100 / max(quality) if quality else 0
         return context

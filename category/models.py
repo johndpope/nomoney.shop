@@ -14,7 +14,6 @@ class Category(models.Model):
 
     @property
     def pulls(self):
-        pass
         return self.pull_set.all()
 
     @property
@@ -30,11 +29,8 @@ class Category(models.Model):
             obj = obj.parent
         return title
 
-    def count_actions(self):
-        return 1 #len(self.listings)
-
     def __lt__(self, other):
-        return self.count_actions() < other.count_actions()
+        return len(self.listings) < len(other.listings)
 
     def __str__(self):
         return self.path

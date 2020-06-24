@@ -1,9 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% for dealset in request.user.possible_dealsets %}
-  {{dealset}}
-  {{dealset.level}}
-  {{dealset.quality}}
-{% endfor %}
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Quality</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for dealset in request.user.virtual_dealsets %}
+      <tr>
+        <th scope="row">{{ dealset.quality }}</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}
