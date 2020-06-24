@@ -1,5 +1,6 @@
 # nomoney.shop
 [![Build Status](https://travis-ci.org/snake-soft/nomoney.shop.svg?branch=master)](https://travis-ci.org/snake-soft/nomoney.shop)
+![Django CI](https://github.com/snake-soft/nomoney.shop/workflows/Django%20CI/badge.svg)
 [![Documentation Status](https://readthedocs.org/projects/nomoneyshop/badge/?version=latest)](https://nomoneyshop.readthedocs.io/en/latest/?badge=latest)
 [![Coverage Status](https://coveralls.io/repos/github/snake-soft/nomoney.shop/badge.svg?branch=master)](https://coveralls.io/github/snake-soft/nomoney.shop?branch=master)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
