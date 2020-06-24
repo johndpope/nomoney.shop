@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% for dealset in request.user.possible_dealsets %}
+  {{dealset}}
+  {{dealset.level}}
+  {{dealset.quality}}
+{% endfor %}
 {% endblock %}
