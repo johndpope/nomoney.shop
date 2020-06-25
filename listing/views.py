@@ -78,9 +78,11 @@ class ListingDetailView(DetailView):  # OK
         listing = self.model.objects.get(pk=kwargs.get('pk'))
         user = request.user
         partner = listing.user
-        self.extra_context = {
-            'deal': user.get_dealset_from_partner(partner).deal
-            }
+        #=======================================================================
+        # self.extra_context = {
+        #     'deal': user.get_dealset_from_partner(partner).deal
+        #     }
+        #=======================================================================
         return DetailView.dispatch(self, request, *args, **kwargs)
 
 
