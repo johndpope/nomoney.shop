@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{{request.POST}}
 <form method="post">{% csrf_token %}
-<table>
+  <table>
     {{ form.as_table }}
-    </table>
-    <input type="submit" value="Send message">
+  </table>
+  <input type="submit" value="Deal starten">
 </form>
 {% if pk %}<a href="{% url 'listing_delete' type pk %}">Löschen</a>{% endif %}
 {% endblock %}

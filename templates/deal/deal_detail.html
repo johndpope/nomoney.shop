@@ -1,58 +1,133 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Deal</h2>
+<h2>Deal Details{% if object.accepted %} <span class="badge badge-success"><i class="fas fa-check"></i></span>{% endif %}</h2>
 <h3 class="mt-5">Übersicht</h3>
 <div class="table-responsive">
   <table class="table">
     <thead>
       <tr>
         <th scope="col">Teilnehmer</th>
-        <th scope="col">Gibt</th>
-        <th scope="col">Nimmt</th>
+        <th scope="col">Angebote</th>
+        <th scope="col">Anfragen</th>
         <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-    {% for user in object.users.all %}
-      <tr>
-        <td>{% include 'user/inc/link.html' %}</td>
-        <td>{% for listing in user.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
-        <td>{% for listing in user.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
-        <td></td>
-      </tr>
-    {% endfor %}
+      {% with user=object.user1 %}
+        <tr>
+          <td>{% include 'user/inc/link.html' %}</td>
+          <td>{% for listing in user.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
+          <td>{% for listing in user.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
+          <td></td>
+        </tr>
+      {% endwith %}
+      {% with user=object.user2 %}
+        <tr>
+          <td>{% include 'user/inc/link.html' %}</td>
+          <td>{% for listing in user.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
+          <td>{% for listing in user.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
+          <td></td>
+        </tr>
+      {% endwith %}
     </tbody>
   </table>
 </div>
-<h3 class="mt-5">Handelbare Positionen</h3>
+<h3 class="mt-5">Handelbar</h3>
 <div class="table-responsive">
   <table class="table">
     <thead>
       <tr>
-        <th scope="col"></th>
+        <th scope="col">Benutzer</th>
         <th scope="col">Gibt</th>
         <th scope="col">Nimmt</th>
-        <th scope="col">An/Von</th>
-        <th scope="col">Gebote</th>
+        <th scope="col">an / von</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>{% with user=object.user1 %}{% include 'user/inc/link.html' %}{% endwith %}</td>
+          <td>{% for listing in object.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
+          <td>{% for listing in object.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
+          <td>{% with user=object.user2 %}{% include 'user/inc/link.html' %}{% endwith %}</td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+<h3 class="mt-5">Gebotshistorie</h3>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Von</th>
+        <th scope="col">Datum</th>
+        <th scope="col">Gebe</th>
+        <th scope="col">Nehme</th>
         <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-    {% for deal in object.deals %}
+    {% for bid in object.bids %}
       <tr>
-        <td>{% with user=deal.user %}{% include 'user/inc/link.html' %}{% endwith %}</td>
-        <td>{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
-        <td>{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
-        <td>{% with user=deal.partner %}{% include 'user/inc/link.html' %}{% endwith %}</td>
-        <td>{% for bid in deal.bids %}{% include 'bid/inc/link.html' %}{% endfor %}</td>
-        <td><a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' deal.pk %}" role="button">bieten</a></td>
+        <td>{% include 'bid/inc/link.html' %}</td>
+        <td>{% with user=bid.creator %}{% include 'user/inc/link.html' %}{% endwith %}</td>
+        <td>{{ bid.datetime }}</td>
+        <td>
+            {% for listing in bid.pushs %}
+                {{ listing.quantity }}{{ listing.unit.short }} {% with listing=listing.listing %}{% include 'listing/inc/link.html' %}, {% endwith %}
+            {% endfor %}
+        </td>
+        <td>
+            {% for listing in bid.pulls %}
+                {{ listing.quantity }}{{ listing.unit.short }} {% with listing=listing.listing %}{% include 'listing/inc/link.html' %}, {% endwith %}
+            {% endfor %}
+        </td>
+        <td>
+          {% if can_accept %}
+            <form method="POST" action="{% url 'deal_accepted' deal.pk %}">{% csrf_token %}
+              <button type="submit" class="btn btn-sm btn-outline-success">Annehmen</button>
+            </form>
+          {% endif %}
+        </td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td>kein Gebot bisher</td>
       </tr>
     {% endfor %}
     </tbody>
   </table>
 </div>
 
-
+{% if can_bid %}
+<div class="container card p-3 mt-5 shadow">
+  <form method="POST" action="{% url 'bid_create' object.pk %}">{% csrf_token %}
+    <div class="row">
+      <div class="col table-responsive">
+        <p>Ich gebe</p>
+        <table class="table">
+          <tbody>
+            {{ push_form.as_table }}
+          </tbody>
+        </table>
+        </div>
+        <div class="col table-responsive">
+        <p>Ich nehme</p>
+        <table class="table">
+          <tbody>
+            {{ pull_form.as_table }}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success btn-block">Bieten</button>
+  </form>
+</div>
+{% endif %}
 {% if object.is_latest %}<a href="#">Bearbeiten</a>{% endif %}
 {% endblock %}
+
+
+
+

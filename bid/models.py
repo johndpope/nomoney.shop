@@ -48,20 +48,6 @@ class StatusCode:
 class Bid(models.Model):
     deal = models.ForeignKey('deal.Deal', on_delete=models.CASCADE)
 
-#===============================================================================
-#     pushs = models.ManyToManyField(
-#         'listing.BidPush',
-#         through=BidPush,
-#         through_fields=('bid', 'listing'),
-#         )
-# 
-#     pulls = models.ManyToManyField(
-#         'listing.BidPull',
-#         through=BidPull,
-#         through_fields=('bid', 'listing'),
-#         )
-#===============================================================================
-
     creator = models.ForeignKey(
         AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -75,11 +61,11 @@ class Bid(models.Model):
         )
 
     @property
-    def push_positions(self):
+    def pushs(self):
         return self.bidpush_set.all()
 
     @property
-    def pull_positions(self):
+    def pulls(self):
         return self.bidpull_set.all()
 
     @property

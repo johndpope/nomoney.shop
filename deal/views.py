@@ -1,30 +1,75 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView, CreateView
-from .models import DealSet
+from django.views.generic.edit import UpdateView, CreateView, FormView
 from django.urls.base import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Deal
+from .forms import DealCreateForm, DealAcceptForm
+from bid.forms import BidForm
+
+# TODO: check if access is allowed (self.request.user in dealset user
 
 
-class DealListView(ListView):
-    model = DealSet
+class DealListView(LoginRequiredMixin, ListView):
+    model = Deal
     template_name = 'deal/deal_list.html'
 
     def get_queryset(self):
-        return self.request.user.dealsets
+        return self.request.user.deals
 
 
-class DealDetailView(DetailView):
-    model = DealSet
+class DealDetailView(LoginRequiredMixin, DetailView):
+    model = Deal
     template_name = 'deal/deal_detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = DetailView.get_context_data(self, **kwargs)
+        context['can_bid'] = self.object.can_bid(self.request.user)
+        context['can_accept'] = self.object.can_accept(self.request.user)
+        if context['can_bid']:
+            context['push_form'] = BidForm(self.object.pushs)
+            context['pull_form'] = BidForm(self.object.pulls)
+        return context
 
-class DealCreateView(CreateView):
-    model = DealSet
-    fields = '__all__'
+
+class DealCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'deal/deal_form.html'
+    form_class = DealCreateForm
+
+    def form_valid(self, form):
+        form.instance.user1 = self.request.user
+        return CreateView.form_valid(self, form)
 
     def get_success_url(self):
         return reverse('deal_detail', args=(self.object.pk,))
 
 
-class DealUpdateView(UpdateView):
-    pass
+class DealUserCreateView(LoginRequiredMixin, CreateView):
+    model = Deal
+    fields = '__all__'
+
+    def get_success_url(self):
+        return reverse('deal_detail', args=(self.object.pk,))
+
+class DealAcceptedView(LoginRequiredMixin, UpdateView):
+    #form_class = DealAcceptForm
+    model = Deal
+    http_method_names = ['post']
+    fields = ['accepted']
+
+    #===========================================================================
+    # def get_queryset(self):
+    #     deal_pk = self.request.resolver_match.kwargs.get('pk')
+    #     return Deal.objects.get(pk=deal_pk)
+    #===========================================================================
+
+    def post(self, request, *args, **kwargs):
+        response = UpdateView.post(self, request, *args, **kwargs)
+        if self.request.user in self.object.bid_allowed_for():
+            self.object.accepted = True
+            self.object.save()
+        return response
+
+    def get_success_url(self):
+        return reverse('deal_detail', args=(self.object.pk,))
+
