@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls.base import reverse_lazy
 from .models import Push, Pull
 from category.models import Category
+from django.views.generic.base import TemplateView
 
 FIELDS = ['title', 'image', 'category', 'quantity', 'unit', 'description']
 """
@@ -15,14 +16,8 @@ listing_detail
 """
 
 
-class ListingListView(ListView):
+class ListingListView(TemplateView):
     template_name = 'listing/listing_list.html'
-
-    def dispatch(self, request, *args, **kwargs):
-        return DetailView.dispatch(self, request, *args, **kwargs)
-
-    def get_queryset(self):
-        return Push.get_all()
 
 
 class ListingTypeListView(ListView):

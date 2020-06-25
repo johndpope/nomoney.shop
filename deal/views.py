@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Deal
 from .forms import DealCreateForm, DealAcceptForm
 from bid.forms import BidForm
-
+from user.models import User
 # TODO: check if access is allowed (self.request.user in dealset user
 
 
@@ -44,24 +44,24 @@ class DealCreateView(LoginRequiredMixin, CreateView):
         return reverse('deal_detail', args=(self.object.pk,))
 
 
-class DealUserCreateView(LoginRequiredMixin, CreateView):
+class DealUserCreateView(LoginRequiredMixin, UpdateView):
     model = Deal
-    fields = '__all__'
+    fields = []
+
+    def get_object(self, queryset=None):
+        partner_pk = self.request.resolver_match.kwargs.get('partner_pk')
+        partner = User.objects.get(pk=partner_pk)
+        return Deal.get_or_create((self.request.user, partner))
 
     def get_success_url(self):
         return reverse('deal_detail', args=(self.object.pk,))
+
 
 class DealAcceptedView(LoginRequiredMixin, UpdateView):
     #form_class = DealAcceptForm
     model = Deal
     http_method_names = ['post']
     fields = ['accepted']
-
-    #===========================================================================
-    # def get_queryset(self):
-    #     deal_pk = self.request.resolver_match.kwargs.get('pk')
-    #     return Deal.objects.get(pk=deal_pk)
-    #===========================================================================
 
     def post(self, request, *args, **kwargs):
         response = UpdateView.post(self, request, *args, **kwargs)

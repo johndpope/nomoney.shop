@@ -5,7 +5,6 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
         <th scope="col">Username</th>
         <th scope="col">Bietet</th>
         <th scope="col">Sucht</th>
@@ -15,11 +14,10 @@
     <tbody>
 {% for user in users %}
       <tr>
-        <th scope="row">{{ user.pk }}</th>
         <td>{% include 'user/inc/link.html' %}</td>
         <td>{% for listing in user.pushs %}{% include 'listing/inc/link.html' %} {% endfor %}</td>
         <td>{% for listing in user.pulls %}{% include 'listing/inc/link.html' %} {% endfor %}</td>
-        <td><a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' user.pk %}" role="button">handeln</a></td>
+        <td><a class="btn btn-outline-primary btn-sm" href="{% url 'deal_user_create' user.pk %}" role="button">handeln</a></td>
       </tr>
 {% endfor %}
     </tbody>

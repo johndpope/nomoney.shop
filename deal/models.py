@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import Q
 from config.settings import AUTH_USER_MODEL
 
+
 class Deal(models.Model):
     user1 = models.ForeignKey(
         AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user1_deals'
@@ -13,6 +14,7 @@ class Deal(models.Model):
         'guild.Guild', on_delete=models.CASCADE, null=True, blank=True
         )
     accepted = models.BooleanField(default=False)
+    deleted = models.BooleanField(default=False)
 
     pov_user = None
 
@@ -30,7 +32,7 @@ class Deal(models.Model):
 
     @property
     def bids(self):
-        return self.bid_set.all()
+        return self.bid_set.filter()
 
     @property
     def pushs(self):
@@ -59,18 +61,6 @@ class Deal(models.Model):
         bids = self.bids
         return bids.latest() if bids else None
 
-    #===========================================================================
-    # def bid_allowed_for(self):
-    #     if self.accepted:
-    #         return []
-    #     latest_bid = self.get_latest_bid()
-    #     if latest_bid:
-    #         userlist = list(self.get_users())
-    #         userlist.remove(self.bids.latest().creator)
-    #         return userlist
-    #     return self.get_users()
-    #===========================================================================
-
     def can_accept(self, user):
         latest_bid = self.get_latest_bid()
         if not latest_bid:
@@ -78,8 +68,6 @@ class Deal(models.Model):
         if latest_bid.creator != user:
             return True
         return False
-
-        import pdb; pdb.set_trace()  # <---------
 
     def can_bid(self, user):
         latest_bid = self.get_latest_bid()
@@ -89,16 +77,15 @@ class Deal(models.Model):
             return True
         return False
 
+    @classmethod
+    def get_or_create(cls, users):
+        existing = cls.objects.filter(
+            Q(user1=users[0], user2=users[1]) |
+            Q(user2=users[0], user1=users[1])
+            )
+        if existing:
+            return existing.latest()
+        return cls.objects.create(user1=users[0], user2=users[1])
 
-
-
-    #===========================================================================
-    # def save(self, *args, **kwargs):
-    #     existing = self.__class__.objects.filter(
-    #         Q(user1=self.user1, user2=self.user2) | \
-    #         Q(user2=self.user1, user1=self.user2)
-    #         ).exclude(accepted=True)
-    #     if existing:
-    #         raise AttributeError('Object exists')
-    #     return models.Model.save(self, *args, **kwargs)
-    #===========================================================================
+    class Meta:
+        get_latest_by = ['pk']

@@ -31,7 +31,7 @@
                   <td>{% with user=listing.user %}{% include 'user/inc/link.html' %}{% endwith %}</td>
                   <td>{% include 'listing/inc/link.html' %} {{ listing.title }}</td>
                   <td>{% for listing in listing.user.pulls %}{% include 'listing/inc/link.html' %}{%endfor%}</td>
-                  <td><a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' user.pk %}" role="button">handeln</a></td>
+                  <td><a class="btn btn-outline-primary btn-sm" href="{% url 'deal_user_create' user.pk %}" role="button">handeln</a></td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -66,7 +66,7 @@
                     <td>{% with user=listing.user %}{% include 'user/inc/link.html' %}{% endwith %}</td>
                     <td>{% include 'listing/inc/link.html' %} {{ listing.title }}</td>
                     <td>{% for listing in listing.user.pushs %}{% include 'listing/inc/link.html' %}{%endfor%}</td>
-                    <td><a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' user.pk %}" role="button">handeln</a></td>
+                    <td><a class="btn btn-outline-primary btn-sm" href="{% url 'deal_user_create' user.pk %}" role="button">handeln</a></td>
                   </tr>
                   {% endfor %}
                 </tbody>

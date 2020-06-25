@@ -1,10 +1,65 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% include 'actions.html' %}
 <div class="container-fluid">
-  {% for listing in object_list %}
-    {% include 'listing/inc/link.html' %}
-  {% endfor %}
+  <div class="row">
+    <div class="col">
+      <h3>Meine Angebote</h3>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Kategorie</th>
+              <th scope="col">Titel</th>
+              <th scope="col">Menge</th>
+              <th scope="col">Modified</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for listing in request.user.pushs %}
+            <tr>
+              <td>{% with category=listing.category %}{% include 'category/inc/link.html' %}{% endwith %}</td>
+              <td>{% include 'listing/inc/link.html' %} {{ listing.title }}</td>
+              <td>{{ listing.quantity }}{{ listing.unit.short }}</td>
+              <td>{{ listing.modified }}</td>
+            </tr>
+              
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <a class="text-info" href="{% url 'listing_create' 'push' %}"><i class="fas fa-plus"></i> Neues Angebot</a>
+    </div>
+  </div>
+  <hr>
+  <div class="row mt-5">
+    <div class="col">
+      <h3>Meine Anfragen</h3>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Kategorie</th>
+              <th scope="col">Titel</th>
+              <th scope="col">Menge</th>
+              <th scope="col">Modified</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for listing in request.user.pulls %}
+            <tr>
+              <td>{% with category=listing.category %}{% include 'category/inc/link.html' %}{% endwith %}</td>
+              <td>{% include 'listing/inc/link.html' %} {{ listing.title }}</td>
+              <td>{{ listing.quantity }}{{ listing.unit.short }}</td>
+              <td>{{ listing.modified }}</td>
+            </tr>
+              
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <a class="text-info" href="{% url 'listing_create' 'push' %}"><i class="fas fa-plus"></i> Neues Angebot</a>
+    </div>
+  </div>
 </div>
 {% endblock %}

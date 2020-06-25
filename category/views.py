@@ -14,6 +14,7 @@ class CategoryListView(ListView):
 class CategoryCreateView(CreateView):
     model = Category
     template_name = 'category/category_form.html'
+    fields = ['parent', 'title', 'description']
 
 
 class CategoryDetailView(DetailView):

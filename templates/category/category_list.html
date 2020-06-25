@@ -9,6 +9,7 @@
         <th scope="col">Angebote / Anfragen / Gesamt</th>
         <th scope="col"></th>
         <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +21,7 @@
         </td>
         <td><a class="btn btn-info btn-sm text-white py-0 px-2" href="{% url 'category_listing_create' 'push' category.pk %}"><i class="fas fa-plus"></i> Angebot erstellen</a></td>
         <td><a class="btn btn-info btn-sm text-white py-0 px-2" href="{% url 'category_listing_create' 'pull' category.pk %}"><i class="fas fa-plus"></i>Anfrage erstellen</a></td>
+        <td><a class="btn btn-info btn-sm text-white py-0 px-2" href="{% url 'category_detail' category.pk %}"><i class="fas fa-arrow-circle-right"></i></a></td>
       </tr>
     {% endfor %}
       <tr>

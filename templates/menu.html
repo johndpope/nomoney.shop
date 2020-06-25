@@ -22,8 +22,15 @@
           <a class="dropdown-item" href="{% url 'user_pw' request.user.pk %}">Passwort ändern</a>
           <a class="dropdown-item" href="{% url 'user_logout' %}">Ausloggen</a>
         </div>
+        <!-- 
       <li class="nav-item">
         <a class="nav-link" href="{% url 'agent_list' %}">Agent</a>
+      </li>-->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'listing_list' %}">Meine Einträge</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'deal_list' %}">Meine Deals</a>
       </li>
       {% else %}
       <li class="nav-item">
@@ -32,15 +39,9 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'user_login' %}">Anmelden</a>
       </li>
+
+
       {% endif %}
-
-
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'deal_list' %}">Meine Deals</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'listing_list' %}">Meine Listings</a>
-      </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'category_list' %}">Kategorien</a>
       </li>

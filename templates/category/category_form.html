@@ -1,14 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="alert alert-primary" role="alert">
-  Möchtest du diesen Deal beginnen?
-</div>
+{{request.POST}}
 <form method="post">{% csrf_token %}
   <table>
     {{ form.as_table }}
   </table>
-  <input type="submit" value="Deal starten">
+  <input type="submit" value="Kategorie erstellen">
 </form>
 {% if pk %}<a href="{% url 'listing_delete' type pk %}">Löschen</a>{% endif %}
 {% endblock %}
