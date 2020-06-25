@@ -11,7 +11,7 @@ from random import randint
 from user.models import User
 from listing.models import Unit, Push, Pull
 from category.models import Category
-from deal.models import DealSet
+from deal.models import Deal
 
 
 class TestDB:
@@ -109,21 +109,11 @@ class TestDB:
 
     @classmethod
     def setup_deal_db(cls):
-        users = User.objects.filter(username__in=('demo', 'test1'))
-        dealset = DealSet.objects.create()
-        dealset.users.set(users)
-        dealset.save()
         for _ in range(cls.DEAL_COUNT):
-            users = cls.random_object(User), cls.random_object(User)
-            dealset = DealSet.objects.create()
-            dealset.users.set(users)
-            dealset.save()
-        for _ in range(cls.DEAL_COUNT):
-            users = cls.random_object(User), cls.random_object(User), \
-                cls.random_object(User)
-            dealset = DealSet.objects.create()
-            dealset.users.set(users)
-            dealset.save()
+            Deal.objects.create(
+                user1=cls.random_object(User),
+                user2=cls.random_object(User)
+                )
 
     @staticmethod
     def random_object(model):

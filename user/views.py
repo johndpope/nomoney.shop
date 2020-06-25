@@ -43,9 +43,11 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     def dispatch(self, request, *args, **kwargs):
         user = request.user
         partner = self.model.objects.get(pk=kwargs.get('pk'))
-        self.extra_context = {
-            'deal': user.get_dealset_from_partner(partner).deal
-            }
+        #=======================================================================
+        # self.extra_context = {
+        #     'deal': user.get_dealset_from_partner(partner).deal
+        #     }
+        #=======================================================================
         return DetailView.dispatch(self, request, *args, **kwargs)
 
 
