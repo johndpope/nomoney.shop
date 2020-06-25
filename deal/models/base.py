@@ -1,95 +1,12 @@
 from itertools import combinations
+from abc import abstractmethod
 
 
-class DealSetBase:
-    users = []
-    deal_class = None
-
-    def __init__(self):
-        self.deal_class = DealBase
-        self._deals = None
-        self._quality = None
-        self._level = None
-
-    def get_users(self):
-        return list(self.users)
-
-    def set_users(self, *users):
-        self.users = list(users)
-        return self
-
-    @property
-    def deals(self):
-        if self._deals is not None:
-            return self._deals
-        self._deals = []
-        for user_combi in combinations(self.get_users(), 2):
-            deal = self.deal_class()
-            deal.dealset = self
-            deal.set_users(user_combi)
-            self._deals.append(deal)
-        return self._deals
-
-    @property
-    def deal(self):
-        return self.deals[0] if self.deals else []
-
-    @property
-    def level(self):
-        """ Levels:
-            0 - No Deal match
-            1 - One side Match
-            2 - Two side Match
-            3 - Deal between three users
-            4 - Deal between four users
-        users represent all users taking part at this deal
-        """
-        if self._level is None:
-            levels = [deal.level for deal in self.deals]
-            self._level = max(levels) if levels else 0
-        return self._level
-
-    @property
-    def quality(self):
-        if self._quality is None:
-            qualities = [deal.quality for deal in self.deals]
-            self._quality = max(qualities) if qualities else 0
-        return self._quality
-
-    @property
-    def pushs(self):
-        push_qs = [user.pushs for user in self.get_users()]
-        return push_qs[0].union(*push_qs)
-
-    @property
-    def pulls(self):
-        pull_qs = [user.pulls for user in self.get_users()]
-        return pull_qs[0].union(*pull_qs)
-
-    @property
-    def bids(self):
-        bids = []
-        for deal in self.deals:
-            for bid in deal.bids:
-                bids.append(bid)
-        return bids
-
-    def set_pov(self, user):
-        for deal in self.deals:
-            deal.set_pov(user)
-
-    def __lt__(self, other):
-        return self.quality > other.quality
-
-
-class DealBase:
+class DealBase():  # Create as abc
     users = []
     _user = None  # POV User of this instance
     dealset = None
     accepted = False
-
-    def __init__(self):
-        self.deal_class = None
 
     @property
     def user(self):
@@ -158,3 +75,90 @@ class DealBase:
 
     def __lt__(self, other):
         return self.quality < other.quality
+
+
+class DealSetBase():  # Create as abc
+    users = []
+    _deals = None
+    _quality = None
+    _level = None
+
+    @property
+    @abstractmethod
+    def deal_class(self):
+        return DealBase
+
+    def get_users(self):
+        return list(self.users)
+
+    def set_users(self, *users):
+        self.users = list(users)
+        return self
+
+    @property
+    def deals(self):
+        if self._deals is not None:
+            return self._deals
+        self._deals = []
+        for user_combi in combinations(self.get_users(), 2):
+            deal = self.deal_class()
+            deal.dealset = self
+            deal.set_users(user_combi)
+            self._deals.append(deal)
+        return self._deals
+
+    @property
+    def deal(self):
+        return self.deals[0] if self.deals else []
+
+    @property
+    def level(self):
+        """ Levels:
+            0 - No Deal match
+            1 - One side Match
+            2 - Two side Match
+            3 - Deal between three users
+            4 - Deal between four users
+        users represent all users taking part at this deal
+        """
+        if self._level is None:
+            levels = [deal.level for deal in self.deals]
+            self._level = max(levels) if levels else 0
+        return self._level
+
+    @property
+    def quality(self):
+        if self._quality is None:
+            qualities = [deal.quality for deal in self.deals]
+            self._quality = max(qualities) if qualities else 0
+        return self._quality
+
+    @property
+    def pushs(self):
+        push_qs = [user.pushs for user in self.get_users()]
+        return push_qs[0].union(*push_qs)
+
+    @property
+    def pulls(self):
+        pull_qs = [user.pulls for user in self.get_users()]
+        return pull_qs[0].union(*pull_qs)
+
+    @property
+    def bids(self):
+        bids = []
+        for deal in self.deals:
+            for bid in deal.bids:
+                bids.append(bid)
+        return bids
+
+    def set_pov(self, user):
+        for deal in self.deals:
+            deal.set_pov(user)
+
+    @classmethod
+    @abstractmethod
+    def get_or_create(cls, users):
+        import pdb; pdb.set_trace()  # <---------
+
+    def __lt__(self, other):
+        return self.quality > other.quality
