@@ -25,9 +25,9 @@ class TestDB:
     """
     USER_NAME = 'demo'
     USER_PASSWORD = 'demo123'
-    USER_COUNT = 20
-    LISTING_COUNT = 200
-    DEAL_COUNT = 20  # creates double and triple deals
+    USER_COUNT = 100
+    LISTING_COUNT = 1000
+    DEAL_COUNT = 1  # creates double and triple deals
     CATEGORIES = {
         'Lebensmittel': ['Äpfel', 'Bananen', 'Erdbeeren', 'Brot', 'Wasser',
                          'Mehl', 'Eier', 'Pepperoni', 'Tomaten', 'Kopfsalat'],
