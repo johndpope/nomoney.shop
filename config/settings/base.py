@@ -15,12 +15,16 @@ from pathlib import Path
 from django.contrib.messages import constants as message_constants
 
 
-VERSION = '0.1.0'
+#VERSION = '0.3.0'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = str(Path(__file__).resolve().parent.parent.parent)
 
+with open(os.path.join(BASE_DIR, 'version.txt')) as v_file:
+    VERSION = v_file.read().strip().split('.')
+VERSION = [int(field) for field in VERSION]
+NAME = 'nomoney.shop'
 # Application definition
 
 INSTALLED_APPS = [
@@ -65,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'config.global_context.default'
             ],
         },
     },

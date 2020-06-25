@@ -12,7 +12,7 @@ class DealCreateForm(forms.ModelForm):
 
 
 class DealAcceptForm(forms.ModelForm):
-    
+
     class Meta:
         model = Deal
         fields = ['accepted']
