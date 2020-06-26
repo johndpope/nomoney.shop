@@ -14,10 +14,9 @@ class BidForm(forms.Form):
             self.fields['quantity' + key] = forms.IntegerField(min_value=0, required=False)
             self.fields['quantity' + key].listing = listing
             self.fields['quantity' + key].unit = listing.unit
-            self.fields['quantity' + key].label = listing.title
+            self.fields['quantity' + key].label = '{} ({})'.format(listing.title, listing.unit)
+            self.fields['quantity' + key].widget.attrs['class']='list-group-item'
 
-    def as_table(self):
-        return forms.Form.as_table(self)
 
 class BidPositionFormBase(forms.ModelForm):
 

@@ -1,129 +1,130 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 {% block content %}
 <h2>Deal Details{% if object.accepted %} <span class="badge badge-success"><i class="fas fa-check"></i></span>{% endif %}</h2>
 <h3 class="mt-5">Übersicht</h3>
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Teilnehmer</th>
-        <th scope="col">Angebote</th>
-        <th scope="col">Anfragen</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      {% with user=object.user1 %}
-        <tr>
-          <td>{% include 'user/inc/link.html' %}</td>
-          <td>{% for listing in user.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
-          <td>{% for listing in user.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
-          <td></td>
-        </tr>
-      {% endwith %}
-      {% with user=object.user2 %}
-        <tr>
-          <td>{% include 'user/inc/link.html' %}</td>
-          <td>{% for listing in user.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
-          <td>{% for listing in user.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
-          <td></td>
-        </tr>
-      {% endwith %}
-    </tbody>
-  </table>
-</div>
-<h3 class="mt-5">Handelbar</h3>
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Benutzer</th>
-        <th scope="col">Gibt</th>
-        <th scope="col">Nimmt</th>
-        <th scope="col">an / von</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>{% with user=object.user1 %}{% include 'user/inc/link.html' %}{% endwith %}</td>
-          <td>{% for listing in object.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
-          <td>{% for listing in object.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</td>
-          <td>{% with user=object.user2 %}{% include 'user/inc/link.html' %}{% endwith %}</td>
-        </tr>
-    </tbody>
-  </table>
-</div>
-<h3 class="mt-5">Gebotshistorie</h3>
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Von</th>
-        <th scope="col">Datum</th>
-        <th scope="col">Gebe</th>
-        <th scope="col">Nehme</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for bid in object.bids %}
-      <tr>
-        <td>{% include 'bid/inc/link.html' %}</td>
-        <td>{% with user=bid.creator %}{% include 'user/inc/link.html' %}{% endwith %}</td>
-        <td>{{ bid.datetime }}</td>
-        <td>
-            {% for listing in bid.pushs %}
-                {{ listing.quantity }}{{ listing.unit.short }} {% with listing=listing.listing %}{% include 'listing/inc/link.html' %}, {% endwith %}
-            {% endfor %}
-        </td>
-        <td>
-            {% for listing in bid.pulls %}
-                {{ listing.quantity }}{{ listing.unit.short }} {% with listing=listing.listing %}{% include 'listing/inc/link.html' %}, {% endwith %}
-            {% endfor %}
-        </td>
-        <td>
-          {% if can_accept %}
-            <form method="POST" action="{% url 'deal_accepted' deal.pk %}">{% csrf_token %}
-              <button type="submit" class="btn btn-sm btn-outline-success">Annehmen</button>
-            </form>
-          {% endif %}
-        </td>
-      </tr>
-    {% empty %}
-      <tr>
-        <td>kein Gebot bisher</td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
+<div class="container-fluid mb-5">
+  <div class="row">
+    <div class="col-12 col-lg-4 d-none d-lg-block col-xl-2"><b>Teilnehmer</b></div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-5"><b>Angebote</b></div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-5"><b>Anfragen</b></div>
+  </div>
+  {% with user=object.user1 %}
+  <div class="row border-top py-3">
+    <div class="col-12 col-lg-4 col-xl-2">{% include 'user/inc/link.html' %}</div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-5">{% for listing in user.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-5">{% for listing in user.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
+  </div>
+  {% endwith %}
+  {% with user=object.user2 %}
+  <div class="row border-top border-bottom py-3">
+    <div class="col-12 col-lg-2 col-xl-2">{% include 'user/inc/link.html' %}</div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-5">{% for listing in user.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-5">{% for listing in user.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
+  </div>
+  {% endwith %}
 </div>
 
-{% if can_bid %}
-<div class="container card p-3 mt-5 shadow">
-  <form method="POST" action="{% url 'bid_create' object.pk %}">{% csrf_token %}
-    <div class="row">
-      <div class="col table-responsive">
-        <p>Ich gebe</p>
-        <table class="table">
-          <tbody>
-            {{ push_form.as_table }}
-          </tbody>
-        </table>
-        </div>
-        <div class="col table-responsive">
-        <p>Ich nehme</p>
-        <table class="table">
-          <tbody>
-            {{ pull_form.as_table }}
-          </tbody>
-        </table>
+<h3 class="mt-5">Übereinstimmung</h3>
+<div class="container-fluid mb-5">
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-3 order-1 order-md-1"><b>Benutzer</b></div>
+    <div class="col-12 col-sm-6 col-md-3 order-3 order-md-2"><b>gibt</b></div>
+    <div class="col-12 col-sm-6 col-md-3 order-5 order-md-3"><b>nimmt</b></div>
+    <div class="col-12 col-sm-6 col-md-3 order-7 order-md-4"><b>an / von</b></div>
+    <div class="col-12 col-sm-6 col-md-3 order-2 order-md-5">{% with user=object.user1 %}{% include 'user/inc/link.html' %}{% endwith %}</div>
+    <div class="col-12 col-sm-6 col-md-3 order-4 order-md-6">{% for listing in object.pushs %}{% include 'listing/inc/link.html' %}, {% endfor %}</div>
+    <div class="col-12 col-sm-6 col-md-3 order-6 order-md-7">{% for listing in object.pulls %}{% include 'listing/inc/link.html' %}, {% endfor %}</div>
+    <div class="col-12 col-sm-6 col-md-3 order-8 order-md-8">{% with user=object.user2 %}{% include 'user/inc/link.html' %}{% endwith %}</div>
+  </div>
+</div>
+
+
+<h3 class="mt-5">Gebotshistorie</h3>
+<div class="container-fluid border-bottom">
+  <div class="row py-3">
+    <div class="col-2 col-md-3 col-xl-2 order-1 order-xl-1"><b>ID</b></div>
+    <div class="col-3 col-md-3 col-xl-2 order-2 order-xl-2"><b>Von</b></div>
+    <div class="col-3 col-md-3 col-xl-2 order-3 order-xl-3"><b>Datum</b></div>
+    <div class="col-12 col-md-6 col-xl-2 order-5 order-xl-4"><b>Gebe</b></div>
+    <div class="col-12 col-md-6 col-xl-2 order-6 order-xl-5"><b>Nehme</b></div>
+    <div class="col-1 col-md-3 col-xl-2 d-none d-sm-block order-4 order-xl-6"><b>Status</b></div>
+  </div>
+  {% for bid in object.bids %}
+    <div class="row border-top py-3">
+      <div class="col-2 col-md-3 col-xl-1 order-1 order-xl-1">{% include 'bid/inc/link.html' %}</div>
+      <div class="col-3 col-md-3 col-xl-2 order-2 order-xl-2">{% with user=bid.creator %}{% include 'user/inc/link.html' %}{% endwith %}</div>
+      <div class="col-3 col-md-3 col-xl-2 order-3 order-xl-3" title="{{ bid.datetime }}">{{ bid.datetime|naturaltime }}</div>
+      <div class="col-12 col-md-6 col-xl-2 order-5 order-xl-4">
+        {% for listing in bid.pushs %}
+          {{ listing.quantity }}{{ listing.unit.short }} {% with listing=listing.listing %}{% include 'listing/inc/link.html' %}, {% endwith %}
+        {% endfor %}
+      </div>
+      <div class="col-12 col-md-6 col-xl-2 order-6 order-xl-5">
+        {% for listing in bid.pulls %}
+          {{ listing.quantity }}{{ listing.unit.short }} {% with listing=listing.listing %}{% include 'listing/inc/link.html' %}, {% endwith %}
+        {% endfor %}
+      </div>
+      <div class="col-1 col-md-3 col-xl-2 order-4 order-xl-6">
+        {% if can_accept %}
+          <form method="POST" action="{% url 'deal_accepted' deal.pk %}">{% csrf_token %}
+            <button type="submit" class="btn btn-sm btn-outline-success">Annehmen</button>
+          </form>
+        {% endif %}
       </div>
     </div>
-    <button type="submit" class="btn btn-success btn-block">Bieten</button>
-  </form>
+  {% empty %}
+      <div class="row">kein Gebot bisher</div>
+  {% endfor %}
 </div>
+
+
+{% if can_bid %}
+<form method="POST" action="{% url 'bid_create' object.pk %}">{% csrf_token %}
+  <div class="container border shadow mt-3">
+    <h5 class="mt-3">Gebot abgeben</h5>
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <div class="row">
+          <div class="col">
+            Ich gebe:
+          </div>
+        </div>
+        {% for field in push_form %}
+          <div class="row">
+            <div class="col-12 col-md-8 d-flex justify-content-end mt-2">
+              <b>{{field.label}}</b>
+            </div>
+            <div class="col-12 col-md-4 mb-2">
+              {{ field }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="col-12 col-lg-6 mt-5 mt-lg-0">
+        <div class="row">
+          <div class="col">
+            Ich nehme:
+          </div>
+        </div>
+        {% for field in push_form %}
+          <div class="row">
+            <div class="col-12 col-md-8 d-flex justify-content-end mt-2">
+              <b>{{field.label}}</b>
+            </div>
+            <div class="col-12 col-md-4 mb-2">
+              {{ field }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="row p-3">
+      <button type="submit" class="btn btn-success btn-block">Bieten</button>
+    </div>
+  </div>
+</form>
 {% endif %}
 {% if object.is_latest %}<a href="#">Bearbeiten</a>{% endif %}
 {% endblock %}

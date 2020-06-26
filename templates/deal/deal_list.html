@@ -2,7 +2,8 @@
 
 {% block content %}
 <div class="container-fluid">
-  <h3>Meine Deals</h3>
+  <h3 class="float-left">Meine Deals</h3>
+  <a class="btn text-info" href="{% url 'deal_create' %}"><i class="fas fa-plus"></i></a>
   <div class="row">
     <div class="col-6 col-sm-8 col-md-2"><b>Partner</b></div>
     <div class="col-12 col-md-4"><b>Sucht</b></div>
@@ -19,5 +20,6 @@
     <div class="col-3 col-sm-2 col-md-1 order-2 order-md-5 d-flex justify-content-end"><a class="text-info btn" href="{% url 'deal_detail' deal.pk %}"><i class="fas fa-search"></i></a></div>
   </div>
   {% endfor %}
+  <a class="btn text-info" href="{% url 'deal_create' %}"><i class="fas fa-plus"></i> Deal erstellen</a>
 </div>
 {% endblock %}
