@@ -1,0 +1,13 @@
+{% load static %}
+<span style="">
+  <a class="text-dark" href="{% url 'listing_detail' listing.type listing.pk %}">
+     {% if listing.type == 'push' %}
+      <img src="{% static 'images/push.png' %}" style="height:20px;">
+     {% else %}
+      <img src="{% static 'images/pull.png' %}" style="height:20px;">
+     {% endif %}
+     {{ listing.title }}
+  </a>
+</span>
+
+

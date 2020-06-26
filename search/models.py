@@ -5,13 +5,16 @@ from django.db.models import Q
 
 class Result:
     quality = 0
-    value = 'value'
     title = 'title'
-    owner = 'owner'
-    date = 'date'
+    text = 'text'
+    url = 'url'
+    type = 'Typ'
 
     def __init__(self, obj):
         self.object = obj
+
+    def __lt__(self, other):
+        return self.quality < other.quality
 
 
 class SearchBase(ABC):
@@ -33,7 +36,7 @@ class SearchBase(ABC):
 
     def get_sorted_objects(self):
         """ List of sorted Objects """
-        return self.objects
+        return sorted(self.objects, reverse=True)
 
     def get_results(self):
         return self.sorted_objects
@@ -41,6 +44,7 @@ class SearchBase(ABC):
 
 class UserSearch(SearchBase):
     model = User
+    type = 'Benutzer'
 
     def get_query_set(self):
         return User.objects.filter(
@@ -49,6 +53,14 @@ class UserSearch(SearchBase):
             Q(email__contains=self.search_string) |
             Q(username__contains=self.search_string)
             )
+
+    def get_result_objects(self):
+        results = []
+        for obj in self.query_set:
+            result = Result(obj)
+            result.type = self.type
+            results.append(results)
+        return results
 
 
 class SearchEngine:

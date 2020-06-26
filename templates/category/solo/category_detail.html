@@ -1,0 +1,65 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+      aria-selected="true">Angebote</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="two"
+      aria-selected="false" onclick="">Anfragen</a>
+  </li>
+</ul>
+<div class="tab-content border-left border-right border-bottom" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <div class="container-fluid">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-md-8 col-lg-8 col-xl-4 order-3 order-md-1 order-xl-1"><b>Angebot</b></div>
+          <div class="col-6 col-md-2 col-lg-2 col-xl-2 order-1 order-md-2 order-xl-2"><b>Anbieter</b></div>
+          <div class="col-12 col-lg-6 order-4 col-xl-2 order-xl-3"><b>bietet</b></div>
+          <div class="col-12 col-lg-6 order-5 col-xl-2 order-xl-4"><b>sucht</b></div>
+          <div class="col-6 col-md-2 col-lg-2 col-xl-2 order-2 order-md-3 order-xl-5 d-flex justify-content-end"></div>
+        </div>
+      {% for listing in object.pushs %}
+        <div class="row border-top my-3">
+          <div class="col-12 col-md-8 col-lg-8 col-xl-4 order-3 order-md-1 order-xl-1">{% include 'listing/inc/title_link.html' %}</div>
+          <div class="col-6 col-md-2 col-lg-2 col-xl-2 order-1 order-md-2 order-xl-2">{% with user=listing.user %}{% include 'user/inc/link.html' %}{% endwith %}</div>
+          <div class="col-12 col-lg-6 order-4 col-xl-2 order-xl-3">{% for listing in listing.user.pushs %}{% include 'listing/inc/link.html' %}{%endfor%}</div>
+          <div class="col-12 col-lg-6 order-5 col-xl-2 order-xl-4">{% for listing in listing.user.pulls %}{% include 'listing/inc/link.html' %}{%endfor%}</div>
+          <div class="col-6 col-md-2 col-lg-2 col-xl-2 order-2 order-md-3 order-xl-5 d-flex justify-content-end">
+            <a class="btn p-0 text-info" href="{% url 'deal_user_create' listing.user.pk %}">
+              <i class="fas fa-plus"></i> Deal
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="two-tab">
+    <div class="container">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-md-8 col-lg-8 col-xl-4 order-3 order-md-1 order-xl-1"><b>Angebot</b></div>
+          <div class="col-6 col-md-2 col-lg-2 col-xl-2 order-1 order-md-2 order-xl-2"><b>Anbieter</b></div>
+          <div class="col-12 col-lg-6 order-4 col-xl-2 order-xl-3"><b>bietet</b></div>
+          <div class="col-12 col-lg-6 order-5 col-xl-2 order-xl-4"><b>sucht</b></div>
+          <div class="col-6 col-md-2 col-lg-2 col-xl-2 order-2 order-md-3 order-xl-5 d-flex justify-content-end"></div>
+        </div>
+      {% for listing in object.pulls %}
+        <div class="row border-top my-3">
+          <div class="col-12 col-md-8 col-lg-8 col-xl-4 order-3 order-md-1 order-xl-1">{% include 'listing/inc/title_link.html' %}</div>
+          <div class="col-6 col-md-2 col-lg-2 col-xl-2 order-1 order-md-2 order-xl-2">{% with user=listing.user %}{% include 'user/inc/link.html' %}{% endwith %}</div>
+          <div class="col-12 col-lg-6 order-4 col-xl-2 order-xl-3">{% for listing in listing.user.pushs %}{% include 'listing/inc/link.html' %}{%endfor%}</div>
+          <div class="col-12 col-lg-6 order-5 col-xl-2 order-xl-4">{% for listing in listing.user.pulls %}{% include 'listing/inc/link.html' %}{%endfor%}</div>
+          <div class="col-6 col-md-2 col-lg-2 col-xl-2 order-2 order-md-3 order-xl-5 d-flex justify-content-end">
+            <a class="btn p-0 text-info" href="{% url 'deal_user_create' listing.user.pk %}">
+              <i class="fas fa-plus"></i> Deal
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+

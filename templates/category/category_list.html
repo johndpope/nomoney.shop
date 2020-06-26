@@ -1,7 +1,71 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load humanize %}
 
+{% block head %}
+  <script src="{% static "js/category.js" %}"></script>
+{% endblock %}
+
 {% block content %}
+<div id="accordion" class="container-fluid">
+  <h3>Kategorien</h3>
+  <div class="row">
+    <div class="col-6 col-sm- col-md-4">
+      <b><a class="text-info" href="{% url 'category_create' %}"><i class="fas fa-plus"></i> Kategorie</a></b>
+    </div>
+    <div class="col-6 col-md-4">
+      <div class="row">
+        <div class="col-4" title="Anfragen"><b>Anf</b></div>
+        <div class="col-4" title="Angebote"><b>Ang</b></div>
+        <div class="col-4" title="Gesamt"><b>Ges</b></div>
+      </div>
+    </div>
+    <div class="col-6 col-md-2 d-flex justify-content-end"></div>
+    <div class="col-6 col-md-2 d-flex justify-content-end"></div>
+  </div>
+
+  {% for category in categories %}
+    <div class="row border-top">
+      <div class="col-6 col-md-4">
+        <span style="white-space: nowrap">
+          <button data-category="{{ category.pk }}" class="category_btn btn btn-link p-0 text-dark" href="" data-toggle="collapse" data-target="#collapse{{ category.pk }}" aria-expanded="true" aria-controls="collapse{{ category.pk }}">
+            <i class="fas fa-box"></i> {{ category.title }}
+          </button>
+        </span>
+      </div>
+      <div class="col-6 col-md-4">
+        <div class="row">
+          <div class="col-4">{{ category.pushs|length }}</div>
+          <div class="col-4">{{ category.pulls|length }}</div>
+          <div class="col-4">{{ category.listings|length }}</div>
+        </div>
+      </div>
+      <div class="col-6 d-none d-sm-block d-md-none"></div>
+      <div class="col-6 col-sm-3 col-md-2 d-flex justify-content-end">
+        <a class="text-info" style="white-space:nowrap;" href="{% url 'category_listing_create' 'push' category.pk %}"><i class="fas fa-plus"></i> Angebot</a>
+      </div>
+      <div class="col-6 col-sm-3 col-md-2 d-flex justify-content-end" title="{{ listing.modified }}">
+        <a class="text-info" style="white-space:nowrap;" href="{% url 'category_listing_create' 'pull' category.pk %}"><i class="fas fa-plus"></i> Anfrage</a>
+      </div>
+    </div>
+      
+    <div id="collapse{{ category.pk }}" class="collapse py-3 my-3" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <div class="container">
+          <div class="row">
+            <div class="col w-100 d-flex justify-content-center" style="height: 100px;">
+              <div class="spinner-border my-auto" role="status">
+                <span class="sr-only">Lade Daten...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+
 <div class="container-fluid">
   <h3>Kategorien</h3>
   <div class="row">

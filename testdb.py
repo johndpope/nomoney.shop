@@ -23,11 +23,12 @@ class TestDB:
     It's possible to install app specific databases if necessary:
     TestDB.setup_appname_db()
     """
+    PRINT_STEPS = True
     USER_NAME = 'demo'
     USER_PASSWORD = 'demo123'
-    USER_COUNT = 100
-    LISTING_COUNT = 1000
-    DEAL_COUNT = 1  # creates double and triple deals
+    USER_COUNT = 1000
+    LISTING_COUNT = 10000
+    DEAL_COUNT = 1
     CATEGORIES = {
         'Lebensmittel': ['Äpfel', 'Bananen', 'Erdbeeren', 'Brot', 'Wasser',
                          'Mehl', 'Eier', 'Pepperoni', 'Tomaten', 'Kopfsalat'],
@@ -43,7 +44,7 @@ class TestDB:
         ]
 
     TITLE_SUFFIX = [
-        'frisch', 'frische Ernte', 'beschte', 'Original','Super Qualität',
+        'frisch', 'frische Ernte', 'beschte', 'Original', 'Super Qualität',
         'erntefrisch', 'hervorragende Qualität'
         ]
 
@@ -61,8 +62,8 @@ class TestDB:
         """ Setup User database only """
         user = User.objects.create(username=TestDB.USER_NAME)
         user.set_password(TestDB.USER_PASSWORD)
-        user.is_superuser=True
-        user.is_staff=True
+        user.is_superuser = True
+        user.is_staff = True
         user.save()
         for i in range(cls.USER_COUNT):
             i = str(i + 1)
@@ -72,6 +73,8 @@ class TestDB:
                 last_name='last' + i,
                 email='test{}@local.local'.format(i),
                 )
+            if not i % 100 and cls.PRINT_STEPS and i != 0:
+                print(str(i) + ' users created.')
 
     @classmethod
     def setup_unit_db(cls):
@@ -90,7 +93,7 @@ class TestDB:
         """ Setup Listing database with all related models
         (Category and Unit)
         """
-        for _ in range(cls.LISTING_COUNT):
+        for i in range(cls.LISTING_COUNT):
             listing_class = (Push, Pull)[randint(0, 1)]
             category = cls.random_object(Category)
             user = cls.random_object(User)
@@ -106,14 +109,18 @@ class TestDB:
                 quantity=quantity,
                 unit=unit
                 )
+            if not i % 100 and cls.PRINT_STEPS and i != 0:
+                print(str(i) + ' listings created.')
 
     @classmethod
     def setup_deal_db(cls):
-        for _ in range(cls.DEAL_COUNT):
+        for i in range(cls.DEAL_COUNT):
             Deal.objects.create(
                 user1=cls.random_object(User),
                 user2=cls.random_object(User)
                 )
+            if not i % 100 and cls.PRINT_STEPS and i != 0:
+                print(str(i) + ' listings created.')
 
     @staticmethod
     def random_object(model):

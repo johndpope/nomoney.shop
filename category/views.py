@@ -2,6 +2,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from .models import Category
+from django.views.generic.base import TemplateView
 
 
 class CategoryListView(ListView):
@@ -30,3 +31,8 @@ class CategoryUpdateView(UpdateView):
 class CategoryDeleteView(DeleteView):
     model = Category
     template_name = 'category/category_delete.html'
+
+
+class CategoryAjaxView(DetailView):
+    model = Category
+    template_name = 'category/solo/category_detail.html'
