@@ -66,14 +66,14 @@ class TestDB:
         user.is_staff = True
         user.save()
         for i in range(cls.USER_COUNT):
-            i = str(i + 1)
+            key = str(i + 1)
             User.objects.create(
-                username='test' + i,
-                first_name='first' + i,
-                last_name='last' + i,
-                email='test{}@local.local'.format(i),
+                username='test' + key,
+                first_name='first' + key,
+                last_name='last' + key,
+                email='test{}@local.local'.format(key),
                 )
-            if not i % 100 and cls.PRINT_STEPS and i != 0:
+            if not i % 10 and cls.PRINT_STEPS and i != 0:
                 print(str(i) + ' users created.')
 
     @classmethod
@@ -120,7 +120,7 @@ class TestDB:
                 user2=cls.random_object(User)
                 )
             if not i % 100 and cls.PRINT_STEPS and i != 0:
-                print(str(i) + ' listings created.')
+                print(str(i) + ' deals created.')
 
     @staticmethod
     def random_object(model):
