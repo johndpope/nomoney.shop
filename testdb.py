@@ -26,8 +26,8 @@ class TestDB:
     PRINT_STEPS = True
     USER_NAME = 'demo'
     USER_PASSWORD = 'demo123'
-    USER_COUNT = 1000
-    LISTING_COUNT = 10000
+    USER_COUNT = 100
+    LISTING_COUNT = 1000
     DEAL_COUNT = 1
     CATEGORIES = {
         'Lebensmittel': ['Äpfel', 'Bananen', 'Erdbeeren', 'Brot', 'Wasser',
