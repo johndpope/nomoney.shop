@@ -51,12 +51,14 @@
     </ul>
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'user_list' %}"><i class="fas fa-info-circle"></i></a>
+        <button class="nav-link btn btn-link"><i class="fas fa-info-circle"></i></button>
       </li>
     </ul>
+    <fieldset disabled>
     <form action="{% url 'search_basic' %}" class="form-inline my-2 my-lg-0" method="POST">{% csrf_token %}
       <input name="text" id="live_search" class="form-control mr-sm-2" type="search" placeholder="Suche ..." aria-label="Search">
     </form>
+    </fieldset>
   </div>
 </nav>
 <div class="container-fluid position-absolute bg-white border" style="z-index:1000;">

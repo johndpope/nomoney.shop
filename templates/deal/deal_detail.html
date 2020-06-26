@@ -2,44 +2,7 @@
 {% load humanize %}
 
 {% block content %}
-<h2>Deal Details{% if object.accepted %} <span class="badge badge-success"><i class="fas fa-check"></i></span>{% endif %}</h2>
-<h3 class="mt-5">Übersicht</h3>
-<div class="container-fluid mb-5">
-  <div class="row">
-    <div class="col-12 col-lg-4 d-none d-lg-block col-xl-2"><b>Teilnehmer</b></div>
-    <div class="col-12 col-md-6 col-lg-4 col-xl-5"><b>Angebote</b></div>
-    <div class="col-12 col-md-6 col-lg-4 col-xl-5"><b>Anfragen</b></div>
-  </div>
-  {% with user=object.user1 %}
-  <div class="row border-top py-3">
-    <div class="col-12 col-lg-4 col-xl-2">{% include 'user/inc/link.html' %}</div>
-    <div class="col-12 col-md-6 col-lg-4 col-xl-5">{% for listing in user.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
-    <div class="col-12 col-md-6 col-lg-4 col-xl-5">{% for listing in user.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
-  </div>
-  {% endwith %}
-  {% with user=object.user2 %}
-  <div class="row border-top border-bottom py-3">
-    <div class="col-12 col-lg-2 col-xl-2">{% include 'user/inc/link.html' %}</div>
-    <div class="col-12 col-md-6 col-lg-4 col-xl-5">{% for listing in user.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
-    <div class="col-12 col-md-6 col-lg-4 col-xl-5">{% for listing in user.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
-  </div>
-  {% endwith %}
-</div>
-
-<h3 class="mt-5">Übereinstimmung</h3>
-<div class="container-fluid mb-5">
-  <div class="row">
-    <div class="col-12 col-sm-6 col-md-3 order-1 order-md-1"><b>Benutzer</b></div>
-    <div class="col-12 col-sm-6 col-md-3 order-3 order-md-2"><b>gibt</b></div>
-    <div class="col-12 col-sm-6 col-md-3 order-5 order-md-3"><b>nimmt</b></div>
-    <div class="col-12 col-sm-6 col-md-3 order-7 order-md-4"><b>an / von</b></div>
-    <div class="col-12 col-sm-6 col-md-3 order-2 order-md-5">{% with user=object.user1 %}{% include 'user/inc/link.html' %}{% endwith %}</div>
-    <div class="col-12 col-sm-6 col-md-3 order-4 order-md-6">{% for listing in object.pushs %}{% include 'listing/inc/link.html' %}, {% endfor %}</div>
-    <div class="col-12 col-sm-6 col-md-3 order-6 order-md-7">{% for listing in object.pulls %}{% include 'listing/inc/link.html' %}, {% endfor %}</div>
-    <div class="col-12 col-sm-6 col-md-3 order-8 order-md-8">{% with user=object.user2 %}{% include 'user/inc/link.html' %}{% endwith %}</div>
-  </div>
-</div>
-
+{% include 'deal/solo/deal_detail.html' %}
 
 <h3 class="mt-5">Gebotshistorie</h3>
 <div class="container-fluid border-bottom">

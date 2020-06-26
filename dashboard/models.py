@@ -1,4 +1,3 @@
-from django.db import models
 from deal.models import Deal
 
 
@@ -24,6 +23,11 @@ class VirtualDeal(Deal):
             deal.quality_pct = int(deal.quality / max_quality * 100 + 0.5)
 
         return sorted(deals, key=lambda x: x.quality, reverse=True)
+
+    @classmethod
+    def by_user(cls, me_, partner, level=2):
+        deals = cls.by_users(me_, [partner], level=level)
+        return deals[0] if deals else None
 
     class Meta:
         proxy = True

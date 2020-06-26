@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+{% if deal %}
+{% include 'deal/solo/deal_detail.html' %}
+{% endif %}
+
 <div class="alert alert-primary" role="alert">
   Möchtest du diesen Deal beginnen?
 </div>

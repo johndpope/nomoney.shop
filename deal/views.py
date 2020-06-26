@@ -7,6 +7,7 @@ from .models import Deal
 from .forms import DealCreateForm, DealAcceptForm
 from bid.forms import BidForm
 from user.models import User
+from dashboard.models import VirtualDeal
 # TODO: check if access is allowed (self.request.user in dealset user
 
 
@@ -51,6 +52,7 @@ class DealUserCreateView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         partner_pk = self.request.resolver_match.kwargs.get('partner_pk')
         partner = User.objects.get(pk=partner_pk)
+        self.extra_context = {'deal': VirtualDeal(self.request.user, partner)}
         return Deal.get_or_create((self.request.user, partner))
 
     def get_success_url(self):
@@ -72,4 +74,3 @@ class DealAcceptedView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('deal_detail', args=(self.object.pk,))
-

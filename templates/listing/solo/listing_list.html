@@ -22,7 +22,7 @@
       <b>Geändert</b>
     </div>
   </div>
-  {% for listing in request.user.pulls %}
+  {% for listing in request.user.pushs %}
   <div class="row border-top">
     <div class="col-12 col-sm-4 col-md-2 order-4 order-sm-1">
       {% with category=listing.category %}{% include 'category/inc/link.html' %}{% endwith %}
@@ -63,7 +63,7 @@
       <b>Geändert</b>
     </div>
   </div>
-  {% for listing in request.user.pushs %}
+  {% for listing in request.user.pulls %}
   <div class="row border-top">
     <div class="col-12 col-sm-4 col-md-2 order-4 order-sm-1">
       {% with category=listing.category %}{% include 'category/inc/link.html' %}{% endwith %}
