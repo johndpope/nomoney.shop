@@ -8,11 +8,15 @@
 
 {% block content %}
 <div id="accordion" class="container-fluid">
-  <h3>Kategorien</h3>
   <div class="row">
-    <div class="col-6 col-sm- col-md-4">
-      <b><a class="text-info" href="{% url 'category_create' %}"><i class="fas fa-plus"></i> Kategorie</a></b>
+    <div class="col-8">
+        <h3>Kategorien</h3>
     </div>
+    <div class="col-4 d-md-flex justify-content-end">
+        <a class="btn p-0 text-info" href="{% url 'category_create' %}"><i class="fas fa-plus"></i> Kategorie</a>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-6 col-md-4">
       <div class="row">
         <div class="col-4" title="Anfragen"><b>Anf</b></div>

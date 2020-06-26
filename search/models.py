@@ -8,6 +8,7 @@ class Result:
     title = 'title'
     text = 'text'
     url = 'url'
+    breadcrumb = []
     type = 'Typ'
 
     def __init__(self, obj):

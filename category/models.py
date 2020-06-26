@@ -17,6 +17,14 @@ class Category(models.Model):
         return self.pull_set.all()
 
     @property
+    def count_pushs(self):
+        return len(self.pushs)
+
+    @property
+    def count_pulls(self):
+        return len(self.pushs)
+
+    @property
     def listings(self):
         return list(chain(self.pushs, self.pulls))
 
