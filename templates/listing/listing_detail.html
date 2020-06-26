@@ -22,7 +22,7 @@
         </div>
         <div class="row">
           <div class="col">{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
-          <div class="col-1">vs.</div>
+          <div class="col-1">{{ listing.image }}</div>
           <div class="col">{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
           <div class="col-1"><a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' user.pk %}" role="button">handeln</a></div>
         </div>

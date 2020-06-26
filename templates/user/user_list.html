@@ -1,26 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class=" table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Username</th>
-        <th scope="col">Bietet</th>
-        <th scope="col">Sucht</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-{% for user in users %}
-      <tr>
-        <td>{% include 'user/inc/link.html' %}</td>
-        <td>{% for listing in user.pushs %}{% include 'listing/inc/link.html' %} {% endfor %}</td>
-        <td>{% for listing in user.pulls %}{% include 'listing/inc/link.html' %} {% endfor %}</td>
-        <td><a class="btn btn-outline-primary btn-sm" href="{% url 'deal_user_create' user.pk %}" role="button">handeln</a></td>
-      </tr>
-{% endfor %}
-    </tbody>
-  </table>
+<div class="container-fluid">
+  <h3>Benutzer Übersicht</h3>
+  <div class="row">
+    <div class="col-12 col-sm-"><b>Benutzer</b></div>
+    <div class="col-12"><b>Angebote</b></div>
+    <div class="col-12"><b>Anfragen</b></div>
+    <div class="col-12"></div>
+  </div>
+  {% for user in users %}
+  <div class="row border-top">
+    <div class="col-6 col-md-2 order-1 order-md-1">{% include 'user/inc/link.html' %}</div>
+    <div class="col-12 col-md-4 order-3 order-md-2">{% for listing in user.pushs %}{% include 'listing/inc/link.html' %} {% endfor %}</div>
+    <div class="col-12 col-md-4 order-4 order-md-3">{% for listing in user.pulls %}{% include 'listing/inc/link.html' %} {% endfor %}</div>
+    <div class="col-6 order-2 col-md-2 order-md-4 d-flex justify-content-end"><a class="text-info" href="{% url 'deal_user_create' user.pk %}"><i class="fas fa-plus"></i> Deal</a></div>
+  </div>
+  {% endfor %}
 </div>
 {% endblock %}
