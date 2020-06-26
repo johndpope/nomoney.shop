@@ -16,17 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, RedirectView
 from user.views import AgentView
+from django.urls.base import reverse, reverse_lazy
 
 
 urlpatterns = [
     path(
-        '', TemplateView.as_view(template_name='home/home.html'), name='home'
+        '', RedirectView.as_view(url=reverse_lazy('dashboard_home')), name='home'
         ),
 
     path('agent/', AgentView.as_view(), name='agent_list'),
 
+    path('dashboard/', include('dashboard.urls')),
     path('bid/', include('bid.urls')),
     path('user/', include('user.urls')),
     path('category/', include('category.urls')),

@@ -18,6 +18,9 @@ class Deal(models.Model):
 
     pov_user = None
 
+    _level = None
+    _quality = None
+
     @property
     def user(self):
         if self.pov_user == self.user2:
@@ -44,12 +47,32 @@ class Deal(models.Model):
         # pylint: disable=no-member
         return list(self.intersection(self.user.pulls, self.partner.pushs))
 
-    @staticmethod
-    def intersection(lst1, lst2):
-        """ returns intersecting elements """
-        for element in lst1:
-            if element in lst2:
-                yield element
+    @property
+    def level(self):
+        """ Levels:
+            0 - No Deal match
+            1 - One side Match
+            2 - Two side Match
+            3 - Deal between three users
+            4 - Deal between four users
+        users represent all users taking part at this deal
+        """
+        if self._level:
+            return self._level
+        level = 0
+        if self.pushs:
+            level += 1
+        if self.pulls:
+            level += 1
+        self._level = level
+        return self._level
+
+    @property
+    def quality(self):
+        if self._quality:
+            return self._quality
+        self._quality = len(self.pushs + self.pulls)
+        return self._quality
 
     def set_pov(self, me_):
         self.pov_user = me_
@@ -86,6 +109,13 @@ class Deal(models.Model):
         if existing:
             return existing.latest()
         return cls.objects.create(user1=users[0], user2=users[1])
+
+    @staticmethod
+    def intersection(lst1, lst2):
+        """ returns intersecting elements """
+        for element in lst1:
+            if element in lst2:
+                yield element
 
     class Meta:
         get_latest_by = ['pk']
