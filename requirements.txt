@@ -6,3 +6,5 @@ coverage
 coveralls
 m2r
 Pillow
+psycopg2
+
