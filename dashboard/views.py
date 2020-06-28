@@ -1,8 +1,6 @@
 from django.views.generic.base import TemplateView
 from .models import VirtualDeal
-from snakelib import cache
 from django.views.decorators.cache import cache_page
-from snakelib.timer import timer
 
 
 class DashboardHomeView(TemplateView):
