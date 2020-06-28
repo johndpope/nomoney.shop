@@ -8,3 +8,4 @@ coveralls
 m2r
 Pillow
 psycopg2
+django-pwa
