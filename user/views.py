@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.contrib.auth import get_user_model
 from .forms import CustomUserCreationForm
+from .models import UserConfig
 
 User = get_user_model()  # pylint: disable=invalid-name
 FIELDS = ['username', 'first_name', 'last_name', 'email']
@@ -34,6 +35,20 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     fields = FIELDS
     template_name = 'user/user_form.html'
     success_url = reverse_lazy('home')
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+
+class UserSettingsView(LoginRequiredMixin, UpdateView):
+    model = UserConfig
+    #fields = FIELDS
+    fields = '__all__'
+    template_name = 'user/user_form.html'
+    success_url = reverse_lazy('home')
+
+    def get_object(self, queryset=None):
+        return self.request.user.config
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
