@@ -1,5 +1,6 @@
 git+https://github.com/snake-soft/snakelib.git
 django>=2
+django-debug-toolbar
 pylint
 pylint-django
 coverage
