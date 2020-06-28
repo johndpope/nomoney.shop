@@ -27,3 +27,10 @@ for attr, default in DEFAULT_DATA.items():
         globals()[attr] = environ.get(attr).split(',')
     else:
         globals()[attr] = DEFAULT_DATA.get(attr)
+
+# Debug toolbar:
+SHOW_TOOLBAR_CALLBACK = 'config.settings.debug_toolbar_enabled'
+
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': lambda x:True
+}

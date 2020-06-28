@@ -13,8 +13,6 @@ class ChatMessage(models.Model):
 
 
 class Chat(models.Model):
-    users = models.ManyToManyField(AUTH_USER_MODEL)
-
     @property
     def title(self):
         return ', '.join((str(user) for user in self.users.all()))
@@ -22,3 +20,9 @@ class Chat(models.Model):
     @property
     def messages(self):
         return self.chatmessage_set.all()
+
+
+class UserChat(models.Model):
+    users = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, )
+    chat = models.ForeignKey('chat.Chat', on_delete=models.CASCADE)
+    

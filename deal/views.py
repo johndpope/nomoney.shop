@@ -8,6 +8,7 @@ from .forms import DealCreateForm, DealAcceptForm
 from bid.forms import BidForm
 from user.models import User
 from dashboard.models import VirtualDeal
+from snakelib import cache
 # TODO: check if access is allowed (self.request.user in dealset user
 
 

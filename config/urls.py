@@ -19,6 +19,8 @@ from django.urls.conf import include
 from django.views.generic.base import TemplateView, RedirectView
 from user.views import AgentView
 from django.urls.base import reverse, reverse_lazy
+from django.conf import settings
+from django.urls import include, path
 
 
 urlpatterns = [
@@ -41,3 +43,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
