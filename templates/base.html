@@ -8,7 +8,15 @@
   <link rel="shortcut icon" type="image/png" href="{% static 'logo.png' %}"/>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" rel="stylesheet" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="nomoney.shop">
+<meta name="application-name" content="nomoney.shop"> <!-- Windows -->
+<link rel="apple-touch-icon" href="{% static 'logo.png' %}">
+<link rel="apple-touch-startup-image" href="{% static 'logo.png' %}">
+
   <style type="text/css">
     html, body{height:99%;font-family: Arial, Helvetica, sans-serif;}
     * {box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;}
@@ -17,6 +25,7 @@
           border: none;
     }
     input{width:100%;}
+    .hide-empty:empty{display: none;}
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
   <script src="{% static "js/base.js" %}"></script>
@@ -25,13 +34,25 @@
 </head>
 <body class="bg-light">
   {% include "menu.html" %}
-  <div class="container-fluid">
+  <div class="container bg-white border shadow mb-5">
+
   <div class="row">
-    <div class="col">{% block left %}{% endblock %}</div>
-    <div class="col-12 col-sm-12 col-md-10 col-xl-8 p-3 p-xl-5 p-xl-5 bg-white border shadow mb-5">
-      {% block content %}{% endblock %}
+    <div class="col-12">
+      <div id="help_block" style="display:none; min-height:50px;" class="alert alert-primary alert-dismissible fade show" role="alert">
+        {% block help %}Für diese Seite ist noch keine Hilfe vorhanden{% endblock %}
+      </div>
     </div>
-    <div class="col">{% block right %}{% endblock %}</div>
+    <div class="col-12">
+      <div id="search_results" class="fade show" role="alert">
+        <!-- Search -->
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col hide-empty">{% block left %}{% endblock %}</div>
+    <div class="col-auto p-3 p-xl-5 p-xl-5">{% block content %}{% endblock %}</div>
+    <div class="col hide-empty">{% block right %}{% endblock %}</div>
   </div>
   </div>
 </body>
