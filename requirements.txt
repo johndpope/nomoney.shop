@@ -6,5 +6,5 @@ coverage
 coveralls
 m2r
 Pillow
-psycopg2
-
+psycopg2-binary
+psycopg2==2.7.5
