@@ -16,12 +16,16 @@ SQLITE_CONFIG = {
 }
 
 # Debug toolbar:
-SHOW_TOOLBAR_CALLBACK = 'config.settings.debug_toolbar_enabled'
-
-DEBUG_TOOLBAR_CONFIG = {
-    'SHOW_TOOLBAR_CALLBACK': lambda x: DEBUG
-}
+#SHOW_TOOLBAR_CALLBACK = 'config.settings.debug_toolbar_enabled'
 
 DATABASES = {
     'default': DB_CONFIG or SQLITE_CONFIG
 }
+
+
+if DEBUG==True:
+    DEBUG_TOOLBAR_CONFIG = {
+        'SHOW_TOOLBAR_CALLBACK': lambda x: DEBUG
+    }
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware'] + MIDDLEWARE

@@ -24,13 +24,15 @@ from django.urls import include, path
 
 
 urlpatterns = [
-    path(
-        '', RedirectView.as_view(url=reverse_lazy('dashboard_home')), name='home'
-        ),
+    #===========================================================================
+    # path(
+    #     '', RedirectView.as_view(url=reverse_lazy('dashboard_home')), name='home'
+    #     ),
+    #===========================================================================
 
     path('agent/', AgentView.as_view(), name='agent_list'),
 
-    path('dashboard/', include('dashboard.urls')),
+    path('', include('dashboard.urls')),
     path('bid/', include('bid.urls')),
     path('user/', include('user.urls')),
     path('category/', include('category.urls')),
@@ -43,7 +45,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-
+# Strange that this is necessary. Test crash without this.
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
