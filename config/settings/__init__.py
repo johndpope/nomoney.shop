@@ -8,6 +8,7 @@ from os import environ
 from django.core.management.utils import get_random_secret_key
 from .base import *
 from .parser import SECRET_KEY, DEBUG, ALLOWED_HOSTS, DB_CONFIG
+from .pwa import *
 
 
 SQLITE_CONFIG = {

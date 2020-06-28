@@ -1,7 +1,9 @@
 {% load static %}
+{% load pwa %}
 <!DOCTYPE HTML>
 <html lang="de-DE">
 <head>
+  {% progressive_web_app_meta %}
   <meta charset="UTF-8">
   <title>{% block title %}Verhungere nicht mit Toilettenpapier in der Hand{% endblock %} {{ version_str }}</title>
   <meta name="keywords" content="{% block keywords %}{% endblock %}" />

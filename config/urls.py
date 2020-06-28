@@ -42,6 +42,7 @@ urlpatterns = [
     path('deal/', include('deal.urls')),
     path('guild/', include('guild.urls')),
 
+    path('', include('pwa.urls')),
     path('admin/', admin.site.urls),
 ]
 
