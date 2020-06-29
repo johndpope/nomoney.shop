@@ -12,11 +12,11 @@
     <div class="col-3 col-md-3 col-xl-2 order-3 order-xl-3"><b>Datum</b></div>
     <div class="col-12 col-md-6 col-xl-2 order-5 order-xl-4"><b>Gebe</b></div>
     <div class="col-12 col-md-6 col-xl-2 order-6 order-xl-5"><b>Nehme</b></div>
-    <div class="col-1 col-md-3 col-xl-2 d-none d-sm-block order-4 order-xl-6"><b>Status</b></div>
+    <div class="col-1 col-md-3 col-xl-2 order-4 order-xl-6"><b>Status</b></div>
   </div>
   {% for bid in object.bids %}
     <div class="row border-top py-3">
-      <div class="col-2 col-md-3 col-xl-1 order-1 order-xl-1">{% include 'bid/inc/link.html' %}</div>
+      <div class="col-2 col-md-3 col-xl-2 order-1 order-xl-1">{% include 'bid/inc/link.html' %}</div>
       <div class="col-3 col-md-3 col-xl-2 order-2 order-xl-2">{% with user=bid.creator %}{% include 'user/inc/link.html' %}{% endwith %}</div>
       <div class="col-3 col-md-3 col-xl-2 order-3 order-xl-3" title="{{ bid.datetime }}">{{ bid.datetime|naturaltime }}</div>
       <div class="col-12 col-md-6 col-xl-2 order-5 order-xl-4">
@@ -30,6 +30,7 @@
         {% endfor %}
       </div>
       <div class="col-1 col-md-3 col-xl-2 order-4 order-xl-6">
+        {{ object.status }}
         {% if can_accept %}
           <form method="POST" action="{% url 'deal_accepted' deal.pk %}">{% csrf_token %}
             <button type="submit" class="btn btn-sm btn-outline-success">Annehmen</button>
