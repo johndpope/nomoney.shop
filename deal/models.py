@@ -3,6 +3,14 @@ from django.db.models import Q
 from config.settings import AUTH_USER_MODEL
 
 
+class DealStatus(models.IntegerChoices):
+    VIRTUAL = 0, 'virtual'
+    STARTED = 10, 'started'
+    PLACED = 20, 'placed'
+    ACCEPTED = 50, 'accepted'
+    DELETED = 100, 'deleted'
+
+
 class Deal(models.Model):
     user1 = models.ForeignKey(
         AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user1_deals'
@@ -13,13 +21,25 @@ class Deal(models.Model):
     guild = models.ForeignKey(
         'guild.Guild', on_delete=models.CASCADE, null=True, blank=True
         )
-    accepted = models.BooleanField(default=False)
-    deleted = models.BooleanField(default=False)
+    status = models.PositiveSmallIntegerField(
+        default=DealStatus.VIRTUAL,
+        choices=DealStatus.choices,
+        )
+    # accepted = models.BooleanField(default=False)
+    # deleted = models.BooleanField(default=False)
 
     pov_user = None
 
     _level = None
     _quality = None
+
+    @property
+    def accepted(self):
+        return self.status == DealStatus.ACCEPTED
+
+    @property
+    def deleted(self):
+        return self.status == DealStatus.DELETED
 
     @property
     def user(self):

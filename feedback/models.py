@@ -5,7 +5,7 @@ from config.settings import AUTH_USER_MODEL
 class FeedbackBase(models.Model):
     creator = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
-    score = models.PositiveSmallIntegerField()
+    score = models.PositiveSmallIntegerField()  # 0-100
     subject = models.CharField(max_length=30)
     text = models.TextField()
 

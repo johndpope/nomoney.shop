@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{{ object }}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container card">
+  <div class="row">
+    <div class="col-12">
+      <h3>{% if object.type == 'push' %}Angebot{% else %}Anfrage {% endif %} {{ object.title }} von {{ object.user }}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col border m-3 p-3">
+      <div class="row">
+        <div class="col-auto">
+          Kategorie:
+        </div>
+        <div class="col-auto">
+          {{ listing.category }}
+        </div>
+      </div>
+    </div>
+    <div class="col border m-3 p-3">
+      <div class="row">
+        <div class="col-auto">
+          Menge:
+        </div>
+        <div class="col-auto">
+          {{ listing.quantity }}{{ listing.unit }}
+        </div>
+      </div>
+    </div>
+    <div class="col border m-3 p-3">
+      <div class="row">
+        <div class="col-auto">
+          Erstellt:
+        </div>
+        <div class="col-auto">
+          {{ listing.created }}
+        </div>
+      </div>
+    </div>
+    <div class="col border m-3 p-3">
+      <div class="row">
+        <div class="col-auto">
+          Geändert:
+        </div>
+        <div class="col-auto">
+          {{ listing.modified }}
+        </div>
+      </div>
+    </div>
+    <div class="col border m-3 p-3">
+      <div class="row">
+        <div class="col-auto">
+          Beschreibung: 
+        </div>
+        <div class="col-auto">
+          {{ listing.description }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container border mt-5">
+  <div class="row">
+    <div class="col-12">
+      <h3>Weitere Einträge von {{ listing.user }}</h3>
+    </div>
+    <div class="col">
+      <div class="row border m-3 p-3">
+        <div class="col-auto">
+          Angebote:
+        </div>
+        <div class="col-auto">
+          {% for listing in listing.user.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}
+        </div>
+      </div>
+      <div class="row border m-3 p-3">
+        <div class="col-auto">
+          Anfragen:
+        </div>
+        <div class="col-auto">
+          {% for listing in listing.user.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container border mt-5">
+  <div class="row">
+    <div class="col-12">
+      <h3>Möglicher Deal mit {{ listing.user }}</h3>
+    </div>
+    <div class="col">
+      <div class="row border m-3 p-3">
+        <div class="col-auto">
+          Du gibst:
+        </div>
+        <div class="col-auto">
+          {% for listing in deal.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}
+        </div>
+      </div>
+      <div class="row border m-3 p-3">
+        <div class="col-auto">
+          Du nimmst:
+        </div>
+        <div class="col-auto">
+          {% for listing in deal.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row border">
+    <div class="col-auto">
+      <div class="row mt-5">
+        <div class="col">
+          <h3></h3>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+
+
+<div class="card">
+  <!-- BILD <img src="..." class="card-img-top" alt="...">-->
+  <div class="card-body">
+    <h5 class="card-title">{% if object.type == 'push' %}Biete{% else %}Suche{% endif %} {{ object.title }} von {{ object.user }}</h5>
+    <p>Kategorie: {{ listing.category }}</p>
+    <p>Menge: {{ listing.count }}{{ listing.unit }}</p>
+    <p>Beschreibung: {{ listing.description }}</p>
+    <p>Erstellt: {{ listing.created }}</p>
+    <p>Aktualisiert: {{ listing.modified }}</p>
+    <hr>
+    <p class="card-text">Ich gebe: {% for listing in listing.user.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</p>
+    <p class="card-text">Ich nehme: {% for listing in listing.user.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</p>
+    <hr>
+    
+    <div class="card-text">
+      <div class=container-fluid>
+        <div class="row">
+          <div class="col">Möglicher Deal:</div>
+        </div>
+        <div class="row">
+          <div class="col">{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
+          <div class="col-1">{{ listing.image }}</div>
+          <div class="col">{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
+          <div class="col-1"><a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' user.pk %}" role="button">handeln</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% if object.user == request.user%}<a href="{% url 'listing_update' object.type object.pk %}">Bearbeiten</a>{% endif %}
+{% endblock %}

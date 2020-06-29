@@ -33,16 +33,12 @@ class BidPull(BidPositionBase):
         )
 
 
-class StatusCode:
+class StatusCode(models.IntegerChoices):
     UNSEEN = 0, 'unseen'
     SEEN = 10, 'seen'
     ACCEPTED = 20, 'accepted'
     ANSWERED = 30, 'answered'
     REJECTED = 40, 'rejected'
-
-    @classmethod
-    def choices(cls):
-        return (cls.UNSEEN, cls.SEEN, cls.ACCEPTED, cls.ANSWERED, cls.REJECTED)
 
 
 class Bid(models.Model):
@@ -56,8 +52,8 @@ class Bid(models.Model):
     datetime = models.DateTimeField(default=now, editable=False)
 
     status = models.PositiveSmallIntegerField(
-        default=StatusCode.UNSEEN[0],
-        choices=StatusCode.choices(),
+        default=StatusCode.UNSEEN,
+        choices=StatusCode.choices,
         )
 
     @property

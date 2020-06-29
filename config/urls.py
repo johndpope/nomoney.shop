@@ -14,21 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from django.urls.conf import include
-from django.views.generic.base import TemplateView, RedirectView
-from user.views import AgentView
-from django.urls.base import reverse, reverse_lazy
 from django.conf import settings
 from django.urls import include, path
+from user.views import AgentView
 
 
 urlpatterns = [
-    #===========================================================================
-    # path(
-    #     '', RedirectView.as_view(url=reverse_lazy('dashboard_home')), name='home'
-    #     ),
-    #===========================================================================
 
     path('agent/', AgentView.as_view(), name='agent_list'),
 
@@ -41,6 +32,7 @@ urlpatterns = [
     path('chat/', include('chat.urls')),
     path('deal/', include('deal.urls')),
     path('guild/', include('guild.urls')),
+    path('feedback/', include('feedback.urls')),
 
     path('', include('pwa.urls')),
     path('admin/', admin.site.urls),
