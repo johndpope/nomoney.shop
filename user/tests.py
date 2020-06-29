@@ -6,13 +6,13 @@ from django.urls.base import reverse
 
 class UserTestCase(TestCase):
     def test_user_db(self):
-        self.assertIs(len(User.objects.all()), TestDB.USER_COUNT + 1)
+        self.assertIs(len(User.objects.all()), TestDB.USER_COUNT + 2)
 
     def test_urls(self):
         # user_list
         self.anon.get200('user_list')
 
-        #user_create
+        # user_create
         new_user_name = 'demo2'
         new_user_pw = 'BuBuBu1234'
         self.user.get200('user_create')
@@ -37,12 +37,12 @@ class UserTestCase(TestCase):
 
         # user_logout
         self.assertIs(self.anon.get(reverse('user_update')).status_code, 200) 
-        self.assertEquals(self.anon.post(reverse('user_logout')).status_code, 302)
-        self.assertEquals(self.anon.get(reverse('user_update')).status_code, 302) 
+        self.assertEqual(self.anon.post(reverse('user_logout')).status_code, 302)
+        self.assertEqual(self.anon.get(reverse('user_update')).status_code, 302) 
 
         # user_login
         data = {'username': new_user_name, 'password': new_user_pw}
-        self.assertEquals(self.anon.post(reverse('user_login'), data=data).status_code, 302)
+        self.assertEqual(self.anon.post(reverse('user_login'), data=data).status_code, 302)
         self.assertIs(self.anon.get(reverse('user_update')).status_code, 200) 
 
         # user_update
