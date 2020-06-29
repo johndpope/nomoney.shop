@@ -18,6 +18,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='deal',
             name='status',
-            field=models.PositiveSmallIntegerField(choices=[(deal.models.DealStatus['VIRTUAL'], 0), (deal.models.DealStatus['STARTED'], 10), (deal.models.DealStatus['PLACED'], 20), (deal.models.DealStatus['ACCEPTED'], 50), (deal.models.DealStatus['DELETED'], 100)], default=deal.models.DealStatus['VIRTUAL']),
+            field=models.PositiveSmallIntegerField(choices=[(deal.models.DealStatus['VIRTUAL'], 0), (deal.models.DealStatus['STARTED'], 10), (deal.models.DealStatus['PLACED'], 20), (deal.models.DealStatus['ACCEPTED'], 50), (deal.models.DealStatus['CANCELED'], 100)], default=deal.models.DealStatus['VIRTUAL']),
         ),
     ]

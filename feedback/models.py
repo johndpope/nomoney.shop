@@ -2,12 +2,22 @@ from django.db import models
 from config.settings import AUTH_USER_MODEL
 
 
+class FeedbackStatus(models.IntegerChoices):
+    REQUEST = 0
+    SENT = 100
+    CANCELED = 110
+
+
 class FeedbackBase(models.Model):
     creator = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     score = models.PositiveSmallIntegerField()  # 0-100
     subject = models.CharField(max_length=30)
     text = models.TextField()
+    status = models.PositiveSmallIntegerField(
+        default=FeedbackStatus.REQUEST,
+        choices=FeedbackStatus.choices,
+        )
 
     class Meta:
         abstract = True

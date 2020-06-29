@@ -60,11 +60,16 @@ class TestDB:
     @classmethod
     def setup_user_db(cls):
         """ Setup User database only """
-        user = User.objects.create(username=TestDB.USER_NAME)
-        user.set_password(TestDB.USER_PASSWORD)
-        user.is_superuser = True
-        user.is_staff = True
-        user.save()
+        user1 = User.objects.create(username=TestDB.USER_NAME)
+        user1.set_password(TestDB.USER_PASSWORD)
+        user1.is_superuser = True
+        user1.is_staff = True
+        user1.save()
+        user2 = User.objects.create(username=TestDB.USER_NAME + '1')
+        user2.set_password(TestDB.USER_PASSWORD)
+        user2.is_superuser = True
+        user2.is_staff = True
+        user2.save()
         for i in range(cls.USER_COUNT):
             key = str(i + 1)
             User.objects.create(

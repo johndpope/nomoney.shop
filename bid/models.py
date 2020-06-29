@@ -36,9 +36,9 @@ class BidPull(BidPositionBase):
 class BidStatus(models.IntegerChoices):
     UNSEEN = 0, 'unseen'
     SEEN = 10, 'seen'
-    ACCEPTED = 20, 'accepted'
     ANSWERED = 30, 'answered'
-    REJECTED = 40, 'rejected'
+    ACCEPTED = 100, 'accepted'
+    REJECTED = 110, 'rejected'
 
 
 class Bid(models.Model):

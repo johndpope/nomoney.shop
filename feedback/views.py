@@ -13,9 +13,11 @@ class FeedbackListView(TemplateView):
     def get_context_data(self, **kwargs):
         context = TemplateView.get_context_data(self, **kwargs)
         context['user_given'] = []
-        context['user_taken']
-        context['pushs_given']
-        context['pushs_taken']
+        #=======================================================================
+        # context['user_taken']
+        # context['pushs_given']
+        # context['pushs_taken']
+        #=======================================================================
         return context
 
 

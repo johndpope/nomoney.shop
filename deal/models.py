@@ -7,8 +7,8 @@ class DealStatus(models.IntegerChoices):
     VIRTUAL = 0, 'virtual'
     STARTED = 10, 'started'
     PLACED = 20, 'placed'
-    ACCEPTED = 50, 'accepted'
-    DELETED = 100, 'deleted'
+    ACCEPTED = 100, 'accepted'
+    CANCELED = 110, 'canceled'
 
 
 class Deal(models.Model):
@@ -30,14 +30,6 @@ class Deal(models.Model):
 
     _level = None
     _quality = None
-
-    @property
-    def accepted(self):
-        return self.status == DealStatus.ACCEPTED
-
-    @property
-    def deleted(self):
-        return self.status == DealStatus.DELETED
 
     @property
     def user(self):
@@ -92,6 +84,10 @@ class Deal(models.Model):
         self._quality = len(self.pushs + self.pulls)
         return self._quality
 
+    def set_status(self, deal_status_code):
+        """ Create a new Feedback Request when """
+        import pdb; pdb.set_trace()  # <---------
+
     def set_pov(self, me_):
         self.pov_user = me_
 
@@ -117,12 +113,6 @@ class Deal(models.Model):
         if latest_bid.creator != user:
             return True
         return False
-
-    #===========================================================================
-    # @classmethod
-    # def by_user(cls, me_, partner):
-    #     import pdb; pdb.set_trace()  # <---------
-    #===========================================================================
 
     @classmethod
     def get_or_create(cls, users):
