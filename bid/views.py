@@ -22,13 +22,13 @@ class BidCreateView(FormView):
     template_name = 'bid/bid_form.html'
     deal = None
     #form_class = BidForm
-
+ 
     def setup(self, request, *args, **kwargs):
         FormView.setup(self, request, *args, **kwargs)
         deal_pk = kwargs.get('deal_pk')
         self.deal = Deal.objects.get(pk=deal_pk)
         self.deal.set_pov(self.request.user)
-
+ 
     def get(self, request, *args, **kwargs):
         push_form = BidForm(self.deal.pushs)
         pull_form = BidForm(self.deal.pulls)
@@ -36,20 +36,23 @@ class BidCreateView(FormView):
             'push_form': push_form,
             'pull_form': pull_form,
             })
-
+ 
     def post(self, request, *args, **kwargs):
         push_form = BidForm(self.deal.pushs, request.POST)
         pull_form = BidForm(self.deal.pulls, request.POST)
         if push_form.is_valid() and pull_form.is_valid():
             bid = Bid.objects.create(deal=self.deal, creator=request.user)
-            for key, value in push_form.cleaned_data.items():
-                if value:
+            print(push_form.cleaned_data)
+            for key in push_form.fields.keys():
+                if key in request.POST:
+                    import pdb; pdb.set_trace()  # <---------
                     BidPush.objects.create(
                         listing=push_form.fields[key].listing,
                         unit=push_form.fields[key].unit,
                         quantity=value,
                         bid=bid
                         )
+            print(pull_form.cleaned_data)
             for key, value in pull_form.cleaned_data.items():
                 if value:
                     BidPull.objects.create(
