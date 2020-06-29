@@ -25,8 +25,6 @@ class Deal(models.Model):
         default=DealStatus.VIRTUAL,
         choices=DealStatus.choices,
         )
-    # accepted = models.BooleanField(default=False)
-    # deleted = models.BooleanField(default=False)
 
     pov_user = None
 

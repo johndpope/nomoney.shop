@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='bid',
             name='status',
-            field=models.PositiveSmallIntegerField(choices=[(0, 'unseen'), (10, 'seen'), (20, 'accepted'), (30, 'answered'), (40, 'rejected')], default=bid.models.StatusCode['UNSEEN']),
+            field=models.PositiveSmallIntegerField(choices=[(0, 'unseen'), (10, 'seen'), (20, 'accepted'), (30, 'answered'), (40, 'rejected')], default=bid.models.BidStatus['UNSEEN']),
         ),
     ]
