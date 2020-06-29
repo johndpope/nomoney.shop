@@ -11,6 +11,7 @@ class UserConfig(models.Model):
 class User(AbstractUser):
 
     config = models.OneToOneField(UserConfig, on_delete=models.CASCADE, null=True)
+    image = models.ImageField(blank=True)
     beta_user = models.BooleanField(default=False)
 
     @property

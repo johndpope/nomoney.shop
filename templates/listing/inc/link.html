@@ -1,6 +1,7 @@
 <span>
   <a class="badge badge-{% if listing.type == 'push' %}primary{% elif listing.type == 'pull'%}secondary{% endif %}" 
   href="{% url 'listing_detail' listing.type listing.pk %}">
-    {{ listing.category.title }}
+    {% if listing.type == 'push' %}<i class="fas fa-sort-up"></i>{% elif listing.type == 'pull'%}<i class="fas fa-sort-down"></i>{% endif %}
+    {{ listing.pk }}{% if not without_category %}: {{ listing.category.title }}{% endif %}
   </a>
 </span>

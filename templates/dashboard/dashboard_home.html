@@ -3,12 +3,38 @@
 
 
 {% block help %}
-dsfa
 {% endblock %}
 
+
 {% block head %}
-<script src="{% static "js/dashboard.js" %}"></script>
+<script>
+$(document).ready(function() {
+  $(function(){
+      $("#two-tab").click(function() {
+          $.ajax({
+  	        url : '/dashboard/ajax/2d/',
+  	        type: 'GET',
+  	        success: function(data){
+  	            $('#two').html(data);
+  	        }
+          })
+      });
+  })
+  $(function(){
+  	$("#three-tab").click(function() {
+  		$.ajax({
+  			url : '/dashboard/ajax/3d/',
+  			type: 'GET',
+  			success: function(data){
+  				$('#three').html(data);
+  			}
+  		})
+  	});
+  }) 
+}); 
+</script>
 {% endblock %}
+
 
 {% block content %}
 <div class="alert alert-success alert-dismissible fade show" role="alert">

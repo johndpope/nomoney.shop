@@ -3,9 +3,11 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls.base import reverse_lazy
-from .models import Push, Pull
-from category.models import Category
 from django.views.generic.base import TemplateView
+from category.models import Category
+from dashboard.models import VirtualDeal
+from .models import Push, Pull
+
 
 FIELDS = ['title', 'image', 'category', 'quantity', 'unit', 'description']
 """
@@ -78,11 +80,9 @@ class ListingDetailView(DetailView):  # OK
         listing = self.model.objects.get(pk=kwargs.get('pk'))
         user = request.user
         partner = listing.user
-        #=======================================================================
-        # self.extra_context = {
-        #     'deal': user.get_dealset_from_partner(partner).deal
-        #     }
-        #=======================================================================
+        self.extra_context = {
+            'deal': VirtualDeal.by_user(user, partner)
+            }
         return DetailView.dispatch(self, request, *args, **kwargs)
 
 

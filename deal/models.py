@@ -100,6 +100,12 @@ class Deal(models.Model):
             return True
         return False
 
+    #===========================================================================
+    # @classmethod
+    # def by_user(cls, me_, partner):
+    #     import pdb; pdb.set_trace()  # <---------
+    #===========================================================================
+
     @classmethod
     def get_or_create(cls, users):
         existing = cls.objects.filter(

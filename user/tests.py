@@ -36,20 +36,20 @@ class UserTestCase(TestCase):
         self.user.post(reverse('user_pw', kwargs=kwargs), data=data)
 
         # user_logout
-        self.assertIs(self.anon.get(reverse('user_update', kwargs={'pk':1})).status_code, 200) 
+        self.assertIs(self.anon.get(reverse('user_update')).status_code, 200) 
         self.assertEquals(self.anon.post(reverse('user_logout')).status_code, 302)
-        self.assertEquals(self.anon.get(reverse('user_update', kwargs={'pk':1})).status_code, 302) 
+        self.assertEquals(self.anon.get(reverse('user_update')).status_code, 302) 
 
         # user_login
         data = {'username': new_user_name, 'password': new_user_pw}
         self.assertEquals(self.anon.post(reverse('user_login'), data=data).status_code, 302)
-        self.assertIs(self.anon.get(reverse('user_update', kwargs={'pk':1})).status_code, 200) 
+        self.assertIs(self.anon.get(reverse('user_update')).status_code, 200) 
 
         # user_update
         user = User.objects.get(username=TestDB.USER_NAME)
         kwargs = {'pk': user.pk}
         data = {'username': user.username, 'first_name':'fritz'}
-        self.user.post(reverse('user_update', kwargs=kwargs), data=data)
+        self.user.post(reverse('user_update'), data=data)
         user.refresh_from_db()
         self.assertEqual(user.first_name, 'fritz')
 
