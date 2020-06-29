@@ -133,19 +133,13 @@ class Deal(models.Model):
 
 class VirtualDeal(Deal):
     status = 0
-    user1 = None
-    user2 = None
-
-    def __init__(self, user1=None, user2=None):
-        self.user1 = user1
-        self.user2 = user2
 
     @classmethod
     def by_users(cls, me_, other_users, level=2):
         deals = []
         # Calculate possible Deals
         for user in other_users:
-            deal = cls(user1=me_.pk, user2=user.pk)
+            deal = cls(user1=me_, user2=user)
             if deal.level == level:
                 deals.append(deal)
 
@@ -165,6 +159,9 @@ class VirtualDeal(Deal):
     def by_user(cls, me_, partner, level=2):
         deals = cls.by_users(me_, [partner], level=level)
         return deals[0] if deals else None
+
+    def save(self):
+        pass
 
     class Meta:
         proxy = True
