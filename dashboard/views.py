@@ -1,6 +1,5 @@
 from django.views.generic.base import TemplateView
 from .models import VirtualDeal
-from django.views.decorators.cache import cache_page
 
 
 class DashboardHomeView(TemplateView):

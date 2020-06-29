@@ -21,27 +21,6 @@ class FeedbackListView(TemplateView):
         return context
 
 
-class FeedbackCreateView(FormView):
-    form_class = FeedbackCreateForm
-    template_name = 'feedback/feedback_form.html'
-    succcess_url = reverse_lazy('feedback_list')
-
-    """
-    def setup(self, request, *args, **kwargs):
-        self.type_ = kwargs.get('type')
-        self.model = {
-                'user': UserFeedback, 'push': PushFeedback
-            }.get(self.type_)
-        CreateView.setup(self, request, *args, **kwargs)
-
-    def get_form(self, form_class=None):
-        form = CreateView.get_form(self, form_class=form_class)
-        form.instance.creator = self.request.user
-        return form
-    def get_success_url(self):
-        return reverse('feedback_detail', args=(self.type_, self.object.pk,))
-    """
-
 """
 class FeedbackCreateView(CreateView):
     model = None

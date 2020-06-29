@@ -43,7 +43,6 @@
   {% endfor %}
 </div>
 
-
 {% if can_bid %}
 <form method="POST" action="{% url 'bid_create' object.pk %}">{% csrf_token %}
   <div class="container border shadow mt-3">

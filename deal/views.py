@@ -8,15 +8,20 @@ from .forms import DealCreateForm, DealAcceptForm
 from bid.forms import BidForm
 from user.models import User
 from dashboard.models import VirtualDeal
+from django.views.generic.base import TemplateView
 # TODO: check if access is allowed (self.request.user in dealset user
 
 
-class DealListView(LoginRequiredMixin, ListView):
-    model = Deal
+class DealListView(LoginRequiredMixin, TemplateView):
     template_name = 'deal/deal_list.html'
 
-    def get_queryset(self):
-        return self.request.user.deals
+    def get_context_data(self, **kwargs):
+        context = TemplateView.get_context_data(self, **kwargs)
+        deals = []
+        for deal in self.request.user.deals:
+            deals.append(deal.set_pov(self.request.user))
+        context['deals'] = deals
+        return context
 
 
 class DealDetailView(LoginRequiredMixin, DetailView):
@@ -45,15 +50,18 @@ class DealCreateView(LoginRequiredMixin, CreateView):
         return reverse('deal_detail', args=(self.object.pk,))
 
 
-class DealUserCreateView(LoginRequiredMixin, UpdateView):
+class DealUserCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'deal/deal_form.html'
     model = Deal
     fields = []
 
-    def get_object(self, queryset=None):
-        partner_pk = self.request.resolver_match.kwargs.get('partner_pk')
-        partner = User.objects.get(pk=partner_pk)
-        self.extra_context = {'deal': VirtualDeal(self.request.user, partner)}
-        return Deal.get_or_create((self.request.user, partner))
+    def get_form(self, form_class=None):
+        form = CreateView.get_form(self, form_class=form_class)
+        form.instance.user1 = self.request.user
+        form.instance.user2 = User.objects.get(
+            pk=self.request.resolver_match.kwargs.get('partner_pk')
+            )
+        return form
 
     def get_success_url(self):
         return reverse('deal_detail', args=(self.object.pk,))

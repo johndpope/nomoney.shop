@@ -6,5 +6,9 @@ urlpatterns = [
     path('<int:pk>/', DealDetailView.as_view(), name='deal_detail'),
     path('<int:pk>/accept/', DealAcceptedView.as_view(), name='deal_accepted'),
     path('create/', DealCreateView.as_view(), name='deal_create'),
-    path('create/<int:partner_pk>/', DealUserCreateView.as_view(), name='deal_user_create'),
+    path(
+        'create/<int:partner_pk>/',
+        DealUserCreateView.as_view(),
+        name='deal_user_create'
+        ),
 ]

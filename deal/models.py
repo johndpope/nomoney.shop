@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Q
 from config.settings import AUTH_USER_MODEL
+from feedback.models import PushFeedback, UserFeedback
 
 
 class DealStatus(models.IntegerChoices):
@@ -22,26 +23,17 @@ class Deal(models.Model):
         'guild.Guild', on_delete=models.CASCADE, null=True, blank=True
         )
     status = models.PositiveSmallIntegerField(
-        default=DealStatus.VIRTUAL,
+        default=DealStatus.STARTED,
         choices=DealStatus.choices,
         )
-
-    pov_user = None
 
     _level = None
     _quality = None
 
-    @property
-    def user(self):
-        if self.pov_user == self.user2:
-            return self.user2
-        return self.user1
-
-    @property
-    def partner(self):
-        if self.pov_user == self.user2:
-            return self.user1
-        return self.user2
+    def set_pov(self, pov_user):
+        if self.user2 == pov_user:
+            self.user1, self.user2 = self.user2, self.user1
+        return self
 
     @property
     def bids(self):
@@ -50,12 +42,12 @@ class Deal(models.Model):
     @property
     def pushs(self):
         # pylint: disable=no-member
-        return list(self.intersection(self.user.pushs, self.partner.pulls))
+        return list(self.intersection(self.user1.pushs, self.user2.pulls))
 
     @property
     def pulls(self):
         # pylint: disable=no-member
-        return list(self.intersection(self.user.pulls, self.partner.pushs))
+        return list(self.intersection(self.user1.pulls, self.user2.pushs))
 
     @property
     def level(self):
@@ -84,13 +76,6 @@ class Deal(models.Model):
         self._quality = len(self.pushs + self.pulls)
         return self._quality
 
-    def set_status(self, deal_status_code):
-        """ Create a new Feedback Request when """
-        import pdb; pdb.set_trace()  # <---------
-
-    def set_pov(self, me_):
-        self.pov_user = me_
-
     def get_users(self):
         return self.user1, self.user2
 
@@ -115,14 +100,19 @@ class Deal(models.Model):
         return False
 
     @classmethod
-    def get_or_create(cls, users):
+    def by_users(cls, user1, user2, create=False):
         existing = cls.objects.filter(
-            Q(user1=users[0], user2=users[1]) |
-            Q(user2=users[0], user1=users[1])
+            Q(user1=user1, user2=user2) |
+            Q(user2=user1, user1=user2)
             )
-        if existing:
-            return existing.latest()
-        return cls.objects.create(user1=users[0], user2=users[1])
+        if create and not existing:
+            cls.objects.create(user1=user1, user2=user2)
+        else:
+            return existing
+
+    @classmethod
+    def get_or_create(cls, users):
+        return cls.by_users(*users, create=True)
 
     @staticmethod
     def intersection(lst1, lst2):
@@ -131,5 +121,50 @@ class Deal(models.Model):
             if element in lst2:
                 yield element
 
+    def save(self, *args, **kwargs):
+        models.Model.save(self, *args, **kwargs)
+        if self.status == DealStatus.ACCEPTED:
+            UserFeedback.objects.create(creator=self.user1, user=self.user2)
+            UserFeedback.objects.create(creator=self.user2, user=self.user1)
+
     class Meta:
         get_latest_by = ['pk']
+
+
+class VirtualDeal(Deal):
+    status = 0
+    user1 = None
+    user2 = None
+
+    def __init__(self, user1=None, user2=None):
+        self.user1 = user1
+        self.user2 = user2
+
+    @classmethod
+    def by_users(cls, me_, other_users, level=2):
+        deals = []
+        # Calculate possible Deals
+        for user in other_users:
+            deal = cls(user1=me_.pk, user2=user.pk)
+            if deal.level == level:
+                deals.append(deal)
+
+        # Calculate max Quality
+        max_quality = max(
+                (deal.quality for deal in deals)
+            ) if deals else 0
+
+        # Calculate Quality Percentage of each deal (for view/css)
+        for deal in deals:
+            deal.max_quality = max_quality
+            deal.quality_pct = int(deal.quality / max_quality * 100 + 0.5)
+
+        return sorted(deals, key=lambda x: x.quality, reverse=True)
+
+    @classmethod
+    def by_user(cls, me_, partner, level=2):
+        deals = cls.by_users(me_, [partner], level=level)
+        return deals[0] if deals else None
+
+    class Meta:
+        proxy = True

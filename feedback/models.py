@@ -11,9 +11,9 @@ class FeedbackStatus(models.IntegerChoices):
 class FeedbackBase(models.Model):
     creator = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
-    score = models.PositiveSmallIntegerField()  # 0-100
-    subject = models.CharField(max_length=30)
-    text = models.TextField()
+    score = models.PositiveSmallIntegerField(null=True, blank=True)  # 0-100
+    subject = models.CharField(max_length=30, null=True, blank=True)
+    text = models.TextField(null=True, blank=True)
     status = models.PositiveSmallIntegerField(
         default=FeedbackStatus.REQUEST,
         choices=FeedbackStatus.choices,
