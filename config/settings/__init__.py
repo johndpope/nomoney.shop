@@ -23,8 +23,7 @@ DATABASES = {
     'default': DB_CONFIG or SQLITE_CONFIG
 }
 
-
-if DEBUG==True:
+if DEBUG is True:
     DEBUG_TOOLBAR_CONFIG = {
         'SHOW_TOOLBAR_CALLBACK': lambda x: DEBUG
     }

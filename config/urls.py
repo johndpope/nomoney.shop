@@ -38,9 +38,3 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-# Strange that this is necessary. Test crash without this.
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns = [
-        path('__debug__/', include(debug_toolbar.urls)),
-    ] + urlpatterns
