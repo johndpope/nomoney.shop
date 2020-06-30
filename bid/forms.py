@@ -17,6 +17,9 @@ class BidForm(forms.Form):
             self.fields['quantity' + key].label = '{} ({})'.format(listing.title, listing.unit)
             self.fields['quantity' + key].widget.attrs['class']='list-group-item'
 
+    def full_clean(self):
+        return forms.Form.full_clean(self)
+
 
 class BidPositionFormBase(forms.ModelForm):
 

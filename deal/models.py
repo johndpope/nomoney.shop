@@ -27,12 +27,31 @@ class Deal(models.Model):
         choices=DealStatus.choices,
         )
 
+    pov_user = None
     _level = None
     _quality = None
 
+    #===========================================================================
+    # def __init__(self, pov_user=None, *args, **kwargs):
+    #     if pov_user:
+    #         self.pov_user = pov_user
+    #     super().__init__(*args, **kwargs)
+    #===========================================================================
+
+    @property
+    def user(self):
+        if self.pov_user and self.pov_user == self.user2:
+            return self.user2
+        return self.user1
+
+    @property
+    def partner(self):
+        if self.user == self.user2:
+            return self.user1
+        return self.user2
+
     def set_pov(self, pov_user):
-        if self.user2 == pov_user:
-            self.user1, self.user2 = self.user2, self.user1
+        self.pov_user = pov_user
         return self
 
     @property
@@ -42,12 +61,12 @@ class Deal(models.Model):
     @property
     def pushs(self):
         # pylint: disable=no-member
-        return list(self.intersection(self.user1.pushs, self.user2.pulls))
+        return list(self.intersection(self.user.pushs, self.partner.pulls))
 
     @property
     def pulls(self):
         # pylint: disable=no-member
-        return list(self.intersection(self.user1.pulls, self.user2.pushs))
+        return list(self.intersection(self.user.pulls, self.partner.pushs))
 
     @property
     def level(self):
@@ -77,7 +96,7 @@ class Deal(models.Model):
         return self._quality
 
     def get_users(self):
-        return self.user1, self.user2
+        return self.user, self.partner
 
     def get_latest_bid(self):
         bids = self.bids
@@ -124,11 +143,12 @@ class Deal(models.Model):
     def save(self, *args, **kwargs):
         models.Model.save(self, *args, **kwargs)
         if self.status == DealStatus.ACCEPTED:
-            UserFeedback.objects.create(creator=self.user1, user=self.user2)
-            UserFeedback.objects.create(creator=self.user2, user=self.user1)
+            UserFeedback.objects.create(creator=self.user, user=self.partner)
+            UserFeedback.objects.create(creator=self.partner, user=self.user)
 
     class Meta:
         get_latest_by = ['pk']
+
 
 
 class VirtualDeal(Deal):

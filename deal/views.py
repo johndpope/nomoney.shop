@@ -37,6 +37,11 @@ class DealDetailView(LoginRequiredMixin, DetailView):
             context['pull_form'] = BidForm(self.object.pulls)
         return context
 
+    def get_object(self, queryset=None):
+        deal = DetailView.get_object(self, queryset=queryset)
+        deal.set_pov(self.request.user)
+        return deal
+
 
 class DealCreateView(LoginRequiredMixin, CreateView):
     template_name = 'deal/deal_form.html'

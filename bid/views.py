@@ -42,18 +42,17 @@ class BidCreateView(FormView):
         pull_form = BidForm(self.deal.pulls, request.POST)
         if push_form.is_valid() and pull_form.is_valid():
             bid = Bid.objects.create(deal=self.deal, creator=request.user)
-            print(push_form.cleaned_data)
-            for key in push_form.fields.keys():
-                if key in request.POST:
-                    import pdb; pdb.set_trace()  # <---------
+            for key, value in push_form.cleaned_data.items():
+                print(request.POST)
+                if value:
                     BidPush.objects.create(
                         listing=push_form.fields[key].listing,
                         unit=push_form.fields[key].unit,
                         quantity=value,
                         bid=bid
                         )
-            print(pull_form.cleaned_data)
             for key, value in pull_form.cleaned_data.items():
+                print(request.POST)
                 if value:
                     BidPull.objects.create(
                         listing=pull_form.fields[key].listing,
