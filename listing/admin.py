@@ -22,3 +22,5 @@ admin.site.register(Unit)
 admin.site.register(Category, CategoryAdmin)
 #admin.site.register(Review)
 
+admin.site.register(Push)
+admin.site.register(Pull)

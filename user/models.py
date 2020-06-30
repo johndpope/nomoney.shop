@@ -1,7 +1,12 @@
-from django.db.models.signals import post_save, pre_save
+from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+
+
+def image_path(instance, filename):
+    suffix = filename.split('.')[-1]
+    return 'user/{}/avatar.{}'.format(instance.pk, suffix)
 
 
 class UserConfig(models.Model):
@@ -11,8 +16,9 @@ class UserConfig(models.Model):
 class User(AbstractUser):
 
     config = models.OneToOneField(UserConfig, on_delete=models.CASCADE, null=True)
-    image = models.ImageField(blank=True)
+    image = models.ImageField(blank=True, upload_to=image_path)
     beta_user = models.BooleanField(default=False)
+    description = models.TextField(blank=True)
 
     @property
     def other_users(self):
@@ -37,16 +43,6 @@ class User(AbstractUser):
             {*self.bids_sent.all(), *self.bids_received.all()},
             key=lambda x: x.datetime
             )
-
-    #===========================================================================
-    # def feedbacks(self, status=None):
-    #     user_qs = self.userfeedback_set.all()
-    #     push_qs = self.pushfeedback_set.all()
-    #     if status is not None:
-    #         user_qs = user_qs.filter(status=status)
-    #         push_qs = push_qs.filter(status=status)
-    #     return user_qs.union(user_qs, push_qs)
-    #===========================================================================
 
     @property
     def deals(self):

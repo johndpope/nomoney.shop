@@ -2,7 +2,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, FormView
 from django.views.generic.base import TemplateView
-from django.urls.base import reverse_lazy
+from django.urls.base import reverse_lazy, reverse
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
@@ -11,7 +11,7 @@ from .forms import CustomUserCreationForm
 from .models import UserConfig
 
 User = get_user_model()  # pylint: disable=invalid-name
-FIELDS = ['username', 'first_name', 'last_name', 'email']
+FIELDS = ['username', 'first_name', 'last_name', 'email', 'image', 'description']
 
 
 class UserListView(ListView):
@@ -38,6 +38,9 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+    def get_success_url(self):
+        return reverse('user_detail', args=(self.object.pk,))
 
 
 class UserSettingsView(LoginRequiredMixin, UpdateView):
@@ -68,7 +71,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 
 class AgentView(LoginRequiredMixin, TemplateView):
     template_name = 'user/agent.html'
-
+ 
     def get_context_data(self, **kwargs):
         context = TemplateView.get_context_data(self, **kwargs)
         user = self.request.user

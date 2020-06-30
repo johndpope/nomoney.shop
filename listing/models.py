@@ -1,6 +1,11 @@
+from uuid import uuid4
 from itertools import chain
 from django.db import models
 from config.settings import AUTH_USER_MODEL
+
+
+def image_path(instance, _):
+    return 'listing/{}/{}'.format(instance.type, uuid4())
 
 
 class Unit(models.Model):
@@ -17,7 +22,7 @@ class ListingBase(models.Model):
     category = models.ForeignKey('category.Category', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
-    image = models.ImageField(blank=True)
+    image = models.ImageField(blank=True, upload_to=image_path)
     description = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)

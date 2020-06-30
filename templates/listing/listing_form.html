@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-12"><h3>{% if object.pk %}Bearbeite{% else %}Erstelle neuen{% endif %} Eintrag</h3></div>
   </div>
-  <form method="post">{% csrf_token %}
+  <form method="post" enctype="multipart/form-data">{% csrf_token %}
     {% if form.errors %}
     <div class="alert alert-danger" role="alert">
       {{ form.errors }}

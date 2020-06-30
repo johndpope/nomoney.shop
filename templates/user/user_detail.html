@@ -1,24 +1,37 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
-<div class="card">
-  <!-- BILD <img src="..." class="card-img-top" alt="...">-->
-  <div class="card-body">
-    <h5 class="card-title">{{ user }}</h5>
-    <p class="card-text">Ich gebe: {% for listing in user.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</p>
-    <p class="card-text">Ich nehme: {% for listing in user.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</p>
-    <hr>
-    <div class=container-fluid>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      {% if user.image %}
+        <img src="{{ user.image.url }}" class="rounded float-left border" width="200" height="200">
+      {% endif %}
+    </div>
+    <div class="col">
       <div class="row">
-        <div class="col">Möglicher Deal:</div>
-      </div>
-      <div class="row">
-        <div class="col">{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
-        <div class="col-1">vs.</div>
-        <div class="col">{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
-        <div class="col-1"><a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' user.pk %}" role="button">handeln</a></div>
+        <div class="col-12">{{ user.username }}</div>
+        <div class="col-12">{{ user.description }}</div>
       </div>
     </div>
   </div>
 </div>
+
+<hr class="mt-5 mb-0">
+<div class="container-fluid mb-5">
+  <div class="row">
+    <div class="col-12">
+      {% if object.pk == request.user.pk %}
+        <a class="mb-5 float-right" href="{% url 'user_update' %}">Bearbeiten</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% include 'listing/solo/listing_list.html' %}
+
+<hr class="my-5">
+
+
 {% endblock %}

@@ -2,10 +2,10 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-8">
-        <h3>Meine Angebote</h3>
+        <h3>{% if user == request.user %}Meine{% else %}{{ user }}'s{% endif %} Angebote</h3>
     </div>
     <div class="col-4 d-md-flex justify-content-end">
-        <a class="btn p-0 text-info" href="{% url 'listing_create' 'push' %}"><i class="fas fa-plus"></i> Neues Angebot</a>
+        {% if user == request.user %}<a class="btn p-0 text-info" href="{% url 'listing_create' 'push' %}"><i class="fas fa-plus"></i> Neues Angebot</a>{% endif %}
     </div>
   </div>
   <div class="row">
@@ -22,7 +22,7 @@
       <b>Geändert</b>
     </div>
   </div>
-  {% for listing in request.user.pushs %}
+  {% for listing in user.pushs %}
   <div class="row border-top">
     <div class="col-12 col-sm-4 col-md-2 order-4 order-sm-1">
       {% with category=listing.category %}{% include 'category/inc/link.html' %}{% endwith %}
@@ -43,10 +43,10 @@
 <div class="container-fluid">
   <div class="row mt-5">
     <div class="col-8">
-      <h3 class="row">Meine Anfragen</h3>
+      <h3 class="row">{% if user == request.user %}Meine{% else %}{{ user }}'s{% endif %} Anfragen</h3>
     </div>
     <div class="col-4 d-md-flex justify-content-end">
-        <a class="btn p-0 text-info" href="{% url 'listing_create' 'pull' %}"><i class="fas fa-plus"></i> Neue Anfrage</a>
+        {% if user == request.user %}<a class="btn p-0 text-info" href="{% url 'listing_create' 'pull' %}"><i class="fas fa-plus"></i> Neue Anfrage</a>{% endif %}
     </div>
   </div>
   <div class="row">
@@ -63,7 +63,7 @@
       <b>Geändert</b>
     </div>
   </div>
-  {% for listing in request.user.pulls %}
+  {% for listing in user.pulls %}
   <div class="row border-top">
     <div class="col-12 col-sm-4 col-md-2 order-4 order-sm-1">
       {% with category=listing.category %}{% include 'category/inc/link.html' %}{% endwith %}
