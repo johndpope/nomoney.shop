@@ -2,7 +2,7 @@ from copy import copy
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls.base import reverse_lazy
+from django.urls.base import reverse_lazy, reverse
 from django.views.generic.base import TemplateView
 from category.models import Category
 from dashboard.models import VirtualDeal
@@ -43,7 +43,8 @@ class ListingCreateView(CreateView):
 
     def setup(self, request, *args, **kwargs):
         CreateView.setup(self, request, *args, **kwargs)
-        self.model = {'push': Push, 'pull': Pull}.get(self.kwargs.get('type'))
+        self.type = kwargs.get('type')
+        self.model = {'push': Push, 'pull': Pull}.get(self.type)
         if 'category_pk' in self.kwargs:
             self.category = Category.objects.get(
                 pk=self.kwargs.get('category_pk')
@@ -57,6 +58,9 @@ class ListingCreateView(CreateView):
             form.instance.category = self.category
         return CreateView.form_valid(self, form)
 
+    def get_success_url(self):
+        return reverse('listing_detail', args=(self.type, self.object.pk))
+
 
 class ListingUpdateView(UpdateView):
     model = None
@@ -65,9 +69,13 @@ class ListingUpdateView(UpdateView):
     success_url = reverse_lazy('listing_list')
 
     def dispatch(self, request, *args, **kwargs):
-        self.model = {'push': Push, 'pull': Pull}.get(kwargs.get('type'))
-        self.extra_context = {'type': kwargs.get('type')}
+        self.type = kwargs.get('type')
+        self.model = {'push': Push, 'pull': Pull}.get(self.type)
+        self.extra_context = {'type': self.type}
         return DetailView.dispatch(self, request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('listing_detail', args=(self.type, self.object.pk))
 
 
 class ListingDetailView(DetailView):  # OK

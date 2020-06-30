@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container mt-5">
   <div class="row">
-    <div class="col-12"><h3>Erstelle neuen Eintrag</h3></div>
+    <div class="col-12"><h3>{% if object.pk %}Bearbeite{% else %}Erstelle neuen{% endif %} Eintrag</h3></div>
   </div>
   <form method="post">{% csrf_token %}
     {% if form.errors %}
