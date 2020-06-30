@@ -1,7 +1,39 @@
 {% load humanize %}
+<div class="container">
+  <div class="row">
+    <div class="col-12"><h3>Bewertungen abgeben:</h3></div>
+  </div>
+  <div class="row">
+  {% for feedback in user_feedback_open %}
+    <div class="col-auto border p-0">
+      <a class="btn btn-link" href="{% url 'feedback_update' 'user' feedback.pk %}" role="button"><i class="fas fa-arrow-right"></i> Benutzer: {{ feedback.user }}</a>
+    </div>
+  {% endfor %}
+  {% for feedback in push_feedback_open %}
+    <div class="col-auto border p-0">
+      <a class="btn btn-link" href="{% url 'feedback_update' 'push' feedback.pk %}" role="button"><i class="fas fa-arrow-right"></i> Angebots: {{ feedback.push.title }}</a>
+    </div>
+  {% endfor %}
+  </div>
+</div>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-12"><h3>Abgegebene Bewertungen:</h3></div>
+  </div>
+  <div class="row">
+  {% for feedback in user_feedback %}
+    <div class="col-auto border p-0">
+      <a class="btn btn-link" href="{% url 'feedback_update' 'user' feedback.pk %}" role="button"><i class="fas fa-arrow-right"></i> Benutzer: {{ feedback.user }}</a>
+    </div>
+  {% endfor %}
+  {% for feedback in push_feedback %}
+    <div class="col-auto border p-0">
+      <a class="btn btn-link" href="{% url 'feedback_update' 'user' feedback.pk %}" role="button"><i class="fas fa-arrow-right"></i> Angebots: {{ feedback.push.title }}</a>
+    </div>
+  {% endfor %}
+  </div>
+</div>
 
-<table>
-  <tr>
- 	<th></th>
-  </tr>
-</table>
+<hr>
+    {% include 'feedback/inc/card.html' %}

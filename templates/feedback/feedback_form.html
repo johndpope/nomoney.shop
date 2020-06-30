@@ -1,21 +1,60 @@
 {% extends 'base.html' %}
 
-{% block title %}Sign up{% endblock %}
+
+{% block head %}
+<script>
+$( document ).ready(function() {
+  var score = $('#id_score').val();
+  $(this).find('.progress-bar').html(score + '%');
+  $(this).find('.progress-bar').css('width', score + '%');
+  $("#progress").click(function(e){
+      var x = e.pageX - $(this).offset().left;
+      var x_pct = x / $(this).width() *100;
+      $('#id_score').val(x_pct.toFixed(0));
+  }); 
+  $("#progress").mousemove(function(e){
+      var x = e.pageX - $(this).offset().left;
+      var x_pct = x / $(this).width() *100;
+      $(this).find('.progress-bar').html(x_pct.toFixed(0)+ '%');
+      $(this).find('.progress-bar').css('width', x_pct+ '%');
+  });
+  $("#progress").mouseleave(function(){
+	  var score = $('#id_score').val();
+      $(this).find('.progress-bar').html(score + '%');
+      $(this).find('.progress-bar').css('width', score + '%');
+  });
+}); 
+</script>
+{% endblock %}
+
 
 {% block content %}
-  <div class="container">
-    <form method="post">
-      {% if form.errors %}
-      <div class="alert alert-danger" role="alert">
-        {{ form.errors }}
-        </div>
-      {% else %}
-      {% endif %}
-      {% csrf_token %}
-      <table class="table table-striped table-bordered table-hover">
-        {{ form.as_table }}
-      </table>
-      <button class="btn btn-primary btn-block" type="submit">Speichern</button>
-    </form>
+{% include 'deal/solo/deal_detail.html' %}
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12"><h3>Bewertung abgeben:</h3></div>
   </div>
+  <form method="post">
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+      {{ form.errors }}
+      </div>
+    {% else %}
+    {% endif %}
+    {% csrf_token %}
+    <table class="table table-striped table-bordered table-hover">
+    <tr>
+    <th>Score:</th>
+    <td>
+      <div id="progress" class="progress bg-white">
+        <div class="progress-bar" role="progressbar" style="width: 50%;">50%</div>
+      </div>
+    </td>
+    </tr>
+      {{ form.as_table }}
+    </table>
+    <button class="btn btn-primary btn-block" type="submit">Speichern</button>
+  </form>
+</div>
 {% endblock %}

@@ -1,8 +1,14 @@
 from django import forms
-from .models import PushFeedback
+from .models import PushFeedback, UserFeedback
 
 
-class FeedbackCreateForm(forms.ModelForm):
+class PushFeedbackUpdateForm(forms.ModelForm):
     class Meta:
-        fields = ['score', 'subject', 'text', 'push']
+        fields = ['score', 'subject', 'text']
         model = PushFeedback
+
+
+class UserFeedbackUpdateForm(forms.ModelForm):
+    class Meta:
+        fields = ['score', 'subject', 'text']
+        model = UserFeedback

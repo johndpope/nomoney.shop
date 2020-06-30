@@ -18,6 +18,15 @@ class FeedbackBase(models.Model):
         default=FeedbackStatus.REQUEST,
         choices=FeedbackStatus.choices,
         )
+    deal = models.ForeignKey('deal.Deal', on_delete=models.CASCADE)
+
+    @property
+    def is_editable(self):
+        return self.status == FeedbackStatus.REQUEST
+
+    def set_sent(self):
+        self.status = FeedbackStatus.SENT
+        self.save()
 
     class Meta:
         abstract = True
