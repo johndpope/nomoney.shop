@@ -76,13 +76,11 @@ class DealAcceptedView(LoginRequiredMixin, UpdateView):
     #form_class = DealAcceptForm
     model = Deal
     http_method_names = ['post']
-    fields = ['accepted']
+    fields = []
 
     def post(self, request, *args, **kwargs):
         response = UpdateView.post(self, request, *args, **kwargs)
-        if self.request.user in self.object.bid_allowed_for():
-            self.object.accepted = True
-            self.object.save()
+        self.object.set_accepted()
         return response
 
     def get_success_url(self):

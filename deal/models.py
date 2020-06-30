@@ -31,12 +31,9 @@ class Deal(models.Model):
     _level = None
     _quality = None
 
-    #===========================================================================
-    # def __init__(self, pov_user=None, *args, **kwargs):
-    #     if pov_user:
-    #         self.pov_user = pov_user
-    #     super().__init__(*args, **kwargs)
-    #===========================================================================
+    def set_accepted(self):
+        self.status = DealStatus.ACCEPTED
+        self.save()
 
     @property
     def user(self):
@@ -148,7 +145,6 @@ class Deal(models.Model):
 
     class Meta:
         get_latest_by = ['pk']
-
 
 
 class VirtualDeal(Deal):

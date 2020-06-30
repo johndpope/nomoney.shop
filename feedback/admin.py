@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import PushFeedback, UserFeedback
 
-# Register your models here.
+
+admin.site.register(PushFeedback)
+admin.site.register(UserFeedback)
