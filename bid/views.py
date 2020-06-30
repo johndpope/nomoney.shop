@@ -3,7 +3,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, FormView
 from django.shortcuts import redirect
 from .models import Bid, BidPush, BidPull
-from .forms import BidForm, BidPushForm, BidPullForm
+from .forms import BidForm
 from deal.models import Deal
 
 MODEL = Bid

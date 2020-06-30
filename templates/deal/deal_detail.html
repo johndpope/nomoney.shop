@@ -30,7 +30,7 @@
         {% endfor %}
       </div>
       <div class="col-1 col-md-3 col-xl-2 order-4 order-xl-6">
-        {{ object.status }}
+        {% include 'bid/inc/status.html' %}
         {% if can_accept and bid.is_latest %}
           <form method="POST" action="{% url 'deal_accepted' deal.pk %}">{% csrf_token %}
             <button type="submit" class="btn btn-sm btn-outline-success">Annehmen</button>
