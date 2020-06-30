@@ -66,6 +66,16 @@ class Deal(models.Model):
         return list(self.intersection(self.user.pulls, self.partner.pushs))
 
     @property
+    def partner_pushs(self):
+        # pylint: disable=no-member
+        return list(self.intersection(self.partner.pushs, self.user.pulls))
+
+    @property
+    def partner_pulls(self):
+        # pylint: disable=no-member
+        return list(self.intersection(self.partner.pulls, self.user.pushs))
+
+    @property
     def level(self):
         """ Levels:
             0 - No Deal match
@@ -142,6 +152,11 @@ class Deal(models.Model):
         if self.status == DealStatus.ACCEPTED:
             UserFeedback.objects.create(creator=self.user, user=self.partner)
             UserFeedback.objects.create(creator=self.partner, user=self.user)
+            bid = self.get_latest_bid()
+            for bid_position in bid.positions:
+                push = bid_position.push
+                creator = self.user1 if self.user2 == push.user else self.user2
+                PushFeedback.objects.create(push=push, creator=creator)
 
     class Meta:
         get_latest_by = ['pk']

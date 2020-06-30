@@ -1,17 +1,13 @@
 from django.contrib import admin
-from .models import Bid, BidPush, BidPull
+from .models import Bid, BidPosition
 
 
-class BidPushAdmin(admin.TabularInline):
-    model = BidPush
-
-
-class BidPullAdmin(admin.TabularInline):
-    model = BidPull
+class BidPositionAdmin(admin.TabularInline):
+    model = BidPosition
 
 
 class BidAdmin(admin.ModelAdmin):
-    inlines = [BidPushAdmin, BidPullAdmin, ]
+    inlines = [BidPositionAdmin, ]
 
 
 admin.site.register(Bid, BidAdmin)

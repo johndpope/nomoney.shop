@@ -34,7 +34,7 @@ class DealDetailView(LoginRequiredMixin, DetailView):
         context['can_accept'] = self.object.can_accept(self.request.user)
         if context['can_bid']:
             context['push_form'] = BidForm(self.object.pushs)
-            context['pull_form'] = BidForm(self.object.pulls)
+            context['pull_form'] = BidForm(self.object.partner_pushs)
         return context
 
     def get_object(self, queryset=None):

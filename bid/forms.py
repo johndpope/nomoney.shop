@@ -1,11 +1,12 @@
 from django import forms
-from .models import Bid, BidPush, BidPull
+from .models import Bid, BidPosition
 #from listing.models import Unit
 
 BID_POSITION_FIELDS = ['quantity', 'unit']
 
+
 class BidForm(forms.Form):
-    
+
     def __init__(self, listings, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.listings = listings
@@ -15,7 +16,7 @@ class BidForm(forms.Form):
             self.fields['quantity' + key].listing = listing
             self.fields['quantity' + key].unit = listing.unit
             self.fields['quantity' + key].label = '{} ({})'.format(listing.title, listing.unit)
-            self.fields['quantity' + key].widget.attrs['class']='list-group-item'
+            self.fields['quantity' + key].widget.attrs['class'] = 'list-group-item'
 
     def full_clean(self):
         return forms.Form.full_clean(self)
@@ -36,12 +37,12 @@ class BidPositionFormBase(forms.ModelForm):
 class BidPushForm(BidPositionFormBase, forms.ModelForm):
 
     class Meta:
-        model = BidPush
+        model = BidPosition
         fields = BID_POSITION_FIELDS
 
 
 class BidPullForm(BidPositionFormBase, forms.ModelForm):
 
     class Meta:
-        model = BidPull
+        model = BidPosition
         fields = BID_POSITION_FIELDS

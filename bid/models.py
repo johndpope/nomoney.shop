@@ -3,36 +3,6 @@ from django.utils.timezone import now
 from config.settings import AUTH_USER_MODEL
 
 
-class BidPositionBase(models.Model):
-    listing = None
-    bid = models.ForeignKey(
-        'Bid',
-        on_delete=models.CASCADE,
-        )
-    quantity = models.PositiveIntegerField()
-    unit = models.ForeignKey(
-        'listing.Unit',
-        on_delete=models.CASCADE,
-        )
-
-    class Meta:
-        abstract = True
-
-
-class BidPush(BidPositionBase):
-    listing = models.ForeignKey(
-        'listing.Push',
-        on_delete=models.CASCADE,
-        )
-
-
-class BidPull(BidPositionBase):
-    listing = models.ForeignKey(
-        'listing.Pull',
-        on_delete=models.CASCADE,
-        )
-
-
 class BidStatus(models.IntegerChoices):
     UNSEEN = 0, 'unseen'
     SEEN = 10, 'seen'
@@ -41,28 +11,37 @@ class BidStatus(models.IntegerChoices):
     REJECTED = 110, 'rejected'
 
 
+class BidPosition(models.Model):
+    push = models.ForeignKey('listing.Push', on_delete=models.CASCADE)
+    bid = models.ForeignKey('Bid', on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+    unit = models.ForeignKey('listing.Unit', on_delete=models.CASCADE)
+
+    @property
+    def listing(self):
+        return self.push
+
+
 class Bid(models.Model):
     deal = models.ForeignKey('deal.Deal', on_delete=models.CASCADE)
-
-    creator = models.ForeignKey(
-        AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        )
-
+    creator = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     datetime = models.DateTimeField(default=now, editable=False)
-
     status = models.PositiveSmallIntegerField(
         default=BidStatus.UNSEEN,
         choices=BidStatus.choices,
         )
 
     @property
+    def positions(self):
+        return self.bidposition_set.all()
+
+    @property
     def pushs(self):
-        return self.bidpush_set.all()
+        return self.positions.filter(push__user=self.creator)
 
     @property
     def pulls(self):
-        return self.bidpull_set.all()
+        return self.positions.exclude(push__user=self.creator)
 
     @property
     def is_latest(self):
@@ -73,10 +52,6 @@ class Bid(models.Model):
 
     def get_users(self):
         return self.deal.users.all()
-
-    def same_constellation(self):
-        print("Rework")
-        return self.deal.bid_set.all()
 
     @classmethod
     def by_user(cls, user):

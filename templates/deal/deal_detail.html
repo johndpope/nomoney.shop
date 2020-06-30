@@ -3,45 +3,48 @@
 
 {% block content %}
 {% include 'deal/solo/deal_detail.html' %}
-
 <h3 class="mt-5">Gebotshistorie</h3>
 <div class="container-fluid border-bottom">
-  <div class="row py-3">
-    <div class="col-2 col-md-3 col-xl-2 order-1 order-xl-1"><b>ID</b></div>
-    <div class="col-3 col-md-3 col-xl-2 order-2 order-xl-2"><b>Von</b></div>
-    <div class="col-3 col-md-3 col-xl-2 order-3 order-xl-3"><b>Datum</b></div>
-    <div class="col-12 col-md-6 col-xl-2 order-5 order-xl-4"><b>Gebe</b></div>
-    <div class="col-12 col-md-6 col-xl-2 order-6 order-xl-5"><b>Nehme</b></div>
-    <div class="col-1 col-md-3 col-xl-2 order-4 order-xl-6"><b>Status</b></div>
+  <div class="row">
+    <div class="col"><b>Ersteller</b></div>
+    <div class="col"><b>Gibt</b></div>
+    <div class="col"><b>Nimmt</b></div>
+    <div class="col d-flex justify-content-end"><b>Status</b></div>
   </div>
   {% for bid in object.bids %}
-    <div class="row border-top py-3">
-      <div class="col-2 col-md-3 col-xl-2 order-1 order-xl-1">{% include 'bid/inc/link.html' %}</div>
-      <div class="col-3 col-md-3 col-xl-2 order-2 order-xl-2">{% with user=bid.creator %}{% include 'user/inc/link.html' %}{% endwith %}</div>
-      <div class="col-3 col-md-3 col-xl-2 order-3 order-xl-3" title="{{ bid.datetime }}">{{ bid.datetime|naturaltime }}</div>
-      <div class="col-12 col-md-6 col-xl-2 order-5 order-xl-4">
-        {% for listing in bid.pushs %}
-          {{ listing.quantity }}{{ listing.unit.short }} {% with listing=listing.listing %}{% include 'listing/inc/link.html' %}, {% endwith %}
+    <div class="row border-top">
+      <div class="col">{% with user=bid.creator %}{% include 'user/inc/link.html' %}{% endwith %}</div>
+      <div class="col">
+        {% for push in bid.pushs %}
+          {% with listing=push.listing %}
+            <p class="m-0">
+              <a class="text-dark" href="{% url 'listing_detail' listing.type listing.pk %}">{{ push.quantity }}{{ push.unit.short }} {{ listing.title }}</a>
+            </p> 
+          {% endwith %}
         {% endfor %}
       </div>
-      <div class="col-12 col-md-6 col-xl-2 order-6 order-xl-5">
-        {% for listing in bid.pulls %}
-          {{ listing.quantity }}{{ listing.unit.short }} {% with listing=listing.listing %}{% include 'listing/inc/link.html' %}, {% endwith %}
+      <div class="col">
+        {% for push in bid.pulls %}
+          {% with listing=push.listing %}
+            <p class="m-0">
+              <a class="text-dark" href="{% url 'listing_detail' listing.type listing.pk %}">{{ push.quantity }}{{ push.unit.short }} {{ listing.title }}</a>
+            </p> 
+          {% endwith %}
         {% endfor %}
       </div>
-      <div class="col-1 col-md-3 col-xl-2 order-4 order-xl-6">
-        {% include 'bid/inc/status.html' %}
+      <div class="col d-flex justify-content-end">
         {% if can_accept and bid.is_latest %}
           <form method="POST" action="{% url 'deal_accepted' deal.pk %}">{% csrf_token %}
-            <button type="submit" class="btn btn-sm btn-outline-success">Annehmen</button>
+            <button type="submit" class="btn btn-link">Annehmen</button>
           </form>
+        {% else %}
+          {% include 'bid/inc/status.html' %}
         {% endif %}
       </div>
     </div>
-  {% empty %}
-      <div class="row">kein Gebot bisher</div>
   {% endfor %}
 </div>
+
 
 {% if can_bid %}
 <form method="POST" action="{% url 'bid_create' object.pk %}">{% csrf_token %}
