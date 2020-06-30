@@ -7,11 +7,20 @@ class DashboardHomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = TemplateView.get_context_data(self, **kwargs)
-        context['list_of_items'] =['run1', 'run2', 'run3']
-        deals = []
-        for deal in self.request.user.deals:
-            deals.append(deal.set_pov(self.request.user))
-        context['deals'] = deals
+        user = self.request.user
+        if user.is_authenticated:
+            deals = []
+            for deal in user.deals:
+                deals.append(deal.set_pov(self.request.user))
+            context['deals'] = deals
+            context['user_feedback_open'] = user.userfeedback_set.filter(
+                status=0
+                )
+            context['push_feedback_open'] = user.pushfeedback_set.filter(
+                status=0
+                )
+        else:
+            self.template_name = 'dashboard/dashboard_anonymous.html'
         return context
 
 

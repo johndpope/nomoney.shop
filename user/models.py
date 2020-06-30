@@ -38,6 +38,16 @@ class User(AbstractUser):
             key=lambda x: x.datetime
             )
 
+    #===========================================================================
+    # def feedbacks(self, status=None):
+    #     user_qs = self.userfeedback_set.all()
+    #     push_qs = self.pushfeedback_set.all()
+    #     if status is not None:
+    #         user_qs = user_qs.filter(status=status)
+    #         push_qs = push_qs.filter(status=status)
+    #     return user_qs.union(user_qs, push_qs)
+    #===========================================================================
+
     @property
     def deals(self):
         deals = self.user1_deals.all().union(self.user2_deals.all())

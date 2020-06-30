@@ -47,6 +47,10 @@ class DealCreateView(LoginRequiredMixin, CreateView):
     template_name = 'deal/deal_form.html'
     form_class = DealCreateForm
 
+    def get_context_data(self, **kwargs):
+        context = CreateView.get_context_data(self, **kwargs)
+        return context
+
     def form_valid(self, form):
         form.instance.user1 = self.request.user
         return CreateView.form_valid(self, form)
@@ -62,11 +66,18 @@ class DealUserCreateView(LoginRequiredMixin, CreateView):
 
     def get_form(self, form_class=None):
         form = CreateView.get_form(self, form_class=form_class)
-        form.instance.user1 = self.request.user
-        form.instance.user2 = User.objects.get(
+        self.user1 = self.request.user
+        self.user2 = User.objects.get(
             pk=self.request.resolver_match.kwargs.get('partner_pk')
             )
+        form.instance.user1 = self.user1
+        form.instance.user2 = self.user2
         return form
+
+    def get_context_data(self, **kwargs):
+        context = UpdateView.get_context_data(self, **kwargs)
+        context['deal'] = VirtualDeal().by_user(self.user1, self.user2, level=0)
+        return context
 
     def get_success_url(self):
         return reverse('deal_detail', args=(self.object.pk,))

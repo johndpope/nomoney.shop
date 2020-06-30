@@ -35,6 +35,7 @@
     <div class="col-12 col-sm-6 col-md-3 order-8 order-md-8">{% with user=deal.partner %}{% include 'user/inc/link.html' %}{% endwith %}</div>
   </div>
 </div>
+{% if deal.bids %}
 <hr>
 <h3 class="mt-5">Gebotshistorie</h3>
 <div class="container-fluid border-bottom">
@@ -77,3 +78,4 @@
     </div>
   {% endfor %}
 </div>
+{% endif %}

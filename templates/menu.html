@@ -28,10 +28,19 @@
         <a class="nav-link" href="{% url 'agent_list' %}">Agent</a>
       </li>-->
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'listing_list' %}">Meine Einträge</a>
+        <a class="nav-link" href="{% url 'listing_list' %}">Einträge</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'deal_list' %}">Meine Deals</a>
+        <a class="nav-link" href="{% url 'deal_list' %}">Deals</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'feedback_list' %}">Bewertungen</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'category_list' %}">Kategorien</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'user_list' %}">Benutzer</a>
       </li>
       {% else %}
       <li class="nav-item">
@@ -43,12 +52,6 @@
 
 
       {% endif %}
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'category_list' %}">Kategorien</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'user_list' %}">Benutzer</a>
-      </li>
     </ul>
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
       <li class="nav-item">

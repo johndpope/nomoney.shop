@@ -1,11 +1,31 @@
-<div class="col-auto">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-      <p class="card-text">Some quick example text to bdgsdfgfdgdfsgfdsgdfgfdgs</p>
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
+{% load humanize %}
+<div class="col-auto d-flex flex-fill align-content-stretch flex-wrap">
+<div class="card mt-3 d-flex align-content-stretch flex-wrap">
+  <div class="card-header">
+    {% if feedback.type == 'user' %}Benutzer: {% include 'user/inc/link.html' %}
+    {% else %}Angebot: {% with listing=feedback.push %}{% include 'listing/inc/title_link.html' %}{% endwith %}
+    {% endif %}
+    {% if feedback.type == 'user' %}Benutzer-{% else %}Angebots-{% endif %}Bewertung
+  </div>
+  <div class="card-body">
+    <div class="row border-bottom">
+      <div class="col-auto"><b>{{ feedback.subject }}</b></div>
+    </div>
+    <div class="row border-bottom">
+      <div class="col-auto">{{ feedback.text }}</div>
+    </div>
+    <div class="row border-bottom">
+      <div class="col-auto">Score:</div>
+      <div class="col my-auto">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: {{ feedback.score }}%;" aria-valuenow="{{ feedback.score }}" aria-valuemin="0" aria-valuemax="100">{{ feedback.score }}%</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto">{% with user=feedback.creator %}{% include 'user/inc/link.html' %}{% endwith %}</div>
+      <div class="col-auto">{{ feedback.created|naturaltime }}</div>
     </div>
   </div>
+</div>
 </div>

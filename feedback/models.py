@@ -33,10 +33,12 @@ class FeedbackBase(models.Model):
 
 
 class UserFeedback(FeedbackBase):
+    type = 'user'
     user = models.ForeignKey(
         AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='feedback_for'
         )
 
 
 class PushFeedback(FeedbackBase):
+    type = 'push'
     push = models.ForeignKey('listing.Push', on_delete=models.CASCADE)

@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+  {% for feedback in user_feedback %}
+      {% include 'feedback/inc/card.html' %}
+  {% endfor %}
+  {% for feedback in push_feedback %}
+      {% include 'feedback/inc/card.html' %}
+  {% endfor %}
+  </div>
+</div>

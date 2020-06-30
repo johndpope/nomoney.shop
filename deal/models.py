@@ -183,7 +183,7 @@ class VirtualDeal(Deal):
         # Calculate possible Deals
         for user in other_users:
             deal = cls(user1=me_, user2=user)
-            if deal.level == level:
+            if deal.level >= level:
                 deals.append(deal)
 
         # Calculate max Quality

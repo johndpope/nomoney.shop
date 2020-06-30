@@ -46,6 +46,7 @@ $(document).ready(function() {
     <span aria-hidden="true">&times;</span>
   </button>
 </div> -->
+
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
@@ -55,16 +56,14 @@ $(document).ready(function() {
     <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="two"
       aria-selected="false" onclick="">Berechne Deals</a>
   </li>
-  <!-- 
-  <li class="nav-item">
-    <a class="nav-link" id="three-tab" data-toggle="tab" href="#three" role="tab" aria-controls="three"
-      aria-selected="false">Berechne Gilden</a>
-  </li>
-   -->
 </ul>
-<div class="tab-content py-3" id="myTabContent">
+<div class="tab-content py-3 border-left border-right border-bottom" id="myTabContent">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
     <div class="container-fluid mt-5">
+      {% if user_feedback_open or push_feedback_open %}
+        {% include 'feedback/solo/feedback_to_give_list.html' %}
+        <hr>
+      {% endif %}
       {% include 'listing/solo/listing_list.html' %}
       <hr class="my-5">
       {% with object_list=request.user.deals %}{% include 'deal/solo/deal_list.html' %}{% endwith %}

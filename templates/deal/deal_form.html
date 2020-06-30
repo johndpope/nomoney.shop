@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-{% with deal=form.instance %}
+{% if deal %}
   {% include 'deal/solo/deal_detail.html' %}
-{% endwith %}
+{% endif %}
 
 <div class="alert alert-primary" role="alert">
   Möchtest du diesen Deal beginnen?
