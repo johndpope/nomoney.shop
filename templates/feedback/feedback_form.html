@@ -5,21 +5,35 @@
 <script>
 $( document ).ready(function() {
   var score = $('#id_score').val();
+  if (score == ''){
+	  score = 50;
+  }
   $(this).find('.progress-bar').html(score + '%');
   $(this).find('.progress-bar').css('width', score + '%');
+
   $("#progress").click(function(e){
       var x = e.pageX - $(this).offset().left;
       var x_pct = x / $(this).width() *100;
       $('#id_score').val(x_pct.toFixed(0));
-  }); 
+  });
+
   $("#progress").mousemove(function(e){
       var x = e.pageX - $(this).offset().left;
       var x_pct = x / $(this).width() *100;
+      if (x_pct >= 95){
+    	  x_pct = 100;
+      } else if (x_pct <=5){
+    	  x_pct = 0;
+      }
       $(this).find('.progress-bar').html(x_pct.toFixed(0)+ '%');
       $(this).find('.progress-bar').css('width', x_pct+ '%');
   });
+
   $("#progress").mouseleave(function(){
 	  var score = $('#id_score').val();
+	  if (score == ''){
+		  score = 50;
+	  }
       $(this).find('.progress-bar').html(score + '%');
       $(this).find('.progress-bar').css('width', score + '%');
   });
