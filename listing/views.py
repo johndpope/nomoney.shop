@@ -7,6 +7,7 @@ from django.views.generic.base import TemplateView
 from category.models import Category
 from dashboard.models import VirtualDeal
 from .models import Push, Pull
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 FIELDS = ['title', 'image', 'category', 'quantity', 'unit', 'description']
@@ -34,7 +35,7 @@ class ListingTypeListView(ListView):
         return self.model.objects.all()
 
 
-class ListingCreateView(CreateView):
+class ListingCreateView(LoginRequiredMixin, CreateView):
     model = None
     fields = FIELDS
     template_name = 'listing/listing_form.html'
@@ -62,7 +63,7 @@ class ListingCreateView(CreateView):
         return reverse('listing_detail', args=(self.type, self.object.pk))
 
 
-class ListingUpdateView(UpdateView):
+class ListingUpdateView(LoginRequiredMixin, UpdateView):
     model = None
     template_name = 'listing/listing_form.html'
     fields = FIELDS
@@ -94,7 +95,7 @@ class ListingDetailView(DetailView):  # OK
         return DetailView.dispatch(self, request, *args, **kwargs)
 
 
-class ListingDeleteView(DeleteView):
+class ListingDeleteView(LoginRequiredMixin, DeleteView):
     model = None
     template_name = 'listing/listing_delete.html'
     success_url = reverse_lazy('listing_list')

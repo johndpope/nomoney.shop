@@ -39,14 +39,14 @@ class CategoryTestCase(TestCase):
         listing = Push.objects.first()
         self.user.getpost(url, url_args='pull', data=data)
         self.user.getpost(url, url_args='push', data=data)
-        self.anon.get200(url, url_args='pull', data=data)
-        self.anon.get200(url, url_args='push', data=data)
+        self.anon.post302(url, url_args='pull', data=data)
+        self.anon.post302(url, url_args='push', data=data)
 
         url = 'category_listing_create'
         url_args = ('pull', listing.pk)
         self.user.getpost(url, url_args=url_args, data=data)
-        self.anon.get200(url, url_args=url_args)
+        self.anon.get302(url, url_args=url_args)
 
         url_args = ('push', listing.pk)
         self.user.getpost(url, url_args=url_args, data=data)
-        self.anon.get200(url, url_args=url_args)
+        self.anon.get302(url, url_args=url_args)

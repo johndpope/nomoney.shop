@@ -63,7 +63,7 @@
           <h6 class="dropdown-header">Benutzer</h6>
           <a class="dropdown-item" href="{% url 'user_settings' %}"><i class="fas fa-cog"></i> Einstellungen</a>
           <a class="dropdown-item" href="{% url 'user_update' %}">{{ symbols.user|safe }} Mein Profil</a>
-          <a class="dropdown-item" href="{% url 'user_pw' request.user.pk %}"><i class="fas fa-key"></i> Passwort ändern</a>
+          <a class="dropdown-item" href="{% url 'user_pw' %}"><i class="fas fa-key"></i> Passwort ändern</a>
           <a class="dropdown-item" href="{% url 'user_logout' %}"><i class="fas fa-sign-out-alt"></i> Ausloggen</a>
         </div>
       </li>

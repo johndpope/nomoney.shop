@@ -27,13 +27,12 @@ class UserTestCase(TestCase):
         self.assertIsInstance(User.objects.get(username='demo2'), User)
 
         # user_pw
-        kwargs = {'pk': new_user.pk}
         data = {
             'old_password': new_user_pw,
             'new_password1': new_user_pw + 'a',
             'new_password2': new_user_pw + 'a'
             }
-        self.user.post(reverse('user_pw', kwargs=kwargs), data=data)
+        self.user.post(reverse('user_pw'), data=data)
 
         # user_logout
         self.assertIs(self.anon.get(reverse('user_update')).status_code, 200) 

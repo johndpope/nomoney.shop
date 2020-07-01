@@ -20,6 +20,10 @@ class Client(BaseClient):
         url = self.url(url_name, url_args, url_kwargs)
         self.tester.assertIs(self.get(url).status_code, 200)
 
+    def get302(self, url_name, url_args=None, url_kwargs=None, data=None):
+        url = self.url(url_name, url_args, url_kwargs)
+        self.tester.assertEqual(self.get(url).status_code, 302)
+
     def post302(self, url_name, url_args=None, url_kwargs=None, data=None):
         url = self.url(url_name, url_args, url_kwargs)
         self.tester.assertEqual(self.post(url, data=data).status_code, 302)
