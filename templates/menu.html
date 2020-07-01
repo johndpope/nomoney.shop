@@ -33,7 +33,7 @@
       </li>
       <li class="nav-item">
         <div id="search_box" class="collapse d-lg-block panel-collapse width float-right">
-        <fieldset><!--  disabled> -->
+        <fieldset{% if not request.user.is_authenticated %} disabled{% endif %}>
           <form action="{% url 'search_basic' %}" class="form-inline" method="POST">{% csrf_token %}
             <input name="text" id="live_search" class="nav-link form-control mr-sm-2" type="search" placeholder="Suche ..." aria-label="Search" autocomplete="off">
           </form>

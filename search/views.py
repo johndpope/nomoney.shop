@@ -4,6 +4,7 @@ from .forms import SearchForm
 from django.views.generic.base import TemplateView
 from django.urls.base import reverse
 from .models import SearchEngine
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class SearchView(FormView):
@@ -21,7 +22,7 @@ class SearchView(FormView):
             text = request.POST.get('text')
             return redirect(reverse('search_basic') + '?s=' + text)
 
-class AjaxPollView(TemplateView):
+class AjaxPollView(LoginRequiredMixin, TemplateView):
     template_name = 'search/solo/search_live.html'
 
     def get_context_data(self, **kwargs):

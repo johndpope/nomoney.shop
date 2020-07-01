@@ -47,10 +47,10 @@ class UserSearch(SearchBase):
 
     def get_query_set(self):
         result = self.model.objects.filter(
-            Q(first_name__contains=self.search_string) |
-            Q(last_name__contains=self.search_string) |
-            Q(email__contains=self.search_string) |
-            Q(username__contains=self.search_string)
+            Q(first_name__icontains=self.search_string) |
+            Q(last_name__icontains=self.search_string) |
+            Q(email__icontains=self.search_string) |
+            Q(username__icontains=self.search_string)
             )
         return result
 
@@ -71,8 +71,8 @@ class CategorySearch(SearchBase):
 
     def get_query_set(self):
         result = self.model.objects.filter(
-            Q(title__contains=self.search_string) |
-            Q(description__contains=self.search_string)
+            Q(title__icontains=self.search_string) |
+            Q(description__icontains=self.search_string)
             )
         return result
 
@@ -93,9 +93,9 @@ class PushSearch(SearchBase):
 
     def get_query_set(self):
         result = self.model.objects.filter(
-            Q(title__contains=self.search_string) |
-            Q(description__contains=self.search_string) |
-            Q(category__title__contains=self.search_string)
+            Q(title__icontains=self.search_string) |
+            Q(description__icontains=self.search_string) |
+            Q(category__title__icontains=self.search_string)
             )
         return result
 
