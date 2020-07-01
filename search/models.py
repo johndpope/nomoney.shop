@@ -1,6 +1,9 @@
 from user.models import User
+from category.models import Category
 from abc import ABC
 from django.db.models import Q
+from django.urls.base import reverse
+from listing.models import Push, Pull
 
 
 class Result:
@@ -25,7 +28,6 @@ class SearchBase(ABC):
         self.search_string = search_string
         self.query_set = self.get_query_set()
         self.objects = self.get_result_objects()
-        self.sorted_objects = self.get_sorted_objects()
 
     def get_query_set(self):
         """ returns QuerySet """
@@ -33,52 +35,100 @@ class SearchBase(ABC):
 
     def get_result_objects(self):
         """ returns List of Objects """
-        return [Result(obj) for obj in self.query_set]
-
-    def get_sorted_objects(self):
-        """ List of sorted Objects """
-        return sorted(self.objects, reverse=True)
+        return self.get_query_set()  # [Result(obj) for obj in self.query_set]
 
     def get_results(self):
-        return self.sorted_objects
+        return self.get_result_objects()
 
 
 class UserSearch(SearchBase):
     model = User
-    type = 'Benutzer'
+    type = 'user'
 
     def get_query_set(self):
-        return User.objects.filter(
+        result = self.model.objects.filter(
             Q(first_name__contains=self.search_string) |
             Q(last_name__contains=self.search_string) |
             Q(email__contains=self.search_string) |
             Q(username__contains=self.search_string)
             )
+        return result
 
     def get_result_objects(self):
         results = []
-        for obj in self.query_set:
+        for obj in self.get_query_set():
             result = Result(obj)
             result.type = self.type
-            results.append(results)
+            result.title = obj.username
+            result.url = reverse('user_detail', args=(obj.pk,))
+            results.append(result)
         return results
 
 
+class CategorySearch(SearchBase):
+    model = Category
+    type = 'category'
+
+    def get_query_set(self):
+        result = self.model.objects.filter(
+            Q(title__contains=self.search_string) |
+            Q(description__contains=self.search_string)
+            )
+        return result
+
+    def get_result_objects(self):
+        results = []
+        for obj in self.get_query_set():
+            result = Result(obj)
+            result.type = self.type
+            result.title = obj.title
+            result.url = reverse('category_detail', args=(obj.pk,))
+            results.append(result)
+        return results
+
+
+class PushSearch(SearchBase):
+    model = Push
+    type = 'push'
+
+    def get_query_set(self):
+        result = self.model.objects.filter(
+            Q(title__contains=self.search_string) |
+            Q(description__contains=self.search_string) |
+            Q(category__title__contains=self.search_string)
+            )
+        return result
+
+    def get_result_objects(self):
+        results = []
+        for obj in self.get_query_set():
+            result = Result(obj)
+            result.type = self.type
+            result.title = obj.title
+            result.url = reverse('category_detail', args=(obj.pk,))
+            results.append(result)
+        return results
+
+
+class PullSearch(PushSearch):
+    model = Pull
+    type = 'pull'
+
+
 class SearchEngine:
-    modules = [UserSearch]
+    modules = [UserSearch, CategorySearch, PushSearch, PullSearch]
 
     def __init__(self, search_string):
-        self.results = []
         self.search_string = search_string
-        self.search_modules()
-        self.sort_results()
 
     def search_modules(self):
+        results = {}
         for module in self.modules:
-            self.results.append(*module(self.search_string).get_results())
+            results[module.type] = module(self.search_string).get_results()
+        return results
 
     def sort_results(self):
-        return 
+        return self.search_modules()
 
     def get_results(self):
-        return self.results
+        return self.sort_results()

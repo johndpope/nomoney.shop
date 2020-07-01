@@ -26,7 +26,7 @@ class AjaxPollView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = TemplateView.get_context_data(self, **kwargs)
-        results = SearchEngine('demo').get_results()
+        results = SearchEngine(kwargs.get('search_string')).get_results()
         #results = SearchEngine(kwargs.get('search_string')).get_results()
         context['results'] = results or []
         return context

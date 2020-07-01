@@ -16,9 +16,6 @@
       <li class="nav-item">
         <a class="nav-link px-3" href="{% url 'deal_list' %}">{{ symbols.deal|safe }} <span class="d-none d-sm-inline-block">Deals</span></a>
       </li>
-      <li class="nav-item">
-        
-      </li>
       {% else %}
       <li class="nav-item">
         <a class="nav-link px-3" href="{% url 'user_create' %}">Registrieren</a>
@@ -30,10 +27,15 @@
     </ul>
     <ul class="col-auto navbar-nav ml-auto navbar-right">
       <li class="nav-item">
+        <span id="help_button" class="btn btn-link nav-link">
+          <i class="fas fa-info-circle"></i>
+        </span>
+      </li>
+      <li class="nav-item">
         <div id="search_box" class="collapse d-lg-block panel-collapse width float-right">
-        <fieldset disabled>
+        <fieldset><!--  disabled> -->
           <form action="{% url 'search_basic' %}" class="form-inline" method="POST">{% csrf_token %}
-            <input name="text" id="live_search" class="nav-link form-control mr-sm-2" type="search" placeholder="Suche ..." aria-label="Search">
+            <input name="text" id="live_search" class="nav-link form-control mr-sm-2" type="search" placeholder="Suche ..." aria-label="Search" autocomplete="off">
           </form>
         </fieldset>
         </div>
@@ -48,9 +50,6 @@
           <i class="fas fa-stream"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <button id="help_button" class="dropdown-item">
-            <i class="fas fa-info-circle"></i> Hilfe
-          </button>
           <a class="dropdown-item" href="{% url 'feedback_list' %}">
             {{ symbols.feedback_regular|safe }} Bewertungen
           </a>
@@ -72,6 +71,4 @@
       </li>
     </ul>
 </nav>
-
-
       

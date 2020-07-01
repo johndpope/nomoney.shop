@@ -1,7 +1,65 @@
-{% for result in results %}
-<div class="row">
-  <div class="col-12">
-    {{ results }}
+<div class="container mt-3">
+  <div class="row">
+    <div class="col">
+      <h3>Suchergebnisse</h3>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <button type="button" class="btn btn-link text-danger" onclick="$('#search_results').empty()"><i class="far fa-window-close"></i></button>
+    </div>
   </div>
+
+  {% if results.user %}
+  <div class="row border p-3 my-3">
+    <div class="col-auto">
+      <b>Benutzer:</b>
+    </div>
+    {% for user_result in results.user %}
+    <div class="col-auto">
+      {% with user=user_result.object %}{% include 'user/inc/link.html' %}{% endwith %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if results.category %}
+  <div class="row border p-3 my-3">
+    <div class="col-auto">
+      <b>Kategorien:</b>
+    </div>
+    {% for category_result in results.category %}
+    <div class="col-auto">
+      {% with category=category_result.object %}{% include 'category/inc/link.html' %}{% endwith %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if results.push %}
+  <div class="row border p-3 my-3">
+    <div class="col-auto">
+      <b>Biete:</b>
+    </div>
+    {% for push_result in results.push %}
+    <div class="col-auto">
+      {% with listing=push_result.object %}{% include 'listing/inc/link.html' %}{% endwith %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if results.pull %}
+  <div class="row border p-3 my-3">
+    <div class="col-auto">
+      <b>Suche:</b>
+    </div>
+    {% for pull_result in results.pull %}
+    <div class="col-auto">
+      {% with listing=pull_result.object %}{% include 'listing/inc/link.html' %}{% endwith %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
 </div>
-{% endfor %}
+<hr class="my-5">
+ 
