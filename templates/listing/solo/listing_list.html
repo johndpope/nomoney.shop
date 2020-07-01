@@ -5,7 +5,7 @@
         <h3>{% if user == request.user %}Meine{% else %}{{ user }}'s{% endif %} Angebote</h3>
     </div>
     <div class="col-4 d-md-flex justify-content-end">
-        {% if user == request.user %}<a class="btn p-0 text-info" href="{% url 'listing_create' 'push' %}"><i class="fas fa-plus"></i> Neues Angebot</a>{% endif %}
+        {% if user == request.user %}<a class="btn p-0 text-info" href="{% url 'listing_create' 'push' %}"><i class="fas fa-plus"></i> biete</a>{% endif %}
     </div>
   </div>
   <div class="row">
@@ -46,7 +46,7 @@
       <h3 class="row">{% if user == request.user %}Meine{% else %}{{ user }}'s{% endif %} Anfragen</h3>
     </div>
     <div class="col-4 d-md-flex justify-content-end">
-        {% if user == request.user %}<a class="btn p-0 text-info" href="{% url 'listing_create' 'pull' %}"><i class="fas fa-plus"></i> Neue Anfrage</a>{% endif %}
+        {% if user == request.user %}<a class="btn p-0 text-info" href="{% url 'listing_create' 'pull' %}"><i class="fas fa-plus"></i> suche</a>{% endif %}
     </div>
   </div>
   <div class="row">
