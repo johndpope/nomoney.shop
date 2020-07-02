@@ -1,0 +1,10 @@
+git+https://github.com/snake-soft/snakelib.git
+django>=3
+django-debug-toolbar
+pylint
+pylint-django
+coverage
+coveralls
+m2r
+Pillow
+django-pwa
