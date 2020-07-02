@@ -1,1 +1,18 @@
-You are Offline
+{% extends 'base.html' %}
+
+{% block help %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-12 w-100 d-flex justify-content-center">
+            <p>Du bist leider offline...</p>
+        </div>
+        <div class="col-12 w-100 d-flex justify-content-center" style="height: 100px;">
+          <div class="spinner-border my-auto" role="status">
+            <span class="sr-only">Lade Daten...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
