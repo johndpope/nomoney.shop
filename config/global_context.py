@@ -2,6 +2,8 @@ from config.settings import VERSION, NAME
 
 
 SYMBOLS = {
+        'forward': '<i class="fas fa-forward"></i>',
+        'back': '<i class="fas fa-backward"></i>',
         'detail': '<i class="fas fa-angle-double-right"></i>',
         'delete': '<i class="fas fa-trash-alt"></i>',
         'delete_regular': '<i class="far fa-trash-alt"></i>',

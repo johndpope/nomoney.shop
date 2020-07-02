@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.css">
+<script>
+  $(document).ready(function() {
+  	$('.chosen-select').chosen();
+  });
+</script>
+<style>
+  #id_users_chosen{width:100%!important;}
+</style>
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<form method="post" enctype="multipart/form-data">
+			{% if form.errors %}
+			<div class="alert alert-danger" role="alert">
+				{{ form.errors }}
+				</div>
+			{% else %}
+			{% endif %}
+			{% csrf_token %}
+			<table class="table table-striped table-bordered table-hover">
+				{{ form.as_table }}
+			</table>
+			<button class="btn btn-primary btn-block" type="submit">Speichern</button>
+		</form>
+	</div>
+{% endblock %}

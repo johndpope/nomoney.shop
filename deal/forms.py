@@ -6,7 +6,7 @@ class DealCreateForm(forms.ModelForm):
 
     class Meta:
         model = Deal
-        fields = ['user2']
+        fields = ['user2', 'location']
 
 
 class DealAcceptForm(forms.ModelForm):

@@ -21,6 +21,10 @@ class User(AbstractUser):
     description = models.TextField(blank=True)
 
     @property
+    def locations(self):
+        return self.location_set.all()
+
+    @property
     def other_users(self):
         return self.__class__.objects.exclude(pk=self.pk)
 

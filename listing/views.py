@@ -10,7 +10,7 @@ from .models import Push, Pull
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-FIELDS = ['title', 'image', 'category', 'quantity', 'unit', 'description']
+FIELDS = ['title', 'image', 'category', 'quantity', 'unit', 'description', 'location']
 """
 listing_list - list pushs and pulls
 listing_create

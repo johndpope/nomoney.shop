@@ -27,6 +27,9 @@ class Deal(models.Model):
         default=DealStatus.STARTED,
         choices=DealStatus.choices,
         )
+    location = models.ForeignKey(
+        'location.Location', on_delete=models.CASCADE, blank=True, null=True
+        )
 
     pov_user = None
     _level = None

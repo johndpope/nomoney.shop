@@ -10,6 +10,10 @@ class Guild(models.Model):
         )
     title = models.CharField(max_length=20)
 
+    location = models.ForeignKey(
+        'location.Location', on_delete=models.CASCADE, blank=True, null=True
+        )
+
     def save(self, *args, **kwargs):
         if not self.chat:
             self.chat = Chat.objects.create()

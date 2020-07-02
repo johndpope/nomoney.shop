@@ -26,6 +26,9 @@ class ListingBase(models.Model):
     description = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    location = models.ForeignKey(
+        'location.Location', on_delete=models.CASCADE, blank=True, null=True
+        )
     type = None
 
     def __init__(self, *args, **kwargs):

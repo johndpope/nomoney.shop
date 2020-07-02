@@ -24,7 +24,7 @@ class GuildDetailView(DetailView):
 
 class GuildCreateView(CreateView):
     model = Guild
-    fields = ['title', 'users']
+    fields = ['title', 'users', 'location']
 
     def get_form(self, form_class=None):
         form = CreateView.get_form(self, form_class=form_class)
@@ -39,7 +39,7 @@ class GuildCreateView(CreateView):
 
 class GuildUpdateView(UpdateView):
     model = Guild
-    fields = ['title', 'users']
+    fields = ['title', 'users', 'location']
 
     def get_form(self, form_class=None):
         form = UpdateView.get_form(self, form_class=form_class)

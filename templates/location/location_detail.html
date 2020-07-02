@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+<div class="container-fluid mb-3">
+  <div class="row">
+    <div class="col d-flex justify-content-end"><a class="btn btn-link text-info" href="{% url 'location_list' %}">{{ symbols.back|safe }}&nbsp;zurück</a></div>
+  </div>
+</div>
+
+<div class="container-fluid border">
+  <div class="row">
+    <div class="col-8">
+        <h3>Angebote an Ort {{ location.title }}</h3>
+    </div>
+    <div class="col-4 d-md-flex justify-content-end">
+        {% if user == request.user %}<a class="btn p-0 text-info" href="{% url 'listing_create' 'push' %}"><i class="fas fa-plus"></i> biete</a>{% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-sm-4 col-md-2 order-4 order-sm-1">
+      <b>Kategorie</b>
+    </div>
+    <div class="col-12 col-sm-8 col-md-5 order-1 order-sm-2">
+      <b>Titel</b>
+    </div>
+    <div class="col-12 col-sm-4 col-md-2 order-2 order-sm-3">
+      <b>Menge</b>
+    </div>
+    <div class="col-12 col-sm-8 col-md-3 order-3 order-sm-4 d-flex justify-content-end">
+      <b>Geändert</b>
+    </div>
+  </div>
+  {% for listing in location.pushs %}
+  <div class="row border-top">
+    <div class="col-12 col-sm-4 col-md-2 order-4 order-sm-1">
+      {% with category=listing.category %}{% include 'category/inc/link.html' %}{% endwith %}
+    </div>
+    <div class="col-12 col-sm-8 col-md-5 order-1 order-sm-2">
+      {% include 'listing/inc/link.html' %} {{ listing.title }}
+    </div>
+    <div class="col-12 col-sm-4 col-md-2 order-2 order-sm-3">
+      {{ listing.quantity }}{{ listing.unit.short }}
+    </div>
+    <div class="col-12 col-sm-8 col-md-3 order-3 order-sm-4 d-flex justify-content-end" title="{{ listing.modified }}">
+      {{ listing.modified|naturaltime }}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<hr class="my-5">
+<div class="container-fluid border">
+  <div class="row">
+    <div class="col-8">
+      <h3 class="row">Suchanfragen an Ort {{ location.title }}</h3>
+    </div>
+    <div class="col-4 d-md-flex justify-content-end">
+        {% if user == request.user %}<a class="btn p-0 text-info" href="{% url 'listing_create' 'pull' %}"><i class="fas fa-plus"></i> suche</a>{% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-sm-4 col-md-2 order-4 order-sm-1">
+      <b>Kategorie</b>
+    </div>
+    <div class="col-12 col-sm-8 col-md-5 order-1 order-sm-2">
+      <b>Titel</b>
+    </div>
+    <div class="col-12 col-sm-4 col-md-2 order-2 order-sm-3">
+      <b>Menge</b>
+    </div>
+    <div class="col-12 col-sm-8 col-md-3 order-3 order-sm-4 d-md-flex justify-content-end">
+      <b>Geändert</b>
+    </div>
+  </div>
+  {% for listing in user.pulls %}
+  <div class="row border-top">
+    <div class="col-12 col-sm-4 col-md-2 order-4 order-sm-1">
+      {% with category=listing.category %}{% include 'category/inc/link.html' %}{% endwith %}
+    </div>
+    <div class="col-12 col-sm-8 col-md-5 order-1 order-sm-2">
+      {% include 'listing/inc/link.html' %} {{ listing.title }}
+    </div>
+    <div class="col-12 col-sm-4 col-md-2 order-2 order-sm-3">
+      {{ listing.quantity }}{{ listing.unit.short }}
+    </div>
+    <div class="col-12 col-sm-8 col-md-3 order-3 order-sm-4 d-md-flex justify-content-end" title="{{ listing.modified }}">
+      {{ listing.modified|naturaltime }}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<hr class="my-5">
+<div class="container-fluid border">
+  <div class="row">
+    <div class="col-8">
+        <h3>Deals an Ort {{ location.title }}</h3>
+    </div>
+    <div class="col-4 d-md-flex justify-content-end">
+      {% if request.user == location.user %}
+        <a class="btn p-0 text-info" href="{% url 'deal_create' %}"><i class="fas fa-plus"></i> Deal</a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col"><b>Händler</b></div>
+    <div class="col"><b>gibt</b></div>
+    <div class="col"><b>nimmt</b></div>
+    <div class="col"><b>an / von</b></div>
+    <div class="col"><b>Status</b></div>
+    <div class="col"></div>
+  </div>
+  {% for deal in location.deals %}
+  <div class="row border-top">
+    <div class="col">{% with user=deal.user %}{% include 'user/inc/link.html' %}{% endwith %}</div>
+    <div class="col">{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %} {% endfor %}</div>
+    <div class="col">{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %} {% endfor %}</div>
+    <div class="col">{% with user=deal.partner %}{% include 'user/inc/link.html' %}{% endwith %}</div>
+    <div class="col d-flex justify-content-end">{% include 'deal/inc/status.html' %}</div>
+    <div class="col d-flex justify-content-end"><a class="text-info btn" href="{% url 'deal_detail' deal.pk %}"><i class="fas fa-search"></i></a></div>
+  </div>
+  {% endfor %}
+</div>
+
+
+<hr class="my-5">
+
+
+<div class="container-fluid border">
+  <div class="row">
+    <div class="col-8">
+        <h3>Gilden  an Ort {{ location.title }}</h3>
+    </div>
+    <div class="col-4 d-md-flex justify-content-end">
+        <a class="btn btn-link p-0 text-info" href="{% url 'guild_create' %}"><i class="fas fa-plus"></i> Gilde</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col"><b>Name</b></div>
+    <div class="col"><b>Teilnehmer</b></div>
+    <div class="col"><b></b></div>
+  </div>
+  {% for guild in location.guilds %}
+    <div class="row border-top">
+      <div class="col">{% include 'guild/inc/link.html' %}</div>
+      <div class="col">{% for user in guild.users.all %}{% include 'user/inc/link.html' %}{% endfor %}</div>
+      <div class="col d-flex justify-content-end">
+        {% if request.user in guild.users.all %}
+        <a class="btn btn-link" href="{% url 'guild_delete' guild.pk %}" title="Löschen">{{ symbols.delete|safe }}</a>
+        <a class="btn btn-link" href="{% url 'guild_update' guild.pk %}" title="Bearbeiten">{{ symbols.update|safe }}</a>
+        {% endif %}
+        <a class="btn btn-link" href="{% url 'guild_detail' guild.pk %}" title="Details">{{ symbols.detail|safe }}</a>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

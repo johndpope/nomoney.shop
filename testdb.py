@@ -78,7 +78,7 @@ class TestDB:
                 last_name='last' + key,
                 email='test{}@local.local'.format(key),
                 )
-            if not i % 10 and cls.PRINT_STEPS and i != 0:
+            if cls.PRINT_STEPS and not i % 10 and i != 0:
                 print(str(i) + ' users created.')
 
     @classmethod
@@ -114,7 +114,7 @@ class TestDB:
                 quantity=quantity,
                 unit=unit
                 )
-            if not i % 100 and cls.PRINT_STEPS and i != 0:
+            if cls.PRINT_STEPS and not i % 100 and i != 0:
                 print(str(i) + ' listings created.')
 
     @classmethod
@@ -124,7 +124,7 @@ class TestDB:
                 user1=cls.random_object(User),
                 user2=cls.random_object(User)
                 )
-            if not i % 100 and cls.PRINT_STEPS and i != 0:
+            if cls.PRINT_STEPS and not i % 100 and i != 0:
                 print(str(i) + ' deals created.')
 
     @staticmethod
