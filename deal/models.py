@@ -1,3 +1,4 @@
+from itertools import combinations
 from django.db import models
 from django.db.models import Q
 from config.settings import AUTH_USER_MODEL
@@ -176,6 +177,16 @@ class Deal(models.Model):
 
 class VirtualDeal(Deal):
     status = 0
+
+    @classmethod
+    def combinated(cls, *users, me_=None):
+        deals = []
+        for user1, user2 in combinations(users, 2):
+            if user1 and user2:
+                if me_ and user2 == me_:
+                    user1, user2 = user2, user1
+                deals.append(cls.by_user(user1, user2, level=0))
+        return deals
 
     @classmethod
     def by_users(cls, me_, other_users, level=2):

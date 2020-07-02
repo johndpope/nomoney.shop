@@ -13,16 +13,33 @@ class ChatMessage(models.Model):
 
 
 class Chat(models.Model):
+    users = models.ManyToManyField(AUTH_USER_MODEL)
+
     @property
     def title(self):
-        return ', '.join((str(user) for user in self.users.all()))
+        if self.users.all():
+            return ', '.join((str(user) for user in self.users.all()))
+        return 'Chat: {}'.format(self.pk)
 
     @property
     def messages(self):
         return self.chatmessage_set.all()
 
+    @classmethod
+    def by_users(cls, user_list, create=False):
+        chats = cls.objects.all()
+        for chat in chats:
+            if set(chat.users.all()) == set(user_list):
+                return chat
 
-class UserChat(models.Model):
-    users = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, )
-    chat = models.ForeignKey('chat.Chat', on_delete=models.CASCADE)
-    
+        if create:
+            chat = cls.objects.create()
+            for user in user_list:
+                chat.users.add(user)
+            chat.save()
+            return chat
+
+        return None
+
+    def __str__(self):
+        return self.title

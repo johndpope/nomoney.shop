@@ -16,6 +16,9 @@
       <li class="nav-item">
         <a class="nav-link px-3" href="{% url 'deal_list' %}">{{ symbols.deal|safe }} <span class="d-none d-sm-inline-block">Deals</span></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link px-3" href="{% url 'guild_list' %}">{{ symbols.guild|safe }} <span class="d-none d-sm-inline-block">Gilden</span></a>
+      </li>
       {% else %}
       <li class="nav-item">
         <a class="nav-link px-3" href="{% url 'user_create' %}">Registrieren</a>

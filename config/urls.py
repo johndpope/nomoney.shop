@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.urls import include, path
 from user.views import AgentView
 from config import settings
+from django.views.i18n import JavaScriptCatalog
 
 
 urlpatterns = [
@@ -37,4 +38,5 @@ urlpatterns = [
 
     path('', include('pwa.urls')),
     path('admin/', admin.site.urls),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

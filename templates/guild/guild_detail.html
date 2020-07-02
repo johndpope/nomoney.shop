@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid mb-5">
+  <div class="row">
+    <div class="col-8">
+        <h3>Mitglieder</h3>
+    </div>
+    <div class="col-4 d-md-flex justify-content-end">
+      {% if request.user in guild.users.all %}
+        <a class="btn btn-link p-0 text-info" href="{% url 'guild_update' guild.pk %}">{{ symbols.update|safe }} Bearbeiten</a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-lg-4 d-none d-lg-block col-xl-2"><b>Mitglied</b></div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-5"><b>Biete</b></div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-5"><b>Suche</b></div>
+  </div>
+  {% for user in guild.users.all %}
+  <div class="row border-top py-3">
+    <div class="col-12 col-lg-4 col-xl-2">{% include 'user/inc/link.html' %}</div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-5">{% for listing in user.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-5">{% for listing in user.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
+  </div>
+  {% endfor %}
+</div>
+
+
+<hr class="my-5">
+
+
+<h3>Berechnete Deals</h3>
+<div class="container-fluid">
+<div class="row">
+  <div class="col"><b>Qualität</b></div>
+  <div class="col"><b>Benutzer</b></div>
+  <div class="col"><b>gibt</b></div>
+  <div class="col"><b>nimmt</b></div>
+  <div class="col"><b>an / von</b></div>
+  <div class="col d-flex justify-content-end"></div>
+</div>
+{% for deal in deals_2d %}
+{{ deal.user1 }}
+{{ deal.user2 }}
+  <div class="row border-top py-3">
+    <div class="col">
+      <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar" style="width: {{ deal.quality_pct }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </div>
+    <div class="col">{% with user=deal.user1 %}{% include 'user/inc/link.html' %}{% endwith %}</div>
+    <div class="col">{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
+    <div class="col">{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
+    <div class="col">{% with user=deal.user2 %}{% include 'user/inc/link.html' %}{% endwith %}</div>
+    <div class="col d-flex justify-content-end">
+      {% if deal.user1 == request.user %}
+        <a class="btn p-0 text-info" href="{% url 'deal_user_create' deal.user2.pk %}"><i class="fas fa-plus"></i> Deal</a>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}
