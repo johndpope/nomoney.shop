@@ -19,6 +19,7 @@ class GuildDetailView(DetailView):
             *self.object.users.all(),
             me_=self.request.user
             )
+        context['chat'] = self.object.chat
         return context
 
 

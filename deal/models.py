@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models import Q
 from config.settings import AUTH_USER_MODEL
 from feedback.models import PushFeedback, UserFeedback
+from chat.models import Chat
 
 
 class DealStatus(models.IntegerChoices):
@@ -54,6 +55,10 @@ class Deal(models.Model):
     def set_pov(self, pov_user):
         self.pov_user = pov_user
         return self
+
+    @property
+    def chat(self):
+        return Chat.by_users(self.user1, self.user2, create=True)
 
     @property
     def bids(self):

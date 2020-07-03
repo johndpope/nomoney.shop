@@ -2,6 +2,7 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from chat.models import Chat
 
 
 def image_path(instance, filename):
@@ -54,6 +55,9 @@ class User(AbstractUser):
         for deal in deals:
             deal.set_pov(self)
         return deals
+
+    def get_chat_with(self, *users):
+        return Chat.by_users(self, *users)
 
 
 @receiver(pre_save, sender=User)

@@ -1,7 +1,5 @@
 from config.settings import VERSION, NAME
 
-from chat.models import Chat
-
 
 SYMBOLS = {
         'forward': '<i class="fas fa-forward"></i>',
@@ -33,5 +31,4 @@ def default(request):
     ret['version_str'] = '.'.join((str(elem) for elem in VERSION))
     ret['name'] = NAME
     ret['symbols'] = SYMBOLS
-    ret['chat'] = Chat.objects.get(pk=1)
     return ret

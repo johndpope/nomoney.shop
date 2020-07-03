@@ -26,7 +26,7 @@ class Chat(models.Model):
         return self.chatmessage_set.all()
 
     @classmethod
-    def by_users(cls, user_list, create=False):
+    def by_users(cls, *user_list, create=False):
         chats = cls.objects.all()
         for chat in chats:
             if set(chat.users.all()) == set(user_list):

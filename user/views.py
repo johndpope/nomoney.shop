@@ -58,20 +58,26 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
     context_object_name = 'user'
 
-    def dispatch(self, request, *args, **kwargs):
-        user = request.user
-        partner = self.model.objects.get(pk=kwargs.get('pk'))
-        #=======================================================================
-        # self.extra_context = {
-        #     'deal': user.get_dealset_from_partner(partner).deal
-        #     }
-        #=======================================================================
-        return DetailView.dispatch(self, request, *args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = DetailView.get_context_data(self, **kwargs)
+        if self.object != self.request.user:
+            context['chat'] = self.object.get_chat_with(self.request.user)
+        return context
+
+    #===========================================================================
+    # def dispatch(self, request, *args, **kwargs):
+    #     user = request.user
+    #     partner = self.model.objects.get(pk=kwargs.get('pk'))
+    #     self.extra_context = {
+    #         'deal': user.get_dealset_from_partner(partner).deal
+    #         }
+    #     return DetailView.dispatch(self, request, *args, **kwargs)
+    #===========================================================================
 
 
 class AgentView(LoginRequiredMixin, TemplateView):
     template_name = 'user/agent.html'
- 
+
     def get_context_data(self, **kwargs):
         context = TemplateView.get_context_data(self, **kwargs)
         user = self.request.user

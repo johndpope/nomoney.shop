@@ -3,12 +3,12 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, CreateView, FormView
 from django.urls.base import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Deal
-from .forms import DealCreateForm, DealAcceptForm
 from bid.forms import BidForm
 from user.models import User
 from dashboard.models import VirtualDeal
 from django.views.generic.base import TemplateView
+from .models import Deal
+from .forms import DealCreateForm, DealAcceptForm
 # TODO: check if access is allowed (self.request.user in dealset user
 
 
@@ -35,6 +35,7 @@ class DealDetailView(LoginRequiredMixin, DetailView):
         if context['can_bid']:
             context['push_form'] = BidForm(self.object.pushs)
             context['pull_form'] = BidForm(self.object.partner_pushs)
+        context['chat'] = self.object.chat
         return context
 
     def get_object(self, queryset=None):

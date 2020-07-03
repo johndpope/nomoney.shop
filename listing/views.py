@@ -90,7 +90,8 @@ class ListingDetailView(DetailView):  # OK
         user = request.user
         partner = listing.user
         self.extra_context = {
-            'deal': VirtualDeal.by_user(user, partner)
+            'deal': VirtualDeal.by_user(user, partner),
+            'chat': listing.get_chat_with_partner(partner),
             }
         return DetailView.dispatch(self, request, *args, **kwargs)
 

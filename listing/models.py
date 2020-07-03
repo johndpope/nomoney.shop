@@ -2,6 +2,7 @@ from uuid import uuid4
 from itertools import chain
 from django.db import models
 from config.settings import AUTH_USER_MODEL
+from chat.models import Chat
 
 
 def image_path(instance, _):
@@ -38,6 +39,9 @@ class ListingBase(models.Model):
     @property
     def opposite_class(self):
         return {'push': Pull, 'pull': Push}.get(self.type)
+
+    def get_chat_with_partner(self, partner):
+        return Chat.by_users(self.user, partner, create=True)
 
     def get_matches(self):
         cls = self.opposite_class
