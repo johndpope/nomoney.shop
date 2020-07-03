@@ -4,6 +4,9 @@ from django.views.generic.edit import CreateView
 from django.urls.base import reverse
 from .models import Chat
 from .forms import ChatMessageForm
+from django.views.generic.base import TemplateView
+from django.views.generic import View
+from django.http import JsonResponse
 
 
 class ChatListView(ListView):
@@ -43,3 +46,14 @@ class ChatNewMessageView(CreateView):
         return reverse('chat_detail', args=(
             self.request.resolver_match.kwargs.get('pk'),
             ))
+
+
+class ChatAjaxStatusView(View):
+    def get(self, request, *args, **kwargs):  # future?
+        import pdb; pdb.set_trace()  # <---------
+        return JsonResponse({'foo': 'bar'})
+    
+
+class ChatAjaxView(DetailView):
+    model = Chat
+    template_name = 'chat/solo/chat_messages_ajax.html'

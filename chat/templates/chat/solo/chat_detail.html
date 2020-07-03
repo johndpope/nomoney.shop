@@ -1,0 +1,21 @@
+{% load humanize %}
+<span id="chat_button" type="button" class="btn btn-lg text-primary position-fixed" style="z-index:100;bottom:0;right:0;" data-toggle="collapse" href="#chat" role="button" aria-expanded="false" aria-controls="chat">{{ symbols.chat|safe}}</span>
+
+<div style="width:100vh;">
+<div id="chat" class="jumbotron-fluid collapse bg-light py-3 position-absolute w-100 h-100" style="z-index:90;bottom:0;right:0;" data-url="{% url 'chat_ajax_detail' chat.pk %}">
+  <div class="container">
+      <div class="row">
+        <div class="col-12 p-0">
+          <form id="chat_form" action="{% url 'chat_new_message' chat.pk %}" method="post" class="form-check form-check-inline w-100">{% csrf_token %}
+            <textarea id="id_text" name="text" class="form-control form-check form-check-inline" style="resize: none;" rows="3" required></textarea>
+            <button type="submit" class="btn btn-primary my-1 form-check form-check-inline"><i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+        <div id="chat_messages" class="col-12 p-0 border bg-white">
+            <!-- Here come the chat messages -->
+        </div>
+      </div>
+    <hr>
+  </div>
+</div>
+</div>

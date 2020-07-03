@@ -1,0 +1,25 @@
+{% load humanize %}
+<div class="row p-3">
+  <div class="col">
+    {% for message in chat.messages %}
+    <div class="row {% if request.user == message.creator %}row justify-content-start{% else %}row justify-content-end{% endif %}">
+      <div class="col-auto m-3">
+        <div class="card">
+          {% if request.user == message.creator %}
+            <div class="card-header bg-primary text-white p-1">
+              Du ({{ message.created|naturaltime }})
+            </div>
+          {% else %}
+            <div class="card-header p-1">
+              {{ message.creator }} ({{ message.created|naturaltime }})
+            </div>
+          {% endif %}
+          <div class="card-body p-1">
+            <p class="card-text">{{ message.text }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
