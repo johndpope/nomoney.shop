@@ -19,11 +19,11 @@ listing_detail
 """
 
 
-class ListingListView(TemplateView):
+class ListingListView(LoginRequiredMixin, TemplateView):
     template_name = 'listing/listing_list.html'
 
 
-class ListingTypeListView(ListView):
+class ListingTypeListView(LoginRequiredMixin, ListView):
     model = None
     template_name = 'listing/listing_list.html'
 
@@ -79,7 +79,7 @@ class ListingUpdateView(LoginRequiredMixin, UpdateView):
         return reverse('listing_detail', args=(self.type, self.object.pk))
 
 
-class ListingDetailView(DetailView):  # OK
+class ListingDetailView(LoginRequiredMixin, DetailView):  # OK
     model = None
     template_name = 'listing/listing_detail.html'
     context_object_name = 'listing'

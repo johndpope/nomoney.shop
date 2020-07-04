@@ -1,6 +1,4 @@
-{% load static %}
-{% load pwa %}
-{% load i18n %}
+{% load static %}{% load pwa %}{% load i18n %}
 <!DOCTYPE HTML>
 <html lang="de-DE">
 <head>
@@ -12,54 +10,50 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" rel="stylesheet" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% include 'inc/pwa.html' %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="nomoney.shop">
-<meta name="application-name" content="nomoney.shop"> <!-- Windows -->
-<link rel="apple-touch-icon" href="{% static 'logo.png' %}">
-<link rel="apple-touch-startup-image" href="{% static 'logo.png' %}">
-
-  <style type="text/css">
-    html, body{height:99%;font-family: Arial, Helvetica, sans-serif;}
-    * {box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;}
-    textarea{width: 100%;}
-    .borderless td, .borderless th {
-          border: none;
-    }
-    input{width:100%;}
-    .hide-empty:empty{display: none;}
-    .nav-link {
-  	    color: #537082;
-  	}
-  </style>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
   <script src="{% static "js/base.js" %}"></script>
   <script src="{% static "js/search.js" %}"></script>
+  <link rel="stylesheet" href="{% static "css/base.css" %}" />
+  <style type="text/css">
+  </style>
   <script>
   </script>
   {% block head %}{% endblock %}
 </head>
-<body class="bg-light">
+<body style="background-color: rgb(21, 32, 43);">
   {% include "menu.html" %}
-  <div class="container bg-white border shadow mb-5">
-
-  <div class="row">
-    <div class="col-12">
-      <div id="help_block" style="display:none; min-height:50px;" class="alert alert-primary alert-dismissible fade show" role="alert">
-        {% block help %}Für diese Seite ist noch keine Hilfe vorhanden{% endblock %}
+  <div id="wrapper" class="container bg-white border shadow">
+    <div class="row">
+      <div class="col-12 mt-5">
+        <div id="help_block" style="display:none; min-height:50px;" class="alert alert-primary alert-dismissible fade show pt-4" role="alert">
+           <div class="container">
+            <div class="row">
+              <div class="col-12 d-flex justify-content-end">
+                <span class="help_button btn">
+                  {{ symbols.close|safe }}
+                </span>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  {% block help %}Für diese Seite ist noch keine Hilfe vorhanden{% endblock %}
+                </div>
+              </div>
+             </div>
+           </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div id="search_results">
+          <!-- Search -->
+        </div>
       </div>
     </div>
-    <div class="col-12">
-      <div id="search_results">
-        <!-- Search -->
-      </div>
+  
+    <div class="row">
+      <div class="col-12 p-3 p-xl-5 p-xl-5">{% block content %}{% endblock %}</div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12 p-3 p-xl-5 p-xl-5">{% block content %}{% endblock %}</div>
-  </div>
   </div>
   {% if chat %}
     {% include 'chat/solo/chat_detail.html' %}

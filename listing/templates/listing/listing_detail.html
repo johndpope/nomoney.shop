@@ -5,11 +5,11 @@
 {% block content %}
 <div class="container">
   <div class="row">
-      {% if listing.image %}
     <div class="col-auto">
-        <img src="{{ listing.image.url }}" class="rounded float-left border" width="200" height="200">
+      <div class="rounded border d-flex justify-content-center" style="width:200px;height:200px;">
+        <img class="img-thumbnail" src="{% if user.image %}{{ listing.image.url }}{% else %}{% static 'images/default_listing.jpg' %}{% endif %}" style="object-fit: cover;">
+      </div>
     </div>
-      {% endif %}
     <div class="col">
       <div class="row">
         <div class="col-12">

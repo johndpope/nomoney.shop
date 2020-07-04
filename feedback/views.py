@@ -1,13 +1,13 @@
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import DeleteView, UpdateView,\
-    FormView
-from .models import UserFeedback, PushFeedback
-from .forms import PushFeedbackUpdateForm, UserFeedbackUpdateForm
+from django.views.generic.edit import DeleteView, UpdateView
 from django import forms
 from django.urls.base import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import UserFeedback, PushFeedback
 
-class FeedbackListView(TemplateView):
+
+class FeedbackListView(LoginRequiredMixin, TemplateView):
     template_name = 'feedback/feedback_list.html'
 
     def get_context_data(self, **kwargs):
@@ -19,7 +19,7 @@ class FeedbackListView(TemplateView):
         return context
 
 
-class FeedbackDetailView(DetailView):
+class FeedbackDetailView(LoginRequiredMixin, DetailView):
     model = None
     type_ = None
     template_name = 'feedback/feedback_detail.html'
@@ -30,7 +30,7 @@ class FeedbackDetailView(DetailView):
         DetailView.setup(self, request, *args, **kwargs)
 
 
-class FeedbackUpdateView(UpdateView):
+class FeedbackUpdateView(LoginRequiredMixin, UpdateView):
     model = None
     template_name = 'feedback/feedback_form.html'
     fields = ['score', 'subject', 'text']
@@ -70,7 +70,7 @@ class FeedbackUpdateView(UpdateView):
     #===========================================================================
 
 
-class FeedbackDeleteView(DeleteView):
+class FeedbackDeleteView(LoginRequiredMixin, DeleteView):
     model = None
     type_ = None
     template_name = 'feedback/feedback_detail.html'

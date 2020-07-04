@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#help_button").click(function(){
+    $(".help_button").click(function(){
     	$("#help_block").toggle();
     });
     $("search_toggle").click(function(){
@@ -47,6 +47,8 @@ function initialize_chat(){
 }
 
 $(document).ready(function() {
-	//initialize_chat();
-
+	$(window).resize(function(){
+		var menu_height = $('#main_menu').height();
+		$('#wrapper').css('margin-top', menu_height);
+	})
 });

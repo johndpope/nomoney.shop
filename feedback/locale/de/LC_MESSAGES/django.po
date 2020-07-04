@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-04 16:32+0200\n"
+"POT-Creation-Date: 2020-07-04 18:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,12 +59,14 @@ msgstr "Einträge"
 
 #: feedback/templates/feedback/feedback_form.html:50
 #: feedback/templates/feedback/inc/card.html:15
+#: feedback/templates/feedback/solo/feedback_to_give_list.html:7
 msgid "feedback"
 msgstr "Bewertung"
 
 #: feedback/templates/feedback/feedback_form.html:50
+#: feedback/templates/feedback/solo/feedback_to_give_list.html:7
 msgid "create"
-msgstr "erstellen"
+msgstr "erstelle"
 
 #: feedback/templates/feedback/feedback_form.html:71
 msgid "save"

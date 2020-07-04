@@ -2,21 +2,22 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls.base import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Location
 
 
-class LocationListView(ListView):
+class LocationListView(LoginRequiredMixin, ListView):
     model = Location
 
     def get_queryset(self):
         return self.request.user.locations
 
 
-class LocationDetailView(DetailView):
+class LocationDetailView(LoginRequiredMixin, DetailView):
     model = Location
 
 
-class LocationCreateView(CreateView):
+class LocationCreateView(LoginRequiredMixin, CreateView):
     model = Location
     fields = ['title', 'lon', 'lat', 'description']
 
@@ -28,7 +29,7 @@ class LocationCreateView(CreateView):
         return reverse('location_detail', args=(self.object.pk, ))
 
 
-class LocationUpdateView(UpdateView):
+class LocationUpdateView(LoginRequiredMixin, UpdateView):
     model = Location
     fields = ['title', 'lon', 'lat', 'description']
 
@@ -36,7 +37,7 @@ class LocationUpdateView(UpdateView):
         return reverse('location_detail', args=(self.object.pk, ))
 
 
-class LocationDeleteView(DeleteView):
+class LocationDeleteView(LoginRequiredMixin, DeleteView):
     model = Location
     template_name = 'guild/guild_delete.html'
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-04 16:32+0200\n"
+"POT-Creation-Date: 2020-07-04 18:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,12 +31,12 @@ msgid "deals"
 msgstr "Geschäfte"
 
 #: core/templates/menu.html:18
-msgid "users"
-msgstr "Benutzer"
-
-#: core/templates/menu.html:21
 msgid "guilds"
 msgstr "Gilden"
+
+#: core/templates/menu.html:21 core/templates/menu.html:61
+msgid "profile"
+msgstr "Profil"
 
 #: core/templates/menu.html:25
 msgid "signup"
@@ -46,43 +46,47 @@ msgstr "registrieren"
 msgid "login"
 msgstr "einloggen"
 
-#: core/templates/menu.html:57
+#: core/templates/menu.html:52
+msgid "help"
+msgstr ""
+
+#: core/templates/menu.html:53
 msgid "locations"
 msgstr "Orte"
 
-#: core/templates/menu.html:58
+#: core/templates/menu.html:54
 msgid "feedbacks"
 msgstr "Bewertungen"
 
-#: core/templates/menu.html:59
+#: core/templates/menu.html:55
 msgid "listings"
 msgstr "Einträge"
 
-#: core/templates/menu.html:60
+#: core/templates/menu.html:56
 msgid "chats"
 msgstr "Chats"
 
-#: core/templates/menu.html:62
+#: core/templates/menu.html:57
+msgid "users"
+msgstr "Benutzer"
+
+#: core/templates/menu.html:59
 msgid "your"
 msgstr "dein"
 
-#: core/templates/menu.html:62
+#: core/templates/menu.html:59
 msgid "user"
 msgstr "Benutzer"
 
-#: core/templates/menu.html:63
+#: core/templates/menu.html:60
 msgid "settings"
 msgstr "Einstellungen"
 
-#: core/templates/menu.html:64
-msgid "profile"
-msgstr "Profil"
-
-#: core/templates/menu.html:65
+#: core/templates/menu.html:62
 msgid "password"
 msgstr "Passwort"
 
-#: core/templates/menu.html:66
+#: core/templates/menu.html:63
 msgid "logout"
 msgstr "abmelden"
 

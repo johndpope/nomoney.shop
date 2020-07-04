@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as message_constants
+from django.urls.base import reverse_lazy, reverse
 
 
 #VERSION = '0.3.0'
@@ -136,5 +137,6 @@ MESSAGE_TAGS = {
 MESSAGE_LEVEL = message_constants.DEBUG
 
 # LOGIN_URL = '/'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = reverse_lazy('user_login')
+LOGIN_REDIRECT_URL = reverse_lazy('home')#reverse_lazy('user_login')#'/'
+LOGOUT_REDIRECT_URL = LOGIN_URL

@@ -14,7 +14,7 @@ User = get_user_model()  # pylint: disable=invalid-name
 FIELDS = ['username', 'first_name', 'last_name', 'email', 'image', 'description']
 
 
-class UserListView(ListView):
+class UserListView(LoginRequiredMixin, ListView):
     model = User
     context_object_name = 'users'
 
@@ -63,16 +63,6 @@ class UserDetailView(LoginRequiredMixin, DetailView):
         if self.object != self.request.user:
             context['chat'] = self.object.get_chat_with(self.request.user)
         return context
-
-    #===========================================================================
-    # def dispatch(self, request, *args, **kwargs):
-    #     user = request.user
-    #     partner = self.model.objects.get(pk=kwargs.get('pk'))
-    #     self.extra_context = {
-    #         'deal': user.get_dealset_from_partner(partner).deal
-    #         }
-    #     return DetailView.dispatch(self, request, *args, **kwargs)
-    #===========================================================================
 
 
 class AgentView(LoginRequiredMixin, TemplateView):

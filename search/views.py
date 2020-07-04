@@ -7,7 +7,7 @@ from .models import SearchEngine
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class SearchView(FormView):
+class SearchView(LoginRequiredMixin, FormView):
     form_class = SearchForm
     template_name = 'search/basic.html'
 

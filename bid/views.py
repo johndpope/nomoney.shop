@@ -2,14 +2,15 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, FormView
 from django.shortcuts import redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from deal.models import Deal
 from .models import Bid, BidPosition
 from .forms import BidForm
-from deal.models import Deal
 
 MODEL = Bid
 
 
-class BidListView(ListView):
+class BidListView(LoginRequiredMixin, ListView):
     """ List Bids of me from or to one partner """
     model = MODEL
 
@@ -17,7 +18,7 @@ class BidListView(ListView):
         return self.model.by_user(self.request.user)
 
 
-class BidCreateView(FormView):
+class BidCreateView(LoginRequiredMixin, FormView):
     """ Create new Bid """
     template_name = 'bid/bid_form.html'
     deal = None
@@ -68,11 +69,11 @@ class BidCreateView(FormView):
                 })
 
 
-class BidDetailView(DetailView):
+class BidDetailView(LoginRequiredMixin, DetailView):
     """ Detail of one Bid """
     model = MODEL
 
 
-class BidDeleteView(DeleteView):
+class BidDeleteView(LoginRequiredMixin, DeleteView):
     """ Delete BID by ID """
     model = MODEL

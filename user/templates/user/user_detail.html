@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load i18n %}
 
 {% block content %}
 <div class="container">
   <div class="row">
     <div class="col">
-      {% if user.image %}
-        <img src="{{ user.image.url }}" class="rounded float-left border" width="200" height="200">
-      {% endif %}
+      <div class="rounded border d-flex justify-content-center" style="width:200px;height:200px;">
+        <img class="img-thumbnail" src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'images/default_user.png' %}{% endif %}" style="object-fit: cover;">
+      </div>
     </div>
     <div class="col">
       <div class="row">
@@ -21,17 +22,75 @@
 <hr class="mt-5 mb-0">
 <div class="container-fluid mb-5">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 mb-5">
       {% if object.pk == request.user.pk %}
-        <a class="mb-5 float-right" href="{% url 'user_update' %}">{{ symbols.update|safe }} {% trans 'update' %}</a>
+        <a class="btn btn-link float-right" href="{% url 'user_update' %}">{{ symbols.update|safe }} {% trans 'update' %}</a>
+        <a class="btn btn-link float-right" href="{% url 'user_settings' %}"><i class="fas fa-cog"></i> {% trans 'settings' %}</a>
+        <a class="btn btn-link float-right" href="{% url 'user_pw' %}"><i class="fas fa-key"></i> {% trans 'password' %}</a>
+        <a class="btn btn-link float-right" href="{% url 'user_logout' %}"><i class="fas fa-sign-out-alt"></i> {% trans 'logout' %}</a>
       {% endif %}
     </div>
   </div>
 </div>
 
-{% include 'listing/solo/listing_list.html' %}
+<div class="container-fluid">
+{% if user == request.user %}
 
-<hr class="my-5">
+  {% if request.user.open_feedback %}
+  <div class="row border rounded mb-5 py-3">
+    <div class="col-12">
+      {% with guilds=request.user.guilds %}
+        {% include 'feedback/solo/feedback_to_give_list.html' %}
+      {% endwith %}
+    </div>
+  </div>
+  {% endif %}
 
+
+  <div class="row border rounded mb-5 py-3">
+    <div class="col-12">
+      {% with guilds=request.user.guilds %}
+        {% include 'guild/solo/guild_list.html' %}
+      {% endwith %}
+    </div>
+  </div>
+
+  <div class="row border rounded mb-5 py-3">
+    <div class="col-12">
+      {% with deals=request.user.deals %}
+        {% include 'deal/solo/deal_list.html' %}
+      {% endwith %}
+    </div>
+  </div>
+
+  <div class="row border rounded mb-5 py-3">
+    <div class="col-12">
+      {% with locations=request.user.locations %}
+        {% include 'location/solo/location_list.html' %}
+      {% endwith %}
+    </div>
+  </div>
+
+
+{% endif %}
+
+
+  <div class="row border rounded mb-5 py-3">
+    <div class="col-12">
+      {% with listings=user.pushs %}
+        {% include 'listing/solo/listing_type_list.html' %}
+      {% endwith %}
+    </div>
+  </div>
+
+  <div class="row border rounded mb-5 py-3">
+    <div class="col-12">
+      {% with listings=user.pulls %}
+        {% include 'listing/solo/listing_type_list.html' %}
+      {% endwith %}
+    </div>
+  </div>
+</div>
 
 {% endblock %}
+

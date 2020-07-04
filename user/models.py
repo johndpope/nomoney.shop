@@ -50,6 +50,11 @@ class User(AbstractUser):
             )
 
     @property
+    def open_feedback(self):
+        return list(self.userfeedback_set.filter(status=0)) + \
+            list(self.pushfeedback_set.filter(status=0))
+
+    @property
     def deals(self):
         deals = self.user1_deals.all().union(self.user2_deals.all())
         for deal in deals:

@@ -1,16 +1,17 @@
 {% load humanize %}
-{% if user_feedback_open or push_feedback_open %}
+{% load i18n %}
+
+{% if user.open_feedback %}
 <div class="container">
   <div class="row">
-    <div class="col-auto"><b>Bewertungen abgeben:</b></div>
-  {% for feedback in user_feedback_open %}
-    <div class="col-auto border p-0">
-      <a class="btn btn-link" href="{% url 'feedback_update' 'user' feedback.pk %}" role="button"><i class="fas fa-arrow-right"></i> Benutzer: {{ feedback.user }}</a>
-    </div>
-  {% endfor %}
-  {% for feedback in push_feedback_open %}
-    <div class="col-auto border p-0">
-      <a class="btn btn-link" href="{% url 'feedback_update' 'push' feedback.pk %}" role="button"><i class="fas fa-arrow-right"></i> Angebots: {{ feedback.push.title }}</a>
+    <div class="col-12"><b>{% trans 'create'|title %} {% trans 'feedback' %}:</b></div>
+  {% for feedback in user.open_feedback %}
+    <div class="col-auto border rounded p-0 mr-sm-3">
+      {% if feedback.type == 'user' %}
+        <a class="btn btn-link" href="{% url 'feedback_update' feedback.type feedback.pk %}" role="button"><i class="fas fa-plus"></i> {% trans 'user'|title %}: {{ feedback.user }}</a>
+      {% elif feedback.type == 'push' %}
+        <a class="btn btn-link" href="{% url 'feedback_update' feedback.type feedback.pk %}" role="button"><i class="fas fa-plus"></i> {% trans 'offer'|title %}: {{ feedback.push.title }}</a>
+      {% endif %}
     </div>
   {% endfor %}
   </div>

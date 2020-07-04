@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-04 16:32+0200\n"
+"POT-Creation-Date: 2020-07-04 18:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr ""
 #: location/templates/location/location_detail.html:57
 #: location/templates/location/location_detail.html:99
 #: location/templates/location/location_detail.html:134
-#: location/templates/location/location_list.html:11
+#: location/templates/location/solo/location_list.html:9
 msgid "location"
 msgstr "Ort"
 
@@ -110,7 +110,7 @@ msgid "guild"
 msgstr ""
 
 #: location/templates/location/location_detail.html:141
-#: location/templates/location/location_list.html:15
+#: location/templates/location/solo/location_list.html:13
 msgid "name"
 msgstr ""
 
@@ -119,12 +119,12 @@ msgid "member"
 msgstr ""
 
 #: location/templates/location/location_detail.html:151
-#: location/templates/location/location_list.html:29
+#: location/templates/location/solo/location_list.html:27
 msgid "delete"
 msgstr ""
 
 #: location/templates/location/location_detail.html:152
-#: location/templates/location/location_list.html:30
+#: location/templates/location/solo/location_list.html:28
 msgid "update"
 msgstr ""
 
@@ -136,18 +136,18 @@ msgstr ""
 msgid "save"
 msgstr ""
 
-#: location/templates/location/location_list.html:8
+#: location/templates/location/solo/location_list.html:6
 msgid "_your"
 msgstr ""
 
-#: location/templates/location/location_list.html:8
+#: location/templates/location/solo/location_list.html:6
 msgid "locations"
 msgstr "Orte"
 
-#: location/templates/location/location_list.html:18
+#: location/templates/location/solo/location_list.html:16
 msgid "description"
 msgstr ""
 
-#: location/templates/location/location_list.html:32
+#: location/templates/location/solo/location_list.html:30
 msgid "detail"
 msgstr ""

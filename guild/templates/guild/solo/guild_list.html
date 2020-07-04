@@ -1,0 +1,36 @@
+{% load i18n %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8">
+        <h3>{% trans 'guilds' %}</h3>
+    </div>
+    <div class="col-4 d-md-flex justify-content-end">
+        <a class="btn btn-link p-0 text-info" href="{% url 'guild_create' %}"><i class="fas fa-plus"></i> {% trans 'guild' %}</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col"><b>{% trans 'name' %}</b></div>
+    <div class="col"><b>{% trans 'members' %}</b></div>
+    <div class="col"><b></b></div>
+  </div>
+  {% for guild in object_list %}
+    <div class="row border-top">
+      <div class="col">{% include 'guild/inc/link.html' %}</div>
+      <div class="col">{% for user in guild.users.all %}{% include 'user/inc/link.html' %}{% endfor %}</div>
+      <div class="col d-flex justify-content-end">
+        {% if request.user in guild.users.all %}
+        <a class="btn btn-link" href="{% url 'guild_delete' guild.pk %}" title="Löschen">{{ symbols.delete|safe }}</a>
+        <a class="btn btn-link" href="{% url 'guild_update' guild.pk %}" title="Bearbeiten">{{ symbols.update|safe }}</a>
+        {% endif %}
+        <a class="btn btn-link" href="{% url 'guild_detail' guild.pk %}" title="Details">{{ symbols.detail|safe }}</a>
+      </div>
+    </div>
+  {% empty %}
+    <div class="row">
+      <div class="col-12">
+        <p></p>
+      </div>
+    </div>
+  {% endfor %}
+</div>

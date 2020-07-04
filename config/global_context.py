@@ -2,6 +2,7 @@ from config.settings import VERSION, NAME
 
 
 SYMBOLS = {
+        'close': '<i class="fas fa-times"></i>',
         'forward': '<i class="fas fa-forward"></i>',
         'back': '<i class="fas fa-backward"></i>',
         'detail': '<i class="fas fa-angle-double-right"></i>',

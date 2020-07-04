@@ -4,13 +4,17 @@ from django.views.generic.list import ListView
 from django.urls.base import reverse
 from .models import Guild
 from deal.models import VirtualDeal
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class GuildListView(ListView):
+class GuildListView(LoginRequiredMixin, ListView):
     model = Guild
 
+    def get_queryset(self):
+        return self.request.user.guild_set.all()
 
-class GuildDetailView(DetailView):
+
+class GuildDetailView(LoginRequiredMixin, DetailView):
     model = Guild
 
     def get_context_data(self, **kwargs):
@@ -23,7 +27,7 @@ class GuildDetailView(DetailView):
         return context
 
 
-class GuildCreateView(CreateView):
+class GuildCreateView(LoginRequiredMixin, CreateView):
     model = Guild
     fields = ['title', 'users', 'location']
 
@@ -38,7 +42,7 @@ class GuildCreateView(CreateView):
         return reverse('guild_detail', args=(self.object.pk, ))
 
 
-class GuildUpdateView(UpdateView):
+class GuildUpdateView(LoginRequiredMixin, UpdateView):
     model = Guild
     fields = ['title', 'users', 'location']
 
@@ -53,7 +57,7 @@ class GuildUpdateView(UpdateView):
         return reverse('guild_detail', args=(self.object.pk, ))
 
 
-class GuildDeleteView(DeleteView):
+class GuildDeleteView(LoginRequiredMixin, DeleteView):
     model = Guild
     template_name = 'guild/guild_delete.html'
 

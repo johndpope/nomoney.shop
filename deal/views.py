@@ -1,27 +1,20 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView, CreateView, FormView
+from django.views.generic.edit import UpdateView, CreateView
 from django.urls.base import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from bid.forms import BidForm
 from user.models import User
 from dashboard.models import VirtualDeal
-from django.views.generic.base import TemplateView
 from .models import Deal
-from .forms import DealCreateForm, DealAcceptForm
-# TODO: check if access is allowed (self.request.user in dealset user
+from .forms import DealCreateForm
 
 
-class DealListView(LoginRequiredMixin, TemplateView):
+class DealListView(LoginRequiredMixin, ListView):
     template_name = 'deal/deal_list.html'
 
-    def get_context_data(self, **kwargs):
-        context = TemplateView.get_context_data(self, **kwargs)
-        deals = []
-        for deal in self.request.user.deals:
-            deals.append(deal.set_pov(self.request.user))
-        context['deals'] = deals
-        return context
+    def get_queryset(self):
+        return self.request.user.deals
 
 
 class DealDetailView(LoginRequiredMixin, DetailView):

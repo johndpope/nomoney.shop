@@ -1,0 +1,53 @@
+{% load humanize %}
+{% load i18n %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8">
+        <h3>
+          {% if user == request.user %}
+            {% trans '_your'|title %}
+          {% else %}
+            {{ user }}'s
+          {% endif %}
+          {% if listings.0.type == 'push' %}
+            {% trans 'offerings' %}
+          {% elif listings.0.type == 'pull' %}
+            {% trans 'requests' %}
+          {% endif %}
+        </h3>
+    </div>
+    <div class="col-4 d-md-flex justify-content-end">
+        {% if user == request.user %}<a class="btn p-0 text-info" href="{% url 'listing_create' 'push' %}"><i class="fas fa-plus"></i> {% trans 'offer' %}</a>{% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-sm-4 col-md-2 order-4 order-sm-1">
+      <b>{% trans 'category'|title %}</b>
+    </div>
+    <div class="col-12 col-sm-8 col-md-5 order-1 order-sm-2">
+      <b>{% trans 'title'|title %}</b>
+    </div>
+    <div class="col-12 col-sm-4 col-md-2 order-2 order-sm-3">
+      <b>{% trans 'quantity'|title %}</b>
+    </div>
+    <div class="col-12 col-sm-8 col-md-3 order-3 order-sm-4 d-md-flex justify-content-end">
+      <b>{% trans 'modified'|title %}</b>
+    </div>
+  </div>
+  {% for listing in user.pushs %}
+  <div class="row border-top">
+    <div class="col-12 col-sm-4 col-md-2 order-4 order-sm-1">
+      {% with category=listing.category %}{% include 'category/inc/link.html' %}{% endwith %}
+    </div>
+    <div class="col-12 col-sm-8 col-md-5 order-1 order-sm-2">
+      {% include 'listing/inc/link.html' %}<a href="{% url 'listing_detail' listing.type listing.pk %}" class="btn btn-link p-0"> {{ listing.title }}</a>
+    </div>
+    <div class="col-12 col-sm-4 col-md-2 order-2 order-sm-3">
+      {{ listing.quantity }}{{ listing.unit.short }}
+    </div>
+    <div class="col-12 col-sm-8 col-md-3 order-3 order-sm-4 d-md-flex justify-content-end" title="{{ listing.modified }}">
+      {{ listing.modified|naturaltime }}
+    </div>
+  </div>
+  {% endfor %}
+</div>

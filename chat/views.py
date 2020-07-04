@@ -1,22 +1,23 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
-from django.urls.base import reverse
-from .models import Chat
-from .forms import ChatMessageForm
 from django.views.generic.base import TemplateView
 from django.views.generic import View
 from django.http import JsonResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls.base import reverse
+from .models import Chat
+from .forms import ChatMessageForm
 
 
-class ChatListView(ListView):
+class ChatListView(LoginRequiredMixin, ListView):
     model = Chat
 
     def get_queryset(self):
         return self.request.user.chat_set.all()
 
 
-class ChatDetailView(DetailView):
+class ChatDetailView(LoginRequiredMixin, DetailView):
     model = Chat
     fields = '__all__'
 
@@ -25,7 +26,7 @@ class ChatDetailView(DetailView):
         return DetailView.get_context_data(self, **kwargs)
 
 
-class ChatCreateView(CreateView):
+class ChatCreateView(LoginRequiredMixin, CreateView):
     model = Chat
     fields = '__all__'
 
@@ -33,7 +34,7 @@ class ChatCreateView(CreateView):
         return reverse('chat_detail', args=(self.object.pk,))
 
 
-class ChatNewMessageView(CreateView):
+class ChatNewMessageView(LoginRequiredMixin, CreateView):
     form_class = ChatMessageForm
 
     def form_valid(self, form):
@@ -48,12 +49,12 @@ class ChatNewMessageView(CreateView):
             ))
 
 
-class ChatAjaxStatusView(View):
+class ChatAjaxStatusView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):  # future?
         import pdb; pdb.set_trace()  # <---------
         return JsonResponse({'foo': 'bar'})
     
 
-class ChatAjaxView(DetailView):
+class ChatAjaxView(LoginRequiredMixin, DetailView):
     model = Chat
     template_name = 'chat/solo/chat_messages_ajax.html'

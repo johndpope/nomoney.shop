@@ -1,8 +1,9 @@
 from django.views.generic.base import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import VirtualDeal
 
 
-class DashboardHomeView(TemplateView):
+class DashboardHomeView(LoginRequiredMixin, TemplateView):
     template_name = 'dashboard/dashboard_home.html'
 
     def get_context_data(self, **kwargs):
@@ -24,7 +25,7 @@ class DashboardHomeView(TemplateView):
         return context
 
 
-class Ajax2dView(TemplateView):
+class Ajax2dView(LoginRequiredMixin, TemplateView):
     template_name = 'dashboard/ajax_2d.html'
 
     def get_context_data(self, **kwargs):
@@ -37,7 +38,7 @@ class Ajax2dView(TemplateView):
         return context
 
 
-class Ajax3dView(TemplateView):
+class Ajax3dView(LoginRequiredMixin, TemplateView):
     template_name = 'dashboard/ajax_3d.html'
 
     def get_context_data(self, **kwargs):

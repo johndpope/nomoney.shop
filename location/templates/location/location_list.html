@@ -2,36 +2,5 @@
 {% load i18n %}
 
 {% block content %}
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-8">
-        <h3>{% trans '_your'|title %} {% trans 'locations' %}</h3>
-    </div>
-    <div class="col-4 d-md-flex justify-content-end">
-        <a class="btn btn-link p-0 text-info" href="{% url 'location_create' %}"><i class="fas fa-plus"></i> {% trans 'location' %}</a>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col"><b>{% trans 'name'|title %}</b></div>
-    <div class="col"><b>Longitude</b></div>
-    <div class="col"><b>Latitude</b></div>
-    <div class="col"><b>{% trans 'description'|title %}</b></div>
-    <div class="col"><b></b></div>
-  </div>
-  {% for location in object_list %}
-    <div class="row border-top">
-      <div class="col">{{ location.title }}</div>
-      <div class="col"><i class="fas fa-arrows-alt-h"></i> {{ location.lon }}</div>
-      <div class="col"><i class="fas fa-arrows-alt-v"></i> {{ location.lat }}</div>
-      <div class="col">{{ location.description }}</div>
-      <div class="col d-flex justify-content-end">
-        {% if request.user == location.user %}
-        <a class="btn btn-link" href="{% url 'location_delete' location.pk %}" title="{% trans 'delete' %}">{{ symbols.delete|safe }}</a>
-        <a class="btn btn-link" href="{% url 'location_update' location.pk %}" title="{% trans 'update' %}">{{ symbols.update|safe }}</a>
-        {% endif %}
-        <a class="btn btn-link" href="{% url 'location_detail' location.pk %}" title="{% trans 'detail' %}">{{ symbols.detail|safe }}</a>
-      </div>
-    </div>
-  {% endfor %}
-</div>
+  {% include 'location/solo/location_list.html' %}
 {% endblock %}
