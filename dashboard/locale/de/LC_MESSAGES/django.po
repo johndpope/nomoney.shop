@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-04 18:42+0200\n"
+"POT-Creation-Date: 2020-07-04 22:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgid "calculated"
 msgstr "berechnete"
 
 #: dashboard/templates/dashboard/ajax_2d.html:2
-#: dashboard/templates/dashboard/dashboard_home.html:58
+#: dashboard/templates/dashboard/dashboard_home.html:51
 msgid "deals"
 msgstr ""
 
@@ -49,20 +49,20 @@ msgstr ""
 msgid "deal"
 msgstr ""
 
-#: dashboard/templates/dashboard/dashboard_home.html:54
+#: dashboard/templates/dashboard/dashboard_home.html:47
 msgid "home"
 msgstr ""
 
-#: dashboard/templates/dashboard/dashboard_home.html:58
+#: dashboard/templates/dashboard/dashboard_home.html:51
 msgid "calculate"
 msgstr "berechne"
 
-#: dashboard/templates/dashboard/dashboard_home.html:78
-#: dashboard/templates/dashboard/dashboard_home.html:89
+#: dashboard/templates/dashboard/dashboard_home.html:71
+#: dashboard/templates/dashboard/dashboard_home.html:82
 msgid "load"
 msgstr ""
 
-#: dashboard/templates/dashboard/dashboard_home.html:78
-#: dashboard/templates/dashboard/dashboard_home.html:89
+#: dashboard/templates/dashboard/dashboard_home.html:71
+#: dashboard/templates/dashboard/dashboard_home.html:82
 msgid "data"
 msgstr ""

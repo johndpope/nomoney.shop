@@ -1,6 +1,6 @@
 PWA_APP_NAME = 'nomoney.shop'
 PWA_APP_DESCRIPTION = 'Plattform to exchange goods and services and calculate possible deals direct and indirect'
-PWA_APP_THEME_COLOR = '#def58d'
+PWA_APP_THEME_COLOR = '#15202b'
 PWA_APP_BACKGROUND_COLOR = '#ffffff'
 PWA_APP_DISPLAY = 'standalone'
 PWA_APP_SCOPE = '/'

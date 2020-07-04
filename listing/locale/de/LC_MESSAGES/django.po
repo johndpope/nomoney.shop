@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-04 18:42+0200\n"
+"POT-Creation-Date: 2020-07-04 22:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,14 +35,12 @@ msgid "from"
 msgstr "von"
 
 #: listing/templates/listing/listing_detail.html:21
-#: listing/templates/listing/solo/listing_list.html:14
-#: listing/templates/listing/solo/listing_list.html:55
+#: listing/templates/listing/solo/listing_type_list.html:25
 msgid "category"
 msgstr "Kategorie"
 
 #: listing/templates/listing/listing_detail.html:25
-#: listing/templates/listing/solo/listing_list.html:20
-#: listing/templates/listing/solo/listing_list.html:61
+#: listing/templates/listing/solo/listing_type_list.html:31
 msgid "quantity"
 msgstr ""
 
@@ -51,8 +49,7 @@ msgid "created"
 msgstr ""
 
 #: listing/templates/listing/listing_detail.html:33
-#: listing/templates/listing/solo/listing_list.html:23
-#: listing/templates/listing/solo/listing_list.html:64
+#: listing/templates/listing/solo/listing_type_list.html:34
 msgid "modified"
 msgstr ""
 
@@ -73,28 +70,22 @@ msgstr ""
 msgid "save"
 msgstr ""
 
-#: listing/templates/listing/solo/listing_list.html:6
-#: listing/templates/listing/solo/listing_list.html:47
+#: listing/templates/listing/solo/listing_type_list.html:8
 msgid "_your"
 msgstr "deine"
 
-#: listing/templates/listing/solo/listing_list.html:6
+#: listing/templates/listing/solo/listing_type_list.html:13
 msgid "offerings"
 msgstr "Angebote"
 
-#: listing/templates/listing/solo/listing_list.html:9
-msgid "offer"
-msgstr ""
-
-#: listing/templates/listing/solo/listing_list.html:17
-#: listing/templates/listing/solo/listing_list.html:58
-msgid "title"
-msgstr "Titel"
-
-#: listing/templates/listing/solo/listing_list.html:47
+#: listing/templates/listing/solo/listing_type_list.html:15
 msgid "requests"
 msgstr "Suchanfragen"
 
-#: listing/templates/listing/solo/listing_list.html:50
-msgid "seek"
+#: listing/templates/listing/solo/listing_type_list.html:20
+msgid "offer"
 msgstr ""
+
+#: listing/templates/listing/solo/listing_type_list.html:28
+msgid "title"
+msgstr "Titel"
