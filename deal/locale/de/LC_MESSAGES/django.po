@@ -1,0 +1,142 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-04 16:32+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: deal/templates/deal/deal_detail.html:11
+#: deal/templates/deal/deal_detail.html:49
+#, fuzzy
+#| msgid "creator"
+msgid "create"
+msgstr "Ersteller"
+
+#: deal/templates/deal/deal_detail.html:11
+#: deal/templates/deal/deal_detail.html:49
+#, fuzzy
+#| msgid "bids"
+msgid "bid"
+msgstr "Gebote"
+
+#: deal/templates/deal/deal_detail.html:16
+#: deal/templates/deal/deal_detail.html:33
+#, fuzzy
+#| msgid "your"
+msgid "you"
+msgstr "dein"
+
+#: deal/templates/deal/deal_detail.html:16
+msgid "give"
+msgstr "gibst"
+
+#: deal/templates/deal/deal_detail.html:33
+msgid "take"
+msgstr "nimmst"
+
+#: deal/templates/deal/deal_detail.html:54
+msgid "update"
+msgstr ""
+
+#: deal/templates/deal/deal_form.html:9
+msgid "start"
+msgstr "starten"
+
+#: deal/templates/deal/deal_form.html:9
+#: deal/templates/deal/solo/deal_detail.html:2
+#: deal/templates/deal/solo/deal_list.html:9
+msgid "deal"
+msgstr "Geschäft"
+
+#: deal/templates/deal/deal_form.html:15
+#: deal/templates/deal/solo/deal_detail.html:73
+msgid "save"
+msgstr "speichern"
+
+#: deal/templates/deal/deal_form.html:17
+msgid "delete"
+msgstr "löschen"
+
+#: deal/templates/deal/solo/deal_detail.html:2
+msgid "details"
+msgstr "Details"
+
+#: deal/templates/deal/solo/deal_detail.html:3
+msgid "overview"
+msgstr "Übersicht"
+
+#: deal/templates/deal/solo/deal_detail.html:6
+msgid "member"
+msgstr ""
+
+#: deal/templates/deal/solo/deal_detail.html:7
+#: deal/templates/deal/solo/deal_detail.html:30
+#: deal/templates/deal/solo/deal_list.html:13
+msgid "offer"
+msgstr ""
+
+#: deal/templates/deal/solo/deal_detail.html:8
+#: deal/templates/deal/solo/deal_detail.html:31
+#: deal/templates/deal/solo/deal_list.html:14
+msgid "seek"
+msgstr ""
+
+#: deal/templates/deal/solo/deal_detail.html:26
+msgid "match"
+msgstr "Übereinstimmung"
+
+#: deal/templates/deal/solo/deal_detail.html:29
+msgid "user"
+msgstr "Benutzer"
+
+#: deal/templates/deal/solo/deal_detail.html:32
+#: deal/templates/deal/solo/deal_list.html:15
+msgid "partner"
+msgstr "Partner"
+
+#: deal/templates/deal/solo/deal_detail.html:41
+msgid "bids"
+msgstr "Gebote"
+
+#: deal/templates/deal/solo/deal_detail.html:44
+msgid "creator"
+msgstr "Ersteller"
+
+#: deal/templates/deal/solo/deal_detail.html:45
+msgid "offers"
+msgstr "bietet"
+
+#: deal/templates/deal/solo/deal_detail.html:46
+msgid "takes"
+msgstr "nimmt"
+
+#: deal/templates/deal/solo/deal_detail.html:47
+#: deal/templates/deal/solo/deal_list.html:16
+msgid "status"
+msgstr "Status"
+
+#: deal/templates/deal/solo/deal_list.html:6
+#, fuzzy
+#| msgid "your"
+msgid "yours"
+msgstr "dein"
+
+#: deal/templates/deal/solo/deal_list.html:6
+msgid "deals"
+msgstr ""
+
+#~ msgid "matches"
+#~ msgstr "Übereinstimmungen"

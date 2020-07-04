@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-04 16:32+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: feedback/templates/feedback/feedback_detail.html:10
+#: feedback/templates/feedback/inc/card.html:9
+#: feedback/templates/feedback/inc/card.html:14
+msgid "offering"
+msgstr ""
+
+#: feedback/templates/feedback/feedback_detail.html:10
+#: feedback/templates/feedback/feedback_detail.html:71
+msgid "from"
+msgstr "von"
+
+#: feedback/templates/feedback/feedback_detail.html:17
+msgid "category"
+msgstr ""
+
+#: feedback/templates/feedback/feedback_detail.html:27
+msgid "quantity"
+msgstr "Menge"
+
+#: feedback/templates/feedback/feedback_detail.html:37
+msgid "created"
+msgstr "erstellt"
+
+#: feedback/templates/feedback/feedback_detail.html:47
+msgid "modified"
+msgstr ""
+
+#: feedback/templates/feedback/feedback_detail.html:57
+msgid "description"
+msgstr "Beschreibung"
+
+#: feedback/templates/feedback/feedback_detail.html:71
+msgid "more"
+msgstr "mehr"
+
+#: feedback/templates/feedback/feedback_detail.html:71
+msgid "entries"
+msgstr "Einträge"
+
+#: feedback/templates/feedback/feedback_form.html:50
+#: feedback/templates/feedback/inc/card.html:15
+msgid "feedback"
+msgstr "Bewertung"
+
+#: feedback/templates/feedback/feedback_form.html:50
+msgid "create"
+msgstr "erstellen"
+
+#: feedback/templates/feedback/feedback_form.html:71
+msgid "save"
+msgstr ""
+
+#: feedback/templates/feedback/feedback_list.html:5
+msgid "feedbacks"
+msgstr "Bewertungen"
+
+#: feedback/templates/feedback/inc/card.html:7
+#: feedback/templates/feedback/inc/card.html:12
+msgid "user"
+msgstr ""
+
+#: feedback/templates/feedback/inc/card.html:25
+msgid "happiness"
+msgstr "Zufriedenheit"
+
+#~ msgid "changed"
+#~ msgstr "geändert"

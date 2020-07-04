@@ -1,38 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 {{ object }}
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="card">
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-    </div>
-  </div>
-</div>
-
-
-
 <div class="container card">
   <div class="row">
     <div class="col-12">
-      <h3>{% if object.type == 'push' %}Angebot{% else %}Anfrage {% endif %} {{ object.title }} von {{ object.user }}</h3>
+      <h3>{% if object.type == 'push' %}{% trans 'offering'|title %}{% else %}Anfrage {% endif %} {{ object.title }} {% trans 'from' %} {{ object.user }}</h3>
     </div>
   </div>
   <div class="row">
     <div class="col border m-3 p-3">
       <div class="row">
         <div class="col-auto">
-          Kategorie:
+          {% trans 'category'|title %}:
         </div>
         <div class="col-auto">
           {{ listing.category }}
@@ -42,7 +24,7 @@
     <div class="col border m-3 p-3">
       <div class="row">
         <div class="col-auto">
-          Menge:
+          {% trans 'quantity'|title %}:
         </div>
         <div class="col-auto">
           {{ listing.quantity }}{{ listing.unit }}
@@ -52,7 +34,7 @@
     <div class="col border m-3 p-3">
       <div class="row">
         <div class="col-auto">
-          Erstellt:
+          {% trans 'created'|title %}:
         </div>
         <div class="col-auto">
           {{ listing.created }}
@@ -62,7 +44,7 @@
     <div class="col border m-3 p-3">
       <div class="row">
         <div class="col-auto">
-          Geändert:
+          {% trans 'modified'|title %}:
         </div>
         <div class="col-auto">
           {{ listing.modified }}
@@ -72,7 +54,7 @@
     <div class="col border m-3 p-3">
       <div class="row">
         <div class="col-auto">
-          Beschreibung: 
+          {% trans 'description'|title %}: 
         </div>
         <div class="col-auto">
           {{ listing.description }}
@@ -86,7 +68,7 @@
 <div class="container border mt-5">
   <div class="row">
     <div class="col-12">
-      <h3>Weitere Einträge von {{ listing.user }}</h3>
+      <h3>{% trans 'more'|title %} {% trans 'entries' %} {% trans 'from' %} {{ listing.user }}</h3>
     </div>
     <div class="col">
       <div class="row border m-3 p-3">

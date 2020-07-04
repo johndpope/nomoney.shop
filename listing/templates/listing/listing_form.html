@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
 <div class="container mt-5">
   <div class="row">
-    <div class="col-12"><h3>{% if object.pk %}Bearbeite{% else %}Erstelle neuen{% endif %} Eintrag</h3></div>
+    <div class="col-12"><h3>Eintrag {% if object.pk %}{% trans 'update' %}{% else %}{% trans 'create' %}{% endif %} </h3></div>
   </div>
   <form method="post" enctype="multipart/form-data">{% csrf_token %}
     {% if form.errors %}
@@ -16,7 +17,7 @@
     <table class="table table-striped table-bordered table-hover">
       {{ form.as_table }}
     </table>
-    <button class="btn btn-primary btn-block" type="submit">Speichern</button>
+    <button class="btn btn-primary btn-block" type="submit">{% trans 'save'|title %}</button>
   </form>
 </div>
 {% endblock %}

@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
-<h3>Bewertungen</h3>
+<h3>{% trans 'feedbacks'|title %}</h3>
   {% include 'feedback/solo/feedback_to_give_list.html' %}
   <hr>
   {% include 'feedback/solo/feedback_given_list.html' %}

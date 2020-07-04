@@ -1,10 +1,11 @@
-<h2>Deal Details{% if deal.accepted %} <span class="badge badge-success"><i class="fas fa-check"></i></span>{% endif %}</h2>
-<h3 class="mt-5">Übersicht</h3>
+{% load i18n %}
+<h2>{% trans 'deal'|title %} {% trans 'details' %}{% if deal.accepted %} <span class="badge badge-success"><i class="fas fa-check"></i></span>{% endif %}</h2>
+<h3 class="mt-5">{% trans 'overview' %}</h3>
 <div class="container-fluid mb-5">
   <div class="row">
-    <div class="col-12 col-lg-4 d-none d-lg-block col-xl-2"><b>Teilnehmer</b></div>
-    <div class="col-12 col-md-6 col-lg-4 col-xl-5"><b>Angebote</b></div>
-    <div class="col-12 col-md-6 col-lg-4 col-xl-5"><b>Anfragen</b></div>
+    <div class="col-12 col-lg-4 d-none d-lg-block col-xl-2"><b>{% trans 'member' %}</b></div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-5"><b>{% trans 'offer' %}</b></div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-5"><b>{% trans 'seek' %}</b></div>
   </div>
   {% with user=deal.user %}
   <div class="row border-top py-3">
@@ -22,13 +23,13 @@
   {% endwith %}
 </div>
 <hr>
-<h3 class="mt-5">Übereinstimmung</h3>
+<h3 class="mt-5">{% trans 'match' %}</h3>
 <div class="container-fluid mb-5">
   <div class="row">
-    <div class="col-12 col-sm-6 col-md-3 order-1 order-md-1"><b>Benutzer</b></div>
-    <div class="col-12 col-sm-6 col-md-3 order-3 order-md-2"><b>gibt</b></div>
-    <div class="col-12 col-sm-6 col-md-3 order-5 order-md-3"><b>nimmt</b></div>
-    <div class="col-12 col-sm-6 col-md-3 order-7 order-md-4"><b>an / von</b></div>
+    <div class="col-12 col-sm-6 col-md-3 order-1 order-md-1"><b>{% trans 'user' %}</b></div>
+    <div class="col-12 col-sm-6 col-md-3 order-3 order-md-2"><b>{% trans 'offer' %}</b></div>
+    <div class="col-12 col-sm-6 col-md-3 order-5 order-md-3"><b>{% trans 'seek' %}</b></div>
+    <div class="col-12 col-sm-6 col-md-3 order-7 order-md-4"><b>{% trans 'partner' %}</b></div>
     <div class="col-12 col-sm-6 col-md-3 order-2 order-md-5">{% with user=deal.user %}{% include 'user/inc/link.html' %}{% endwith %}</div>
     <div class="col-12 col-sm-6 col-md-3 order-4 order-md-6">{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %}, {% endfor %}</div>
     <div class="col-12 col-sm-6 col-md-3 order-6 order-md-7">{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %}, {% endfor %}</div>
@@ -37,13 +38,13 @@
 </div>
 {% if deal.bids %}
 <hr>
-<h3 class="mt-5">Gebotshistorie</h3>
+<h3 class="mt-5">{% trans 'bids' %}</h3>
 <div class="container-fluid border-bottom">
   <div class="row">
-    <div class="col"><b>Ersteller</b></div>
-    <div class="col"><b>Gibt</b></div>
-    <div class="col"><b>Nimmt</b></div>
-    <div class="col d-flex justify-content-end"><b>Status</b></div>
+    <div class="col"><b>{% trans 'creator' %}</b></div>
+    <div class="col"><b>{% trans 'offers' %}</b></div>
+    <div class="col"><b>{% trans 'takes' %}</b></div>
+    <div class="col d-flex justify-content-end"><b>{% trans 'status' %}</b></div>
   </div>
   {% for bid in deal.bids %}
     <div class="row border-top">
@@ -69,7 +70,7 @@
       <div class="col d-flex justify-content-end">
         {% if can_accept and bid.is_latest %}
           <form method="POST" action="{% url 'deal_accepted' deal.pk %}">{% csrf_token %}
-            <button type="submit" class="btn btn-link">Annehmen</button>
+            <button type="submit" class="btn btn-link">{% trans 'save' %}</button>
           </form>
         {% else %}
           {% include 'bid/inc/status.html' %}

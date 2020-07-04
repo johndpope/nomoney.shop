@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block help %}
-Bla
-{% endblock %}
+{% block help %}{% endblock %}
 
 {% block content %}
 <div class="container-fluid">
   <h3>Benutzer Übersicht</h3>
   <div class="row">
-    <div class="col-6 col-md-2"><b>Benutzer</b></div>
-    <div class="col-12 col-md-4"><b>Angebote</b></div>
-    <div class="col-12 col-md-4"><b>Anfragen</b></div>
+    <div class="col-6 col-md-2"><b>{% trans 'user'|title %}</b></div>
+    <div class="col-12 col-md-4"><b>{% trans 'offerings'|title %}</b></div>
+    <div class="col-12 col-md-4"><b>{% trans 'requests'|title %}</b></div>
     <div class="col-6 order-2 col-md-2"></div>
   </div>
   {% for user in users %}
@@ -18,7 +17,7 @@ Bla
     <div class="col-6 col-md-2 order-1 order-md-1">{% include 'user/inc/link.html' %}</div>
     <div class="col-12 col-md-4 order-3 order-md-2">{% for listing in user.pushs %}{% include 'listing/inc/link.html' %} {% endfor %}</div>
     <div class="col-12 col-md-4 order-4 order-md-3">{% for listing in user.pulls %}{% include 'listing/inc/link.html' %} {% endfor %}</div>
-    <div class="col-6 order-2 col-md-2 order-md-4 d-flex justify-content-end"><a class="text-info" href="{% url 'deal_user_create' user.pk %}"><i class="fas fa-plus"></i> Deal</a></div>
+    <div class="col-6 order-2 col-md-2 order-md-4 d-flex justify-content-end"><a class="text-info" href="{% url 'deal_user_create' user.pk %}"><i class="fas fa-plus"></i> {% trans 'deal' %}</a></div>
   </div>
   {% endfor %}
 </div>

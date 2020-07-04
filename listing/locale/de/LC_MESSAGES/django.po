@@ -1,0 +1,100 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-04 16:32+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: listing/templates/listing/listing_delete.html:7
+msgid "delete"
+msgstr "löschen"
+
+#: listing/templates/listing/listing_detail.html:16
+msgid "offering"
+msgstr "Angebot"
+
+#: listing/templates/listing/listing_detail.html:16
+msgid "request"
+msgstr "Suchanfrage"
+
+#: listing/templates/listing/listing_detail.html:16
+msgid "from"
+msgstr "von"
+
+#: listing/templates/listing/listing_detail.html:21
+#: listing/templates/listing/solo/listing_list.html:14
+#: listing/templates/listing/solo/listing_list.html:55
+msgid "category"
+msgstr "Kategorie"
+
+#: listing/templates/listing/listing_detail.html:25
+#: listing/templates/listing/solo/listing_list.html:20
+#: listing/templates/listing/solo/listing_list.html:61
+msgid "quantity"
+msgstr ""
+
+#: listing/templates/listing/listing_detail.html:29
+msgid "created"
+msgstr ""
+
+#: listing/templates/listing/listing_detail.html:33
+#: listing/templates/listing/solo/listing_list.html:23
+#: listing/templates/listing/solo/listing_list.html:64
+msgid "modified"
+msgstr ""
+
+#: listing/templates/listing/listing_detail.html:40
+msgid "description"
+msgstr ""
+
+#: listing/templates/listing/listing_detail.html:56
+#: listing/templates/listing/listing_form.html:7
+msgid "update"
+msgstr ""
+
+#: listing/templates/listing/listing_form.html:7
+msgid "create"
+msgstr ""
+
+#: listing/templates/listing/listing_form.html:20
+msgid "save"
+msgstr ""
+
+#: listing/templates/listing/solo/listing_list.html:6
+#: listing/templates/listing/solo/listing_list.html:47
+msgid "_your"
+msgstr "deine"
+
+#: listing/templates/listing/solo/listing_list.html:6
+msgid "offerings"
+msgstr "Angebote"
+
+#: listing/templates/listing/solo/listing_list.html:9
+msgid "offer"
+msgstr ""
+
+#: listing/templates/listing/solo/listing_list.html:17
+#: listing/templates/listing/solo/listing_list.html:58
+msgid "title"
+msgstr "Titel"
+
+#: listing/templates/listing/solo/listing_list.html:47
+msgid "requests"
+msgstr "Suchanfragen"
+
+#: listing/templates/listing/solo/listing_list.html:50
+msgid "seek"
+msgstr ""

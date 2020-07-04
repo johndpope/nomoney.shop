@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 
 {% block help %}
@@ -50,11 +51,11 @@ $(document).ready(function() {
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-      aria-selected="true">Home</a>
+      aria-selected="true">{% trans 'home'|title %}</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="two"
-      aria-selected="false" onclick="">Berechne Deals</a>
+      aria-selected="false" onclick="">{% trans 'calculate'|title %} {% trans 'deals' %}</a>
   </li>
 </ul>
 <div class="tab-content py-3 border-left border-right border-bottom" id="myTabContent">
@@ -74,7 +75,7 @@ $(document).ready(function() {
       <div class="row">
         <div class="col w-100 d-flex justify-content-center" style="height: 100px;">
           <div class="spinner-border my-auto" role="status">
-            <span class="sr-only">Lade Daten...</span>
+            <span class="sr-only">{% trans 'load'|title %} {% trans 'data' %} </span>
           </div>
         </div>
       </div>
@@ -85,7 +86,7 @@ $(document).ready(function() {
       <div class="row">
         <div class="col w-100 d-flex justify-content-center" style="height: 100px;">
           <div class="spinner-border my-auto" role="status">
-            <span class="sr-only">Lade Daten...</span>
+            <span class="sr-only">{% trans 'load'|title %} {% trans 'data' %} ...</span>
           </div>
         </div>
       </div>
