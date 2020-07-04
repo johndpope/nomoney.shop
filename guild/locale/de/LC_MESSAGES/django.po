@@ -1,0 +1,78 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-04 14:01+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: guild/templates/guild/guild_detail.html:9
+#: guild/templates/guild/guild_list.html:20
+msgid "members"
+msgstr "Mitglieder"
+
+#: guild/templates/guild/guild_detail.html:13
+msgid "update"
+msgstr "ändern"
+
+#: guild/templates/guild/guild_detail.html:18
+msgid "member"
+msgstr "Mitglied"
+
+#: guild/templates/guild/guild_detail.html:19
+#: guild/templates/guild/guild_detail.html:40
+msgid "offer"
+msgstr "biete"
+
+#: guild/templates/guild/guild_detail.html:20
+#: guild/templates/guild/guild_detail.html:41
+msgid "seek"
+msgstr "suche"
+
+#: guild/templates/guild/guild_detail.html:35
+msgid "calculated"
+msgstr "Berechnete"
+
+#: guild/templates/guild/guild_detail.html:35
+msgid "deals"
+msgstr "Geschäfte"
+
+#: guild/templates/guild/guild_detail.html:38
+msgid "quality"
+msgstr "Qualität"
+
+#: guild/templates/guild/guild_detail.html:39
+msgid "user"
+msgstr "Benutzer"
+
+#: guild/templates/guild/guild_detail.html:42
+msgid "partner"
+msgstr "Partner"
+
+#: guild/templates/guild/guild_detail.html:60
+msgid "deal"
+msgstr "Geschäft"
+
+#: guild/templates/guild/guild_list.html:12
+msgid "guilds"
+msgstr "Gilden"
+
+#: guild/templates/guild/guild_list.html:15
+msgid "guild"
+msgstr "Gilde"
+
+#: guild/templates/guild/guild_list.html:19
+msgid "name"
+msgstr "Name"
