@@ -57,7 +57,7 @@ class User(AbstractUser):
         return deals
 
     def get_chat_with(self, *users):
-        return Chat.by_users(self, *users)
+        return Chat.by_users(self, *users, create=True)
 
 
 @receiver(pre_save, sender=User)
