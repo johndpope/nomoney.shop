@@ -10,7 +10,7 @@ class UserTestCase(TestCase):
 
     def test_urls(self):
         # user_list
-        self.anon.get200('user_list')
+        self.anon.get302('user_list')
 
         # user_create
         new_user_name = 'demo2'
