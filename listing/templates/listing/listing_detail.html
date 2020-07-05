@@ -3,44 +3,107 @@
 {% load i18n %}
 
 {% block content %}
-<div class="container">
+<div class="container rounded border p-4">
+  <div class="row">
+    <div class="col-12">
+      <h5>
+        {% if listing.type == 'push' %}
+          <i class="fas fa-sort-up"></i>
+        {% elif listing.type == 'pull'%}
+          <i class="fas fa-sort-down"></i>
+        {% endif %}
+        {{ symbols.listing|safe }}
+        {% if listing.type == 'push' %}
+          {% trans 'offering' %}
+        {% else %}
+          {% trans 'request' %}
+        {% endif %}
+          {{ object.title }} {% trans 'from' %} {{ object.user }}
+      </h5>
+    </div>
+  </div>
   <div class="row">
     <div class="col-auto">
       <div class="rounded border d-flex justify-content-center" style="width:200px;height:200px;">
-        <img class="img-thumbnail" src="{% if user.image %}{{ listing.image.url }}{% else %}{% static 'images/default_listing.jpg' %}{% endif %}" style="object-fit: cover;">
+        <img class="img-thumbnail" src="{% if listing.image %}{{ listing.image.url }}{% else %}{% static 'images/default_listing.jpg' %}{% endif %}" style="object-fit: cover;">
       </div>
     </div>
     <div class="col">
-      <div class="row">
-        <div class="col-12">
-          <h3>{% if object.type == 'push' %}{% trans 'offering' %}{% else %}{% trans 'request' %} {% endif %} {{ object.title }} {% trans 'from' %} {{ object.user }}</h3>
-        </div>
-      </div>
-      <div class="row my-3 border-top">
-        <div class="col">
-          <div class="row">{% trans 'category'|title %}:</div>
-          <div class="row">{{ listing.category }}</div>
-        </div>
-        <div class="col">
-          <div class="row">{% trans 'quantity'|title %}:</div>
-          <div class="row">{{ listing.quantity }}{{ listing.unit }}</div>
-        </div>
-        <div class="col">
-          <div class="row">{% trans 'created'|title %}:</div>
-          <div class="row">{{ listing.created }}</div>
-        </div>
-        <div class="col">
-          <div class="row">{% trans 'modified'|title %}:</div>
-          <div class="row">{{ listing.modified }}</div>
-        </div>
-      </div>
       <div class="row my-3 border-top">
         <div class="col">
           <div class="row">
-            {% trans 'description'|title %}:
+            <div class="col">
+              <b>{% trans 'score'|title %}:</b>
+            </div>
           </div>
           <div class="row">
-            {{ listing.description }}
+            <div class="col">
+              <a href="{% url 'feedback_detail' 'push' listing.pk %}">
+                {% with score=listing.score %}{% include 'feedback/inc/score.html' %}{% endwith %}
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <b>{% trans 'category'|title %}:</b>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              {{ listing.category }}
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <b>{% trans 'quantity'|title %}:</b>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              {{ listing.quantity }}{{ listing.unit }}
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <b>{% trans 'created'|title %}:</b>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              {{ listing.created }}
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <b>{% trans 'modified'|title %}:</b>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              {{ listing.modified }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row my-3 border-top">
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <b>{% trans 'description'|title %}:</b>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              {{ listing.description }}
+            </div>
           </div>
         </div>
       </div>

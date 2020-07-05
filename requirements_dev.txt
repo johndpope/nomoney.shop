@@ -8,3 +8,5 @@ coveralls
 m2r
 Pillow
 django-pwa
+python-lorem
+names

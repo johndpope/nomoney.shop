@@ -3,6 +3,7 @@ from itertools import chain
 from django.db import models
 from config.settings import AUTH_USER_MODEL
 from chat.models import Chat
+from statistics import mean
 
 
 def image_path(instance, _):
@@ -30,6 +31,7 @@ class ListingBase(models.Model):
     location = models.ForeignKey(
         'location.Location', on_delete=models.CASCADE, blank=True, null=True
         )
+    test = models.BooleanField(default=False)
     type = None
 
     def __init__(self, *args, **kwargs):
@@ -68,6 +70,17 @@ class ListingBase(models.Model):
 
 class Push(ListingBase):
     type = 'push'
+
+    @property
+    def score(self):
+        feedbacks = self.pushfeedback_set.all()
+        if feedbacks:
+            return mean([feedback.score for feedback in feedbacks
+                         if feedback.score is not None])
+
+    @property
+    def feedbacks(self):
+        return self.pushfeedback_set.all()
 
 
 class Pull(ListingBase):

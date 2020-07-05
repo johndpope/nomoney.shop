@@ -9,3 +9,5 @@ m2r
 Pillow
 psycopg2
 django-pwa
+python-lorem
+names

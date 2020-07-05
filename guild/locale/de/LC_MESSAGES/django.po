@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-05 13:50+0200\n"
+"POT-Creation-Date: 2020-07-05 23:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: guild/templates/guild/guild_detail.html:9
-#: guild/templates/guild/solo/guild_list.html:14
+#: guild/templates/guild/solo/guild_list.html:22
 msgid "members"
 msgstr "Mitglieder"
 
@@ -69,14 +69,18 @@ msgstr "Geschäft"
 msgid "save"
 msgstr ""
 
-#: guild/templates/guild/solo/guild_list.html:6
+#: guild/templates/guild/solo/guild_list.html:9
+msgid "_your"
+msgstr ""
+
+#: guild/templates/guild/solo/guild_list.html:13
 msgid "guilds"
 msgstr "Gilden"
 
-#: guild/templates/guild/solo/guild_list.html:9
+#: guild/templates/guild/solo/guild_list.html:17
 msgid "guild"
 msgstr "Gilde"
 
-#: guild/templates/guild/solo/guild_list.html:13
+#: guild/templates/guild/solo/guild_list.html:21
 msgid "name"
 msgstr "Name"

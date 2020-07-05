@@ -12,6 +12,10 @@ from user.models import User
 from listing.models import Unit, Push, Pull
 from category.models import Category
 from deal.models import Deal
+from location.models import Location
+from guild.models import Guild
+from lorem import get_sentence, get_word
+from names import get_first_name, get_last_name
 
 
 class TestDB:
@@ -28,7 +32,8 @@ class TestDB:
     USER_PASSWORD = 'demo123'
     USER_COUNT = 100
     LISTING_COUNT = 1000
-    DEAL_COUNT = 1
+    DEAL_COUNT = 10
+    LOCATION_COUNT = 100
     CATEGORIES = {
         'Lebensmittel': ['Äpfel', 'Bananen', 'Erdbeeren', 'Brot', 'Wasser',
                          'Mehl', 'Eier', 'Pepperoni', 'Tomaten', 'Kopfsalat'],
@@ -48,38 +53,85 @@ class TestDB:
         'erntefrisch', 'hervorragende Qualität'
         ]
 
+    demo, demo1, deal, location, guild = 5 * [None]
+
     @classmethod
     def setup(cls):
         """ Setup complete test/demo database """
         cls.setup_user_db()
+        cls.setup_location_db()
         cls.setup_unit_db()
         cls.setup_category_db()
         cls.setup_listing_db()
         cls.setup_deal_db()
+        cls.setup_guild_db()
 
     @classmethod
     def setup_user_db(cls):
         """ Setup User database only """
-        user1 = User.objects.create(username=TestDB.USER_NAME)
-        user1.set_password(TestDB.USER_PASSWORD)
-        user1.is_superuser = True
-        user1.is_staff = True
-        user1.save()
-        user2 = User.objects.create(username=TestDB.USER_NAME + '1')
-        user2.set_password(TestDB.USER_PASSWORD)
-        user2.is_superuser = True
-        user2.is_staff = True
-        user2.save()
+        cls.demo = User.objects.create(
+            username=TestDB.USER_NAME,
+            first_name=get_first_name(),
+            last_name=get_last_name(),
+            email='demo@nomoney.shop',
+            description=cls.sentences_string(),
+            test=True,
+            )
+        cls.demo.set_password(TestDB.USER_PASSWORD)
+        cls.demo.is_superuser = True
+        cls.demo.is_staff = True
+        cls.demo.save()
+        cls.demo1 = User.objects.create(
+            username=TestDB.USER_NAME + '2',
+            first_name=get_first_name(),
+            last_name=get_last_name(),
+            email='demo1@nomoney.shop',
+            description=cls.sentences_string(),
+            test=True,
+            )
+        cls.demo1.set_password(TestDB.USER_PASSWORD)
+        cls.demo1.is_superuser = True
+        cls.demo1.is_staff = True
+        cls.demo1.save()
         for i in range(cls.USER_COUNT):
             key = str(i + 1)
             User.objects.create(
                 username='test' + key,
-                first_name='first' + key,
-                last_name='last' + key,
+                first_name=get_first_name(),
+                last_name=get_last_name(),
                 email='test{}@local.local'.format(key),
+                description=cls.sentences_string(),
+                test=True,
                 )
             if cls.PRINT_STEPS and not i % 10 and i != 0:
                 print(str(i) + ' users created.')
+
+    @classmethod
+    def setup_location_db(cls):
+        cls.location = Location.objects.create(
+            title='Demos Treffpunkt',
+            user=cls.demo,
+            lon=randint(-180, 180),
+            lat=randint(-90, 90),
+            description=cls.sentences_string()
+            )
+        Location.objects.create(
+            title='Demo1 Zuhause',
+            user=cls.demo1,
+            lon=randint(-180, 180),
+            lat=randint(-90, 90),
+            description=cls.sentences_string()
+            )
+        for i in range(cls.LOCATION_COUNT):
+            Location.objects.create(
+                title=get_word()[0:20],
+                user=cls.random_object(User),
+                lon=randint(-180, 180),
+                lat=randint(-90, 90),
+                description=cls.sentences_string()
+                )
+            if cls.PRINT_STEPS and not i % 100 and i != 0:
+                print(str(i) + ' locations created.')
 
     @classmethod
     def setup_unit_db(cls):
@@ -106,26 +158,95 @@ class TestDB:
             unit = cls.random_object(Unit)
             title = category.title + ' ' + \
                 TestDB.TITLE_SUFFIX[randint(0, len(TestDB.TITLE_SUFFIX)-1)]
-
             listing_class.objects.create(
                 category=category,
                 user=user,
                 title=title,
                 quantity=quantity,
-                unit=unit
+                unit=unit,
+                description=cls.sentences_string(10),
                 )
             if cls.PRINT_STEPS and not i % 100 and i != 0:
                 print(str(i) + ' listings created.')
 
     @classmethod
     def setup_deal_db(cls):
+        cls.deal = Deal.objects.create(user1=cls.demo, user2=cls.demo1)
+        cls.deal = Deal.objects.create(
+            user1=cls.demo, user2=cls.random_object(User)
+            )
+        Deal.objects.create(user1=cls.random_object(User), user2=cls.demo)
+        Deal.objects.create(
+            user1=cls.random_object(User), user2=cls.random_object(User)
+            )
         for i in range(cls.DEAL_COUNT):
             Deal.objects.create(
-                user1=cls.random_object(User),
+                user1=cls.demo,
                 user2=cls.random_object(User)
                 )
             if cls.PRINT_STEPS and not i % 100 and i != 0:
                 print(str(i) + ' deals created.')
+
+    @classmethod
+    def setup_bid_db(cls):
+        """ create bid for a deal and accept """
+        pass
+
+    @classmethod
+    def setup_guild_db(cls):
+        """ create bid for a deal and accept """
+        guild = Guild.objects.create(
+            title=get_word()[0:20], location=cls.location
+            )
+        guild.users.add(cls.demo)
+        guild.users.add(cls.demo1)
+        guild.users.add(cls.random_object(User))
+        guild.save()
+
+        guild = Guild.objects.create(
+            title=get_word()[0:20], location=cls.location
+            )
+        guild.users.add(cls.demo)
+        guild.users.add(cls.demo1)
+        guild.users.add(cls.random_object(User))
+        guild.users.add(cls.random_object(User))
+        guild.save()
+
+        guild = Guild.objects.create(
+            title=get_word()[0:20], location=cls.location
+            )
+        guild.users.add(cls.demo)
+        guild.users.add(cls.demo1)
+        guild.users.add(cls.random_object(User))
+        guild.users.add(cls.random_object(User))
+        guild.users.add(cls.random_object(User))
+        guild.save()
+        cls.guild = guild
+
+        guild = Guild.objects.create(
+            title=get_word()[0:20], location=cls.location
+            )
+        guild.users.add(cls.random_object(User))
+        guild.users.add(cls.random_object(User))
+        guild.users.add(cls.random_object(User))
+        guild.save()
+
+    @classmethod
+    def setup_feedback_db(cls):
+        """ create feedback after bid accepted in previous step """
+        pass
+
+    @classmethod
+    def setup_chat_db(cls):
+        """ dont know what to test here """
+        pass
+
+    @staticmethod
+    def sentences_string(runs=5):
+        sentence = ''
+        for _ in range(runs):
+            sentence += get_sentence() + ' '
+        return sentence
 
     @staticmethod
     def random_object(model):

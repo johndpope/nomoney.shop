@@ -16,7 +16,7 @@
     <div class="col"><b>{% trans 'description'|title %}</b></div>
     <div class="col"><b></b></div>
   </div>
-  {% for location in object_list %}
+  {% for location in locations %}
     <div class="row border-top">
       <div class="col">{{ location.title }}</div>
       <div class="col"><i class="fas fa-arrows-alt-h"></i> {{ location.lon }}</div>

@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
 <form method="post">{% csrf_token %}
 <table>
       <tr>
-        <td colspan=3><h3>Gebe</h3></td>
+        <td colspan=3><h3>{% trans 'give'|title %}</h3></td>
       </tr>
       {% for field in push_form %}
       <tr>
@@ -17,7 +18,7 @@
       {% endfor %}
 
       <tr>
-        <td colspan=3 class="pt-5"><h3>Nehme</h3></td>
+        <td colspan=3 class="pt-5"><h3>{% trans 'take'|title %}</h3></td>
       </tr>
       {% for field in pull_form %}
       <tr>
@@ -30,9 +31,9 @@
       {% endfor %}
 
     <tr>
-      <td>Bemerkungen:</td>
+      <td>{% trans 'comment'|title %}:</td>
       <td colspan=3 class="pt-5">{{ form.comment }}</td></tr>
-    <tr><td colspan=3 class="pt-5"><input type="submit" value="Save"></td></tr>
+    <tr><td colspan=3 class="pt-5"><input type="submit" value="{% trans 'save'|title %}"></td></tr>
 </table>
 </form>
 <!-- 

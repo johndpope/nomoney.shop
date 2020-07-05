@@ -1,5 +1,6 @@
 from django.db import models
 from config.settings import AUTH_USER_MODEL
+from django.db.models import Q
 
 
 class FeedbackStatus(models.IntegerChoices):
@@ -19,6 +20,11 @@ class FeedbackBase(models.Model):
         choices=FeedbackStatus.choices,
         )
     deal = models.ForeignKey('deal.Deal', on_delete=models.CASCADE)
+    type, push, user = 3 * [None]
+
+    @property
+    def object(self):
+        return self.user or self.push
 
     @property
     def is_editable(self):
@@ -27,6 +33,9 @@ class FeedbackBase(models.Model):
     def set_sent(self):
         self.status = FeedbackStatus.SENT
         self.save()
+
+    def __str__(self):
+        return '{}: {}'.format(self.type, self.object)
 
     class Meta:
         abstract = True
@@ -38,7 +47,23 @@ class UserFeedback(FeedbackBase):
         AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='feedback_for'
         )
 
+    @classmethod
+    def given_by_user(cls, user):
+        return cls.objects.filter(creator__pk=user.pk)
+
+    @classmethod
+    def taken_by_user(cls, user):
+        return cls.objects.filter(user__pk=user.pk)
+
 
 class PushFeedback(FeedbackBase):
     type = 'push'
     push = models.ForeignKey('listing.Push', on_delete=models.CASCADE)
+
+    @classmethod
+    def given_by_user(cls, user):
+        return cls.objects.filter(creator__pk=user.pk)
+
+    @classmethod
+    def taken_by_user(cls, user):
+        return cls.objects.filter(push__user__pk=user.pk)

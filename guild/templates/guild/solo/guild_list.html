@@ -3,7 +3,15 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-8">
-        <h5>{{ symbols.guild|safe }} {% trans 'guilds' %}</h5>
+        <h5>
+          {{ symbols.guild|safe }}&nbsp;
+          {% if user == request.user %}
+            {% trans '_your'|title %}
+          {% else %}
+            {{ user }}'s
+          {% endif %}
+          {% trans 'guilds' %}
+        </h5>
     </div>
     <div class="col-4 d-md-flex justify-content-end">
         <a class="btn btn-link p-0 text-info" href="{% url 'guild_create' %}"><i class="fas fa-plus"></i> {% trans 'guild' %}</a>
@@ -14,10 +22,10 @@
     <div class="col"><b>{% trans 'members' %}</b></div>
     <div class="col"><b></b></div>
   </div>
-  {% for guild in object_list %}
+  {% for guild in guilds %}
     <div class="row border-top">
       <div class="col">{% include 'guild/inc/link.html' %}</div>
-      <div class="col">{% for user in guild.users.all %}{% include 'user/inc/link.html' %}{% endfor %}</div>
+      <div class="col">{% for user in guild.users.all %}{% include 'user/inc/link.html' %}, {% endfor %}</div>
       <div class="col d-flex justify-content-end">
         {% if request.user in guild.users.all %}
         <a class="btn btn-link" href="{% url 'guild_delete' guild.pk %}" title="Löschen">{{ symbols.delete|safe }}</a>

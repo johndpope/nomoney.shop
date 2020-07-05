@@ -179,6 +179,9 @@ class Deal(models.Model):
                     deal=self
                     )
 
+    def __str__(self):
+        return '{} vs. {}'.format(self.user1, self.user2)
+
     class Meta:
         get_latest_by = ['pk']
 
@@ -213,7 +216,10 @@ class VirtualDeal(Deal):
         # Calculate Quality Percentage of each deal (for view/css)
         for deal in deals:
             deal.max_quality = max_quality
-            deal.quality_pct = int(deal.quality / max_quality * 100 + 0.5)
+            if max_quality == 0:
+                deal.quality_pct = 100
+            else:
+                deal.quality_pct = int(deal.quality / max_quality * 100 + 0.5)
 
         return sorted(deals, key=lambda x: x.quality, reverse=True)
 

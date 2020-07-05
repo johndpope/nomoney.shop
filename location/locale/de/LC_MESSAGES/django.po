@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-05 13:50+0200\n"
+"POT-Creation-Date: 2020-07-05 23:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,7 @@ msgstr ""
 #: location/templates/location/location_detail.html:99
 #: location/templates/location/location_detail.html:134
 msgid "at"
-msgstr ""
+msgstr "an"
 
 #: location/templates/location/location_detail.html:16
 #: location/templates/location/location_detail.html:57

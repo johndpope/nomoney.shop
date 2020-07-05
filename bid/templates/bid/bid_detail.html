@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
+<h2>{{object.user}} an {{object.partner}}</h2>
+<p>{% for listing in object.pushs.all %}{% include 'listing/inc/link.html' %}{% endfor %}</p>
+<p>{% for listing in object.pulls.all %}{% include 'listing/inc/link.html' %}{% endfor %}</p>
+<p>{{ object.comment }}</p>
+<p>{{ object.datetime }}</p>
 
-<h2>Anfrage von {{object.user}} an {{object.partner}}</h2>
-<p>Ich gebe: {% for listing in object.pushs.all %}{% include 'listing/inc/link.html' %}{% endfor %}</p>
-<p>Ich nehme: {% for listing in object.pulls.all %}{% include 'listing/inc/link.html' %}{% endfor %}</p>
-<p>Beschreibung: {{ object.comment }}</p>
-<p>Erstellt: {{ object.datetime }}</p>
-
-{% if object.is_latest %}<a href="#">Bearbeiten</a>{% endif %}
-<a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' object.pk %}" role="button">Gebot erstellen</a>
+{% if object.is_latest %}<a href="#">{% trans 'update'|title %}</a>{% endif %}
+<a class="btn btn-outline-primary btn-sm" href="{% url 'bid_create' object.pk %}" role="button">{% trans 'create'|title %} {% trans 'bid' %}</a>
 {% endblock %}

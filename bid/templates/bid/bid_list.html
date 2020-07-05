@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
 <div class="container-fluid bg-white">
@@ -6,10 +7,10 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Von</th>
-          <th scope="col">Partner</th>
-          <th scope="col">Zeit</th>
-          <th scope="col">Aktuell</th>
+          <th scope="col">{% trans 'from'|title %}</th>
+          <th scope="col">{% trans 'partner'|title %}</th>
+          <th scope="col">{% trans 'created'|title %}</th>
+          <th scope="col">{% trans 'current'|title %}</th>
         </tr>
       </thead>
       <tbody>
@@ -24,6 +25,6 @@
   {% endfor %}
       </tbody>
     </table>
-    <a class="btn btn-outline-primary btn-sm" href="" role="button">Gebot erstellen</a>
+    <a class="btn btn-outline-primary btn-sm" href="" role="button">{% trans 'create'|title %} {% trans 'bid'|title %}</a>
 </div>
 {% endblock %}

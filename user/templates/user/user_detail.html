@@ -1,19 +1,59 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% load i18n %}
 
 {% block content %}
 <div class="container rounded border p-4">
   <div class="row">
-    <div class="col">
+    <div class="col-12">
+      <h5>
+        {{ symbols.user|safe }}
+        {% if user == request.user %}
+          {% trans 'your'|title %}
+        {% else %}
+          {{ user|title }}'s
+        {% endif %}
+        {% trans 'profile' %}
+      </h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-auto">
       <div class="rounded border d-flex justify-content-center" style="width:200px;height:200px;">
         <img class="img-thumbnail" src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'images/default_user.png' %}{% endif %}" style="object-fit: cover;">
       </div>
     </div>
     <div class="col">
-      <div class="row">
-        <div class="col-12">{{ user.username }}</div>
-        <div class="col-12">{{ user.description }}</div>
+      <div class="row my-3 border-top">
+        <div class="col">
+          <div class="row"><b>{% trans 'name'|title %}:</b></div>
+          <div class="row">{{ user }}</div>
+        </div>
+        <div class="col">
+          <div class="row"><b>{% trans 'member'|title %} {% trans 'since' %}:</b></div>
+          <div class="row" title="{{ user.date_joined }}">{{ user.date_joined|naturaltime }}</div>
+        </div>
+        <div class="col">
+          <div class="row"><b>{% trans 'feedbacks'|title %}:</b></div>
+          <div class="row">
+            <div class="col px-0">
+              <a href="{% url 'feedback_detail' 'user' user.pk %}">
+                {% with score=user.score %}{% include 'feedback/inc/score.html' %}{% endwith %}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row my-3 border-top">
+        <div class="col">
+          <div class="row">
+            <b>{% trans 'description'|title %}:</b>
+          </div>
+          <div class="row">
+            {{ user.description }}
+          </div>
+        </div>
       </div>
     </div>
   </div>

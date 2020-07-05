@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class GuildListView(LoginRequiredMixin, ListView):
     model = Guild
+    context_object_name = 'guilds'
 
     def get_queryset(self):
         return self.request.user.guild_set.all()

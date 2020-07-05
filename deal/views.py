@@ -12,6 +12,7 @@ from .forms import DealCreateForm
 
 class DealListView(LoginRequiredMixin, ListView):
     template_name = 'deal/deal_list.html'
+    context_object_name = 'deals'
 
     def get_queryset(self):
         return self.request.user.deals

@@ -2,8 +2,82 @@
 {% load i18n %}
 
 {% block content %}
-<h3>{% trans 'feedbacks'|title %}</h3>
-  {% include 'feedback/solo/feedback_to_give_list.html' %}
-  <hr>
-  {% include 'feedback/solo/feedback_given_list.html' %}
+<!-- if request.user == object.user 
+offene bewertungen anzeigen
+-->
+{% if user and user_feedback_taken %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h5>
+          {{ symbols.feedback_regular|safe }} {% trans 'feedbacks'|title %} <b>{% trans 'for' %}</b> {{ user }}
+        </h5>
+      </div>
+    </div>
+    {% with feedbacks=user_feedback_taken %}
+      {% include 'feedback/solo/list.html' %}
+    {% endwith %}
+  </div>
+  <hr class="my-5">
+{% endif %}
+
+{% if user and user_feedback_given %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h5>
+          {{ symbols.feedback_regular|safe }} {% trans 'feedbacks'|title %} <b>{% trans 'from' %}</b> {{ user }}
+        </h5>
+      </div>
+    </div>
+    {% with feedbacks=user_feedback_given %}
+      {% include 'feedback/solo/list.html' %}
+    {% endwith %}
+  </div>
+  <hr class="my-5">
+{% endif %}
+
+
+{% if push and push_feedback_taken %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h5>
+          {{ symbols.feedback_regular|safe }} {% trans 'feedbacks'|title %} <b>{% trans 'for' %}</b> {{ user }}
+        </h5>
+      </div>
+    </div>
+    {% with feedbacks=push_feedback_taken %}
+      {% include 'feedback/solo/list.html' %}
+    {% endwith %}
+  </div>
+  <hr class="my-5">
+{% endif %}
+
+{% if push and push_feedback_given %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h5>
+          {{ symbols.feedback_regular|safe }} {% trans 'feedbacks'|title %} <b>{% trans 'from' %}</b> {{ user }}
+        </h5>
+      </div>
+    </div>
+    {% with feedbacks=push_feedback_given %}
+      {% include 'feedback/solo/list.html' %}
+    {% endwith %}
+  </div>
+  <hr class="my-5">
+{% endif %}
+
+
+
+<!-- Benutzer bewertungen erhalten -->
+
+<!-- Benutzer bewertungen gegeben -->
+
+<!-- Push bewertungen erhalten -->
+
+<!-- Push bewertungen gegeben -->
+
 {% endblock %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-05 13:50+0200\n"
+"POT-Creation-Date: 2020-07-05 23:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,42 +22,42 @@ msgstr ""
 msgid "delete"
 msgstr "löschen"
 
-#: listing/templates/listing/listing_detail.html:16
+#: listing/templates/listing/listing_detail.html:17
 msgid "offering"
 msgstr "Angebot"
 
-#: listing/templates/listing/listing_detail.html:16
+#: listing/templates/listing/listing_detail.html:19
 msgid "request"
-msgstr "Suchanfrage"
+msgstr "Anfrage"
 
-#: listing/templates/listing/listing_detail.html:16
+#: listing/templates/listing/listing_detail.html:21
 msgid "from"
 msgstr "von"
 
-#: listing/templates/listing/listing_detail.html:21
+#: listing/templates/listing/listing_detail.html:34
 #: listing/templates/listing/solo/listing_type_list.html:34
 msgid "category"
 msgstr "Kategorie"
 
-#: listing/templates/listing/listing_detail.html:25
+#: listing/templates/listing/listing_detail.html:38
 #: listing/templates/listing/solo/listing_type_list.html:40
 msgid "quantity"
 msgstr ""
 
-#: listing/templates/listing/listing_detail.html:29
+#: listing/templates/listing/listing_detail.html:42
 msgid "created"
 msgstr ""
 
-#: listing/templates/listing/listing_detail.html:33
+#: listing/templates/listing/listing_detail.html:46
 #: listing/templates/listing/solo/listing_type_list.html:43
 msgid "modified"
-msgstr ""
+msgstr "geändert"
 
-#: listing/templates/listing/listing_detail.html:40
+#: listing/templates/listing/listing_detail.html:53
 msgid "description"
 msgstr ""
 
-#: listing/templates/listing/listing_detail.html:56
+#: listing/templates/listing/listing_detail.html:69
 #: listing/templates/listing/listing_form.html:7
 msgid "update"
 msgstr ""
@@ -80,7 +80,7 @@ msgstr "Angebote"
 
 #: listing/templates/listing/solo/listing_type_list.html:20
 msgid "requests"
-msgstr "Suchanfragen"
+msgstr "Anfragen"
 
 #: listing/templates/listing/solo/listing_type_list.html:27
 msgid "offer"

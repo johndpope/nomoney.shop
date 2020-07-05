@@ -22,7 +22,6 @@ class BidCreateView(LoginRequiredMixin, FormView):
     """ Create new Bid """
     template_name = 'bid/bid_form.html'
     deal = None
-    #form_class = BidForm
 
     def setup(self, request, *args, **kwargs):
         FormView.setup(self, request, *args, **kwargs)

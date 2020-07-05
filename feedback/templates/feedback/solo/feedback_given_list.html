@@ -1,10 +1,17 @@
 <div class="container">
   <div class="row">
-  {% for feedback in user_feedback %}
-      {% include 'feedback/inc/card.html' %}
-  {% endfor %}
-  {% for feedback in push_feedback %}
-      {% include 'feedback/inc/card.html' %}
-  {% endfor %}
+  {% with feedbacks=user_feedback %}
+    {% with type='user' %}
+        {% include 'feedback/solo/list.html' %}
+    {% endwith %}
+  {% endwith %}
+
+  <hr class="my-5">
+
+  {% with feedbacks=push_feedback %}
+    {% with type='push' %}
+      {% include 'feedback/solo/list.html' %}
+    {% endwith %}
+  {% endwith %}
   </div>
 </div>

@@ -4,18 +4,38 @@ from django.views.generic.edit import DeleteView, UpdateView
 from django import forms
 from django.urls.base import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.list import ListView
+from user.models import User
 from .models import UserFeedback, PushFeedback
+from operator import attrgetter
+
+class FeedbackUserListView(LoginRequiredMixin, TemplateView):
+    template_name = 'feedback/feedback_user.html'
+    user = None
+ 
+    def setup(self, request, *args, **kwargs):
+        self.user = User.objects.get(pk=kwargs.get('user_pk'))
+        ListView.setup(self, request, *args, **kwargs)
+ 
+    def get_context_data(self, **kwargs):
+        context = TemplateView.get_context_data(self, **kwargs)
 
 
 class FeedbackListView(LoginRequiredMixin, TemplateView):
     template_name = 'feedback/feedback_list.html'
 
     def get_context_data(self, **kwargs):
+        user = self.request.user
         context = TemplateView.get_context_data(self, **kwargs)
-        context['user_feedback_open'] = self.request.user.userfeedback_set.filter(status=0)
-        context['push_feedback_open'] = self.request.user.pushfeedback_set.filter(status=0)
-        context['user_feedback'] = self.request.user.userfeedback_set.exclude(status=0)
-        context['push_feedback'] = self.request.user.pushfeedback_set.exclude(status=0)
+        user_feedback_given = list(UserFeedback.given_by_user(user).exclude(status=0))
+        push_feedback_given = list(PushFeedback.given_by_user(user).exclude(status=0))
+        context['user_feedback_given'] = sorted((user_feedback_given + push_feedback_given), key=attrgetter('created'), reverse=True)
+
+        user_feedback_taken = list(UserFeedback.taken_by_user(user).exclude(status=0))
+        push_feedback_taken = list(PushFeedback.taken_by_user(user).exclude(status=0))
+        context['user_feedback_taken'] = sorted((user_feedback_taken + push_feedback_taken), key=attrgetter('created'), reverse=True)
+
+        context['user'] = user
         return context
 
 
@@ -23,7 +43,7 @@ class FeedbackDetailView(LoginRequiredMixin, DetailView):
     model = None
     type_ = None
     template_name = 'feedback/feedback_detail.html'
-
+ 
     def setup(self, request, *args, **kwargs):
         self.type_ = kwargs.get('type')
         self.model = {'user': UserFeedback, 'push': PushFeedback}.get(self.type_)
