@@ -6,7 +6,7 @@
 <div class="container-fluid mb-5">
   <div class="row">
     <div class="col-8">
-        <h3>{% trans 'members' %}</h3>
+        <h5>{{ symbols.user|safe }} {% trans 'members' %}</h5>
     </div>
     <div class="col-4 d-md-flex justify-content-end">
       {% if request.user in guild.users.all %}
@@ -30,37 +30,6 @@
 
 
 <hr class="my-5">
+{% include 'dashboard/ajax_2d.html' %}
 
-
-<h3>{% trans 'calculated' %} {% trans 'deals' %}</h3>
-<div class="container-fluid">
-<div class="row">
-  <div class="col"><b>{% trans 'quality' %}</b></div>
-  <div class="col"><b>{% trans 'user' %}</b></div>
-  <div class="col"><b>{% trans 'offer' %}</b></div>
-  <div class="col"><b>{% trans 'seek' %}</b></div>
-  <div class="col"><b>{% trans 'partner' %}</b></div>
-  <div class="col d-flex justify-content-end"></div>
-</div>
-{% for deal in deals_2d %}
-{{ deal.user1 }}
-{{ deal.user2 }}
-  <div class="row border-top py-3">
-    <div class="col">
-      <div class="progress">
-        <div class="progress-bar bg-success" role="progressbar" style="width:{{ deal.quality_pct }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-    </div>
-    <div class="col">{% with user=deal.user1 %}{% include 'user/inc/link.html' %}{% endwith %}</div>
-    <div class="col">{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
-    <div class="col">{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %}{% endfor %}</div>
-    <div class="col">{% with user=deal.user2 %}{% include 'user/inc/link.html' %}{% endwith %}</div>
-    <div class="col d-flex justify-content-end">
-      {% if deal.user1 == request.user %}
-        <a class="btn p-0 text-info" href="{% url 'deal_user_create' deal.user2.pk %}"><i class="fas fa-plus"></i> {% trans 'deal' %}</a>
-      {% endif %}
-    </div>
-  </div>
-{% endfor %}
-</div>
 {% endblock %}

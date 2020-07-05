@@ -30,32 +30,42 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-12 col-sm-4 col-md-2 order-4 order-sm-1">
+    <div class="col">
       <b>{% trans 'category'|title %}</b>
     </div>
-    <div class="col-12 col-sm-8 col-md-5 order-1 order-sm-2">
+    <div class="col">
       <b>{% trans 'title'|title %}</b>
     </div>
-    <div class="col-12 col-sm-4 col-md-2 order-2 order-sm-3">
+    <div class="col">
       <b>{% trans 'quantity'|title %}</b>
     </div>
-    <div class="col-12 col-sm-8 col-md-3 order-3 order-sm-4 d-md-flex justify-content-end">
+    <div class="col">
       <b>{% trans 'modified'|title %}</b>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <b></b>
     </div>
   </div>
   {% for listing in listings %}
   <div class="row border-top">
-    <div class="col-12 col-sm-4 col-md-2 order-4 order-sm-1">
+    <div class="col">
       {% with category=listing.category %}{% include 'category/inc/link.html' %}{% endwith %}
     </div>
-    <div class="col-12 col-sm-8 col-md-5 order-1 order-sm-2">
+    <div class="col">
       {% with use_title=True %}{% include 'listing/inc/link.html' %}{% endwith %}
     </div>
-    <div class="col-12 col-sm-4 col-md-2 order-2 order-sm-3">
+    <div class="col">
       {{ listing.quantity }}{{ listing.unit.short }}
     </div>
-    <div class="col-12 col-sm-8 col-md-3 order-3 order-sm-4 d-md-flex justify-content-end" title="{{ listing.modified }}">
+    <div class="col" title="{{ listing.modified }}">
       {{ listing.modified|naturaltime }}
+    </div>
+    <div class="col d-flex justify-content-end" title="{{ listing.modified }}">
+      {% if request.user == listing.user %}
+        <a class="btn btn-link" href="{% url 'listing_delete' listing.type listing.pk %}" title="{% trans 'delete' %}">{{ symbols.delete|safe }}</a>
+        <a class="btn btn-link" href="{% url 'listing_update' listing.type listing.pk %}" title="{% trans 'update' %}">{{ symbols.update|safe }}</a>
+      {% endif %}
+      <a class="btn btn-link" href="{% url 'listing_detail' listing.type listing.pk %}" title="{% trans 'detail' %}">{{ symbols.detail|safe }}</a>
     </div>
   </div>
   {% endfor %}

@@ -73,10 +73,12 @@ class Push(ListingBase):
 
     @property
     def score(self):
-        feedbacks = self.pushfeedback_set.all()
-        if feedbacks:
-            return mean([feedback.score for feedback in feedbacks
-                         if feedback.score is not None])
+        scores = []
+        for feedback in self.pushfeedback_set.all():
+            if feedback.score:
+                scores.append(feedback.score)
+        if scores:
+            return mean(scores)
 
     @property
     def feedbacks(self):

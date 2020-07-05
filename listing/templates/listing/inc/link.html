@@ -1,4 +1,4 @@
-<span>
+<span class="{% if use_title %}text-nowrap{% endif %}">
   <a class="badge badge-{% if listing.type == 'push' %}primary{% elif listing.type == 'pull'%}secondary{% endif %}" 
   href="{% url 'listing_detail' listing.type listing.pk %}">
     {% if listing.type == 'push' %}
