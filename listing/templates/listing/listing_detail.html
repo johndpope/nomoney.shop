@@ -33,13 +33,13 @@
         <div class="col">
           <div class="row">
             <div class="col">
-              <b>{% trans 'score'|title %}:</b>
+              <b>{% trans 'feedback'|title %}:</b>
             </div>
           </div>
           <div class="row">
             <div class="col">
               <a href="{% url 'feedback_detail' 'push' listing.pk %}">
-                {% with score=listing.score %}{% include 'feedback/inc/score.html' %}{% endwith %}
+                {% if listing.score %}{% with score=listing.score %}{% include 'feedback/inc/score.html' %}{% endwith %}{% endif %}
               </a>
             </div>
           </div>

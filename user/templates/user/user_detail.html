@@ -27,19 +27,38 @@
     <div class="col">
       <div class="row my-3 border-top">
         <div class="col">
-          <div class="row"><b>{% trans 'name'|title %}:</b></div>
-          <div class="row">{{ user }}</div>
-        </div>
-        <div class="col">
-          <div class="row"><b>{% trans 'member'|title %} {% trans 'since' %}:</b></div>
-          <div class="row" title="{{ user.date_joined }}">{{ user.date_joined|naturaltime }}</div>
-        </div>
-        <div class="col">
-          <div class="row"><b>{% trans 'feedbacks'|title %}:</b></div>
           <div class="row">
-            <div class="col px-0">
+            <div class="col">
+              <b>{% trans 'name'|title %}:</b>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+          {{ user }}
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <b>{% trans 'member'|title %} {% trans 'since' %}:</b>
+            </div>
+          </div>
+          <div class="row" title="{{ user.date_joined }}">
+            <div class="col">
+              {{ user.date_joined|naturaltime }}</div>
+            </div>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <b>{% trans 'feedback'|title %}:</b>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
               <a href="{% url 'feedback_detail' 'user' user.pk %}">
-                {% with score=user.score %}{% include 'feedback/inc/score.html' %}{% endwith %}
+                {% if user.score %}{% with score=user.score %}{% include 'feedback/inc/score.html' %}{% endwith %}{% endif %}
               </a>
             </div>
           </div>
@@ -48,10 +67,14 @@
       <div class="row my-3 border-top">
         <div class="col">
           <div class="row">
-            <b>{% trans 'description'|title %}:</b>
+            <div class="col">
+              <b>{% trans 'description'|title %}:</b>
+            </div>
           </div>
           <div class="row">
-            {{ user.description }}
+            <div class="col">
+              {{ user.description }}
+            </div>
           </div>
         </div>
       </div>
