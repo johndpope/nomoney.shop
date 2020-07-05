@@ -1,3 +1,5 @@
-from django.test import TestCase
+from tests_abc import TestCase
 
-# Create your tests here.
+
+class DealTestCase(TestCase):
+    pass

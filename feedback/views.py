@@ -1,3 +1,4 @@
+from operator import attrgetter
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, UpdateView
@@ -6,19 +7,46 @@ from django.urls.base import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from user.models import User
+from listing.models import Push
 from .models import UserFeedback, PushFeedback
-from operator import attrgetter
 
-class FeedbackUserListView(LoginRequiredMixin, TemplateView):
-    template_name = 'feedback/feedback_user.html'
+
+class FeedbackTypeListView(LoginRequiredMixin, TemplateView):
+    template_name = 'feedback/feedback_list.html'
     user = None
- 
+    type, pk_ = 2 * [None]
+
     def setup(self, request, *args, **kwargs):
-        self.user = User.objects.get(pk=kwargs.get('user_pk'))
+        self.type = kwargs.get('type')
+        self.pk_ = kwargs.get('pk')
         ListView.setup(self, request, *args, **kwargs)
- 
+
     def get_context_data(self, **kwargs):
         context = TemplateView.get_context_data(self, **kwargs)
+        if self.type == 'push':
+            push = Push.objects.get(pk=self.pk_)
+            context['push_feedback_taken'] = push.pushfeedback_set.exclude(status=0)
+            context['push'] = push
+        elif self.type == 'user':
+            user = self.request.user
+            user_feedback_given = list(UserFeedback.given_by_user(user).exclude(status=0))
+            push_feedback_given = list(PushFeedback.given_by_user(user).exclude(status=0))
+            context['user_feedback_given'] = sorted((user_feedback_given + push_feedback_given), key=attrgetter('created'), reverse=True)
+
+            user_feedback_taken = list(UserFeedback.taken_by_user(user).exclude(status=0))
+            push_feedback_taken = list(PushFeedback.taken_by_user(user).exclude(status=0))
+            context['user_feedback_taken'] = sorted((user_feedback_taken + push_feedback_taken), key=attrgetter('created'), reverse=True) #requestuser
+        else:
+            user = self.request.user
+            user_feedback_given = list(UserFeedback.given_by_user(user).exclude(status=0))
+            push_feedback_given = list(PushFeedback.given_by_user(user).exclude(status=0))
+            context['user_feedback_given'] = sorted((user_feedback_given + push_feedback_given), key=attrgetter('created'), reverse=True)
+
+            user_feedback_taken = list(UserFeedback.taken_by_user(user).exclude(status=0))
+            push_feedback_taken = list(PushFeedback.taken_by_user(user).exclude(status=0))
+            context['user_feedback_taken'] = sorted((user_feedback_taken + push_feedback_taken), key=attrgetter('created'), reverse=True) #requestuser
+        return context
+
 
 
 class FeedbackListView(LoginRequiredMixin, TemplateView):

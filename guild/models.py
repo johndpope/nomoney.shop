@@ -18,3 +18,6 @@ class Guild(models.Model):
         if not self.chat:
             self.chat = Chat.objects.create()
         return models.Model.save(self, *args, **kwargs)
+
+    def __str__(self):
+        return self.title or ', '.join((str(user) for user in self.users.all()))

@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+{% load i18n %}
+
 
 {% block content %}
 <form method="post">{% csrf_token %}
-    <p>"{{ object }}" löschen?</p>
+    <p>{% trans 'guild' %} "{{ object }}" {% trans 'delete' %}?</p>
     <input type="submit" value="Bestätigen">
 </form>
 {% endblock %}

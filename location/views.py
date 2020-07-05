@@ -8,6 +8,7 @@ from .models import Location
 
 class LocationListView(LoginRequiredMixin, ListView):
     model = Location
+    context_object_name = 'locations'
 
     def get_queryset(self):
         return self.request.user.locations
@@ -15,6 +16,7 @@ class LocationListView(LoginRequiredMixin, ListView):
 
 class LocationDetailView(LoginRequiredMixin, DetailView):
     model = Location
+    context_object_name = 'location'
 
 
 class LocationCreateView(LoginRequiredMixin, CreateView):
