@@ -16,7 +16,7 @@ $(document).ready(function() {
   $(function(){
       $("#two-tab").click(function() {
           $.ajax({
-  	        url : '/dashboard/ajax/2d/',
+  	        url : "{% url 'dashboard_ajax_2d' %}",
   	        type: 'GET',
   	        success: function(data){
   	            $('#two').html(data);
@@ -27,7 +27,7 @@ $(document).ready(function() {
   $(function(){
   	$("#three-tab").click(function() {
   		$.ajax({
-  			url : '/dashboard/ajax/3d/',
+  			url : "{% url 'dashboard_ajax_3d' %}",
   			type: 'GET',
   			success: function(data){
   				$('#three').html(data);
@@ -54,13 +54,6 @@ $(document).ready(function() {
 <div class="tab-content py-3 border-left border-right border-bottom" id="myTabContent">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
     <div class="container-fluid mt-5">
-      {% if request.user.open_feedback %}
-        {% include 'feedback/solo/feedback_to_give_list.html' %}
-        <hr>
-      {% endif %}
-      {% include 'listing/solo/listing_list.html' %}
-      <hr class="my-5">
-      {% with object_list=request.user.deals %}{% include 'deal/solo/deal_list.html' %}{% endwith %}
     </div>
   </div>
   <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="two-tab">

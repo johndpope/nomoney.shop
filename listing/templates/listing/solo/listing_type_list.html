@@ -3,21 +3,30 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-8">
-        <h3>
+        <h5>
+          {% if type == 'push' %}
+            {{ symbols.push|safe }} 
+          {% elif type == 'pull' %}
+            {{ symbols.pull|safe }} 
+          {% endif %}
           {% if user == request.user %}
             {% trans '_your'|title %}
           {% else %}
             {{ user }}'s
           {% endif %}
-          {% if listings.0.type == 'push' %}
+          {% if type == 'push' %}
             {% trans 'offerings' %}
-          {% elif listings.0.type == 'pull' %}
+          {% elif type == 'pull' %}
             {% trans 'requests' %}
           {% endif %}
-        </h3>
+        </h5>
     </div>
     <div class="col-4 d-md-flex justify-content-end">
-        {% if user == request.user %}<a class="btn p-0 text-info" href="{% url 'listing_create' 'push' %}"><i class="fas fa-plus"></i> {% trans 'offer' %}</a>{% endif %}
+        {% if user == request.user %}
+          <a class="btn p-0 text-info" href="{% url 'listing_create' type %}">
+            <i class="fas fa-plus"></i> {% if type == 'push' %}{% trans 'offer' %}{% elif type == 'pull' %}{% trans 'seek' %}{% endif %}
+          </a>
+        {% endif %}
     </div>
   </div>
   <div class="row">
@@ -34,7 +43,7 @@
       <b>{% trans 'modified'|title %}</b>
     </div>
   </div>
-  {% for listing in user.pushs %}
+  {% for listing in listings %}
   <div class="row border-top">
     <div class="col-12 col-sm-4 col-md-2 order-4 order-sm-1">
       {% with category=listing.category %}{% include 'category/inc/link.html' %}{% endwith %}

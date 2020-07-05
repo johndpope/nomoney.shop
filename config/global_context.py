@@ -22,6 +22,8 @@ SYMBOLS = {
         'chat': '<i class="fas fa-comments"></i>',
         'chat_regular': '<i class="far fa-comments"></i>',
         'location': '<i class="fas fa-compress-arrows-alt"></i>',
+        'push': '<i class="fas fa-sort-up"></i>',
+        'pull': '<i class="fas fa-sort-down"></i>',
     }
 
 

@@ -3,7 +3,7 @@
 {% load i18n %}
 
 {% block content %}
-<div class="container">
+<div class="container rounded border p-4">
   <div class="row">
     <div class="col">
       <div class="rounded border d-flex justify-content-center" style="width:200px;height:200px;">
@@ -37,13 +37,13 @@
 {% if user == request.user %}
 
   {% if request.user.open_feedback %}
-  <div class="row border rounded mb-5 py-3">
-    <div class="col-12">
-      {% with guilds=request.user.guilds %}
-        {% include 'feedback/solo/feedback_to_give_list.html' %}
-      {% endwith %}
+    <div class="row border rounded mb-5 py-3">
+      <div class="col-12">
+        {% with guilds=request.user.guilds %}
+          {% include 'feedback/solo/feedback_to_give_list.html' %}
+        {% endwith %}
+      </div>
     </div>
-  </div>
   {% endif %}
 
 
@@ -78,7 +78,9 @@
   <div class="row border rounded mb-5 py-3">
     <div class="col-12">
       {% with listings=user.pushs %}
-        {% include 'listing/solo/listing_type_list.html' %}
+        {% with type='push' %}
+          {% include 'listing/solo/listing_type_list.html' %}
+        {% endwith %}
       {% endwith %}
     </div>
   </div>
@@ -86,7 +88,9 @@
   <div class="row border rounded mb-5 py-3">
     <div class="col-12">
       {% with listings=user.pulls %}
-        {% include 'listing/solo/listing_type_list.html' %}
+        {% with type='pull' %}
+          {% include 'listing/solo/listing_type_list.html' %}
+        {% endwith %}
       {% endwith %}
     </div>
   </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-04 22:14+0200\n"
+"POT-Creation-Date: 2020-07-05 13:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,34 +18,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: dashboard/templates/dashboard/ajax_2d.html:2
+#: dashboard/templates/dashboard/ajax_2d.html:5
 #, fuzzy
 #| msgid "calculate"
 msgid "calculated"
 msgstr "berechnete"
 
-#: dashboard/templates/dashboard/ajax_2d.html:2
+#: dashboard/templates/dashboard/ajax_2d.html:5
 #: dashboard/templates/dashboard/dashboard_home.html:51
 msgid "deals"
 msgstr ""
 
-#: dashboard/templates/dashboard/ajax_2d.html:5
+#: dashboard/templates/dashboard/ajax_2d.html:9
 msgid "quality"
 msgstr ""
 
-#: dashboard/templates/dashboard/ajax_2d.html:6
+#: dashboard/templates/dashboard/ajax_2d.html:10
 msgid "partner"
 msgstr ""
 
-#: dashboard/templates/dashboard/ajax_2d.html:7
+#: dashboard/templates/dashboard/ajax_2d.html:11
 msgid "offer"
 msgstr ""
 
-#: dashboard/templates/dashboard/ajax_2d.html:8
+#: dashboard/templates/dashboard/ajax_2d.html:12
 msgid "seek"
 msgstr ""
 
-#: dashboard/templates/dashboard/ajax_2d.html:21
+#: dashboard/templates/dashboard/ajax_2d.html:25
 msgid "deal"
 msgstr ""
 
@@ -57,12 +57,12 @@ msgstr ""
 msgid "calculate"
 msgstr "berechne"
 
-#: dashboard/templates/dashboard/dashboard_home.html:71
-#: dashboard/templates/dashboard/dashboard_home.html:82
+#: dashboard/templates/dashboard/dashboard_home.html:64
+#: dashboard/templates/dashboard/dashboard_home.html:75
 msgid "load"
 msgstr ""
 
-#: dashboard/templates/dashboard/dashboard_home.html:71
-#: dashboard/templates/dashboard/dashboard_home.html:82
+#: dashboard/templates/dashboard/dashboard_home.html:64
+#: dashboard/templates/dashboard/dashboard_home.html:75
 msgid "data"
 msgstr ""

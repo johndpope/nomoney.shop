@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-04 22:14+0200\n"
+"POT-Creation-Date: 2020-07-05 13:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,12 +35,12 @@ msgid "from"
 msgstr "von"
 
 #: listing/templates/listing/listing_detail.html:21
-#: listing/templates/listing/solo/listing_type_list.html:25
+#: listing/templates/listing/solo/listing_type_list.html:34
 msgid "category"
 msgstr "Kategorie"
 
 #: listing/templates/listing/listing_detail.html:25
-#: listing/templates/listing/solo/listing_type_list.html:31
+#: listing/templates/listing/solo/listing_type_list.html:40
 msgid "quantity"
 msgstr ""
 
@@ -49,7 +49,7 @@ msgid "created"
 msgstr ""
 
 #: listing/templates/listing/listing_detail.html:33
-#: listing/templates/listing/solo/listing_type_list.html:34
+#: listing/templates/listing/solo/listing_type_list.html:43
 msgid "modified"
 msgstr ""
 
@@ -70,22 +70,26 @@ msgstr ""
 msgid "save"
 msgstr ""
 
-#: listing/templates/listing/solo/listing_type_list.html:8
+#: listing/templates/listing/solo/listing_type_list.html:13
 msgid "_your"
 msgstr "deine"
 
-#: listing/templates/listing/solo/listing_type_list.html:13
+#: listing/templates/listing/solo/listing_type_list.html:18
 msgid "offerings"
 msgstr "Angebote"
 
-#: listing/templates/listing/solo/listing_type_list.html:15
+#: listing/templates/listing/solo/listing_type_list.html:20
 msgid "requests"
 msgstr "Suchanfragen"
 
-#: listing/templates/listing/solo/listing_type_list.html:20
+#: listing/templates/listing/solo/listing_type_list.html:27
 msgid "offer"
 msgstr ""
 
-#: listing/templates/listing/solo/listing_type_list.html:28
+#: listing/templates/listing/solo/listing_type_list.html:27
+msgid "seek"
+msgstr ""
+
+#: listing/templates/listing/solo/listing_type_list.html:37
 msgid "title"
 msgstr "Titel"

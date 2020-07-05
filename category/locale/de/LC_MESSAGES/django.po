@@ -18,38 +18,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: user/templates/user/user_detail.html:27
-msgid "update"
+#: category/templates/category/category_list.html:14
+#: category/templates/category/category_list.html:17
+msgid "categories"
 msgstr ""
 
-#: user/templates/user/user_detail.html:28
-msgid "settings"
+#: category/templates/category/category_list.html:24
+#: category/templates/category/category_list.html:51
+msgid "offer"
 msgstr ""
 
-#: user/templates/user/user_detail.html:29
-msgid "password"
+#: category/templates/category/category_list.html:25
+#: category/templates/category/category_list.html:54
+msgid "seek"
 msgstr ""
 
-#: user/templates/user/user_detail.html:30
-msgid "logout"
+#: category/templates/category/category_list.html:26
+msgid "sum"
+msgstr "gesamt"
+
+#: category/templates/category/category_list.html:64
+msgid "load"
 msgstr ""
 
-#: user/templates/user/user_form.html:19
-msgid "save"
-msgstr ""
-
-#: user/templates/user/user_list.html:10
-msgid "user"
-msgstr ""
-
-#: user/templates/user/user_list.html:11
-msgid "offerings"
-msgstr ""
-
-#: user/templates/user/user_list.html:12
-msgid "requests"
-msgstr ""
-
-#: user/templates/user/user_list.html:20
-msgid "deal"
+#: category/templates/category/category_list.html:64
+msgid "data"
 msgstr ""

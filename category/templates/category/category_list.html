@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load humanize %}
+{% load i18n %}
 
 {% block head %}
   <script src="{% static "js/category.js" %}"></script>
@@ -10,19 +11,19 @@
 <div id="accordion" class="container-fluid">
   <div class="row">
     <div class="col-8">
-        <h3>Kategorien</h3>
+        <h5>{{ symbols.category|safe }} {% trans 'categories'|title %}</h5>
     </div>
     <div class="col-4 d-md-flex justify-content-end">
-        <a class="btn p-0 text-info" href="{% url 'category_create' %}"><i class="fas fa-plus"></i> Kategorie</a>
+        <a class="btn p-0 text-info" href="{% url 'category_create' %}"><i class="fas fa-plus"></i> {% trans 'categories' %}</a>
     </div>
   </div>
   <div class="row">
     <div class="col-6 col-md-4"></div>
     <div class="col-6 col-md-4">
       <div class="row">
-        <div class="col-4" title="Anfragen"><b>Anf</b></div>
-        <div class="col-4" title="Angebote"><b>Ang</b></div>
-        <div class="col-4" title="Gesamt"><b>Ges</b></div>
+        <div class="col-4" title="Anfragen"><b>{% trans 'offer' %}</b></div>
+        <div class="col-4" title="Angebote"><b>{% trans 'seek' %}</b></div>
+        <div class="col-4" title="Gesamt"><b>{% trans 'sum' %}</b></div>
       </div>
     </div>
     <div class="col-6 col-md-2 d-flex justify-content-end"></div>
@@ -47,10 +48,10 @@
       </div>
       <div class="col-6 d-none d-sm-block d-md-none"></div>
       <div class="col-6 col-sm-3 col-md-2 d-flex justify-content-end">
-        <a class="text-info" style="white-space:nowrap;" href="{% url 'category_listing_create' 'push' category.pk %}"><i class="fas fa-plus"></i> biete</a>
+        <a class="text-info" style="white-space:nowrap;" href="{% url 'category_listing_create' 'push' category.pk %}"><i class="fas fa-plus"></i> {% trans 'offer' %}</a>
       </div>
       <div class="col-6 col-sm-3 col-md-2 d-flex justify-content-end" title="{{ listing.modified }}">
-        <a class="text-info" style="white-space:nowrap;" href="{% url 'category_listing_create' 'pull' category.pk %}"><i class="fas fa-plus"></i> suche</a>
+        <a class="text-info" style="white-space:nowrap;" href="{% url 'category_listing_create' 'pull' category.pk %}"><i class="fas fa-plus"></i> {% trans 'seek' %}</a>
       </div>
     </div>
       
@@ -60,7 +61,7 @@
           <div class="row">
             <div class="col w-100 d-flex justify-content-center" style="height: 100px;">
               <div class="spinner-border my-auto" role="status">
-                <span class="sr-only">Lade Daten...</span>
+                <span class="sr-only">{% trans 'load'|title %} {% trans 'data' %}...</span>
               </div>
             </div>
           </div>

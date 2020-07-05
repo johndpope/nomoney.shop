@@ -2,9 +2,13 @@
 {% load i18n %}
 
 {% with listings=user.pushs %}
-  {% include 'listing/solo/listing_type_list.html' %}
+  {% with type='push' %}
+    {% include 'listing/solo/listing_type_list.html' %}
+  {% endwith %}
 {% endwith %}
 <hr class="py-3">
 {% with listings=user.pulls %}
-  {% include 'listing/solo/listing_type_list.html' %}
+  {% with type='pull' %}
+    {% include 'listing/solo/listing_type_list.html' %}
+  {% endwith %}
 {% endwith %}
