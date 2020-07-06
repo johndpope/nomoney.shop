@@ -40,7 +40,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         return self.request.user
 
     def get_success_url(self):
-        return reverse('user_detail', args=(self.object.pk,))
+        return self.request.GET.get('next', reverse('home'))
 
 
 class UserSettingsView(LoginRequiredMixin, UpdateView):
@@ -52,6 +52,9 @@ class UserSettingsView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user.config
+
+    def get_success_url(self):
+        return self.request.GET.get('next', reverse('home'))
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):

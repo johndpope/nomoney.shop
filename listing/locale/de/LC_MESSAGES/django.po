@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-06 15:33+0200\n"
+"POT-Creation-Date: 2020-07-06 19:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: listing/templates/listing/listing_delete.html:7
-#: listing/templates/listing/solo/listing_type_list.html:65
+#: listing/templates/listing/solo/listing_type_list.html:68
 msgid "delete"
 msgstr "löschen"
 
@@ -40,12 +40,12 @@ msgid "feedback"
 msgstr ""
 
 #: listing/templates/listing/listing_detail.html:50
-#: listing/templates/listing/solo/listing_type_list.html:34
+#: listing/templates/listing/solo/listing_type_list.html:36
 msgid "category"
 msgstr "Kategorie"
 
 #: listing/templates/listing/listing_detail.html:62
-#: listing/templates/listing/solo/listing_type_list.html:40
+#: listing/templates/listing/solo/listing_type_list.html:42
 msgid "quantity"
 msgstr ""
 
@@ -54,7 +54,7 @@ msgid "created"
 msgstr ""
 
 #: listing/templates/listing/listing_detail.html:86
-#: listing/templates/listing/solo/listing_type_list.html:43
+#: listing/templates/listing/solo/listing_type_list.html:45
 msgid "modified"
 msgstr "geändert"
 
@@ -64,7 +64,7 @@ msgstr ""
 
 #: listing/templates/listing/listing_detail.html:119
 #: listing/templates/listing/listing_form.html:7
-#: listing/templates/listing/solo/listing_type_list.html:66
+#: listing/templates/listing/solo/listing_type_list.html:69
 msgid "update"
 msgstr ""
 
@@ -76,30 +76,30 @@ msgstr ""
 msgid "save"
 msgstr ""
 
-#: listing/templates/listing/solo/listing_type_list.html:13
+#: listing/templates/listing/solo/listing_type_list.html:14
 msgid "_your"
 msgstr "deine"
 
-#: listing/templates/listing/solo/listing_type_list.html:18
+#: listing/templates/listing/solo/listing_type_list.html:19
 msgid "offerings"
 msgstr "Angebote"
 
-#: listing/templates/listing/solo/listing_type_list.html:20
+#: listing/templates/listing/solo/listing_type_list.html:21
 msgid "requests"
 msgstr "Anfragen"
 
-#: listing/templates/listing/solo/listing_type_list.html:27
+#: listing/templates/listing/solo/listing_type_list.html:28
 msgid "offer"
 msgstr ""
 
-#: listing/templates/listing/solo/listing_type_list.html:27
+#: listing/templates/listing/solo/listing_type_list.html:28
 msgid "seek"
 msgstr ""
 
-#: listing/templates/listing/solo/listing_type_list.html:37
+#: listing/templates/listing/solo/listing_type_list.html:39
 msgid "title"
 msgstr "Titel"
 
-#: listing/templates/listing/solo/listing_type_list.html:68
+#: listing/templates/listing/solo/listing_type_list.html:71
 msgid "detail"
 msgstr ""

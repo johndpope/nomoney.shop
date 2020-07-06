@@ -51,4 +51,7 @@ $(document).ready(function() {
 		var menu_height = $('#main_menu').height();
 		$('#wrapper').css('margin-top', menu_height);
 	})
+	$(function () {
+	  $('[data-toggle="tooltip"]').tooltip()
+	})
 });

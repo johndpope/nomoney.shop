@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-06 15:33+0200\n"
+"POT-Creation-Date: 2020-07-06 19:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,12 +57,28 @@ msgstr ""
 msgid "calculate"
 msgstr "berechne"
 
-#: dashboard/templates/dashboard/dashboard_home.html:64
-#: dashboard/templates/dashboard/dashboard_home.html:75
+#: dashboard/templates/dashboard/dashboard_home.html:74
+msgid "location"
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard_home.html:82
+msgid "guild"
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard_home.html:90
+msgid "push"
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard_home.html:98
+msgid "pull"
+msgstr ""
+
+#: dashboard/templates/dashboard/dashboard_home.html:110
+#: dashboard/templates/dashboard/dashboard_home.html:121
 msgid "load"
 msgstr ""
 
-#: dashboard/templates/dashboard/dashboard_home.html:64
-#: dashboard/templates/dashboard/dashboard_home.html:75
+#: dashboard/templates/dashboard/dashboard_home.html:110
+#: dashboard/templates/dashboard/dashboard_home.html:121
 msgid "data"
 msgstr ""

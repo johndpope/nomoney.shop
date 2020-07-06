@@ -28,7 +28,7 @@ class LocationCreateView(LoginRequiredMixin, CreateView):
         return UpdateView.form_valid(self, form)
 
     def get_success_url(self):
-        return reverse('location_detail', args=(self.object.pk, ))
+        return self.request.GET.get('next', reverse('home'))
 
 
 class LocationUpdateView(LoginRequiredMixin, UpdateView):
@@ -36,7 +36,7 @@ class LocationUpdateView(LoginRequiredMixin, UpdateView):
     fields = ['title', 'lon', 'lat', 'description']
 
     def get_success_url(self):
-        return reverse('location_detail', args=(self.object.pk, ))
+        return self.request.GET.get('next', reverse('home'))
 
 
 class LocationDeleteView(LoginRequiredMixin, DeleteView):
@@ -44,4 +44,4 @@ class LocationDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'guild/guild_delete.html'
 
     def get_success_url(self):
-        return reverse('guild_list')
+        return self.request.GET.get('next', reverse('home'))

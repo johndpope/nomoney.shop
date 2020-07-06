@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-06 15:33+0200\n"
+"POT-Creation-Date: 2020-07-06 19:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr "einloggen"
 msgid "dashboard"
 msgstr "Dashboard"
 
-#: core/templates/menu.html:20 core/templates/menu.html:61
+#: core/templates/menu.html:20 core/templates/menu.html:54
 msgid "profile"
 msgstr "Profil"
 
@@ -39,54 +39,34 @@ msgid "categories"
 msgstr "Kategorien"
 
 #: core/templates/menu.html:26
-msgid "deals"
-msgstr "Geschäfte"
-
-#: core/templates/menu.html:29
-msgid "guilds"
-msgstr "Gilden"
-
-#: core/templates/menu.html:52
-msgid "help"
-msgstr ""
-
-#: core/templates/menu.html:53
-msgid "locations"
-msgstr "Orte"
-
-#: core/templates/menu.html:54
-msgid "feedbacks"
-msgstr "Bewertungen"
-
-#: core/templates/menu.html:55
-msgid "listings"
-msgstr "Einträge"
-
-#: core/templates/menu.html:56
 msgid "chats"
 msgstr "Chats"
 
-#: core/templates/menu.html:57
+#: core/templates/menu.html:49
+msgid "help"
+msgstr ""
+
+#: core/templates/menu.html:50
 msgid "users"
 msgstr "Benutzer"
 
-#: core/templates/menu.html:59
+#: core/templates/menu.html:52
 msgid "your"
 msgstr "dein"
 
-#: core/templates/menu.html:59
+#: core/templates/menu.html:52
 msgid "user"
 msgstr "Benutzer"
 
-#: core/templates/menu.html:60
+#: core/templates/menu.html:53
 msgid "settings"
 msgstr "Einstellungen"
 
-#: core/templates/menu.html:62
+#: core/templates/menu.html:55
 msgid "password"
 msgstr "Passwort"
 
-#: core/templates/menu.html:63
+#: core/templates/menu.html:56
 msgid "logout"
 msgstr "abmelden"
 
@@ -109,6 +89,21 @@ msgstr "lade"
 #: core/templates/offline.html:14
 msgid "data"
 msgstr "Daten"
+
+#~ msgid "deals"
+#~ msgstr "Geschäfte"
+
+#~ msgid "guilds"
+#~ msgstr "Gilden"
+
+#~ msgid "locations"
+#~ msgstr "Orte"
+
+#~ msgid "feedbacks"
+#~ msgstr "Bewertungen"
+
+#~ msgid "listings"
+#~ msgstr "Einträge"
 
 #~ msgid "change"
 #~ msgstr "ändere"

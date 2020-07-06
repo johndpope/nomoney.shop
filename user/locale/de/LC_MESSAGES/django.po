@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-06 15:33+0200\n"
+"POT-Creation-Date: 2020-07-06 19:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,47 +18,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: user/templates/user/user_detail.html:13
+#: user/templates/user/user_detail.html:6
+#: user/templates/user/user_detail.html:16
 msgid "your"
 msgstr ""
 
-#: user/templates/user/user_detail.html:17
+#: user/templates/user/user_detail.html:6
+#: user/templates/user/user_detail.html:20
 msgid "profile"
 msgstr ""
 
-#: user/templates/user/user_detail.html:32
+#: user/templates/user/user_detail.html:35
 msgid "name"
 msgstr ""
 
-#: user/templates/user/user_detail.html:44
+#: user/templates/user/user_detail.html:47
 msgid "member"
 msgstr ""
 
-#: user/templates/user/user_detail.html:44
+#: user/templates/user/user_detail.html:47
 msgid "since"
 msgstr "seit"
 
-#: user/templates/user/user_detail.html:55
+#: user/templates/user/user_detail.html:58
 msgid "feedback"
 msgstr ""
 
-#: user/templates/user/user_detail.html:71
+#: user/templates/user/user_detail.html:74
 msgid "description"
 msgstr ""
 
-#: user/templates/user/user_detail.html:90
+#: user/templates/user/user_detail.html:93
 msgid "update"
 msgstr ""
 
-#: user/templates/user/user_detail.html:91
+#: user/templates/user/user_detail.html:94
 msgid "settings"
 msgstr ""
 
-#: user/templates/user/user_detail.html:92
+#: user/templates/user/user_detail.html:95
 msgid "password"
 msgstr ""
 
-#: user/templates/user/user_detail.html:93
+#: user/templates/user/user_detail.html:96
 msgid "logout"
 msgstr ""
 

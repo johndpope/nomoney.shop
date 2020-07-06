@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-06 15:33+0200\n"
+"POT-Creation-Date: 2020-07-06 19:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,6 +70,30 @@ msgstr "speichern"
 msgid "delete"
 msgstr "löschen"
 
+#: deal/templates/deal/inc/status.html:5
+msgid "virtual"
+msgstr ""
+
+#: deal/templates/deal/inc/status.html:9
+msgid "started"
+msgstr "gestartet"
+
+#: deal/templates/deal/inc/status.html:15
+msgid "placed"
+msgstr "plaziert"
+
+#: deal/templates/deal/inc/status.html:20
+msgid "accepted"
+msgstr "akzeptiert"
+
+#: deal/templates/deal/inc/status.html:25
+msgid "canceled"
+msgstr "abgebrochen"
+
+#: deal/templates/deal/inc/status.html:30
+msgid "unknown"
+msgstr "unbekannt"
+
 #: deal/templates/deal/solo/deal_detail.html:2
 msgid "details"
 msgstr "Details"
@@ -84,13 +108,13 @@ msgstr ""
 
 #: deal/templates/deal/solo/deal_detail.html:7
 #: deal/templates/deal/solo/deal_detail.html:30
-#: deal/templates/deal/solo/deal_list.html:13
+#: deal/templates/deal/solo/deal_list.html:14
 msgid "offer"
 msgstr ""
 
 #: deal/templates/deal/solo/deal_detail.html:8
 #: deal/templates/deal/solo/deal_detail.html:31
-#: deal/templates/deal/solo/deal_list.html:14
+#: deal/templates/deal/solo/deal_list.html:15
 msgid "seek"
 msgstr ""
 
@@ -103,7 +127,7 @@ msgid "user"
 msgstr "Benutzer"
 
 #: deal/templates/deal/solo/deal_detail.html:32
-#: deal/templates/deal/solo/deal_list.html:15
+#: deal/templates/deal/solo/deal_list.html:16
 msgid "partner"
 msgstr "Partner"
 
@@ -135,7 +159,7 @@ msgstr "deine"
 msgid "deals"
 msgstr ""
 
-#: deal/templates/deal/solo/deal_list.html:25
+#: deal/templates/deal/solo/deal_list.html:27
 #, fuzzy
 #| msgid "details"
 msgid "detail"

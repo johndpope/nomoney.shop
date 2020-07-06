@@ -6,7 +6,7 @@
         <h5>{{ symbols.location|safe }} {% trans '_your'|title %} {% trans 'locations' %}</h5>
     </div>
     <div class="col-4 d-flex justify-content-end">
-        <a class="btn btn-link p-0 text-info" href="{% url 'location_create' %}"><i class="fas fa-plus"></i> {% trans 'location' %}</a>
+        <a class="btn btn-link p-0 text-info" href="{% url 'location_create' %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'location' %}</a>
     </div>
   </div>
   {% if locations %}
@@ -25,8 +25,8 @@
       <div class="col-6 col-md-3 order-4 order-md-3"><i class="fas fa-arrows-alt-v"></i> {{ location.lat }}</div>
       <div class="col-5 col-md-3 order-2 order-md-4 d-flex justify-content-end">
         {% if request.user == location.user %}
-          <a class="btn btn-link py-0" href="{% url 'location_delete' location.pk %}" title="{% trans 'delete' %}">{{ symbols.delete|safe }}</a>
-          <a class="btn btn-link py-0" href="{% url 'location_update' location.pk %}" title="{% trans 'update' %}">{{ symbols.update|safe }}</a>
+          <a class="btn btn-link py-0" href="{% url 'location_delete' location.pk %}?next={{ request.path }}" title="{% trans 'delete' %}">{{ symbols.delete|safe }}</a>
+          <a class="btn btn-link py-0" href="{% url 'location_update' location.pk %}?next={{ request.path }}" title="{% trans 'update' %}">{{ symbols.update|safe }}</a>
         {% endif %}
         <a class="btn btn-link py-0" href="{% url 'location_detail' location.pk %}" title="{% trans 'detail' %}">{{ symbols.detail|safe }}</a>
       </div>

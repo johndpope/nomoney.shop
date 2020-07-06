@@ -2,6 +2,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls.base import reverse
 from .models import Category
 
 
@@ -17,6 +18,9 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
     template_name = 'category/category_form.html'
     fields = ['parent', 'title', 'description']
 
+    def get_success_url(self):
+        return self.request.GET.get('next', reverse('home'))
+
 
 class CategoryDetailView(LoginRequiredMixin, DetailView):
     model = Category
@@ -27,10 +31,16 @@ class CategoryUpdateView(LoginRequiredMixin, UpdateView):
     model = Category
     template_name = 'category/category_form.html'
 
+    def get_success_url(self):
+        return self.request.GET.get('next', reverse('home'))
+
 
 class CategoryDeleteView(LoginRequiredMixin, DeleteView):
     model = Category
     template_name = 'category/category_delete.html'
+
+    def get_success_url(self):
+        return self.request.GET.get('next', reverse('home'))
 
 
 class CategoryAjaxView(LoginRequiredMixin, DetailView):

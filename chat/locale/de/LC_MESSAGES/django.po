@@ -17,23 +17,39 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: search/templates/search/solo/search_live.html:6
-msgid "searchresults"
-msgstr "Suchergebnisse"
-
-#: search/templates/search/solo/search_live.html:16
-msgid "users"
+#: chat/templates/chat/chat_form.html:32
+msgid "save"
 msgstr ""
 
-#: search/templates/search/solo/search_live.html:29
-msgid "categories"
+#: chat/templates/chat/chat_list.html:4
+msgid "yours"
 msgstr ""
 
-#: search/templates/search/solo/search_live.html:42
-msgid "offerings"
+#: chat/templates/chat/chat_list.html:4
+msgid "chats"
 msgstr ""
 
-#: search/templates/search/solo/search_live.html:55
-msgid "requests"
+#: chat/templates/chat/solo/chat_list.html:6
+#: chat/templates/chat/solo/chat_list.html:11
+msgid "chat"
+msgstr ""
+
+#: chat/templates/chat/solo/chat_list.html:6
+msgid "overview"
+msgstr ""
+
+#: chat/templates/chat/solo/chat_list.html:18
+msgid "title"
+msgstr ""
+
+#: chat/templates/chat/solo/chat_list.html:19
+msgid "members"
+msgstr ""
+
+#: chat/templates/chat/solo/chat_list.html:20
+msgid "messages"
+msgstr ""
+
+#: chat/templates/chat/solo/chat_list.html:30
+msgid "detail"
 msgstr ""

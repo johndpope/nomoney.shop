@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-06 15:33+0200\n"
+"POT-Creation-Date: 2020-07-06 19:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,7 +110,7 @@ msgid "guild"
 msgstr ""
 
 #: location/templates/location/location_detail.html:141
-#: location/templates/location/solo/location_list.html:13
+#: location/templates/location/solo/location_list.html:14
 msgid "name"
 msgstr ""
 
@@ -119,12 +119,12 @@ msgid "member"
 msgstr ""
 
 #: location/templates/location/location_detail.html:151
-#: location/templates/location/solo/location_list.html:26
+#: location/templates/location/solo/location_list.html:28
 msgid "delete"
 msgstr ""
 
 #: location/templates/location/location_detail.html:152
-#: location/templates/location/solo/location_list.html:27
+#: location/templates/location/solo/location_list.html:29
 msgid "update"
 msgstr ""
 
@@ -144,10 +144,10 @@ msgstr ""
 msgid "locations"
 msgstr "Orte"
 
-#: location/templates/location/solo/location_list.html:17
+#: location/templates/location/solo/location_list.html:18
 msgid "description"
 msgstr ""
 
-#: location/templates/location/solo/location_list.html:29
+#: location/templates/location/solo/location_list.html:31
 msgid "detail"
 msgstr ""

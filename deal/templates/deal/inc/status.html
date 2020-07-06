@@ -1,15 +1,33 @@
-<div class="btn btn-link  py-0">
-  {% if deal.status == 0 %}
-    <i class="fas fa-check text-success" title="Virtual"></i>
-  {% elif deal.status == 10 %}
-    <i class="fas fa-play-circle text-success" title="Started"></i>
-  {% elif deal.status == 20 %}
-    <i class="fas fa-tags text-success" title="Placed"></i>
-  {% elif deal.status == 100 %}
-    <i class="fas fa-check-circle text-success" title="Accepted"></i>
-  {% elif deal.status == 110 %}
-    <i class="fas fa-ban text-success" title="Canceled"></i>
-  {% else %}
-    <i class="fas fa-question-circle" title="unknown"></i>
-  {% endif %}
-</div>
+{% load i18n %}
+
+{% if deal.status == 0 %}
+  <div class="btn btn-link py-0">
+    <i class="fas fa-check text-success" title="{% trans 'virtual' %}" data-toggle="tooltip"></i>
+  </div>
+
+{% elif deal.status == 10 %}
+  <div class="btn btn-link py-0" title="{% trans 'started' %}" data-toggle="tooltip">
+    <i class="fas fa-play-circle text-success"></i>
+  </div>
+
+{% elif deal.status == 20 %}
+  <div class="btn btn-link py-0">
+    <i class="fas fa-tags text-success" title="{% trans 'placed' %}" data-toggle="tooltip"></i>
+  </div>
+
+{% elif deal.status == 100 %}
+  <div class="btn btn-link py-0">
+    <i class="fas fa-check-circle text-success" title="{% trans 'accepted' %}" data-toggle="tooltip"></i>
+  </div>
+
+{% elif deal.status == 110 %}
+  <div class="btn btn-link py-0">
+    <i class="fas fa-ban text-success" title="{% trans 'canceled' %}" data-toggle="tooltip"></i>
+  </div>
+
+{% else %}
+  <div class="btn btn-link py-0">
+    <i class="fas fa-question-circle" title="{% trans 'unknown' %}" data-toggle="tooltip"></i>
+  </div>
+
+{% endif %}

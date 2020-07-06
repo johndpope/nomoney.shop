@@ -48,7 +48,7 @@ class GuildCreateView(LoginRequiredMixin, CreateView):
         return response
 
     def get_success_url(self):
-        return reverse('guild_detail', args=(self.object.pk, ))
+        return self.request.GET.get('next', reverse('home'))
 
 
 class GuildUpdateView(LoginRequiredMixin, UpdateView):
@@ -71,7 +71,7 @@ class GuildUpdateView(LoginRequiredMixin, UpdateView):
         return response
 
     def get_success_url(self):
-        return reverse('guild_detail', args=(self.object.pk, ))
+        return self.request.GET.get('next', reverse('home'))
 
 
 class GuildDeleteView(LoginRequiredMixin, DeleteView):
@@ -79,4 +79,4 @@ class GuildDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'guild/guild_delete.html'
 
     def get_success_url(self):
-        return reverse('guild_list')
+        return self.request.GET.get('next', reverse('home'))

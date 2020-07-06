@@ -36,7 +36,7 @@ class ListingTypeListView(LoginRequiredMixin, ListView):
 
 
 class ListingCreateView(LoginRequiredMixin, CreateView):
-    model = None
+    model, category, type = 3 * [None]
     fields = FIELDS
     template_name = 'listing/listing_form.html'
     success_url = reverse_lazy('listing_list')
@@ -60,11 +60,11 @@ class ListingCreateView(LoginRequiredMixin, CreateView):
         return CreateView.form_valid(self, form)
 
     def get_success_url(self):
-        return reverse('listing_detail', args=(self.type, self.object.pk))
+        return self.request.GET.get('next', reverse('home'))
 
 
 class ListingUpdateView(LoginRequiredMixin, UpdateView):
-    model = None
+    model, type = 2 * [None]
     template_name = 'listing/listing_form.html'
     fields = FIELDS
     success_url = reverse_lazy('listing_list')
@@ -76,7 +76,7 @@ class ListingUpdateView(LoginRequiredMixin, UpdateView):
         return DetailView.dispatch(self, request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse('listing_detail', args=(self.type, self.object.pk))
+        return self.request.GET.get('next', reverse('home'))
 
 
 class ListingDetailView(LoginRequiredMixin, DetailView):  # OK
@@ -104,3 +104,6 @@ class ListingDeleteView(LoginRequiredMixin, DeleteView):
     def dispatch(self, request, *args, **kwargs):
         self.model = {'push': Push, 'pull': Pull}.get(kwargs.get('type'))
         return DeleteView.dispatch(self, request, *args, **kwargs)
+
+    def get_success_url(self):
+        return self.request.GET.get('next', reverse('home'))
