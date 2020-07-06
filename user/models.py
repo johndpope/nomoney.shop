@@ -62,9 +62,12 @@ class User(AbstractUser):
     @property
     def score(self):
         """ self.taken_feedbacks.aggregate(Avg('score'))['score__avg'] """
-        feedback = self.feedback_for.all()
-        if feedback:
-            return mean((x.score for x in feedback if x.score is not None))
+        scores = []
+        for feedback in self.feedback_for.all():
+            if feedback.score:
+                scores.append(feedback.score)
+        if scores:
+            return mean(scores)
 
     @property
     def open_feedback(self):

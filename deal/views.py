@@ -42,10 +42,6 @@ class DealCreateView(LoginRequiredMixin, CreateView):
     template_name = 'deal/deal_form.html'
     form_class = DealCreateForm
 
-    def get_context_data(self, **kwargs):
-        context = CreateView.get_context_data(self, **kwargs)
-        return context
-
     def form_valid(self, form):
         form.instance.user1 = self.request.user
         return CreateView.form_valid(self, form)

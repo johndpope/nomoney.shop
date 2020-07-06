@@ -66,7 +66,7 @@ class Deal(models.Model):
 
     @property
     def bids(self):
-        return self.bid_set.filter()
+        return self.bid_set.all()
 
     @property
     def pushs(self):
@@ -145,9 +145,9 @@ class Deal(models.Model):
             Q(user2=user1, user1=user2)
             )
         if create and not existing:
-            cls.objects.create(user1=user1, user2=user2)
-        else:
-            return existing
+            deal = cls.objects.create(user1=user1, user2=user2)
+            return cls.objects.filter(pk=deal.pk)
+        return existing
 
     @classmethod
     def get_or_create(cls, users):
