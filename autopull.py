@@ -15,13 +15,8 @@ def execute(cmd, directory):
 
 directory = '/var/www/nomoney.shop'
 result = execute('su www-data -c "git pull"', directory)
-print(result)
 if result[0] != u'Bereits aktuell.':
     result = execute('su www-data -c "venv/bin/python manage.py collectstatic --noinput"', directory)
-    print(result)
     result = execute('su www-data -c "venv/bin/python manage.py compilemessages"', directory)
-    print(result)
+    result = execute('su www-data -c "venv/bin/python manage.py migrate"', directory)
     result = execute('/etc/init.d/apache2 reload', directory)
-    print(result)
-
-    
