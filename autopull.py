@@ -23,3 +23,5 @@ if result[0] != u'Bereits aktuell.':
     print(result)
     result = execute('/etc/init.d/apache2 reload', directory)
     print(result)
+
+    
