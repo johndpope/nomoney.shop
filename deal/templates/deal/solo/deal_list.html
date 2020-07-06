@@ -6,7 +6,7 @@
         <h5>{{ symbols.deal|safe }} {% trans 'yours'|title %} {% trans 'deals' %}</h5>
     </div>
     <div class="col-4 d-md-flex justify-content-end">
-        <a class="btn p-0 text-info text-nowrap" href="{% url 'deal_create' %}"><i class="fas fa-plus"></i> {% trans 'deal' %}</a>
+        <a class="btn p-0 text-info text-nowrap" href="{% url 'deal_create' %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'deal' %}</a>
     </div>
   </div>
   {% if deals %}
