@@ -6,23 +6,24 @@
         <h5>{{ symbols.deal|safe }} {% trans 'yours'|title %} {% trans 'deals' %}</h5>
     </div>
     <div class="col-4 d-md-flex justify-content-end">
-        <a class="btn p-0 text-info" href="{% url 'deal_create' %}"><i class="fas fa-plus"></i> {% trans 'deal' %}</a>
+        <a class="btn p-0 text-info text-nowrap" href="{% url 'deal_create' %}"><i class="fas fa-plus"></i> {% trans 'deal' %}</a>
     </div>
   </div>
   <div class="row">
-    <div class="col-12 col-md-4"><b>{% trans 'offer' %}</b></div>
-    <div class="col-12 col-md-4"><b>{% trans 'seek' %}</b></div>
-    <div class="col-6 col-sm-8 col-md-2"><b>{% trans 'partner' %}</b></div>
-    <div class="col-3 col-sm-2 col-md-1 text-center d-none d-md-block"><b>{% trans 'status' %}</b></div>
-    <div class="col-3 col-sm-2 col-md-1"></div>
+    <div class="col-12 col-md-4 order-3 order-md-1"><b>{% trans 'offer' %}</b></div>
+    <div class="col-12 col-md-4 order-4 order-md-1"><b>{% trans 'seek' %}</b></div>
+    <div class="col-9 col-md-3 order-1 order-md-1"><b>{% trans 'partner' %}</b></div>
+    <div class="col-3 col-md-1 order-2 order-md-1"><b></b></div>
   </div>
   {% for deal in deals %}
-  <div class="row border-top">
-    <div class="col-12 col-md-4">{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %} {% endfor %}</div>
-    <div class="col-12 col-md-4">{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %} {% endfor %}</div>
-    <div class="col-6 col-sm-8 col-md-2">{% with user=deal.partner %}{% include 'user/inc/link.html' %}{% endwith %}</div>
-    <div class="col-3 col-sm-2 col-md-1 d-flex justify-content-end">{% include 'deal/inc/status.html' %}</div>
-    <div class="col-3 col-sm-2 col-md-1 d-flex justify-content-end"><a class="text-info btn btn-link" href="{% url 'deal_detail' deal.pk %}"><i class="fas fa-search"></i></a></div>
+  <div class="row border-top mb-3 mb-md-0">
+    <div class="col-12 col-md-4 order-3 order-md-1">{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %} {% endfor %}</div>
+    <div class="col-12 col-md-4 order-4 order-md-1">{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %} {% endfor %}</div>
+    <div class="col-9 col-md-3 order-1 order-md-1">{% with user=deal.partner %}{% include 'user/inc/link.html' %}{% endwith %}</div>
+    <div class="col-3 col-md-1 order-2 order-md-1 d-flex justify-content-end">
+    {% include 'deal/inc/status.html' %}
+      <a class="btn btn-link py-0" href="{% url 'deal_detail' deal.pk %}" title="{% trans 'detail' %}">{{ symbols.detail|safe }}</a>
+    </div>
   </div>
   {% endfor %}
 </div>

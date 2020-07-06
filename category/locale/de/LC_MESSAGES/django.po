@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-05 23:46+0200\n"
+"POT-Creation-Date: 2020-07-06 15:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: category/templates/category/category_detail.html:7
+msgid "category"
+msgstr ""
+
 #: category/templates/category/category_list.html:14
 #: category/templates/category/category_list.html:17
 msgid "categories"
@@ -25,11 +29,13 @@ msgstr ""
 
 #: category/templates/category/category_list.html:24
 #: category/templates/category/category_list.html:51
+#: category/templates/category/solo/category_detail.html:6
 msgid "offer"
 msgstr ""
 
 #: category/templates/category/category_list.html:25
 #: category/templates/category/category_list.html:54
+#: category/templates/category/solo/category_detail.html:10
 msgid "seek"
 msgstr ""
 
@@ -43,4 +49,28 @@ msgstr ""
 
 #: category/templates/category/category_list.html:64
 msgid "data"
+msgstr ""
+
+#: category/templates/category/solo/category_detail_single.html:5
+msgid "offering"
+msgstr ""
+
+#: category/templates/category/solo/category_detail_single.html:5
+msgid "request"
+msgstr ""
+
+#: category/templates/category/solo/category_detail_single.html:6
+msgid "user"
+msgstr ""
+
+#: category/templates/category/solo/category_detail_single.html:7
+msgid "offers"
+msgstr ""
+
+#: category/templates/category/solo/category_detail_single.html:8
+msgid "seeks"
+msgstr "sucht"
+
+#: category/templates/category/solo/category_detail_single.html:19
+msgid "deal"
 msgstr ""

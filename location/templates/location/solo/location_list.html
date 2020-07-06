@@ -5,30 +5,30 @@
     <div class="col-8">
         <h5>{{ symbols.location|safe }} {% trans '_your'|title %} {% trans 'locations' %}</h5>
     </div>
-    <div class="col-4 d-md-flex justify-content-end">
+    <div class="col-4 d-flex justify-content-end">
         <a class="btn btn-link p-0 text-info" href="{% url 'location_create' %}"><i class="fas fa-plus"></i> {% trans 'location' %}</a>
     </div>
   </div>
   <div class="row">
-    <div class="col"><b>{% trans 'name'|title %}</b></div>
-    <div class="col"><b>Longitude</b></div>
-    <div class="col"><b>Latitude</b></div>
-    <div class="col"><b>{% trans 'description'|title %}</b></div>
-    <div class="col"><b></b></div>
+    <div class="col-7 col-md-3 order-1 order-md-1"><b>{% trans 'name'|title %}</b></div>
+    <div class="col-6 col-md-3 order-3 order-md-2"><b>Longitude</b></div>
+    <div class="col-6 col-md-3 order-4 order-md-3"><b>Latitude</b></div>
+    <div class="col-5 col-md-3 order-2 order-md-4 d-flex justify-content-end"><b></b></div>
+    <div class="col-12 order-5"><b>{% trans 'description'|title %}</b></div>
   </div>
   {% for location in locations %}
     <div class="row border-top">
-      <div class="col">{{ location.title }}</div>
-      <div class="col"><i class="fas fa-arrows-alt-h"></i> {{ location.lon }}</div>
-      <div class="col"><i class="fas fa-arrows-alt-v"></i> {{ location.lat }}</div>
-      <div class="col">{{ location.description }}</div>
-      <div class="col d-flex justify-content-end">
+      <div class="col-7 col-md-3 order-1 order-md-1">{{ location.title }}</div>
+      <div class="col-6 col-md-3 order-3 order-md-2"><i class="fas fa-arrows-alt-h"></i> {{ location.lon }}</div>
+      <div class="col-6 col-md-3 order-4 order-md-3"><i class="fas fa-arrows-alt-v"></i> {{ location.lat }}</div>
+      <div class="col-5 col-md-3 order-2 order-md-4 d-flex justify-content-end">
         {% if request.user == location.user %}
-          <a class="btn btn-link" href="{% url 'location_delete' location.pk %}" title="{% trans 'delete' %}">{{ symbols.delete|safe }}</a>
-          <a class="btn btn-link" href="{% url 'location_update' location.pk %}" title="{% trans 'update' %}">{{ symbols.update|safe }}</a>
+          <a class="btn btn-link py-0" href="{% url 'location_delete' location.pk %}" title="{% trans 'delete' %}">{{ symbols.delete|safe }}</a>
+          <a class="btn btn-link py-0" href="{% url 'location_update' location.pk %}" title="{% trans 'update' %}">{{ symbols.update|safe }}</a>
         {% endif %}
-        <a class="btn btn-link" href="{% url 'location_detail' location.pk %}" title="{% trans 'detail' %}">{{ symbols.detail|safe }}</a>
+        <a class="btn btn-link py-0" href="{% url 'location_detail' location.pk %}" title="{% trans 'detail' %}">{{ symbols.detail|safe }}</a>
       </div>
+      <div class="col-12 order-5">{{ location.description }}</div>
     </div>
   {% endfor %}
 </div>

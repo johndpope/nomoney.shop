@@ -1,0 +1,24 @@
+{% load i18n %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-7 order-1 order-md-1"><b>{% if listings.0.type == 'push' %}{% trans 'offering' %}{% elif listings.0.type == 'pull' %}{% trans 'request' %}{% endif %}</b></div>
+    <div class="col-8 col-md-3 order-2 order-md-2"><b>{% trans 'user' %}</b></div>
+    <div class="col-12 col-md-6 order-3 order-md-4"><b>{% trans 'offers' %}</b></div>
+    <div class="col-12 col-md-6 order-4 order-md-5"><b>{% trans 'seeks' %}</b></div>
+    <div class="col-12 col-md-2 order-5 order-md-3 d-flex justify-content-end"></div>
+  </div>
+{% for listing in listings %}
+  <div class="row border-top">
+    <div class="col-12 col-md-7 order-1 order-md-1">{% with use_title=True %}{% include 'listing/inc/link.html' %}{% endwith %}</div>
+    <div class="col-8 col-md-3 order-2 order-md-2">{% with user=listing.user %}{% include 'user/inc/link.html' %}{% endwith %}</div>
+    <div class="col-12 col-md-6 order-3 order-md-4">{% for listing in listing.user.pushs %}{% include 'listing/inc/link.html' %}{%endfor%}</div>
+    <div class="col-12 col-md-6 order-4 order-md-5">{% for listing in listing.user.pulls %}{% include 'listing/inc/link.html' %}{%endfor%}</div>
+    <div class="col-12 col-md-2 order-5 order-md-3 d-flex justify-content-end">
+      <a class="btn btn-link p-0 text-info text-nowrap" href="{% url 'deal_user_create' listing.user.pk %}">
+        <i class="fas fa-plus"></i> {% trans 'deal' %}
+      </a>
+    </div>
+  </div>
+{% endfor %}
+</div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-05 23:46+0200\n"
+"POT-Creation-Date: 2020-07-06 15:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,39 +26,39 @@ msgstr ""
 msgid "profile"
 msgstr ""
 
-#: user/templates/user/user_detail.html:30
+#: user/templates/user/user_detail.html:32
 msgid "name"
 msgstr ""
 
-#: user/templates/user/user_detail.html:34
+#: user/templates/user/user_detail.html:44
 msgid "member"
 msgstr ""
 
-#: user/templates/user/user_detail.html:34
+#: user/templates/user/user_detail.html:44
 msgid "since"
 msgstr "seit"
 
-#: user/templates/user/user_detail.html:38
-msgid "feedbacks"
+#: user/templates/user/user_detail.html:55
+msgid "feedback"
 msgstr ""
 
-#: user/templates/user/user_detail.html:51
+#: user/templates/user/user_detail.html:71
 msgid "description"
 msgstr ""
 
-#: user/templates/user/user_detail.html:67
+#: user/templates/user/user_detail.html:90
 msgid "update"
 msgstr ""
 
-#: user/templates/user/user_detail.html:68
+#: user/templates/user/user_detail.html:91
 msgid "settings"
 msgstr ""
 
-#: user/templates/user/user_detail.html:69
+#: user/templates/user/user_detail.html:92
 msgid "password"
 msgstr ""
 
-#: user/templates/user/user_detail.html:70
+#: user/templates/user/user_detail.html:93
 msgid "logout"
 msgstr ""
 

@@ -37,7 +37,15 @@ class GuildCreateView(LoginRequiredMixin, CreateView):
         form.fields['users'].widget.attrs['class'] = 'chosen-select'
         form.fields['users'].widget.attrs['data-placeholder'] = \
             'Benutzer auswählen ...'
+        form.fields['users'].queryset = form.fields['users'].queryset.exclude(
+            pk=self.request.user.pk)
         return form
+
+    def form_valid(self, form):
+        response = CreateView.form_valid(self, form)
+        form.instance.users.add(self.request.user)
+        form.instance.save()
+        return response
 
     def get_success_url(self):
         return reverse('guild_detail', args=(self.object.pk, ))
@@ -52,7 +60,15 @@ class GuildUpdateView(LoginRequiredMixin, UpdateView):
         form.fields['users'].widget.attrs['class'] = 'chosen-select'
         form.fields['users'].widget.attrs['data-placeholder'] = \
             'Benutzer auswählen ...'
+        form.fields['users'].queryset = form.fields['users'].queryset.exclude(
+            pk=self.request.user.pk)
         return form
+
+    def form_valid(self, form):
+        response = UpdateView.form_valid(self, form)
+        form.instance.users.add(self.request.user)
+        form.instance.save()
+        return response
 
     def get_success_url(self):
         return reverse('guild_detail', args=(self.object.pk, ))

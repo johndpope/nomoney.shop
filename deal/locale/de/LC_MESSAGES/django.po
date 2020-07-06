@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-05 23:46+0200\n"
+"POT-Creation-Date: 2020-07-06 15:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,7 +124,6 @@ msgid "takes"
 msgstr "nimmt"
 
 #: deal/templates/deal/solo/deal_detail.html:47
-#: deal/templates/deal/solo/deal_list.html:16
 msgid "status"
 msgstr "Status"
 
@@ -135,6 +134,12 @@ msgstr "deine"
 #: deal/templates/deal/solo/deal_list.html:6
 msgid "deals"
 msgstr ""
+
+#: deal/templates/deal/solo/deal_list.html:25
+#, fuzzy
+#| msgid "details"
+msgid "detail"
+msgstr "Details"
 
 #~ msgid "matches"
 #~ msgstr "Übereinstimmungen"

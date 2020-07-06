@@ -30,42 +30,42 @@
     </div>
   </div>
   <div class="row">
-    <div class="col">
+    <div class="col-8 col-md-6 col-lg-2 order-1 order-md-3">
       <b>{% trans 'category'|title %}</b>
     </div>
-    <div class="col">
+    <div class="col-12 col-md-8 col-lg-4 order-3 order-md-1">
       <b>{% trans 'title'|title %}</b>
     </div>
-    <div class="col">
+    <div class="col-6 col-md-3 col-lg-2 order-4 order-md-4">
       <b>{% trans 'quantity'|title %}</b>
     </div>
-    <div class="col">
+    <div class="col-6 col-md-3 col-lg-2 order-5 order-md-5">
       <b>{% trans 'modified'|title %}</b>
     </div>
-    <div class="col d-flex justify-content-end">
+    <div class="col-4 col-md col-lg-2 order-2 order-md-2 order-lg-5 d-flex justify-content-end">
       <b></b>
     </div>
   </div>
   {% for listing in listings %}
   <div class="row border-top">
-    <div class="col">
+    <div class="col-8 col-md-6 col-lg-2 order-1 order-md-3">
       {% with category=listing.category %}{% include 'category/inc/link.html' %}{% endwith %}
     </div>
-    <div class="col">
+    <div class="col-12 col-md-8 col-lg-4 order-3 order-md-1">
       {% with use_title=True %}{% include 'listing/inc/link.html' %}{% endwith %}
     </div>
-    <div class="col">
+    <div class="col-6 col-md-3 col-lg-2 order-4 order-md-4">
       {{ listing.quantity }}{{ listing.unit.short }}
     </div>
-    <div class="col" title="{{ listing.modified }}">
+    <div class="col-6 col-md-3 col-lg-2 order-5 order-md-5" title="{{ listing.modified }}">
       {{ listing.modified|naturaltime }}
     </div>
-    <div class="col d-flex justify-content-end" title="{{ listing.modified }}">
+    <div class="col-4 col-md col-lg-2 order-2 order-md-2 order-lg-5 d-flex justify-content-end" title="{{ listing.modified }}">
       {% if request.user == listing.user %}
-        <a class="btn btn-link" href="{% url 'listing_delete' listing.type listing.pk %}" title="{% trans 'delete' %}">{{ symbols.delete|safe }}</a>
-        <a class="btn btn-link" href="{% url 'listing_update' listing.type listing.pk %}" title="{% trans 'update' %}">{{ symbols.update|safe }}</a>
+        <a class="btn btn-link py-0" href="{% url 'listing_delete' listing.type listing.pk %}" title="{% trans 'delete' %}">{{ symbols.delete|safe }}</a>
+        <a class="btn btn-link py-0" href="{% url 'listing_update' listing.type listing.pk %}" title="{% trans 'update' %}">{{ symbols.update|safe }}</a>
       {% endif %}
-      <a class="btn btn-link" href="{% url 'listing_detail' listing.type listing.pk %}" title="{% trans 'detail' %}">{{ symbols.detail|safe }}</a>
+      <a class="btn btn-link py-0" href="{% url 'listing_detail' listing.type listing.pk %}" title="{% trans 'detail' %}">{{ symbols.detail|safe }}</a>
     </div>
   </div>
   {% endfor %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-05 23:46+0200\n"
+"POT-Creation-Date: 2020-07-06 15:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: listing/templates/listing/listing_delete.html:7
+#: listing/templates/listing/solo/listing_type_list.html:65
 msgid "delete"
 msgstr "löschen"
 
@@ -34,31 +35,36 @@ msgstr "Anfrage"
 msgid "from"
 msgstr "von"
 
-#: listing/templates/listing/listing_detail.html:34
+#: listing/templates/listing/listing_detail.html:36
+msgid "feedback"
+msgstr ""
+
+#: listing/templates/listing/listing_detail.html:50
 #: listing/templates/listing/solo/listing_type_list.html:34
 msgid "category"
 msgstr "Kategorie"
 
-#: listing/templates/listing/listing_detail.html:38
+#: listing/templates/listing/listing_detail.html:62
 #: listing/templates/listing/solo/listing_type_list.html:40
 msgid "quantity"
 msgstr ""
 
-#: listing/templates/listing/listing_detail.html:42
+#: listing/templates/listing/listing_detail.html:74
 msgid "created"
 msgstr ""
 
-#: listing/templates/listing/listing_detail.html:46
+#: listing/templates/listing/listing_detail.html:86
 #: listing/templates/listing/solo/listing_type_list.html:43
 msgid "modified"
 msgstr "geändert"
 
-#: listing/templates/listing/listing_detail.html:53
+#: listing/templates/listing/listing_detail.html:100
 msgid "description"
 msgstr ""
 
-#: listing/templates/listing/listing_detail.html:69
+#: listing/templates/listing/listing_detail.html:119
 #: listing/templates/listing/listing_form.html:7
+#: listing/templates/listing/solo/listing_type_list.html:66
 msgid "update"
 msgstr ""
 
@@ -93,3 +99,7 @@ msgstr ""
 #: listing/templates/listing/solo/listing_type_list.html:37
 msgid "title"
 msgstr "Titel"
+
+#: listing/templates/listing/solo/listing_type_list.html:68
+msgid "detail"
+msgstr ""

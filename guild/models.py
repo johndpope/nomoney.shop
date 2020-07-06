@@ -20,4 +20,4 @@ class Guild(models.Model):
         return models.Model.save(self, *args, **kwargs)
 
     def __str__(self):
-        return self.title or ', '.join((str(user) for user in self.users.all()))
+        return self.title #or ', '.join((str(user) for user in self.users.all()))

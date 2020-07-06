@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-05 23:46+0200\n"
+"POT-Creation-Date: 2020-07-06 15:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: guild/templates/guild/guild_delete.html:7
+#: guild/templates/guild/solo/guild_list.html:17
+msgid "guild"
+msgstr "Gilde"
+
+#: guild/templates/guild/guild_delete.html:7
+msgid "delete"
+msgstr ""
 
 #: guild/templates/guild/guild_detail.html:9
 #: guild/templates/guild/solo/guild_list.html:22
@@ -32,38 +41,12 @@ msgid "member"
 msgstr "Mitglied"
 
 #: guild/templates/guild/guild_detail.html:19
-#: guild/templates/guild/guild_detail.html:40
 msgid "offer"
 msgstr "biete"
 
 #: guild/templates/guild/guild_detail.html:20
-#: guild/templates/guild/guild_detail.html:41
 msgid "seek"
 msgstr "suche"
-
-#: guild/templates/guild/guild_detail.html:35
-msgid "calculated"
-msgstr "Berechnete"
-
-#: guild/templates/guild/guild_detail.html:35
-msgid "deals"
-msgstr "Geschäfte"
-
-#: guild/templates/guild/guild_detail.html:38
-msgid "quality"
-msgstr "Qualität"
-
-#: guild/templates/guild/guild_detail.html:39
-msgid "user"
-msgstr "Benutzer"
-
-#: guild/templates/guild/guild_detail.html:42
-msgid "partner"
-msgstr "Partner"
-
-#: guild/templates/guild/guild_detail.html:60
-msgid "deal"
-msgstr "Geschäft"
 
 #: guild/templates/guild/guild_form.html:31
 msgid "save"
@@ -77,10 +60,24 @@ msgstr ""
 msgid "guilds"
 msgstr "Gilden"
 
-#: guild/templates/guild/solo/guild_list.html:17
-msgid "guild"
-msgstr "Gilde"
-
 #: guild/templates/guild/solo/guild_list.html:21
 msgid "name"
 msgstr "Name"
+
+#~ msgid "calculated"
+#~ msgstr "Berechnete"
+
+#~ msgid "deals"
+#~ msgstr "Geschäfte"
+
+#~ msgid "quality"
+#~ msgstr "Qualität"
+
+#~ msgid "user"
+#~ msgstr "Benutzer"
+
+#~ msgid "partner"
+#~ msgstr "Partner"
+
+#~ msgid "deal"
+#~ msgstr "Geschäft"
