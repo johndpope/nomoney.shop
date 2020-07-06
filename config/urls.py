@@ -16,14 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
-from user.views import AgentView
 from config import settings
 
 
 urlpatterns = [
-
-    path('agent/', AgentView.as_view(), name='agent_list'),
-
     path('', include('dashboard.urls')),
     path('bid/', include('bid.urls')),
     path('user/', include('user.urls')),

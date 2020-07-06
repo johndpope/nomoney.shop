@@ -53,13 +53,6 @@ class User(AbstractUser):
         return list(self.pushs) + list(self.pulls)
 
     @property
-    def bids(self):
-        return sorted(
-            {*self.bids_sent.all(), *self.bids_received.all()},
-            key=lambda x: x.datetime
-            )
-
-    @property
     def score(self):
         """ self.taken_feedbacks.aggregate(Avg('score'))['score__avg'] """
         scores = []

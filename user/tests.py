@@ -5,6 +5,21 @@ from django.urls.base import reverse
 
 
 class UserTestCase(TestCase):
+
+    def test_user_views(self):
+        self.anon.get302('user_settings')
+        self.user.get200('user_settings')
+        self.user.post302('user_settings', data={'hint_step': ['0']})
+
+        self.anon.get302('user_detail', url_args=self.demo.pk)
+        self.user.get200('user_detail', url_args=self.demo.pk)
+        self.user.get200('user_detail', url_args=self.demo1.pk)
+
+    def test_user_models(self):
+        self.assertNotIn(self.demo, self.demo.other_users)
+        self.assertIsInstance(self.demo.listings, list)
+        self.assertIsInstance(self.demo.score, (int, type(None),))
+
     def test_user_db(self):
         self.assertIs(len(User.objects.all()), TestDB.USER_COUNT + 2)
 
