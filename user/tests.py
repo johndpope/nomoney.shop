@@ -41,7 +41,9 @@ class UserTestCase(TestCase):
 
         # user_login
         data = {'username': new_user_name, 'password': new_user_pw}
-        self.assertEqual(self.anon.post(reverse('user_login'), data=data).status_code, 200)
+        self.assertEqual(self.anon.post(reverse('user_login'), data=data).status_code, 302)
+        self.assertEqual(self.anon.get(reverse('user_update')).status_code, 200) 
+        self.assertEqual(self.anon.post(reverse('user_logout')).status_code, 302)
         self.assertEqual(self.anon.get(reverse('user_update')).status_code, 302) 
 
         # user_update
