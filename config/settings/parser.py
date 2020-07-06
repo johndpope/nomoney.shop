@@ -35,7 +35,7 @@ if path.isfile(CONFIG_PATH):
     _parser.read(CONFIG_PATH)
     if _parser.has_section('BASE'):
         _base = _parser['BASE']
-        SECRET_KEY = str(_base.get(SECRET_KEY) or
+        SECRET_KEY = str(_base.get('SECRET_KEY') or
                          get_random_secret_key())
         if 'DEBUG' in _base:
             DEBUG = eval(_base['DEBUG'])

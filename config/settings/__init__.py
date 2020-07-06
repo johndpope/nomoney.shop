@@ -10,7 +10,7 @@ from .base import *
 from .parser import SECRET_KEY, DEBUG, ALLOWED_HOSTS, DB_CONFIG
 from .pwa import *
 
-
+print(SECRET_KEY)
 SQLITE_CONFIG = {
     'ENGINE': 'django.db.backends.sqlite3',
     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
