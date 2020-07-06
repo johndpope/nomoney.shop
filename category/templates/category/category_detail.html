@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'category'|title %} {{ category.title }}{% endblock %}
+
+{% block help %}{% endblock %}
 
 {% block content %}
   <div class="container-fluid">

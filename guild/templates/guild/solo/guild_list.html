@@ -17,11 +17,13 @@
         <a class="btn btn-link p-0 text-info" href="{% url 'guild_create' %}"><i class="fas fa-plus"></i> {% trans 'guild' %}</a>
     </div>
   </div>
-  <div class="row">
-    <div class="col order-1 order-md-1"><b>{% trans 'name' %}</b></div>
-    <div class="col-12 col-md-6 order-3 order-md-2"><b>{% trans 'members' %}</b></div>
-    <div class="col order-2 order-md-3 d-flex justify-content-end"><b></b></div>
-  </div>
+  {% if guilds %}
+    <div class="row">
+      <div class="col order-1 order-md-1"><b>{% trans 'name' %}</b></div>
+      <div class="col-12 col-md-6 order-3 order-md-2"><b>{% trans 'members' %}</b></div>
+      <div class="col order-2 order-md-3 d-flex justify-content-end"><b></b></div>
+    </div>
+  {% endif %}
   {% for guild in guilds %}
     <div class="row border-top mb-3 mb-md-0">
       <div class="col order-1 order-md-1">{% include 'guild/inc/link.html' %}</div>
@@ -32,12 +34,6 @@
         <a class="btn btn-link py-0" href="{% url 'guild_update' guild.pk %}" title="Bearbeiten">{{ symbols.update|safe }}</a>
         {% endif %}
         <a class="btn btn-link py-0" href="{% url 'guild_detail' guild.pk %}" title="Details">{{ symbols.detail|safe }}</a>
-      </div>
-    </div>
-  {% empty %}
-    <div class="row">
-      <div class="col-12">
-        <p></p>
       </div>
     </div>
   {% endfor %}

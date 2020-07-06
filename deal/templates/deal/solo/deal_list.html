@@ -9,12 +9,14 @@
         <a class="btn p-0 text-info text-nowrap" href="{% url 'deal_create' %}"><i class="fas fa-plus"></i> {% trans 'deal' %}</a>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 col-md-4 order-3 order-md-1"><b>{% trans 'offer' %}</b></div>
-    <div class="col-12 col-md-4 order-4 order-md-1"><b>{% trans 'seek' %}</b></div>
-    <div class="col-9 col-md-3 order-1 order-md-1"><b>{% trans 'partner' %}</b></div>
-    <div class="col-3 col-md-1 order-2 order-md-1"><b></b></div>
-  </div>
+  {% if deals %}
+    <div class="row">
+      <div class="col-12 col-md-4 order-3 order-md-1"><b>{% trans 'offer' %}</b></div>
+      <div class="col-12 col-md-4 order-4 order-md-1"><b>{% trans 'seek' %}</b></div>
+      <div class="col-9 col-md-3 order-1 order-md-1"><b>{% trans 'partner' %}</b></div>
+      <div class="col-3 col-md-1 order-2 order-md-1"><b></b></div>
+    </div>
+  {% endif %}
   {% for deal in deals %}
   <div class="row border-top mb-3 mb-md-0">
     <div class="col-12 col-md-4 order-3 order-md-1">{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %} {% endfor %}</div>

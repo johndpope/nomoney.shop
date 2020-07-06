@@ -6,7 +6,7 @@
       <h3>{% trans 'searchresults'|title %}</h3>
     </div>
     <div class="col d-flex justify-content-end">
-      <button type="button" class="btn btn-link text-danger" onclick="$('#search_results').empty()"><i class="far fa-window-close"></i></button>
+      <span class="btn btn-link text-danger" onclick="$('#search_results').empty()">{{ symbols.close|safe }}
     </div>
   </div>
 

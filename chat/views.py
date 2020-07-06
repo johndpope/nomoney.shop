@@ -11,6 +11,7 @@ from .forms import ChatMessageForm
 
 class ChatListView(LoginRequiredMixin, ListView):
     model = Chat
+    context_object_name = 'chats'
 
     def get_queryset(self):
         return self.request.user.chat_set.all()
@@ -19,6 +20,7 @@ class ChatListView(LoginRequiredMixin, ListView):
 class ChatDetailView(LoginRequiredMixin, DetailView):
     model = Chat
     fields = '__all__'
+    context_object_name = 'chat'
 
     def get_context_data(self, **kwargs):
         kwargs['form'] = ChatMessageForm(self.request.POST)
@@ -31,6 +33,21 @@ class ChatCreateView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('chat_detail', args=(self.object.pk,))
+
+    def get_form(self, form_class=None):
+        form = CreateView.get_form(self, form_class=form_class)
+        form.fields['users'].widget.attrs['class'] = 'chosen-select'
+        form.fields['users'].widget.attrs['data-placeholder'] = \
+            'Benutzer auswählen ...'
+        form.fields['users'].queryset = form.fields['users'].queryset.exclude(
+            pk=self.request.user.pk)
+        return form
+
+    def form_valid(self, form):
+        response = CreateView.form_valid(self, form)
+        form.instance.users.add(self.request.user)
+        form.instance.save()
+        return response
 
 
 class ChatNewMessageView(LoginRequiredMixin, CreateView):
