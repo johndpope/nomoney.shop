@@ -1,3 +1,4 @@
+/static_root/
 /media/*
 .config.txt
 /db.sqlite3
