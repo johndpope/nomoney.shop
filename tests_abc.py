@@ -18,22 +18,28 @@ class Client(BaseClient):
 
     def get200(self, url_name, url_args=None, url_kwargs=None, data=None):
         url = self.url(url_name, url_args, url_kwargs)
-        self.tester.assertIs(self.get(url).status_code, 200)
+        response = self.get(url)
+        self.tester.assertIs(response.status_code, 200)
+        return response
 
     def get302(self, url_name, url_args=None, url_kwargs=None, data=None):
         url = self.url(url_name, url_args, url_kwargs)
-        self.tester.assertEqual(self.get(url).status_code, 302)
+        response = self.get(url)
+        self.tester.assertEqual(response.status_code, 302)
+        return response
 
     def post302(self, url_name, url_args=None, url_kwargs=None, data=None):
         url = self.url(url_name, url_args, url_kwargs)
-        self.tester.assertEqual(self.post(url, data=data).status_code, 302)
+        response = self.post(url, data=data)
+        self.tester.assertEqual(response.status_code, 302)
+        return response
 
     def getpost(self, url_name, url_args=None, url_kwargs=None, data=None):
         self.get200(url_name, url_args=url_args, url_kwargs=url_kwargs)
         self.post302(url_name, url_args=url_args, url_kwargs=url_kwargs,
                      data=data)
 
-    def url(self, url_name, url_args, url_kwargs):
+    def url(self, url_name, url_args=None, url_kwargs=None):
         url_args = (url_args, ) if isinstance(url_args, str) else url_args
         return reverse(url_name, args=url_args, kwargs=url_kwargs)
 

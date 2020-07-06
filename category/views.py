@@ -30,14 +30,7 @@ class CategoryDetailView(LoginRequiredMixin, DetailView):
 class CategoryUpdateView(LoginRequiredMixin, UpdateView):
     model = Category
     template_name = 'category/category_form.html'
-
-    def get_success_url(self):
-        return self.request.GET.get('next', reverse('home'))
-
-
-class CategoryDeleteView(LoginRequiredMixin, DeleteView):
-    model = Category
-    template_name = 'category/category_delete.html'
+    fields = ['parent', 'title', 'description']
 
     def get_success_url(self):
         return self.request.GET.get('next', reverse('home'))
