@@ -40,6 +40,10 @@ class Deal(models.Model):
         self.status = DealStatus.ACCEPTED
         self.save()
 
+    def set_placed(self):
+        self.status = DealStatus.PLACED
+        self.save()
+
     @property
     def user(self):
         if self.pov_user and self.pov_user == self.user2:

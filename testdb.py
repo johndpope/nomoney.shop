@@ -8,14 +8,15 @@ Oneline:
 python manage.py shell -c "from testdb import TestDB;TestDB.setup()"
 """
 from random import randint
+from lorem import get_sentence, get_word
+from names import get_first_name, get_last_name
 from user.models import User
 from listing.models import Unit, Push, Pull
 from category.models import Category
 from deal.models import Deal
 from location.models import Location
 from guild.models import Guild
-from lorem import get_sentence, get_word
-from names import get_first_name, get_last_name
+from bid.models import Bid, BidPosition
 
 
 class TestDB:
@@ -63,8 +64,9 @@ class TestDB:
         cls.setup_unit_db()
         cls.setup_category_db()
         cls.setup_listing_db()
-        cls.setup_deal_db()
         cls.setup_guild_db()
+        cls.setup_deal_db()
+        cls.setup_bid_db()
 
     @classmethod
     def setup_user_db(cls):
@@ -82,7 +84,7 @@ class TestDB:
         cls.demo.is_staff = True
         cls.demo.save()
         cls.demo1 = User.objects.create(
-            username=TestDB.USER_NAME + '2',
+            username=TestDB.USER_NAME + '1',
             first_name=get_first_name(),
             last_name=get_last_name(),
             email='demo1@nomoney.shop',
@@ -96,7 +98,7 @@ class TestDB:
         for i in range(cls.USER_COUNT):
             key = str(i + 1)
             User.objects.create(
-                username='test' + key,
+                username=get_first_name() + str(randint(0, 2000)),
                 first_name=get_first_name(),
                 last_name=get_last_name(),
                 email='test{}@local.local'.format(key),
@@ -154,7 +156,7 @@ class TestDB:
             listing_class = (Push, Pull)[randint(0, 1)]
             category = cls.random_object(Category)
             user = cls.random_object(User)
-            quantity = randint(1, 2147483647)
+            quantity = randint(1, 5000)  # max 2147483647
             unit = cls.random_object(Unit)
             title = category.title + ' ' + \
                 TestDB.TITLE_SUFFIX[randint(0, len(TestDB.TITLE_SUFFIX)-1)]
@@ -190,7 +192,24 @@ class TestDB:
     @classmethod
     def setup_bid_db(cls):
         """ create bid for a deal and accept """
-        pass
+        bid = Bid.objects.create(deal=cls.deal, creator=cls.demo)
+        for push in bid.pushs:
+            BidPosition.objects.create(
+                push=push, bid=bid, quantity=randint(0, 100), unit=push.unit
+                )
+        for push in bid.pulls:
+            BidPosition.objects.create(
+                push=push, bid=bid, quantity=randint(0, 100), unit=push.unit
+                )
+        bid = Bid.objects.create(deal=cls.deal, creator=cls.deal.user2)
+        for push in bid.pushs:
+            BidPosition.objects.create(
+                push=push, bid=bid, quantity=randint(0, 100), unit=push.unit
+                )
+        for push in bid.pulls:
+            BidPosition.objects.create(
+                push=push, bid=bid, quantity=randint(0, 100), unit=push.unit
+                )
 
     @classmethod
     def setup_guild_db(cls):

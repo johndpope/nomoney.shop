@@ -1,13 +1,9 @@
-from operator import attrgetter
-from itertools import chain
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
-from django.db.models import Avg
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from chat.models import Chat
-from feedback.models import PushFeedback
 from statistics import mean
+from chat.models import Chat
 from listing.models import ListingStatus
 
 

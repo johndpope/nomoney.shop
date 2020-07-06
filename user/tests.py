@@ -35,7 +35,7 @@ class UserTestCase(TestCase):
         self.user.post(reverse('user_pw'), data=data)
 
         # user_logout
-        self.assertEqual(self.anon.get(reverse('user_update')).status_code, 302) 
+        self.assertEqual(self.anon.get(reverse('user_update')).status_code, 200) 
         self.assertEqual(self.anon.post(reverse('user_logout')).status_code, 302)
         self.assertEqual(self.anon.get(reverse('user_update')).status_code, 302) 
 
