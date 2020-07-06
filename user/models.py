@@ -8,6 +8,7 @@ from django.db import models
 from chat.models import Chat
 from feedback.models import PushFeedback
 from statistics import mean
+from listing.models import ListingStatus
 
 
 def image_path(instance, filename):
@@ -40,11 +41,11 @@ class User(AbstractUser):
 
     @property
     def pushs(self):
-        return self.push_set.all()
+        return self.push_set.exclude(status=ListingStatus.DELETED)
 
     @property
     def pulls(self):
-        return self.pull_set.all()
+        return self.pull_set.exclude(status=ListingStatus.DELETED)
 
     @property
     def guilds(self):
@@ -61,28 +62,6 @@ class User(AbstractUser):
             {*self.bids_sent.all(), *self.bids_received.all()},
             key=lambda x: x.datetime
             )
-
-#===============================================================================
-#     @property
-#     def given_feedbacks(self): # taken
-#         user_feedbacks = self.userfeedback_set.all()
-#         push_feedbacks = PushFeedback.given_by_user(self)
-#         return sorted(
-#             chain(user_feedbacks, push_feedbacks),
-#             key=attrgetter('created'),
-#             reverse=True
-#             )
-# 
-#     @property
-#     def taken_feedbacks(self):
-#         user_feedbacks = self.feedback_for.all()
-#         push_feedbacks = PushFeedback.taken_by_user(self)
-#         return sorted(
-#             chain(user_feedbacks, push_feedbacks),
-#             key=attrgetter('created'),
-#             reverse=True
-#             )
-#===============================================================================
 
     @property
     def score(self):

@@ -10,6 +10,11 @@ def image_path(instance, _):
     return 'listing/{}/{}'.format(instance.type, uuid4())
 
 
+class ListingStatus(models.IntegerChoices):
+    CREATED = 0, 'created'
+    DELETED = 110, 'deleted'
+
+
 class Unit(models.Model):
     title = models.CharField(max_length=20)
     short = models.CharField(max_length=5)
@@ -32,6 +37,9 @@ class ListingBase(models.Model):
         'location.Location', on_delete=models.CASCADE, blank=True, null=True
         )
     test = models.BooleanField(default=False)
+    status = models.PositiveSmallIntegerField(
+        default=ListingStatus.CREATED, choices=ListingStatus.choices
+        )
     type = None
 
     def __init__(self, *args, **kwargs):
@@ -53,6 +61,11 @@ class ListingBase(models.Model):
     @staticmethod
     def get_all():
         return list(chain(Push.objects.all(), Pull.objects.all()))
+
+    # pylint: disable=signature-differs, unused-argument
+    def delete(self, *args, **kwargs):
+        self.status = ListingStatus.DELETED
+        self.save()
 
     def __eq__(self, other):
         try:

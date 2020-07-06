@@ -54,6 +54,52 @@ $(document).ready(function() {
 <div class="tab-content py-3 border-left border-right border-bottom" id="myTabContent">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
     <div class="container-fluid mt-5">
+      <div class="row">
+        <div class="col-12"><b>Vorschläge:</b></div>
+      </div>
+
+      {% if request.user.open_feedback %}
+        <div class="row mb-5 py-3">
+          <div class="col-12">
+            {% with guilds=request.user.guilds %}
+              {% include 'feedback/solo/feedback_to_give_list.html' %}
+            {% endwith %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if not request.user.locations %}
+        <div class="row mb-5 py-3">
+          <div class="col-12">
+            <a class="btn btn-link p-0 text-info" href="{% url 'location_create' %}"><i class="fas fa-plus"></i> {% trans 'location' %}</a>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if not request.user.guilds %}
+        <div class="row mb-5 py-3">
+          <div class="col-12">
+            <a class="btn btn-link p-0 text-info" href="{% url 'guild_create' %}"><i class="fas fa-plus"></i> {% trans 'guild' %}</a>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if not request.user.pushs %}
+        <div class="row mb-5 py-3">
+          <div class="col-12">
+            <a class="btn btn-link p-0 text-info" href="{% url 'listing_create' 'push' %}"><i class="fas fa-plus"></i> {% trans 'push' %}</a>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if not request.user.pulls %}
+        <div class="row mb-5 py-3">
+          <div class="col-12">
+            <a class="btn btn-link p-0 text-info" href="{% url 'listing_create' 'pull' %}"><i class="fas fa-plus"></i> {% trans 'pull' %}</a>
+          </div>
+        </div>
+      {% endif %}
+
     </div>
   </div>
   <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="two-tab">

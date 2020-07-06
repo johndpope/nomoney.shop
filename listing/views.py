@@ -103,4 +103,4 @@ class ListingDeleteView(LoginRequiredMixin, DeleteView):
 
     def dispatch(self, request, *args, **kwargs):
         self.model = {'push': Push, 'pull': Pull}.get(kwargs.get('type'))
-        return DetailView.dispatch(self, request, *args, **kwargs)
+        return DeleteView.dispatch(self, request, *args, **kwargs)
