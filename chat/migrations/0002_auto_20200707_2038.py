@@ -11,13 +11,18 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('location', '0001_initial'),
+        ('chat', '0001_initial'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='location',
-            name='user',
+            model_name='chatmessage',
+            name='creator',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+        ),
+        migrations.AddField(
+            model_name='chat',
+            name='users',
+            field=models.ManyToManyField(to=settings.AUTH_USER_MODEL),
         ),
     ]

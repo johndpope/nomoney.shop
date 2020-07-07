@@ -10,14 +10,20 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('deal', '0003_deal_market'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('location', '0001_initial'),
+        ('bid', '0002_auto_20200707_2038'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='location',
-            name='user',
+            model_name='bid',
+            name='creator',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+        ),
+        migrations.AddField(
+            model_name='bid',
+            name='deal',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='deal.Deal'),
         ),
     ]

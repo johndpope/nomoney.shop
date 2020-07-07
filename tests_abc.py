@@ -72,7 +72,7 @@ class TestCase(ABC, BaseTestCase):
         self.demo1 = TestDB.demo1
         self.deal = TestDB.deal
         self.location = TestDB.location
-        self.guild = TestDB.guild
+        self.market = TestDB.market
 
     def random_object(self, model):
         return TestDB.random_object(model)

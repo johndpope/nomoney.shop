@@ -21,8 +21,8 @@ class Deal(models.Model):
     user2 = models.ForeignKey(
         AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user2_deals'
         )
-    guild = models.ForeignKey(
-        'guild.Guild', on_delete=models.CASCADE, null=True, blank=True
+    market = models.ForeignKey(
+        'market.Market', on_delete=models.CASCADE, null=True, blank=True
         )
     status = models.PositiveSmallIntegerField(
         default=DealStatus.STARTED,

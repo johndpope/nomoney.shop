@@ -44,8 +44,8 @@ class User(AbstractUser):
         return self.pull_set.exclude(status=ListingStatus.DELETED)
 
     @property
-    def guilds(self):
-        return self.guild_set.all()
+    def markets(self):
+        return self.market_set.all()
 
     @property
     def listings(self):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-06 19:37+0200\n"
+"POT-Creation-Date: 2020-07-07 20:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,32 +35,32 @@ msgid "delete"
 msgstr ""
 
 #: category/templates/category/category_list.html:6
-#: category/templates/category/category_list.html:18
-#: category/templates/category/category_list.html:21
+#: category/templates/category/category_list.html:32
+#: category/templates/category/category_list.html:35
 msgid "categories"
 msgstr ""
 
-#: category/templates/category/category_list.html:28
-#: category/templates/category/category_list.html:55
+#: category/templates/category/category_list.html:42
+#: category/templates/category/category_list.html:69
 #: category/templates/category/solo/category_detail.html:6
 msgid "offer"
 msgstr ""
 
-#: category/templates/category/category_list.html:29
-#: category/templates/category/category_list.html:58
+#: category/templates/category/category_list.html:43
+#: category/templates/category/category_list.html:72
 #: category/templates/category/solo/category_detail.html:10
 msgid "seek"
 msgstr ""
 
-#: category/templates/category/category_list.html:30
+#: category/templates/category/category_list.html:44
 msgid "sum"
 msgstr "gesamt"
 
-#: category/templates/category/category_list.html:68
+#: category/templates/category/category_list.html:82
 msgid "load"
 msgstr ""
 
-#: category/templates/category/category_list.html:68
+#: category/templates/category/category_list.html:82
 msgid "data"
 msgstr ""
 

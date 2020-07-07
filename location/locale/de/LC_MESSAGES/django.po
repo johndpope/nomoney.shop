@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-06 19:37+0200\n"
+"POT-Creation-Date: 2020-07-07 20:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,11 +102,11 @@ msgid "status"
 msgstr ""
 
 #: location/templates/location/location_detail.html:134
-msgid "guilds"
+msgid "markets"
 msgstr ""
 
 #: location/templates/location/location_detail.html:137
-msgid "guild"
+msgid "market"
 msgstr ""
 
 #: location/templates/location/location_detail.html:141

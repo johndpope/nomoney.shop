@@ -15,7 +15,7 @@ from listing.models import Unit, Push, Pull
 from category.models import Category
 from deal.models import Deal
 from location.models import Location
-from guild.models import Guild
+from market.models import Market
 from bid.models import Bid, BidPosition
 
 
@@ -54,7 +54,7 @@ class TestDB:
         'erntefrisch', 'hervorragende Qualität'
         ]
 
-    demo, demo1, deal, location, guild = 5 * [None]
+    demo, demo1, deal, location, market = 5 * [None]
 
     @classmethod
     def setup(cls):
@@ -64,7 +64,7 @@ class TestDB:
         cls.setup_unit_db()
         cls.setup_category_db()
         cls.setup_listing_db()
-        cls.setup_guild_db()
+        cls.setup_market_db()
         cls.setup_deal_db()
         cls.setup_bid_db()
 
@@ -212,43 +212,43 @@ class TestDB:
                 )
 
     @classmethod
-    def setup_guild_db(cls):
+    def setup_market_db(cls):
         """ create bid for a deal and accept """
-        guild = Guild.objects.create(
+        market = Market.objects.create(
             title=get_word()[0:20], location=cls.location
             )
-        guild.users.add(cls.demo)
-        guild.users.add(cls.demo1)
-        guild.users.add(cls.random_object(User))
-        guild.save()
+        market.users.add(cls.demo)
+        market.users.add(cls.demo1)
+        market.users.add(cls.random_object(User))
+        market.save()
 
-        guild = Guild.objects.create(
+        market = Market.objects.create(
             title=get_word()[0:20], location=cls.location
             )
-        guild.users.add(cls.demo)
-        guild.users.add(cls.demo1)
-        guild.users.add(cls.random_object(User))
-        guild.users.add(cls.random_object(User))
-        guild.save()
+        market.users.add(cls.demo)
+        market.users.add(cls.demo1)
+        market.users.add(cls.random_object(User))
+        market.users.add(cls.random_object(User))
+        market.save()
 
-        guild = Guild.objects.create(
+        market = Market.objects.create(
             title=get_word()[0:20], location=cls.location
             )
-        guild.users.add(cls.demo)
-        guild.users.add(cls.demo1)
-        guild.users.add(cls.random_object(User))
-        guild.users.add(cls.random_object(User))
-        guild.users.add(cls.random_object(User))
-        guild.save()
-        cls.guild = guild
+        market.users.add(cls.demo)
+        market.users.add(cls.demo1)
+        market.users.add(cls.random_object(User))
+        market.users.add(cls.random_object(User))
+        market.users.add(cls.random_object(User))
+        market.save()
+        cls.market = market
 
-        guild = Guild.objects.create(
+        market = Market.objects.create(
             title=get_word()[0:20], location=cls.location
             )
-        guild.users.add(cls.random_object(User))
-        guild.users.add(cls.random_object(User))
-        guild.users.add(cls.random_object(User))
-        guild.save()
+        market.users.add(cls.random_object(User))
+        market.users.add(cls.random_object(User))
+        market.users.add(cls.random_object(User))
+        market.save()
 
     @classmethod
     def setup_feedback_db(cls):

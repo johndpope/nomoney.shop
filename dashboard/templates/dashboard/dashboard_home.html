@@ -61,7 +61,7 @@ $(document).ready(function() {
       {% if request.user.open_feedback %}
         <div class="row mb-5 py-3">
           <div class="col-12">
-            {% with guilds=request.user.guilds %}
+            {% with markets=request.user.markets %}
               {% include 'feedback/solo/feedback_to_give_list.html' %}
             {% endwith %}
           </div>
@@ -76,10 +76,10 @@ $(document).ready(function() {
         </div>
       {% endif %}
 
-      {% if not request.user.guilds %}
+      {% if not request.user.markets %}
         <div class="row mb-5 py-3">
           <div class="col-12">
-            <a class="btn btn-link p-0 text-info" href="{% url 'guild_create' %}"><i class="fas fa-plus"></i> {% trans 'guild' %}</a>
+            <a class="btn btn-link p-0 text-info" href="{% url 'market_create' %}"><i class="fas fa-plus"></i> {% trans 'market' %}</a>
           </div>
         </div>
       {% endif %}

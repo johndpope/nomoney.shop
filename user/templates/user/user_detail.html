@@ -105,7 +105,7 @@
   {% if request.user.open_feedback %}
     <div class="row border rounded mb-5 py-3">
       <div class="col-12">
-        {% with guilds=request.user.guilds %}
+        {% with markets=request.user.markets %}
           {% include 'feedback/solo/feedback_to_give_list.html' %}
         {% endwith %}
       </div>
@@ -115,8 +115,8 @@
 
   <div class="row border rounded mb-5 py-3">
     <div class="col-12">
-      {% with guilds=request.user.guilds %}
-        {% include 'guild/solo/guild_list.html' %}
+      {% with markets=request.user.markets %}
+        {% include 'market/solo/market_list.html' %}
       {% endwith %}
     </div>
   </div>

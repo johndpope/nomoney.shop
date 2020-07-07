@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-06 19:37+0200\n"
+"POT-Creation-Date: 2020-07-07 20:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,3 +61,23 @@ msgstr ""
 #: bid/templates/bid/bid_list.html:13
 msgid "current"
 msgstr "aktuell"
+
+#: bid/templates/bid/inc/status.html:4
+msgid "unseen"
+msgstr ""
+
+#: bid/templates/bid/inc/status.html:8
+msgid "seen"
+msgstr ""
+
+#: bid/templates/bid/inc/status.html:12
+msgid "answered"
+msgstr ""
+
+#: bid/templates/bid/inc/status.html:16
+msgid "accepted"
+msgstr ""
+
+#: bid/templates/bid/inc/status.html:20
+msgid "unknown"
+msgstr ""

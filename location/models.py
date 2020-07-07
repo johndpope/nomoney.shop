@@ -14,8 +14,8 @@ class Location(models.Model):
         return self.deal_set.all()
 
     @property
-    def guilds(self):
-        return self.guild_set.all()
+    def markets(self):
+        return self.market_set.all()
 
     @property
     def pushs(self):

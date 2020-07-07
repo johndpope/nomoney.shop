@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'bid',
     'chat',
     'feedback',
-    'guild',
+    'market',
     'deal',
     'location',
 ]

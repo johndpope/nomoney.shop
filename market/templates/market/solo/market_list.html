@@ -1,0 +1,40 @@
+{% load i18n %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8">
+        <h5>
+          {{ symbols.market|safe }}&nbsp;
+          {% if user == request.user %}
+            {% trans '_your'|title %}
+          {% else %}
+            {{ user }}'s
+          {% endif %}
+          {% trans 'markets' %}
+        </h5>
+    </div>
+    <div class="col-4 d-flex justify-content-end">
+        <a class="btn btn-link p-0 text-info" href="{% url 'market_create' %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'market' %}</a>
+    </div>
+  </div>
+  {% if markets %}
+    <div class="row">
+      <div class="col order-1 order-md-1"><b>{% trans 'name' %}</b></div>
+      <div class="col-12 col-md-6 order-3 order-md-2"><b>{% trans 'members' %}</b></div>
+      <div class="col order-2 order-md-3 d-flex justify-content-end"><b></b></div>
+    </div>
+  {% endif %}
+  {% for market in markets %}
+    <div class="row border-top mb-3 mb-md-0">
+      <div class="col order-1 order-md-1">{% include 'market/inc/link.html' %}</div>
+      <div class="col-12 col-md-6 order-3 order-md-2">{% for user in market.users.all %}{% include 'user/inc/link.html' %}, {% endfor %}</div>
+      <div class="col order-2 order-md-3 d-flex justify-content-end">
+        {% if request.user in market.users.all %}
+        <a class="btn btn-link py-0" href="{% url 'market_delete' market.pk %}?next={{ request.path }}" title="Löschen">{{ symbols.delete|safe }}</a>
+        <a class="btn btn-link py-0" href="{% url 'market_update' market.pk %}?next={{ request.path }}" title="Bearbeiten">{{ symbols.update|safe }}</a>
+        {% endif %}
+        <a class="btn btn-link py-0" href="{% url 'market_detail' market.pk %}" title="Details">{{ symbols.detail|safe }}</a>
+      </div>
+    </div>
+  {% endfor %}
+</div>
