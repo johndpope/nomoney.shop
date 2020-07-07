@@ -142,5 +142,7 @@ LOGIN_URL = reverse_lazy('user_login')
 LOGIN_REDIRECT_URL = reverse_lazy('home')#reverse_lazy('user_login')#'/'
 LOGOUT_REDIRECT_URL = LOGIN_URL
 
-PIWIK_DOMAIN_PATH = 'nomoney.shop/x'
-PIWIK_SITE_ID = '2'
+MATOMO_DOMAIN_PATH = 'nomoney.shop/x'
+MATOMO_SITE_ID = '2'
+
+
