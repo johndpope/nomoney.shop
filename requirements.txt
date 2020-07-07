@@ -1,4 +1,4 @@
-git+https://github.com/snake-soft/snakelib.git
+khkgit+https://github.com/snake-soft/snakelib.git
 django>=3
 django-debug-toolbar
 pylint
