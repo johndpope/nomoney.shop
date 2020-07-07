@@ -51,7 +51,17 @@ $(document).ready(function() {
 		var menu_height = $('#main_menu').height();
 		$('#wrapper').css('margin-top', menu_height);
 	})
+
 	$(function () {
 	  $('[data-toggle="tooltip"]').tooltip()
+	})
+
+	$(function () {
+	  $('[data-toggle="popover"]').popover({
+			html: true,
+			content: function(){
+				return $(this).find('.popover-content').html();
+			}
+		})
 	})
 });
