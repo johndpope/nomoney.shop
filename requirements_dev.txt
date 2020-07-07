@@ -10,3 +10,4 @@ Pillow
 django-pwa
 python-lorem
 names
+django-analytical

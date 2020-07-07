@@ -11,3 +11,4 @@ psycopg2
 django-pwa
 python-lorem
 names
+django-analytical

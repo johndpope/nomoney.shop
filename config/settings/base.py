@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'analytical',
     'pwa',
     'core',
     'dashboard',
@@ -140,3 +141,6 @@ MESSAGE_LEVEL = message_constants.DEBUG
 LOGIN_URL = reverse_lazy('user_login')
 LOGIN_REDIRECT_URL = reverse_lazy('home')#reverse_lazy('user_login')#'/'
 LOGOUT_REDIRECT_URL = LOGIN_URL
+
+PIWIK_DOMAIN_PATH = 'nomoney.shop/x'
+PIWIK_SITE_ID = '2'
