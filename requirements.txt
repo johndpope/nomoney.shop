@@ -12,3 +12,4 @@ django-pwa
 python-lorem
 names
 django-analytical
+daphne

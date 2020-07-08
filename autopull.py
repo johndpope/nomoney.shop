@@ -1,5 +1,4 @@
 import subprocess as sp
-from time import sleep
 
 
 def execute(cmd, directory):
@@ -19,4 +18,4 @@ if result[0] != u'Bereits aktuell.':
     result = execute('su www-data -c "venv/bin/python manage.py collectstatic --noinput"', directory)
     result = execute('su www-data -c "venv/bin/python manage.py compilemessages"', directory)
     result = execute('su www-data -c "venv/bin/python manage.py migrate"', directory)
-    result = execute('/etc/init.d/apache2 reload', directory)
+    result = execute('service nomoney.shop restart', directory)
