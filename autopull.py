@@ -18,4 +18,4 @@ if result[0] != u'Bereits aktuell.':
     result = execute('su www-data -c "venv/bin/python manage.py collectstatic --noinput"', directory)
     result = execute('su www-data -c "venv/bin/python manage.py compilemessages"', directory)
     result = execute('su www-data -c "venv/bin/python manage.py migrate"', directory)
-    result = execute('service nomoney.shop restart', directory)
+    result = execute('systemctl restart nomoney.shop', directory)
