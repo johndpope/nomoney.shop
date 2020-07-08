@@ -47,10 +47,8 @@ class DealTestCase(TestCase):
         self.assertEqual(self.deal.level, self.deal.level)
         self.assertEqual(self.deal.quality, self.deal.quality)
 
-        self.assertNotEqual(
-            self.deal.can_accept(self.deal.user1),
-            self.deal.can_accept(self.deal.user2)
-            )
+        self.assertIsInstance(self.deal.can_accept(self.deal.user1), bool)
+        self.assertIsInstance(self.deal.can_accept(self.deal.user2), bool)
         self.assertNotEqual(
             self.deal.can_bid(self.deal.user1),
             self.deal.can_bid(self.deal.user2)
