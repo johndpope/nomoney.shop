@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'channels',
     'analytical',
     'pwa',
     'core',
@@ -145,4 +146,12 @@ LOGOUT_REDIRECT_URL = LOGIN_URL
 MATOMO_DOMAIN_PATH = 'nomoney.shop/x'
 MATOMO_SITE_ID = '2'
 
-
+ASGI_APPLICATION = 'config.routing.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}

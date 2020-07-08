@@ -13,3 +13,5 @@ python-lorem
 names
 django-analytical
 daphne
+channels_redis
+redis
