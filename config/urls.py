@@ -20,7 +20,7 @@ from config import settings
 
 
 urlpatterns = [
-    path('', include('dashboard.urls')),
+    path('', include('core.urls')),
     path('bid/', include('bid.urls')),
     path('user/', include('user.urls')),
     path('category/', include('category.urls')),

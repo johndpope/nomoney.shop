@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'analytical',
     'pwa',
     'core',
-    'dashboard',
     'search',
     'user',
     'category',

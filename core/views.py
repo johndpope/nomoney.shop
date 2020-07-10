@@ -3,6 +3,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import VirtualDeal
 
 
+class AboutView(TemplateView):
+    template_name = 'about.html'
+
+
 class DashboardHomeView(LoginRequiredMixin, TemplateView):
     template_name = 'dashboard/dashboard_home.html'
 

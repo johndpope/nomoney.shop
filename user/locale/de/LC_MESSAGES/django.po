@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-07 20:43+0200\n"
+"POT-Creation-Date: 2020-07-10 21:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: user/templates/user/solo/user_form.html:14
+msgid "save"
+msgstr ""
 
 #: user/templates/user/user_detail.html:6
 #: user/templates/user/user_detail.html:16
@@ -64,22 +68,60 @@ msgstr ""
 msgid "logout"
 msgstr ""
 
-#: user/templates/user/user_form.html:19
-msgid "save"
+#: user/templates/user/user_detail.html:124
+#: user/templates/user/user_detail.html:188
+#: user/templates/user/user_detail.html:219
+#: user/templates/user/user_detail.html:253
+msgid "_your"
 msgstr ""
 
-#: user/templates/user/user_list.html:10
-msgid "user"
+#: user/templates/user/user_detail.html:128
+msgid "markets"
 msgstr ""
 
+#: user/templates/user/user_detail.html:132
+msgid "market"
+msgstr ""
+
+#: user/templates/user/user_detail.html:158
+msgid "yours"
+msgstr ""
+
+#: user/templates/user/user_detail.html:158
+msgid "deals"
+msgstr ""
+
+#: user/templates/user/user_detail.html:162
+#: user/templates/user/user_list.html:20
+msgid "deal"
+msgstr ""
+
+#: user/templates/user/user_detail.html:188
+msgid "locations"
+msgstr ""
+
+#: user/templates/user/user_detail.html:192
+msgid "location"
+msgstr ""
+
+#: user/templates/user/user_detail.html:219
 #: user/templates/user/user_list.html:11
 msgid "offerings"
 msgstr ""
 
+#: user/templates/user/user_detail.html:224
+msgid "offer"
+msgstr ""
+
+#: user/templates/user/user_detail.html:253
 #: user/templates/user/user_list.html:12
 msgid "requests"
 msgstr ""
 
-#: user/templates/user/user_list.html:20
-msgid "deal"
+#: user/templates/user/user_detail.html:258
+msgid "seek"
+msgstr ""
+
+#: user/templates/user/user_list.html:10
+msgid "user"
 msgstr ""

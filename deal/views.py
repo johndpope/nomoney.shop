@@ -5,7 +5,7 @@ from django.urls.base import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from bid.forms import BidForm
 from user.models import User
-from dashboard.models import VirtualDeal
+from core.models import VirtualDeal
 from .models import Deal
 from .forms import DealCreateForm
 

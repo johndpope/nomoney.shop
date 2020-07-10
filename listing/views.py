@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls.base import reverse_lazy, reverse
 from django.views.generic.base import TemplateView
 from category.models import Category
-from dashboard.models import VirtualDeal
+from core.models import VirtualDeal
 from .models import Push, Pull
 from django.contrib.auth.mixins import LoginRequiredMixin
 

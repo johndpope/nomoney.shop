@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-07 20:43+0200\n"
+"POT-Creation-Date: 2020-07-10 21:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: market/templates/market/market_delete.html:7
-#: market/templates/market/solo/market_list.html:17
+#: market/templates/market/solo/market_list_head.html:16
 msgid "market"
 msgstr "Markt"
 
@@ -28,7 +28,7 @@ msgid "delete"
 msgstr ""
 
 #: market/templates/market/market_detail.html:9
-#: market/templates/market/solo/market_list.html:23
+#: market/templates/market/solo/market_list.html:6
 msgid "members"
 msgstr "Mitglieder"
 
@@ -52,17 +52,17 @@ msgstr "suche"
 msgid "save"
 msgstr ""
 
-#: market/templates/market/solo/market_list.html:9
+#: market/templates/market/solo/market_list.html:5
+msgid "name"
+msgstr "Name"
+
+#: market/templates/market/solo/market_list_head.html:8
 msgid "_your"
 msgstr ""
 
-#: market/templates/market/solo/market_list.html:13
+#: market/templates/market/solo/market_list_head.html:12
 msgid "markets"
 msgstr "Märkte"
-
-#: market/templates/market/solo/market_list.html:22
-msgid "name"
-msgstr "Name"
 
 #~ msgid "guild"
 #~ msgstr "Gilde"
@@ -70,14 +70,14 @@ msgstr "Name"
 #~ msgid "guilds"
 #~ msgstr "Gilden"
 
-msgid "calculated"
-msgstr "berechnete"
+#~ msgid "calculated"
+#~ msgstr "berechnete"
 
 msgid "deals"
-msgstr "Geschäfte"
+msgstr "Tausche"
 
-msgid "quality"
-msgstr "Qualität"
+#~ msgid "quality"
+#~ msgstr "Qualität"
 
 #~ msgid "user"
 #~ msgstr "Benutzer"
@@ -86,4 +86,4 @@ msgstr "Qualität"
 #~ msgstr "Partner"
 
 msgid "deal"
-msgstr "Geschäft"
+msgstr "Tausch"

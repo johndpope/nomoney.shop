@@ -51,6 +51,7 @@
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <button class="dropdown-item help_button"><i class="fas fa-info-circle"></i> {% trans 'help' %}</button>
             <a class="dropdown-item" href="{% url 'user_list' %}"><i class="fas fa-list"></i> {% trans 'users' %}</a>
+            <a class="dropdown-item" href="{% url 'about' %}"><img src="{% static 'images/logo.svg' %}" class="" style="width:16px;" alt="">&nbsp;{% trans 'about' %}</a>
           </div>
         </li>
         <li class="nav-item">
