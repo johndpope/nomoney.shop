@@ -5,23 +5,23 @@
 
 {% block help %}
 Herzlich willkommen auf nomoney.shop!
-
-
 {% endblock %}
 
 
 {% block head %}
 <script>
 $(document).ready(function() {
+	
   $(function(){
-      $("#two-tab").click(function() {
+      initialize_chat();
+      //$("#two-tab").click(function() {
           $.ajax({
   	        url : "{% url 'dashboard_ajax_2d' %}",
   	        type: 'GET',
   	        success: function(data){
   	            $('#two').html(data);
   	        }
-          })
+      //    })
       });
   })
   $(function(){
@@ -42,13 +42,6 @@ $(document).ready(function() {
 
 {% block content %}
 <div class="container">
-  <div class="row justify-content-center mb-5">
-    <div class="col-10 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
-      <img src="{% static 'images/logo_full.svg' %}" class="" style="width: 100%;" alt="">
-    </div>
-  </div>
-
-
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
@@ -62,10 +55,8 @@ $(document).ready(function() {
   <div class="tab-content py-3 border-left border-right border-bottom" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <div class="container-fluid mt-5">
-        <div class="row">
-          <div class="col-12"><b>Vorschläge:</b></div>
-        </div>
-  
+
+        {% with chat=lobby %}{% include 'chat/solo/lobby.html' %}{% endwith %}  
         {% if request.user.open_feedback %}
           <div class="row mb-5 py-3">
             <div class="col-12">

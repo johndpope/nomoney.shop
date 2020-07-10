@@ -3,8 +3,11 @@
 
 {% block title %}{% trans 'yours'|title %} {% trans 'chats' %}{% endblock %}
 
-{% block help %}{% endblock %}
+{% block head %}
+{% endblock %}
 
 {% block content %}
-  {% include 'chat/solo/chat_list.html' %}
+
+{% include 'chat/solo/chat_list.html' %}
+
 {% endblock %}

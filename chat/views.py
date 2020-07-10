@@ -27,6 +27,11 @@ class ChatListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return self.request.user.chat_set.all()
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = ListView.get_context_data(self, **kwargs)
+        context['lobby'] = Chat.get_lobby()
+        return context
+
 
 class ChatDetailView(LoginRequiredMixin, DetailView):
     model = Chat

@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 function load() {
 	// chat-(re)load function - could be optimized with timestamp
-	var url = $('#chat').data('url');
+	var url = $('#chat_form').data('url');
 	$.get(url, function(data) {
 		$("#chat_messages").html(data);
 	});

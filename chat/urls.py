@@ -1,12 +1,12 @@
 from django.urls import path
 from .views import ChatListView, ChatDetailView, ChatNewMessageView, \
     ChatCreateView, ChatAjaxView, ChatAjaxStatusView
-from . import views
+#from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('<str:room_name>/', views.room, name='room'),
     path('', ChatListView.as_view(), name='chat_list'),
+    #path('index/', views.index, name='index'),
+    #path('room/<str:room_name>/', views.room, name='room'),
     path('new/', ChatCreateView.as_view(), name='chat_create'),
     path('<int:pk>/', ChatDetailView.as_view(), name='chat_detail'),
     path(

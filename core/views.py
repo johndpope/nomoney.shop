@@ -1,6 +1,7 @@
 from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import VirtualDeal
+from chat.models import Chat
 
 
 class AboutView(TemplateView):
@@ -24,6 +25,7 @@ class DashboardHomeView(LoginRequiredMixin, TemplateView):
             context['push_feedback_open'] = user.pushfeedback_set.filter(
                 status=0
                 )
+            context['lobby'] = Chat.get_lobby()
         else:
             self.template_name = 'dashboard/dashboard_anonymous.html'
         return context

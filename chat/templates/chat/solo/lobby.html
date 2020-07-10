@@ -1,0 +1,33 @@
+{% load i18n %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5>{{ symbols.chat|safe }} {% trans 'chat'|title %} {% trans 'lobby' %}</h5>
+    </div>
+  </div>
+</div>
+<div class="container border rounded">
+  <div class="row">
+    <div class="col-12">
+      {% for user in chat.users.all %}
+        {% include 'user/inc/link.html' %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 p-0">
+      <form id="chat_form" data-url="{% url 'chat_ajax_detail' chat.pk %}" action="{% url 'chat_new_message' chat.pk %}" method="post" class="form-check form-check-inline w-100">{% csrf_token %}
+        <textarea id="id_text" name="text" class="form-control form-check form-check-inline" style="resize:none;border:none;box-shadow: 5px 5px 5px gray;" rows="3" required></textarea>
+        <button type="submit" class="btn btn-primary my-1 form-check form-check-inline"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 p-0">
+      <div id="chat_messages" class="col-12 p-0">
+          <!-- Here come the chat messages -->
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>

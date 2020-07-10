@@ -2,11 +2,27 @@ from django.db import models
 from config.settings import AUTH_USER_MODEL
 
 
+class ChatType(models.IntegerChoices):
+    DEFAULT = 0, 'default'
+    USER = 10, 'user'
+    MARKET = 20, 'market'
+    LOCATION = 30, 'location'
+    DEAL = 40, 'deal'
+    LOBBY = 100, 'lobby'
+
+
 class ChatMessage(models.Model):
     chat = models.ForeignKey('chat.Chat', on_delete=models.CASCADE, )
     creator = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, )
     created = models.DateTimeField(auto_now_add=True)
     text = models.TextField()
+
+    @property
+    def previous(self):
+        message_list = list(ChatMessage.objects.filter(chat=self.chat))
+        index = message_list.index(self)
+        if index:
+            return message_list[index-1]
 
     class Meta:
         ordering = ['-pk']
@@ -14,6 +30,17 @@ class ChatMessage(models.Model):
 
 class Chat(models.Model):
     users = models.ManyToManyField(AUTH_USER_MODEL)
+    type = models.PositiveSmallIntegerField(
+        default=ChatType.DEFAULT,
+        choices=ChatType.choices,
+        )
+
+    @classmethod
+    def get_lobby(cls):
+        try:
+            return cls.objects.get(type=ChatType.LOBBY)
+        except Chat.DoesNotExist:
+            return cls.objects.create(type=ChatType.LOBBY)
 
     @property
     def title(self):
@@ -40,6 +67,11 @@ class Chat(models.Model):
             return chat
 
         return None
+
+    def save(self, *args, **kwargs):
+        if self.type == ChatType.LOBBY:
+            return self.get_lobby()
+        return models.Model.save(self, *args, **kwargs)
 
     def __str__(self):
         return self.title

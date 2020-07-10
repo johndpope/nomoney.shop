@@ -111,6 +111,15 @@
   </div>
 {% endif %}
 
+  <div class="container">
+    <div class="row">
+      <div id="toggler" class="col-12">
+        <button class="btn btn-link p-0 text-info py-3 float-right" onclick="$('.toggler').toggle()">
+          <i class="toggler collapse show fas fa-toggle-off"></i><i class="toggler collapse fas fa-toggle-on"></i> {% trans 'toggle all' %}
+        </button>
+      </div>
+    </div>
+  </div>
 
 <div class="accordion" id="accordionExample">
   {% if user == request.user %}
@@ -135,7 +144,7 @@
           </div>
         </div>
       </div>
-      <div id="markets" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div id="markets" class="toggler collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body">
           <div class="container-fluid">
             <div class="row mb-5 py-3">
@@ -165,7 +174,7 @@
           </div>
         </div>
       </div>
-      <div id="deals" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div id="deals" class="toggler collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body">
           <div class="container-fluid">
             <div class="row mb-5 py-3">
@@ -195,7 +204,7 @@
           </div>
         </div>
       </div>
-      <div id="locations" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div id="locations" class="toggler collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body">
           <div class="container-fluid">
             <div class="row mb-5 py-3">
@@ -228,7 +237,7 @@
         </div>
       </div>
     </div>
-    <div id="pushs" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+    <div id="pushs" class="toggler collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
         <div class="container-fluid">
           <div class="row mb-5 py-3">
@@ -262,7 +271,7 @@
         </div>
       </div>
     </div>
-    <div id="pulls" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+    <div id="pulls" class="toggler collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
         <div class="container-fluid">
           <div class="row mb-5 py-3">

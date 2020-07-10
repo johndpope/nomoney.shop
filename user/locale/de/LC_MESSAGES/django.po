@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-10 21:09+0200\n"
+"POT-Creation-Date: 2020-07-10 23:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,59 +68,63 @@ msgstr ""
 msgid "logout"
 msgstr ""
 
-#: user/templates/user/user_detail.html:124
-#: user/templates/user/user_detail.html:188
-#: user/templates/user/user_detail.html:219
-#: user/templates/user/user_detail.html:253
+#: user/templates/user/user_detail.html:125
+#: user/templates/user/user_detail.html:189
+#: user/templates/user/user_detail.html:220
+#: user/templates/user/user_detail.html:254
 msgid "_your"
 msgstr ""
 
-#: user/templates/user/user_detail.html:128
+#: user/templates/user/user_detail.html:129
 msgid "markets"
 msgstr ""
 
-#: user/templates/user/user_detail.html:132
+#: user/templates/user/user_detail.html:133
 msgid "market"
 msgstr ""
 
-#: user/templates/user/user_detail.html:158
+#: user/templates/user/user_detail.html:159
 msgid "yours"
 msgstr ""
 
-#: user/templates/user/user_detail.html:158
+#: user/templates/user/user_detail.html:159
 msgid "deals"
 msgstr ""
 
-#: user/templates/user/user_detail.html:162
+#: user/templates/user/user_detail.html:163
 #: user/templates/user/user_list.html:20
 msgid "deal"
 msgstr ""
 
-#: user/templates/user/user_detail.html:188
+#: user/templates/user/user_detail.html:189
 msgid "locations"
 msgstr ""
 
-#: user/templates/user/user_detail.html:192
+#: user/templates/user/user_detail.html:193
 msgid "location"
 msgstr ""
 
-#: user/templates/user/user_detail.html:219
+#: user/templates/user/user_detail.html:220
 #: user/templates/user/user_list.html:11
 msgid "offerings"
 msgstr ""
 
-#: user/templates/user/user_detail.html:224
+#: user/templates/user/user_detail.html:225
 msgid "offer"
 msgstr ""
 
-#: user/templates/user/user_detail.html:253
+#: user/templates/user/user_detail.html:254
 #: user/templates/user/user_list.html:12
 msgid "requests"
 msgstr ""
 
-#: user/templates/user/user_detail.html:258
+#: user/templates/user/user_detail.html:259
 msgid "seek"
 msgstr ""
+
+#: user/templates/user/user_detail.html:284
+msgid "toggle all"
+msgstr "alle umschalten"
 
 #: user/templates/user/user_list.html:10
 msgid "user"
