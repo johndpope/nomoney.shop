@@ -2,6 +2,8 @@
 import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
+from channels.db import database_sync_to_async
+
 
 class ChatConsumer(WebsocketConsumer):
     def connect(self):
@@ -36,6 +38,10 @@ class ChatConsumer(WebsocketConsumer):
                 'message': message
             }
         )
+
+    @database_sync_to_async
+    def save_message(self):
+        import pdb; pdb.set_trace()  # <---------
 
     # Receive message from room group
     def chat_message(self, event):
