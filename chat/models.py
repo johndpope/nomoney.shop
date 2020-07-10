@@ -68,11 +68,12 @@ class Chat(models.Model):
 
         return None
 
-""" Not a good way and recursion error
-    def save(self, *args, **kwargs):
-        if self.type == ChatType.LOBBY and Chat.objects.get(type=ChatType.Lobby):
-            return self.get_lobby()
-        return models.Model.save(self, *args, **kwargs)
-"""
+    """ Not a good way and recursion error
+        def save(self, *args, **kwargs):
+            if self.type == ChatType.LOBBY and Chat.objects.get(type=ChatType.Lobby):
+                return self.get_lobby()
+            return models.Model.save(self, *args, **kwargs)
+    """
+
     def __str__(self):
         return self.title
