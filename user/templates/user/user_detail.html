@@ -111,14 +111,15 @@
   </div>
 {% endif %}
 
+
 <div class="accordion" id="accordionExample">
   {% if user == request.user %}
     <div class="card">
-      <div class="card-header">
+      <div class="card-header py-0">
         <div class="container-fluid">
           <div class="row">
             <div class="col-8">
-              <button class="btn btn-link btn-block text-left p-0" type="button" data-toggle="collapse" data-target="#markets" aria-expanded="true" aria-controls="markets">
+              <button class="btn btn-link btn-block text-left p-0 text-dark py-3" type="button" data-toggle="collapse" data-target="#markets" aria-expanded="true" aria-controls="markets">
                 {{ symbols.market|safe }}
                 {% if user == request.user %}
                   {% trans '_your'|title %}
@@ -129,7 +130,7 @@
               </button>
             </div>
             <div class="col-4 d-flex justify-content-end">
-              <a class="btn btn-link p-0 text-info" href="{% url 'market_create' %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'market' %}</a>
+              <a class="btn btn-link p-0 text-info py-3" href="{% url 'market_create' %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'market' %}</a>
             </div>
           </div>
         </div>
@@ -150,16 +151,16 @@
     </div>
   
     <div class="card">
-      <div class="card-header">
+      <div class="card-header py-0">
         <div class="container-fluid">
           <div class="row">
             <div class="col-8">
-              <button class="btn btn-link btn-block text-left p-0" type="button" data-toggle="collapse" data-target="#deals" aria-expanded="true" aria-controls="deals">
+              <button class="btn btn-link btn-block text-left p-0 text-dark py-3" type="button" data-toggle="collapse" data-target="#deals" aria-expanded="true" aria-controls="deals">
                 {{ symbols.deal|safe }} {% trans 'yours'|title %} {% trans 'deals' %}
               </button>
             </div>
             <div class="col-4 d-flex justify-content-end">
-              <a class="btn btn-link p-0 text-info text-nowrap" href="{% url 'deal_create' %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'deal' %}</a>
+              <a class="btn btn-link p-0 text-info text-nowrap py-3" href="{% url 'deal_create' %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'deal' %}</a>
             </div>
           </div>
         </div>
@@ -180,16 +181,16 @@
     </div>
   
     <div class="card">
-      <div class="card-header">
+      <div class="card-header py-0">
         <div class="container-fluid">
           <div class="row">
             <div class="col-8">
-              <button class="btn btn-link btn-block text-left p-0" type="button" data-toggle="collapse" data-target="#locations" aria-expanded="true" aria-controls="locations">
+              <button class="btn btn-link btn-block text-left p-0 text-dark py-3" type="button" data-toggle="collapse" data-target="#locations" aria-expanded="true" aria-controls="locations">
                 {{ symbols.location|safe }} {% trans '_your'|title %} {% trans 'locations' %}
               </button>
             </div>
             <div class="col-4 d-flex justify-content-end">
-              <a class="btn btn-link p-0 text-info" href="{% url 'location_create' %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'location' %}</a>
+              <a class="btn btn-link p-0 text-info py-3" href="{% url 'location_create' %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'location' %}</a>
             </div>
           </div>
         </div>
@@ -211,16 +212,16 @@
   {% endif %}
 
   <div class="card">
-    <div class="card-header">
+    <div class="card-header py-0">
       <div class="container-fluid">
         <div class="row">
           <div class="col-8">
-            <button class="btn btn-link btn-block text-left p-0" type="button" data-toggle="collapse" data-target="#pushs" aria-expanded="true" aria-controls="pushs">
+            <button class="btn btn-link btn-block text-left p-0 text-dark py-3" type="button" data-toggle="collapse" data-target="#pushs" aria-expanded="true" aria-controls="pushs">
               {{ symbols.push|safe }} {% if user == request.user %} {% trans '_your'|title %}{% else %} {{ user }}'s{% endif %} {% trans 'offerings' %}
             </button>
           </div>
           <div class="col-4 d-flex justify-content-end">
-            <a class="btn btn-link p-0 text-info" href="{% url 'listing_create' 'push' %}?next={{ request.path }}">
+            <a class="btn btn-link p-0 text-info py-3" href="{% url 'listing_create' 'push' %}?next={{ request.path }}">
               <i class="fas fa-plus"></i> {% trans 'offer' %}
             </a>
           </div>
@@ -245,16 +246,16 @@
   </div>
 
   <div class="card">
-    <div class="card-header">
+    <div class="card-header py-0">
       <div class="container-fluid">
         <div class="row">
           <div class="col-8">
-            <button class="btn btn-link btn-block text-left p-0" type="button" data-toggle="collapse" data-target="#pulls" aria-expanded="true" aria-controls="pulls">
+            <button class="btn btn-link btn-block text-left p-0 text-dark py-3" type="button" data-toggle="collapse" data-target="#pulls" aria-expanded="true" aria-controls="pulls">
               {{ symbols.pull|safe }} {% if user == request.user %} {% trans '_your'|title %}{% else %} {{ user }}'s{% endif %} {% trans 'requests' %}
             </button>
           </div>
           <div class="col-4 d-flex justify-content-end">
-            <a class="btn btn-link p-0 text-info" href="{% url 'listing_create' 'pull' %}?next={{ request.path }}">
+            <a class="btn btn-link p-0 text-info py-3" href="{% url 'listing_create' 'pull' %}?next={{ request.path }}">
               <i class="fas fa-plus"></i> {% trans 'seek' %}
             </a>
           </div>
