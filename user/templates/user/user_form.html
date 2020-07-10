@@ -4,19 +4,5 @@
 {% block title %}Sign up{% endblock %}
 
 {% block content %}
-	<div class="container">
-		<form method="post" enctype="multipart/form-data">
-			{% if form.errors %}
-			<div class="alert alert-danger" role="alert">
-				{{ form.errors }}
-				</div>
-			{% else %}
-			{% endif %}
-			{% csrf_token %}
-			<table class="table table-striped table-bordered table-hover">
-				{{ form.as_table }}
-			</table>
-			<button class="btn btn-primary btn-block" type="submit">{% trans 'save'|title %}</button>
-		</form>
-	</div>
+  {% include 'user/solo/user_form.html' %}
 {% endblock %}
