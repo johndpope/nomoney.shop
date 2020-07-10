@@ -37,7 +37,7 @@
           </div>
           <div class="row">
             <div class="col">
-          {{ user }}
+              {{ user }}
             </div>
           </div>
         </div>
@@ -99,10 +99,8 @@
   </div>
 </div>
 
-<div class="container-fluid">
-{% if user == request.user %}
-
-  {% if request.user.open_feedback %}
+{% if request.user.open_feedback %}
+  <div class="container">
     <div class="row border rounded mb-5 py-3">
       <div class="col-12">
         {% with markets=request.user.markets %}
@@ -110,57 +108,175 @@
         {% endwith %}
       </div>
     </div>
-  {% endif %}
-
-
-  <div class="row border rounded mb-5 py-3">
-    <div class="col-12">
-      {% with markets=request.user.markets %}
-        {% include 'market/solo/market_list.html' %}
-      {% endwith %}
-    </div>
   </div>
-
-  <div class="row border rounded mb-5 py-3">
-    <div class="col-12">
-      {% with deals=request.user.deals %}
-        {% include 'deal/solo/deal_list.html' %}
-      {% endwith %}
-    </div>
-  </div>
-
-  <div class="row border rounded mb-5 py-3">
-    <div class="col-12">
-      {% with locations=request.user.locations %}
-        {% include 'location/solo/location_list.html' %}
-      {% endwith %}
-    </div>
-  </div>
-
-
 {% endif %}
 
+<div class="accordion" id="accordionExample">
+  {% if user == request.user %}
+    <div class="card">
+      <div class="card-header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-8">
+              <button class="btn btn-link btn-block text-left p-0" type="button" data-toggle="collapse" data-target="#markets" aria-expanded="true" aria-controls="markets">
+                {{ symbols.market|safe }}&nbsp;
+                {% if user == request.user %}
+                  {% trans '_your'|title %}
+                {% else %}
+                  {{ user }}'s
+                {% endif %}
+                {% trans 'markets' %}
+              </button>
+            </div>
+            <div class="col-4 d-flex justify-content-end">
+              <a class="btn btn-link p-0 text-info" href="{% url 'market_create' %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'market' %}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="markets" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class="container-fluid">
+            <div class="row mb-5 py-3">
+              <div class="col-12">
+                {% with markets=request.user.markets %}
+                  {% include 'market/solo/market_list.html' %}
+                {% endwith %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-8">
+              <button class="btn btn-link btn-block text-left p-0" type="button" data-toggle="collapse" data-target="#deals" aria-expanded="true" aria-controls="deals">
+                {{ symbols.deal|safe }} {% trans 'yours'|title %} {% trans 'deals' %}
+              </button>
+            </div>
+            <div class="col-4 d-flex justify-content-end">
+              <a class="btn btn-link p-0 text-info text-nowrap" href="{% url 'deal_create' %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'deal' %}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="deals" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class="container-fluid">
+            <div class="row mb-5 py-3">
+              <div class="col-12">
+                {% with deals=request.user.deals %}
+                  {% include 'deal/solo/deal_list.html' %}
+                {% endwith %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-8">
+              <button class="btn btn-link btn-block text-left p-0" type="button" data-toggle="collapse" data-target="#locations" aria-expanded="true" aria-controls="locations">
+                {{ symbols.location|safe }} {% trans '_your'|title %} {% trans 'locations' %}
+              </button>
+            </div>
+            <div class="col-4 d-flex justify-content-end">
+              <a class="btn btn-link p-0 text-info" href="{% url 'location_create' %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'location' %}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="locations" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class="container-fluid">
+            <div class="row mb-5 py-3">
+              <div class="col-12">
+                {% with locations=request.user.locations %}
+                  {% include 'location/solo/location_list.html' %}
+                {% endwith %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 
-  <div class="row border rounded mb-5 py-3">
-    <div class="col-12">
-      {% with listings=user.pushs %}
-        {% with type='push' %}
-          {% include 'listing/solo/listing_type_list.html' %}
-        {% endwith %}
-      {% endwith %}
+  <div class="card">
+    <div class="card-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-8">
+            <button class="btn btn-link btn-block text-left p-0" type="button" data-toggle="collapse" data-target="#pushs" aria-expanded="true" aria-controls="pushs">
+              {{ symbols.push|safe }} {% if user == request.user %} {% trans '_your'|title %}{% else %} {{ user }}'s{% endif %} {% trans 'offerings' %}
+            </button>
+          </div>
+          <div class="col-4 d-flex justify-content-end">
+            <a class="btn btn-link p-0 text-info" href="{% url 'listing_create' 'push' %}?next={{ request.path }}">
+              <i class="fas fa-plus"></i> {% trans 'offer' %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="pushs" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        <div class="container-fluid">
+          <div class="row mb-5 py-3">
+            <div class="col-12">
+              {% with listings=user.pushs %}
+                {% with type='push' %}
+                  {% include 'listing/solo/listing_type_list.html' %}
+                {% endwith %}
+              {% endwith %}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="row border rounded mb-5 py-3">
-    <div class="col-12">
-      {% with listings=user.pulls %}
-        {% with type='pull' %}
-          {% include 'listing/solo/listing_type_list.html' %}
-        {% endwith %}
-      {% endwith %}
+  <div class="card">
+    <div class="card-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-8">
+            <button class="btn btn-link btn-block text-left p-0" type="button" data-toggle="collapse" data-target="#pulls" aria-expanded="true" aria-controls="pulls">
+              {{ symbols.pull|safe }} {% if user == request.user %} {% trans '_your'|title %}{% else %} {{ user }}'s{% endif %} {% trans 'requests' %}
+            </button>
+          </div>
+          <div class="col-4 d-flex justify-content-end">
+            <a class="btn btn-link p-0 text-info" href="{% url 'listing_create' 'pull' %}?next={{ request.path }}">
+              <i class="fas fa-plus"></i> {% trans 'seek' %}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="pulls" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        <div class="container-fluid">
+          <div class="row mb-5 py-3">
+            <div class="col-12">
+              {% with listings=user.pulls %}
+                {% with type='pull' %}
+                  {% include 'listing/solo/listing_type_list.html' %}
+                {% endwith %}
+              {% endwith %}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
 {% endblock %}
 
