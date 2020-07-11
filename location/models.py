@@ -1,6 +1,7 @@
 from django.db import models
 from config.settings.base import AUTH_USER_MODEL
 from chat.models import Chat, ChatType
+from geopy.geocoders import Nominatim
 
 
 class Location(models.Model):
@@ -10,6 +11,11 @@ class Location(models.Model):
     lat = models.DecimalField(default=0.0, max_digits=10, decimal_places=7)
     description = models.TextField(blank=True)
     chat = None
+
+    @property
+    def geo(self):
+        geolocator = Nominatim(user_agent="nomoney.shop")
+        return geolocator.reverse(str(float(self.lon)) + ", " + str(float(self.lat)))
 
     @property
     def deals(self):
@@ -26,12 +32,6 @@ class Location(models.Model):
     @property
     def pulls(self):
         return self.pull_set.all()
-
-    def save(self, *args, **kwargs):
-        models.Model.save(self, *args, **kwargs)
-        if not self.chat:
-            self.chat = Chat.objects.create(
-                type=ChatType.LOCATION, location=self)
 
     def __str__(self):
         return self.title
