@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-10 23:53+0200\n"
+"POT-Creation-Date: 2020-07-11 20:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,24 +27,24 @@ msgstr "Markt"
 msgid "delete"
 msgstr ""
 
-#: market/templates/market/market_detail.html:9
+#: market/templates/market/market_detail.html:12
 #: market/templates/market/solo/market_list.html:6
 msgid "members"
 msgstr "Mitglieder"
 
-#: market/templates/market/market_detail.html:13
+#: market/templates/market/market_detail.html:16
 msgid "update"
 msgstr "ändern"
 
-#: market/templates/market/market_detail.html:18
+#: market/templates/market/market_detail.html:21
 msgid "member"
 msgstr "Mitglied"
 
-#: market/templates/market/market_detail.html:19
+#: market/templates/market/market_detail.html:22
 msgid "offer"
 msgstr "biete"
 
-#: market/templates/market/market_detail.html:20
+#: market/templates/market/market_detail.html:23
 msgid "seek"
 msgstr "suche"
 

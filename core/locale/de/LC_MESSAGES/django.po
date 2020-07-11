@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-10 23:53+0200\n"
+"POT-Creation-Date: 2020-07-11 20:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,8 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: core/templates/dashboard/ajax_2d.html:5
-#, fuzzy
-#| msgid "calculate"
 msgid "calculated"
 msgstr "berechnete"
 
@@ -31,7 +29,7 @@ msgstr ""
 
 #: core/templates/dashboard/ajax_2d.html:9
 msgid "quality"
-msgstr ""
+msgstr "Qualität"
 
 #: core/templates/dashboard/ajax_2d.html:10
 msgid "partner"
@@ -93,27 +91,27 @@ msgstr "registrieren"
 msgid "login"
 msgstr "einloggen"
 
-#: core/templates/menu.html:23
+#: core/templates/menu.html:25
 msgid "profile"
 msgstr "Profil"
 
-#: core/templates/menu.html:26
+#: core/templates/menu.html:28
 msgid "categories"
 msgstr "Kategorien"
 
-#: core/templates/menu.html:29
+#: core/templates/menu.html:31
 msgid "chats"
 msgstr "Chats"
 
-#: core/templates/menu.html:52
+#: core/templates/menu.html:35
 msgid "help"
 msgstr "Hilfe"
 
-#: core/templates/menu.html:53
+#: core/templates/menu.html:57
 msgid "users"
 msgstr "Benutzer"
 
-#: core/templates/menu.html:54
+#: core/templates/menu.html:58
 msgid "about"
 msgstr "Über"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-10 23:53+0200\n"
+"POT-Creation-Date: 2020-07-11 20:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,21 +28,25 @@ msgstr ""
 
 #: chat/templates/chat/chat_list.html:4
 msgid "chats"
-msgstr ""
+msgstr "Chats"
 
 #: chat/templates/chat/solo/chat_list.html:6
 #: chat/templates/chat/solo/chat_list.html:11
+#: chat/templates/chat/solo/chat_list.html:28
+#: chat/templates/chat/solo/chat_list.html:32
+#: chat/templates/chat/solo/chat_list.html:36
+#: chat/templates/chat/solo/chat_list.html:40
 #: chat/templates/chat/solo/lobby.html:5
 msgid "chat"
-msgstr ""
+msgstr "Chat"
 
 #: chat/templates/chat/solo/chat_list.html:6
 msgid "overview"
 msgstr ""
 
 #: chat/templates/chat/solo/chat_list.html:18
-msgid "title"
-msgstr ""
+msgid "type"
+msgstr "Typ"
 
 #: chat/templates/chat/solo/chat_list.html:19
 msgid "members"
@@ -50,12 +54,29 @@ msgstr ""
 
 #: chat/templates/chat/solo/chat_list.html:20
 msgid "messages"
-msgstr ""
+msgstr "Nachrichten"
 
-#: chat/templates/chat/solo/chat_list.html:30
-msgid "detail"
-msgstr ""
-
+#: chat/templates/chat/solo/chat_list.html:28
 #: chat/templates/chat/solo/lobby.html:5
 msgid "lobby"
+msgstr "Lobby"
+
+#: chat/templates/chat/solo/chat_list.html:32
+msgid "market"
 msgstr ""
+
+#: chat/templates/chat/solo/chat_list.html:36
+msgid "user"
+msgstr ""
+
+#: chat/templates/chat/solo/chat_list.html:40
+msgid "default"
+msgstr ""
+
+#: chat/templates/chat/solo/chat_list.html:45
+msgid "all"
+msgstr "alle"
+
+#: chat/templates/chat/solo/chat_list.html:48
+msgid "detail"
+msgstr "Detail"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-10 23:53+0200\n"
+"POT-Creation-Date: 2020-07-11 20:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgstr ""
 #: user/templates/user/user_detail.html:6
 #: user/templates/user/user_detail.html:16
 msgid "your"
-msgstr ""
+msgstr "dein"
 
 #: user/templates/user/user_detail.html:6
 #: user/templates/user/user_detail.html:20
@@ -50,7 +50,7 @@ msgstr ""
 
 #: user/templates/user/user_detail.html:74
 msgid "description"
-msgstr ""
+msgstr "beschreibung"
 
 #: user/templates/user/user_detail.html:93
 msgid "update"
@@ -58,7 +58,7 @@ msgstr ""
 
 #: user/templates/user/user_detail.html:94
 msgid "settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #: user/templates/user/user_detail.html:95
 msgid "password"
@@ -66,65 +66,65 @@ msgstr ""
 
 #: user/templates/user/user_detail.html:96
 msgid "logout"
-msgstr ""
+msgstr "ausloggen"
 
-#: user/templates/user/user_detail.html:125
-#: user/templates/user/user_detail.html:189
-#: user/templates/user/user_detail.html:220
-#: user/templates/user/user_detail.html:254
+#: user/templates/user/user_detail.html:121
+msgid "toggle all"
+msgstr "alle umschalten"
+
+#: user/templates/user/user_detail.html:137
+#: user/templates/user/user_detail.html:201
+#: user/templates/user/user_detail.html:232
+#: user/templates/user/user_detail.html:266
 msgid "_your"
 msgstr ""
 
-#: user/templates/user/user_detail.html:129
+#: user/templates/user/user_detail.html:141
 msgid "markets"
 msgstr ""
 
-#: user/templates/user/user_detail.html:133
+#: user/templates/user/user_detail.html:145
 msgid "market"
 msgstr ""
 
-#: user/templates/user/user_detail.html:159
+#: user/templates/user/user_detail.html:171
 msgid "yours"
 msgstr ""
 
-#: user/templates/user/user_detail.html:159
+#: user/templates/user/user_detail.html:171
 msgid "deals"
 msgstr ""
 
-#: user/templates/user/user_detail.html:163
+#: user/templates/user/user_detail.html:175
 #: user/templates/user/user_list.html:20
 msgid "deal"
 msgstr ""
 
-#: user/templates/user/user_detail.html:189
+#: user/templates/user/user_detail.html:201
 msgid "locations"
 msgstr ""
 
-#: user/templates/user/user_detail.html:193
+#: user/templates/user/user_detail.html:205
 msgid "location"
 msgstr ""
 
-#: user/templates/user/user_detail.html:220
+#: user/templates/user/user_detail.html:232
 #: user/templates/user/user_list.html:11
 msgid "offerings"
 msgstr ""
 
-#: user/templates/user/user_detail.html:225
+#: user/templates/user/user_detail.html:237
 msgid "offer"
 msgstr ""
 
-#: user/templates/user/user_detail.html:254
+#: user/templates/user/user_detail.html:266
 #: user/templates/user/user_list.html:12
 msgid "requests"
 msgstr ""
 
-#: user/templates/user/user_detail.html:259
+#: user/templates/user/user_detail.html:271
 msgid "seek"
 msgstr ""
-
-#: user/templates/user/user_detail.html:284
-msgid "toggle all"
-msgstr "alle umschalten"
 
 #: user/templates/user/user_list.html:10
 msgid "user"

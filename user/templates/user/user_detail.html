@@ -47,9 +47,9 @@
               <b>{% trans 'member'|title %} {% trans 'since' %}:</b>
             </div>
           </div>
-          <div class="row" title="{{ user.date_joined }}">
+          <div class="row" title="{{ user.date_joined|naturaltime }}" data-toggle="tooltip">
             <div class="col">
-              {{ user.date_joined|naturaltime }}</div>
+              {{ user.date_joined }}</div>
             </div>
         </div>
         <div class="col">
