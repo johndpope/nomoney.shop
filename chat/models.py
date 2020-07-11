@@ -72,15 +72,15 @@ class Chat(models.Model):
             return cls.objects.create(type=ChatType.LOBBY)
 
     @classmethod
-    def by_users(cls, *user_list, create=False, virtual=False):
+    def by_users(cls, *users, create=False, virtual=False):
         chats = cls.objects.filter(type=ChatType.USER)
         for chat in chats:
-            if set(chat.users.all()) == set(user_list):
+            if set(chat.users.all()) == set(users):
                 return chat
 
         if create:
             chat = cls.objects.create(type=ChatType.USER)
-            for user in user_list:
+            for user in users:
                 chat.users.add(user)
             chat.save()
             return chat

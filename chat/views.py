@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls.base import reverse
 from django.shortcuts import render
 from django.http.response import HttpResponseRedirect
+from user.models import User
 from .models import Chat
 from .forms import ChatMessageForm
 
@@ -36,12 +37,21 @@ class ChatListView(LoginRequiredMixin, ListView):
 
 class ChatDetailView(LoginRequiredMixin, DetailView):
     model = Chat
-    fields = '__all__'
     context_object_name = 'chat'
 
     def get_context_data(self, **kwargs):
         kwargs['form'] = ChatMessageForm(self.request.POST)
         return DetailView.get_context_data(self, **kwargs)
+
+
+class ChatUserDetailView(LoginRequiredMixin, DetailView):
+    model = Chat
+    context_object_name = 'chat'
+
+    def get_object(self, queryset=None):
+        user_pk = self.request.resolver_match.kwargs.get('user_pk')
+        user = User.objects.get(pk=user_pk)
+        return Chat.by_users(self.request.user, user)
 
 
 class ChatCreateView(LoginRequiredMixin, CreateView):
