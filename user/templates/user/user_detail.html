@@ -96,7 +96,7 @@
         <a class="btn btn-link float-right" href="{% url 'user_logout' %}"><i class="fas fa-sign-out-alt"></i> {% trans 'logout' %}</a>
       {% endif %}
       {% if chat %}
-        <a class="btn btn-link float-right" href="{% url 'chat_user_detail' object.pk %}">{{ symbols.chat|safe }}</a>
+        <a class="btn btn-link float-right" href="{% url 'chat_detail' chat.pk %}">{{ symbols.chat|safe }}</a>
       {% endif %}
     </div>
   </div>

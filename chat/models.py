@@ -50,12 +50,6 @@ class Chat(models.Model):
         return ChatType.by_number(self.type).label
 
     @property
-    def title(self):
-        if self.users.all():
-            return ', '.join((str(user) for user in self.users.all()))
-        return 'Chat: {}'.format(self.pk)
-
-    @property
     def messages(self):
         return self.chatmessage_set.all()
 
@@ -72,7 +66,7 @@ class Chat(models.Model):
             return cls.objects.create(type=ChatType.LOBBY)
 
     @classmethod
-    def by_users(cls, *users, create=False, virtual=False):
+    def by_users(cls, *users, create=False):
         chats = cls.objects.filter(type=ChatType.USER)
         for chat in chats:
             if set(chat.users.all()) == set(users):
@@ -88,4 +82,4 @@ class Chat(models.Model):
         return None
 
     def __str__(self):
-        return 'Chat [{}]:'.format(self.type_str)
+        return 'Chat [{}]: {}'.format(self.type_str, ', '.join((str(user) for user in self.get_users())))
