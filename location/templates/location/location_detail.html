@@ -3,12 +3,45 @@
 {% load humanize %}
 {% load i18n %}
 
+{% block head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+
+<script>
+  $(document).ready(function() {
+    var mymap = L.map('mapid').setView(["{{ location.lat|stringformat:'f' }}", "{{ location.lon|stringformat:'f' }}"], 10);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+      maxZoom: 18,
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1
+    }).addTo(mymap);
+    var marker = L.marker(["{{ location.lat|stringformat:'f' }}", "{{ location.lon|stringformat:'f' }}"]).addTo(mymap);
+  });
+</script>
+{% endblock %}
+
+
 {% block content %}
 <div class="container-fluid mb-3">
   <div class="row">
     <div class="col d-flex justify-content-end"><a class="btn btn-link text-info" href="{% url 'location_list' %}">{{ symbols.back|safe }}&nbsp;{% trans 'back' %}</a></div>
   </div>
 </div>
+
+<div class="container-fluid border">
+  <div class="row">
+    <div class="col-12 p-0">
+      <div id="mapid" style="height:400px;z-index:0;"></div>
+    </div>
+  </div>
+</div>
+
+<hr class="my-5">
 
 <div class="container-fluid border">
   <div class="row">

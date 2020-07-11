@@ -12,9 +12,9 @@
   {% endif %}
   {% for location in locations %}
     <div class="row border-top">
-      <div class="col-7 col-md-3 order-1 order-md-1">{{ location.title }} {{ location.geo }}</div>
-      <div class="col-6 col-md-3 order-3 order-md-2"><i class="fas fa-arrows-alt-h"></i> {{ location.lon }}</div>
-      <div class="col-6 col-md-3 order-4 order-md-3"><i class="fas fa-arrows-alt-v"></i> {{ location.lat }}</div>
+      <div class="col-7 col-md-3 order-1 order-md-1">{{ location.title }}</div>
+      <div class="col-6 col-md-3 order-3 order-md-2"><i class="fas fa-arrows-alt-v"></i> {{ location.lat }}</div>
+      <div class="col-6 col-md-3 order-4 order-md-3"><i class="fas fa-arrows-alt-h"></i> {{ location.lon }}</div>
       <div class="col-5 col-md-3 order-2 order-md-4 d-flex justify-content-end">
         {% if request.user == location.user %}
           <a class="btn btn-link py-0" href="{% url 'location_delete' location.pk %}?next={{ request.path }}" title="{% trans 'delete' %}">{{ symbols.delete|safe }}</a>

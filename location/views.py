@@ -21,7 +21,7 @@ class LocationDetailView(LoginRequiredMixin, DetailView):
 
 class LocationCreateView(LoginRequiredMixin, CreateView):
     model = Location
-    fields = ['title', 'lon', 'lat', 'description']
+    fields = ['title', 'lat', 'lon', 'description']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
