@@ -10,6 +10,10 @@ class ChatType(models.IntegerChoices):
     DEAL = 40, 'deal'
     LOBBY = 100, 'lobby'
 
+    @classmethod
+    def by_number(cls, number):
+        return cls(number)
+
 
 class ChatMessage(models.Model):
     chat = models.ForeignKey('chat.Chat', on_delete=models.CASCADE, )
@@ -76,4 +80,4 @@ class Chat(models.Model):
     """
 
     def __str__(self):
-        return self.title
+        return 'Chat [{}]: {}'.format(ChatType.by_number(self.type).label, self.title)
