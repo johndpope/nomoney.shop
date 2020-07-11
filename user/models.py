@@ -3,7 +3,7 @@ from django.dispatch import receiver
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from statistics import mean
-from chat.models import Chat
+from chat.models import Chat, ChatType
 from listing.models import ListingStatus
 
 
@@ -26,6 +26,20 @@ class User(AbstractUser):
     beta_user = models.BooleanField(default=False)
     test = models.BooleanField(default=False)
     description = models.TextField(blank=True)
+
+    @property
+    def chats(self):
+        return Chat.objects.all()
+        #=======================================================================
+        # import pdb; pdb.set_trace()  # <---------
+        # pks = set([Chat.get_lobby().pk] +
+        #           [chat.pk for chat in self.chat_set.all()] +
+        #           [deal.chat.pk for deal in self.deals] +
+        #           [market.chat.pk for market in self.markets] +
+        #           [location.chat.pk for location in self.locations]
+        #           )
+        # return Chat.objects.filter(pk__in=pks)
+        #=======================================================================
 
     @property
     def locations(self):

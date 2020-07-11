@@ -6,8 +6,6 @@ class ChatType(models.IntegerChoices):
     DEFAULT = 0, 'default'
     USER = 10, 'user'
     MARKET = 20, 'market'
-    LOCATION = 30, 'location'
-    DEAL = 40, 'deal'
     LOBBY = 100, 'lobby'
 
     @classmethod
@@ -33,18 +31,23 @@ class ChatMessage(models.Model):
 
 
 class Chat(models.Model):
+    """
+    Chats are used by multiple models in different ways:
+    User-Chat: Is created by the combination of users (Chat.by_users)
+    Market-Chat: Is created within Market.save
+    lobby-chat: Is a single object fetched and created by Chat.get_lobby
+    """
     users = models.ManyToManyField(AUTH_USER_MODEL)
     type = models.PositiveSmallIntegerField(
         default=ChatType.DEFAULT,
         choices=ChatType.choices,
         )
+    market = models.OneToOneField('market.Market', null=True, blank=True,
+                                  on_delete=models.CASCADE)
 
-    @classmethod
-    def get_lobby(cls):
-        try:
-            return cls.objects.get(type=ChatType.LOBBY)
-        except Chat.DoesNotExist:
-            return cls.objects.create(type=ChatType.LOBBY)
+    @property
+    def type_str(self):
+        return ChatType.by_number(self.type).label
 
     @property
     def title(self):
@@ -56,15 +59,27 @@ class Chat(models.Model):
     def messages(self):
         return self.chatmessage_set.all()
 
+    def get_users(self):
+        if self.type == ChatType.MARKET:
+            return self.market.users.all()
+        return self.users.all()
+
+    @classmethod
+    def get_lobby(cls):
+        try:
+            return cls.objects.get(type=ChatType.LOBBY)
+        except Chat.DoesNotExist:
+            return cls.objects.create(type=ChatType.LOBBY)
+
     @classmethod
     def by_users(cls, *user_list, create=False, virtual=False):
-        chats = cls.objects.all()
+        chats = cls.objects.filter(type=ChatType.USER)
         for chat in chats:
             if set(chat.users.all()) == set(user_list):
                 return chat
 
         if create:
-            chat = cls.objects.create()
+            chat = cls.objects.create(type=ChatType.USER)
             for user in user_list:
                 chat.users.add(user)
             chat.save()
@@ -72,12 +87,5 @@ class Chat(models.Model):
 
         return None
 
-    """ Not a good way and recursion error
-        def save(self, *args, **kwargs):
-            if self.type == ChatType.LOBBY and Chat.objects.get(type=ChatType.Lobby):
-                return self.get_lobby()
-            return models.Model.save(self, *args, **kwargs)
-    """
-
     def __str__(self):
-        return 'Chat [{}]: {}'.format(ChatType.by_number(self.type).label, self.title)
+        return 'Chat [{}]:'.format(self.type_str)

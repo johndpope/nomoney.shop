@@ -15,18 +15,36 @@
   </div>
   {% if chats %}
     <div class="row">
-      <div class="col"><b>{% trans 'title'|title %}</b></div>
-      <div class="col"><b>{% trans 'members'|title %}</b></div>
-      <div class="col"><b>{% trans 'messages'|title %}</b></div>
-      <div class="col"></div>
+      <div class="col-4 col-md-2 order-1 order-md-1"><b>{% trans 'type'|title %}</b></div>
+      <div class="col-12 col-md-8 order-4 order-md-2"><b>{% trans 'members'|title %}</b></div>
+      <div class="col-4 col-md-1 order-2 order-md-3"><b>{% trans 'messages'|title %}</b></div>
+      <div class="col-4 col-md-1 order-3 order-md-4 d-flex justify-content-end"></div>
     </div>
   {% endif %}
   {% for chat in chats %}
     <div class="row border-top">
-      <div class="col-8 col-md-4 order-1 order-md-1">{% include 'chat/inc/link.html' %}</div>
-      <div class="col-10 col-md-4 order-3 order-md-2">{% for user in chat.users.all %}{% include 'user/inc/link.html' %}, {% endfor %}</div>
-      <div class="col-1 col-md-2 order-4 order-md-3 d-flex justify-content-end">{{ chat.messages|length }}</div>
-      <div class="col-4 col-md-2 order-2 order-md-4 d-flex justify-content-end">
+      <div class="col-4 col-md-2 order-1 order-md-1">
+        {% if chat.type_str == 'lobby' %}
+          <a class="btn btn-link p-0 text-dark" href="{% url 'chat_detail' chat.pk %}" data-toggle="tooltip" title="{% trans 'lobby'|title %} {% trans 'chat' %}">
+            {{ symbols.lobby|safe }} {{ symbols.message_regular|safe }}
+          </a>
+        {% elif chat.type_str == 'market' %}
+          <a class="btn btn-link p-0 text-dark" href="{% url 'chat_detail' chat.pk %}" data-toggle="tooltip" title="{% trans 'market'|title %} {% trans 'chat' %}">
+            {{ symbols.market|safe }} {{ symbols.message_regular|safe }}
+          </a>
+        {% elif chat.type_str == 'user' %}
+          <a class="btn btn-link p-0 text-dark" href="{% url 'chat_detail' chat.pk %}" data-toggle="tooltip" title="{% trans 'user'|title %} {% trans 'chat' %}">
+            {{ symbols.user|safe }} {{ symbols.message_regular|safe }}
+          </a>
+        {% elif chat.type_str == 'default' %}
+          <a class="btn btn-link p-0" href="{% url 'chat_detail' chat.pk %}" data-toggle="tooltip" title="{% trans 'default'|title %} {% trans 'chat' %}">
+            default
+          </a>
+        {% endif %}
+      </div>
+      <div class="col-12 col-md-8 order-4 order-md-2">{% for user in chat.get_users %}{% include 'user/inc/link.html' %}, {% empty %}{% trans 'all' %}{% endfor %}</div>
+      <div class="col-4 col-md-1 order-2 order-md-3">{{ chat.messages|length }}</div>
+      <div class="col-4 col-md-1 order-3 order-md-4 d-flex justify-content-end">
         <a class="btn btn-link py-0" href="{% url 'chat_detail' chat.pk %}" title="{% trans 'detail' %}">{{ symbols.detail|safe }}</a>
       </div>
     </div>

@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
 
+{% block head %}
+<script>
+$(document).ready(function() {
+  load();
+});
+
+</script>
+{% endblock %}
+
 {% block content %}
   {% include 'chat/solo/chat_detail.html' %}
 {% endblock %}

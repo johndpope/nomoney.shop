@@ -1,3 +1,26 @@
+function load() {
+	// chat-(re)load function - could be optimized with timestamp
+	var url = $('#chat_form').data('url');
+	$.get(url, function(data) {
+		$("#chat_messages").html(data);
+	});
+}
+
+
+
+function initialize_chat(){
+	load();
+}
+
+setInterval(function() {
+	load();
+	// reloads chat every x seconds
+	//if ($('#autoreload').prop('checked')) {
+	//	load();
+	//};
+}, 60 * 1000);
+
+
 $(document).ready(function() {
     $(".help_button").click(function(){
     	$("#help_block").toggle();
@@ -10,18 +33,8 @@ $(document).ready(function() {
 	    $(this).closest('form').submit();
 	  }
 	});
+	$('#id_text').focus();
 });
-
-
-
-function load() {
-	// chat-(re)load function - could be optimized with timestamp
-	var url = $('#chat_form').data('url');
-	$.get(url, function(data) {
-		$("#chat_messages").html(data);
-	});
-}
-
 
 $(document).ready(function() {
 	// send Chat input via Ajax and reload chat
@@ -40,11 +53,8 @@ $(document).ready(function() {
     $("#chat_button").click(function(){
     	load();
     });
+	$('#id_text').focus();
 });
-
-function initialize_chat(){
-	load();
-}
 
 $(document).ready(function() {
 	$(window).resize(function(){

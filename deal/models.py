@@ -186,6 +186,9 @@ class Deal(models.Model):
     def __eq__(self, other):
         return set([self.user1, self.user2]) == set([other.user1, other.user2])
 
+    def __hash__(self):
+        return hash(self.pk)
+
     def __str__(self):
         return '{} vs. {}'.format(self.user1, self.user2)
 

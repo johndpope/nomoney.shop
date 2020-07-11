@@ -5,11 +5,12 @@ from django.views.generic import View
 from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls.base import reverse
+from django.shortcuts import render
+from django.http.response import HttpResponseRedirect
 from .models import Chat
 from .forms import ChatMessageForm
 
 # chat/views.py
-from django.shortcuts import render
 
 def index(request):
     return render(request, 'chat/index.html', {})
@@ -25,9 +26,9 @@ class ChatListView(LoginRequiredMixin, ListView):
     context_object_name = 'chats'
 
     def get_queryset(self):
-        return self.request.user.chat_set.all()
+        return self.request.user.chats
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, **kwargs):
         context = ListView.get_context_data(self, **kwargs)
         context['lobby'] = Chat.get_lobby()
         return context
@@ -45,10 +46,7 @@ class ChatDetailView(LoginRequiredMixin, DetailView):
 
 class ChatCreateView(LoginRequiredMixin, CreateView):
     model = Chat
-    fields = '__all__'
-
-    def get_success_url(self):
-        return reverse('chat_detail', args=(self.object.pk,))
+    fields = ['users']
 
     def get_form(self, form_class=None):
         form = CreateView.get_form(self, form_class=form_class)
@@ -60,10 +58,8 @@ class ChatCreateView(LoginRequiredMixin, CreateView):
         return form
 
     def form_valid(self, form):
-        response = CreateView.form_valid(self, form)
-        form.instance.users.add(self.request.user)
-        form.instance.save()
-        return response
+        chat = Chat.by_users(*form.cleaned_data['users'], self.request.user, create=True)
+        return HttpResponseRedirect(reverse('chat_detail', args=(chat.pk,)))
 
 
 class ChatNewMessageView(LoginRequiredMixin, CreateView):
@@ -85,7 +81,7 @@ class ChatAjaxStatusView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):  # future?
         import pdb; pdb.set_trace()  # <---------
         return JsonResponse({'foo': 'bar'})
-    
+
 
 class ChatAjaxView(LoginRequiredMixin, DetailView):
     model = Chat
