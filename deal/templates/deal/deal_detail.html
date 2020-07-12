@@ -2,6 +2,35 @@
 {% load humanize %}
 {% load i18n %}
 
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.data-slider').slider();
+});
+</script>
+<style>
+.slider-handle.custom {
+  background: transparent none;
+  /* You can customize the handle and set a background image */
+}
+  .slider-handle.custom::before {
+  	line-height: 20px;
+  	font-size: 20px;
+  	content: '\f0dc'; /*unicode star character*/
+  	color: #726204;
+  }
+#ex1Slider .slider-selection {
+  background: #BABABA;
+}
+.slider-horizontal {
+  width:100%!important;
+}
+</style>
+{% endblock %}
+
+
 {% block content %}
 {% include 'deal/solo/deal_detail.html' %}
 
@@ -17,11 +46,11 @@
           </div>
         </div>
         {% for field in push_form %}
-          <div class="row">
-            <div class="col-12 col-md-8 d-flex justify-content-end mt-2">
+          <div class="row mb-3">
+            <div class="col-12 col-md-8 col-lg-12 d-flex justify-content-end mt-2">
               <b>{{field.label}}</b>
             </div>
-            <div class="col-12 col-md-4 mb-2">
+            <div class="col-12 col-md-4 col-lg-12 pt-2">
               {{ field }}
             </div>
           </div>
@@ -35,10 +64,10 @@
         </div>
         {% for field in pull_form %}
           <div class="row">
-            <div class="col-12 col-md-8 d-flex justify-content-end mt-2">
-              <b>{{field.label}}</b>
+            <div class="col-12 col-md-8 col-lg-12 d-flex justify-content-end mt-2">
+              <b>{{ field.label }}</b>
             </div>
-            <div class="col-12 col-md-4 mb-2">
+            <div class="col-12 col-md-4 col-lg-12 pt-2">
               {{ field }}
             </div>
           </div>
