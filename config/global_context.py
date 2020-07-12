@@ -2,6 +2,7 @@ from config.settings import VERSION, NAME
 
 
 SYMBOLS = {
+        'bid': '<i class="fab fa-wpforms"></i>',
         'close': '<i class="fas fa-times"></i>',
         'forward': '<i class="fas fa-forward"></i>',
         'back': '<i class="fas fa-backward"></i>',
