@@ -4,7 +4,7 @@
 
 
 {% block help %}
-Herzlich willkommen auf nomoney.shop!
+  {% include 'solo/about.html' %}
 {% endblock %}
 
 
@@ -41,6 +41,12 @@ $(document).ready(function() {
 
 
 {% block content %}
+{% if request.user.is_authenticated %}
+  {% include 'user/solo/user_objects.html' %}
+{% endif %}
+
+<hr class="my-5">
+
 <div class="container">
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">

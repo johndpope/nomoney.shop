@@ -115,14 +115,16 @@ class TestDB:
             user=cls.demo,
             lon=randint(-180, 180),
             lat=randint(-90, 90),
-            description=cls.sentences_string()
+            description=cls.sentences_string(),
+            test=True,
             )
         Location.objects.create(
             title='Demo1 Zuhause',
             user=cls.demo1,
             lon=randint(-180, 180),
             lat=randint(-90, 90),
-            description=cls.sentences_string()
+            description=cls.sentences_string(),
+            test=True,
             )
         for i in range(cls.LOCATION_COUNT):
             Location.objects.create(
@@ -130,7 +132,8 @@ class TestDB:
                 user=cls.random_object(User),
                 lon=randint(-180, 180),
                 lat=randint(-90, 90),
-                description=cls.sentences_string()
+                description=cls.sentences_string(),
+                test=True,
                 )
             if cls.PRINT_STEPS and not i % 100 and i != 0:
                 print(str(i) + ' locations created.')
@@ -167,6 +170,7 @@ class TestDB:
                 quantity=quantity,
                 unit=unit,
                 description=cls.sentences_string(10),
+                test=True,
                 )
             if cls.PRINT_STEPS and not i % 100 and i != 0:
                 print(str(i) + ' listings created.')
@@ -215,7 +219,7 @@ class TestDB:
     def setup_market_db(cls):
         """ create bid for a deal and accept """
         market = Market.objects.create(
-            title=get_word()[0:20], location=cls.location
+            title=get_word()[0:20], location=cls.location, test=True,
             )
         market.users.add(cls.demo)
         market.users.add(cls.demo1)
@@ -223,7 +227,7 @@ class TestDB:
         market.save()
 
         market = Market.objects.create(
-            title=get_word()[0:20], location=cls.location
+            title=get_word()[0:20], location=cls.location, test=True,
             )
         market.users.add(cls.demo)
         market.users.add(cls.demo1)
@@ -232,7 +236,7 @@ class TestDB:
         market.save()
 
         market = Market.objects.create(
-            title=get_word()[0:20], location=cls.location
+            title=get_word()[0:20], location=cls.location, test=True,
             )
         market.users.add(cls.demo)
         market.users.add(cls.demo1)
@@ -243,7 +247,7 @@ class TestDB:
         cls.market = market
 
         market = Market.objects.create(
-            title=get_word()[0:20], location=cls.location
+            title=get_word()[0:20], location=cls.location, test=True,
             )
         market.users.add(cls.random_object(User))
         market.users.add(cls.random_object(User))

@@ -37,23 +37,23 @@ class User(AbstractUser):
 
     @property
     def locations(self):
-        return self.location_set.all()
+        return self.location_set.filter(test=self.test)
 
     @property
     def other_users(self):
-        return self.__class__.objects.exclude(pk=self.pk)
+        return self.__class__.objects.exclude(pk=self.pk, test=self.test)
 
     @property
     def pushs(self):
-        return self.push_set.exclude(status=ListingStatus.DELETED)
+        return self.push_set.exclude(status=ListingStatus.DELETED).filter(test=self.test)
 
     @property
     def pulls(self):
-        return self.pull_set.exclude(status=ListingStatus.DELETED)
+        return self.pull_set.exclude(status=ListingStatus.DELETED).filter(test=self.test)
 
     @property
     def markets(self):
-        return self.market_set.all()
+        return self.market_set.filter(test=self.test)
 
     @property
     def listings(self):

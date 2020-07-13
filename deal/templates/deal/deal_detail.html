@@ -3,11 +3,12 @@
 {% load i18n %}
 
 {% block head %}
+<!-- https://seiyria.com/bootstrap-slider -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-  $('.data-slider').slider();
+  $('.data-slider').slider({tooltip: 'always', tooltip_position:'bottom'});
 });
 </script>
 <style>

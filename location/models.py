@@ -7,6 +7,7 @@ class Location(models.Model):
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     lon = models.DecimalField(default=0.0, max_digits=10, decimal_places=7)
     lat = models.DecimalField(default=0.0, max_digits=10, decimal_places=7)
+    test = models.BooleanField(default=False)
     description = models.TextField(blank=True)
     chat = None
 
