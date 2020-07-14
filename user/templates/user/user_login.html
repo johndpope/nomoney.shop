@@ -20,16 +20,20 @@ function login_demo(){
 {% endblock %}
 
 {% block content %}
-{% include 'solo/about.html' %}
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <div class="alert alert-danger" role="alert">
-        <i class="fas fa-drafting-compass"></i> Derzeit befindet sich die Seite noch im Aufbau, verwende einfach den
-        <button type="button" class="btn btn-danger" onclick="login_demo();">Demo-Benutzer Login</button>
-      </div>
+<div class="row justify-content-center mb-5">
+  <div class="col-10 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
+    <div class="row">
+      <div class="col-12">
+        <img src="{% static 'images/logo_full.svg' %}" class="" style="width: 100%;" alt="">
+      </div>      
+      <div class="col-12 d-flex justify-content-end mt-3">
+        <p class="text-monospace text-secondary">v{{ version_str }}</p>
+      </div>      
     </div>
   </div>
+</div>
+<hr class="my-5">
+<div class="container-fluid">
   <div class="row">
     {% include 'user/solo/user_form.html' %}
   </div>

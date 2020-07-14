@@ -1,18 +1,11 @@
 from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from config.settings import VERSION
 from chat.models import Chat
 from .models import VirtualDeal
 
 
 class AboutView(TemplateView):
     template_name = 'sites/about.html'
-
-    def get_context_data(self, **kwargs):
-        context = TemplateView.get_context_data(self, **kwargs)
-        context['version'] = VERSION
-        context['version_str'] = '.'.join((str(elem) for elem in VERSION))
-        return context
 
 
 class DonateView(TemplateView):
