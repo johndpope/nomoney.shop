@@ -5,43 +5,70 @@
     <img src="{% static 'images/logo_full.svg' %}" class="" style="width: 100%;" alt="">
   </div>
 </div>
+<hr class="my-5">
 <div class="row">
-  <div class="col-12">
-    <div class="alert alert-info" role="alert">
-      <b>Herzlich willkommen auf der währungsfreien Tauschbörse für Waren und Dienstleistungen.</b>
-      <hr>
-      Dies ist ein freies Open Source Projekt ohne Gewinnerzielungsabsicht.
-      <br>
-      Das bedeutet, die Nutzung ist und bleibt kostenlos.
-      <hr>
-      Sollte dich nomoney.shop glücklich machen, wäre es sehr nett, wenn du dich mit deinen Fähigkeiten und / oder einer kleinen Spende beteiligen würdest.
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-12 col-lg-6">
+  <div class="col-12 col-lg">
     <div class="alert alert-success" role="alert">
-      <b>Ziele von nomoney.shop:</b>
-      <br>
-      Allen Nutzern die Möglichkeit geben, möglichst einfach und effizient Waren und Dienstleistungen zu tauschen, insbesondere wenn Geld diesen Zweck nicht mehr erfüllen kann.
-      <hr>
-      Diese Tauschbörse soll die Menschen heute zusammen bringen, um sie morgen in einer Wirtschafts- bzw. Währungskrise mit dem Nötigen versorgen zu können.
-      <hr>
-      Nicht zuletzt können sich auch Menschen ohne Geldvermögen auf diesem Wege wieder an der Gesellschaft beteiligen.
+      <h5><img src="{% static 'images/font.svg' %}" style="width:100%;max-width:250px;"></h5>
+      <p>… ist eine währungsfreie Tauschbörse für Waren und Dienstleistungen. Die Nutzung ist und bleibt kostenlos (spendenfinanziert).</p>
+      <p>… gibt Nutzern die Möglichkeit, einfach und effizient zu tauschen, insbesondere auch dann, wenn Geld diesen Zweck nicht mehr erfüllen kann.</p>
+      <p>… kann komplexe Tauschvorgänge berechnen, um die Möglichkeiten zu erweitern.</p>
+      <p>… soll die Menschen heute zusammen bringen, um sie morgen in einer Wirtschafts- bzw. Währungskrise mit dem Nötigen versorgen zu können.</p>
+      <p>… lässt auch Menschen ohne Geldvermögen wieder an der Gesellschaft teilhaben.</p>
+      <p>… kannst du hier unterstützen:<br>
+      <a class="btn btn-link p-0" href="{% url 'donate' %}">nomoney.shop/spende</a></p>
+      <p>… ist freie Software (Lizenz: GNU GPLv3). Das bedeutet, du darfst damit auch gerne deine eigene Tauschbörse erstellen.</p>
+      <p>… ist Open Source. Zum Quellcode:<br>
+      <a class="btn btn-link p-0" target="_blank" href="https://github.com/snake-soft/nomoney.shop">github.com/snake-soft/nomoney.shop</a></p>
     </div>
   </div>
-  <div class="col-12 col-lg-6">
+  <div class="col-12 col-lg-auto">
     <div class="alert alert-primary" role="alert">
-      <b>Bisher implementierte Funktionen:</b>
+      <h5><b>Funktionen</b></h5>
       <ul class="list-group list-group-flush">
         <li class="list-group-item" style="background-color:unset;">{{ symbols.push|safe }} Angebote und {{ symbols.pull|safe }} Nachfragen erstellen</li>
-        <li class="list-group-item" style="background-color:unset;">{{ symbols.deal|safe }} Passende Handelspartner finden</li>
-        <li class="list-group-item" style="background-color:unset;">{{ symbols.location|safe }} Orte erstellen <del data-toggle="tooltip" title="Noch nicht implementiert">und als Suchfilter verwenden</del>*</li>
-        <li class="list-group-item" style="background-color:unset;">{{ symbols.market|safe }} Märkte erstellen (z.B. für regelmäßige Treffen)</li>
-        <li class="list-group-item" style="background-color:unset;">{{ symbols.bid|safe }} Tauschangebote und Gegenangebote abgeben</li>
-        <li class="list-group-item" style="background-color:unset;">{{ symbols.feedback|safe }} Benutzer- und Angebotsbewertung</li>
-        <li class="list-group-item" style="background-color:unset;">{{ symbols.chat|safe }} Chat-System</li>
+        <li class="list-group-item" style="background-color:unset;">{{ symbols.deal|safe }} Mögliche Tauschvorgänge finden</li>
+        <li class="list-group-item" style="background-color:unset;">{{ symbols.bid|safe }} Tauschvereinbarung aushandeln</li>
+        <li class="list-group-item" style="background-color:unset;">{{ symbols.location|safe }} Orte erstellen für Umkreissuche</li>
+        <li class="list-group-item" style="background-color:unset;">{{ symbols.market|safe }} Märkte für regelmäßige Treffen</li>
+        <li class="list-group-item" style="background-color:unset;">{{ symbols.feedback|safe }} Bewertungen erstellen</li>
+        <li class="list-group-item" style="background-color:unset;">{{ symbols.chat|safe }} Integrierte Kommunikation (Chat)</li>
+        <li class="list-group-item" style="background-color:unset;">{{ symbols.calculator|safe }} Tauschwert-Empfehlung</li>
       </ul>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12">
+        <h5><b>Tausch-Möglichkeiten</b></h5>
+      </div>
+      <div class="col mb-1">
+        <div class="card" style="width: 18rem;">
+          <img src="{% static 'images/deal_type_1.svg' %}" class="card-img-top p-3" alt="direct deal">
+          <div class="card-body">
+            <h5 class="card-title">Direkter Tausch</h5>
+            <p class="card-text">Übereinstimmung - direkter Tausch möglich</p>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-1">
+        <div class="card" style="width: 18rem;">
+          <img src="{% static 'images/deal_type_2.svg' %}" class="card-img-top p-3" alt="direct deal">
+          <div class="card-body">
+            <h5 class="card-title">Dreieckstausch</h5>
+            <p class="card-text">Keine Übereinstimmung - tausche zu dritt</p>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-1">
+        <div class="card" style="width: 18rem;">
+          <img src="{% static 'images/deal_type_3.svg' %}" class="card-img-top p-3" alt="direct deal">
+          <div class="card-body">
+            <h5 class="card-title">Spekulativer Tausch</h5>
+            <p class="card-text">A tauscht mit B für Tausch mit C</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

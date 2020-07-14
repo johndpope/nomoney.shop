@@ -2,7 +2,7 @@ from config.settings import VERSION, NAME
 
 
 SYMBOLS = {
-        'bid': '<i class="fab fa-wpforms"></i>',
+        'bid': '<i class="fas fa-gavel"></i>',
         'close': '<i class="fas fa-times"></i>',
         'forward': '<i class="fas fa-forward"></i>',
         'back': '<i class="fas fa-backward"></i>',
@@ -15,8 +15,7 @@ SYMBOLS = {
         'user': '<i class="fas fa-user-tie"></i>',
         'users': '<i class="fas fa-users"></i>',
         'market': '<i class="fas fa-compress-arrows-alt"></i>',
-        'feedback': '<i class="fas fa-clipboard"></i>',
-        'feedback_regular': '<i class="far fa-clipboard"></i>',
+        'feedback': '<i class="fas fa-star"></i>',
         'virtual': '<i class="fas fa-brain"></i>',
         'listing': '<i class="fas fa-file-alt"></i>',
         'bookmark': '<i class="fas fa-bookmark"></i>',
@@ -29,6 +28,7 @@ SYMBOLS = {
         'push': '<i class="fas fa-sort-up"></i>',
         'pull': '<i class="fas fa-sort-down"></i>',
         'lobby': '<i class="fas fa-couch"></i>',
+        'calculator': '<i class="fas fa-calculator"></i>',
     }
 
 

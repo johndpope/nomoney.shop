@@ -6,6 +6,8 @@ urlpatterns = [
     path('', DashboardHomeView.as_view(), name='home'),
     path('', DashboardHomeView.as_view(), name='dashboard_home'),
     path('about/', AboutView.as_view(), name='about'),
+    path('donate/', AboutView.as_view(), name='donate'),
+    path('spende/', AboutView.as_view()),
     path('dashboard/ajax/2d/', Ajax2dView.as_view(), name='dashboard_ajax_2d'),
     path('dashboard/ajax/3d/', Ajax3dView.as_view(), name='dashboard_ajax_3d'),
 ]

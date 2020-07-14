@@ -8,6 +8,10 @@ class AboutView(TemplateView):
     template_name = 'about.html'
 
 
+class DonateView(TemplateView):
+    template_name = 'donate.html'
+
+
 class DashboardHomeView(LoginRequiredMixin, TemplateView):
     template_name = 'dashboard/dashboard_home.html'
 

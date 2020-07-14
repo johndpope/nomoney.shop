@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'market',
     'deal',
     'location',
+    'calculator',
 ]
 
 
