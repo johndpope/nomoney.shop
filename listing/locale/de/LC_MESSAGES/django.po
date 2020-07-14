@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 22:40+0200\n"
+"POT-Creation-Date: 2020-07-14 22:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,6 +89,7 @@ msgid "push"
 msgstr "Angebot"
 
 #: listing/models.py:150 listing/templates/listing/inc/help.html:11
+#: listing/templates/listing/solo/listing_list.html:7
 msgid "pushs"
 msgstr "Angebote"
 
@@ -98,6 +99,7 @@ msgid "pull"
 msgstr "Nachfrage"
 
 #: listing/models.py:158 listing/templates/listing/inc/help.html:11
+#: listing/templates/listing/solo/listing_list.html:18
 msgid "pulls"
 msgstr "Nachfragen"
 
@@ -135,6 +137,16 @@ msgstr ""
 #: listing/templates/listing/listing_form.html:25
 msgid "save"
 msgstr ""
+
+#: listing/templates/listing/solo/listing_list.html:7
+#: listing/templates/listing/solo/listing_list.html:18
+msgid "further"
+msgstr "weitere"
+
+#: listing/templates/listing/solo/listing_list.html:7
+#: listing/templates/listing/solo/listing_list.html:18
+msgid "of"
+msgstr "von"
 
 #: listing/templates/listing/solo/listing_type_list.html:43
 msgid "detail"
