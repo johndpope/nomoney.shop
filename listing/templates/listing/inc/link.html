@@ -6,9 +6,7 @@
     {% elif listing.type == 'pull'%}
       <i class="fas fa-sort-down"></i>
     {% endif %}
-    {% if use_title %}
-      {{ symbols.listing|safe }}
-    {% else %}
+    {% if not use_title %}
       {{ listing.category.title }}
     {% endif %}
   </a>

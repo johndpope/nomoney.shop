@@ -12,6 +12,7 @@ def image_path(instance, _):
 
 class ListingStatus(models.IntegerChoices):
     CREATED = 0, 'created'
+    PAUSED = 10, 'paused'
     DELETED = 110, 'deleted'
 
 

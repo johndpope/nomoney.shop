@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-11 20:45+0200\n"
+"POT-Creation-Date: 2020-07-14 12:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgid "calculated"
 msgstr "berechnete"
 
 #: core/templates/dashboard/ajax_2d.html:5
-#: core/templates/dashboard/dashboard_home.html:52
+#: core/templates/dashboard/dashboard_home.html:58
 msgid "deals"
 msgstr ""
 
@@ -47,38 +47,38 @@ msgstr ""
 msgid "deal"
 msgstr ""
 
-#: core/templates/dashboard/dashboard_home.html:48
+#: core/templates/dashboard/dashboard_home.html:54
 msgid "home"
 msgstr ""
 
-#: core/templates/dashboard/dashboard_home.html:52
+#: core/templates/dashboard/dashboard_home.html:58
 msgid "calculate"
 msgstr "berechne"
 
-#: core/templates/dashboard/dashboard_home.html:73
+#: core/templates/dashboard/dashboard_home.html:79
 msgid "location"
 msgstr ""
 
-#: core/templates/dashboard/dashboard_home.html:81
+#: core/templates/dashboard/dashboard_home.html:87
 msgid "market"
 msgstr ""
 
-#: core/templates/dashboard/dashboard_home.html:89
+#: core/templates/dashboard/dashboard_home.html:95
 msgid "push"
 msgstr ""
 
-#: core/templates/dashboard/dashboard_home.html:97
+#: core/templates/dashboard/dashboard_home.html:103
 msgid "pull"
 msgstr ""
 
-#: core/templates/dashboard/dashboard_home.html:109
-#: core/templates/dashboard/dashboard_home.html:120
+#: core/templates/dashboard/dashboard_home.html:115
+#: core/templates/dashboard/dashboard_home.html:126
 #: core/templates/offline.html:14
 msgid "load"
 msgstr "lade"
 
-#: core/templates/dashboard/dashboard_home.html:109
-#: core/templates/dashboard/dashboard_home.html:120
+#: core/templates/dashboard/dashboard_home.html:115
+#: core/templates/dashboard/dashboard_home.html:126
 #: core/templates/offline.html:14
 msgid "data"
 msgstr "Daten"
@@ -111,7 +111,19 @@ msgstr "Hilfe"
 msgid "users"
 msgstr "Benutzer"
 
-#: core/templates/menu.html:58
+#: core/templates/menu.html:60
+msgid "donate"
+msgstr "Spenden"
+
+#: core/templates/menu.html:61
+msgid "impressum"
+msgstr "Impressum"
+
+#: core/templates/menu.html:62
+msgid "terms-and-conditions"
+msgstr "AGB"
+
+#: core/templates/menu.html:63
 msgid "about"
 msgstr "Über"
 

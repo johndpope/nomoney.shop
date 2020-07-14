@@ -2,7 +2,14 @@
 {% load i18n %}
 <div class="row justify-content-center mb-5">
   <div class="col-10 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
-    <img src="{% static 'images/logo_full.svg' %}" class="" style="width: 100%;" alt="">
+    <div class="row">
+      <div class="col-12">
+        <img src="{% static 'images/logo_full.svg' %}" class="" style="width: 100%;" alt="">
+      </div>      
+      <div class="col-12 d-flex justify-content-end mt-3">
+        <p class="text-monospace text-secondary">v{{ version_str }}</p>
+      </div>      
+    </div>
   </div>
 </div>
 <hr class="my-5">
@@ -42,7 +49,7 @@
       <div class="col-12">
         <h5><b>Tausch-Möglichkeiten</b></h5>
       </div>
-      <div class="col mb-1">
+      <div class="col mb-1 d-flex align-items-stretch">
         <div class="card" style="width: 18rem;">
           <img src="{% static 'images/deal_type_1.svg' %}" class="card-img-top p-3" alt="direct deal">
           <div class="card-body">
@@ -51,7 +58,7 @@
           </div>
         </div>
       </div>
-      <div class="col mb-1">
+      <div class="col mb-1 d-flex align-items-stretch">
         <div class="card" style="width: 18rem;">
           <img src="{% static 'images/deal_type_2.svg' %}" class="card-img-top p-3" alt="direct deal">
           <div class="card-body">
@@ -60,7 +67,7 @@
           </div>
         </div>
       </div>
-      <div class="col mb-1">
+      <div class="col mb-1 d-flex align-items-stretch">
         <div class="card" style="width: 18rem;">
           <img src="{% static 'images/deal_type_3.svg' %}" class="card-img-top p-3" alt="direct deal">
           <div class="card-body">

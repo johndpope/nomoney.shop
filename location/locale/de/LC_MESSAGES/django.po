@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-11 20:45+0200\n"
+"POT-Creation-Date: 2020-07-14 12:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,121 +18,121 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: location/templates/location/location_detail.html:9
+#: location/templates/location/location_detail.html:32
 msgid "back"
 msgstr ""
 
-#: location/templates/location/location_detail.html:16
+#: location/templates/location/location_detail.html:49
 msgid "offerings"
 msgstr ""
 
-#: location/templates/location/location_detail.html:16
-#: location/templates/location/location_detail.html:57
-#: location/templates/location/location_detail.html:99
-#: location/templates/location/location_detail.html:134
+#: location/templates/location/location_detail.html:49
+#: location/templates/location/location_detail.html:90
+#: location/templates/location/location_detail.html:132
+#: location/templates/location/location_detail.html:167
 msgid "at"
 msgstr "an"
 
-#: location/templates/location/location_detail.html:16
-#: location/templates/location/location_detail.html:57
-#: location/templates/location/location_detail.html:99
-#: location/templates/location/location_detail.html:134
+#: location/templates/location/location_detail.html:49
+#: location/templates/location/location_detail.html:90
+#: location/templates/location/location_detail.html:132
+#: location/templates/location/location_detail.html:167
 #: location/templates/location/solo/location_list_head.html:9
 msgid "location"
 msgstr "Ort"
 
-#: location/templates/location/location_detail.html:19
+#: location/templates/location/location_detail.html:52
 msgid "offer"
 msgstr ""
 
-#: location/templates/location/location_detail.html:24
-#: location/templates/location/location_detail.html:65
+#: location/templates/location/location_detail.html:57
+#: location/templates/location/location_detail.html:98
 msgid "category"
 msgstr ""
 
-#: location/templates/location/location_detail.html:27
-#: location/templates/location/location_detail.html:68
+#: location/templates/location/location_detail.html:60
+#: location/templates/location/location_detail.html:101
 msgid "title"
 msgstr ""
 
-#: location/templates/location/location_detail.html:30
-#: location/templates/location/location_detail.html:71
+#: location/templates/location/location_detail.html:63
+#: location/templates/location/location_detail.html:104
 msgid "quantity"
 msgstr ""
 
-#: location/templates/location/location_detail.html:33
-#: location/templates/location/location_detail.html:74
+#: location/templates/location/location_detail.html:66
+#: location/templates/location/location_detail.html:107
 msgid "modified"
 msgstr ""
 
-#: location/templates/location/location_detail.html:57
+#: location/templates/location/location_detail.html:90
 msgid "requests"
 msgstr ""
 
-#: location/templates/location/location_detail.html:60
+#: location/templates/location/location_detail.html:93
 msgid "seek"
 msgstr ""
 
-#: location/templates/location/location_detail.html:99
+#: location/templates/location/location_detail.html:132
 msgid "deals"
 msgstr ""
 
-#: location/templates/location/location_detail.html:103
+#: location/templates/location/location_detail.html:136
 msgid "deal"
 msgstr ""
 
-#: location/templates/location/location_detail.html:108
+#: location/templates/location/location_detail.html:141
 msgid "user"
 msgstr ""
 
-#: location/templates/location/location_detail.html:109
+#: location/templates/location/location_detail.html:142
 msgid "offers"
 msgstr ""
 
-#: location/templates/location/location_detail.html:110
+#: location/templates/location/location_detail.html:143
 msgid "takes"
 msgstr ""
 
-#: location/templates/location/location_detail.html:111
+#: location/templates/location/location_detail.html:144
 msgid "partner"
 msgstr ""
 
-#: location/templates/location/location_detail.html:112
+#: location/templates/location/location_detail.html:145
 msgid "status"
 msgstr ""
 
-#: location/templates/location/location_detail.html:134
+#: location/templates/location/location_detail.html:167
 msgid "markets"
 msgstr ""
 
-#: location/templates/location/location_detail.html:137
+#: location/templates/location/location_detail.html:170
 msgid "market"
 msgstr ""
 
-#: location/templates/location/location_detail.html:141
+#: location/templates/location/location_detail.html:174
 #: location/templates/location/solo/location_list.html:6
 msgid "name"
 msgstr ""
 
-#: location/templates/location/location_detail.html:142
+#: location/templates/location/location_detail.html:175
 msgid "member"
 msgstr ""
 
-#: location/templates/location/location_detail.html:151
+#: location/templates/location/location_detail.html:184
 #: location/templates/location/solo/location_list.html:20
 msgid "delete"
 msgstr ""
 
-#: location/templates/location/location_detail.html:152
+#: location/templates/location/location_detail.html:185
 #: location/templates/location/solo/location_list.html:21
 msgid "update"
 msgstr ""
 
-#: location/templates/location/location_detail.html:154
+#: location/templates/location/location_detail.html:187
 msgid "details"
 msgstr ""
 
-#: location/templates/location/location_form.html:31
+#: location/templates/location/location_form.html:69
 msgid "save"
 msgstr ""
 

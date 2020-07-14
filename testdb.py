@@ -146,9 +146,9 @@ class TestDB:
     @classmethod
     def setup_category_db(cls):
         for category_str, sub_categories in cls.CATEGORIES.items():
-            category = Category.objects.create(title=category_str)
+            category = Category.objects.create(title=category_str, test=True)
             for sub_cat in sub_categories:
-                Category.objects.create(parent=category, title=sub_cat)
+                Category.objects.create(parent=category, title=sub_cat, test=True)
 
     @classmethod
     def setup_listing_db(cls):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-11 20:45+0200\n"
+"POT-Creation-Date: 2020-07-14 12:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,36 +18,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: deal/templates/deal/deal_detail.html:11
-#: deal/templates/deal/deal_detail.html:49
+#: deal/templates/deal/deal_detail.html:41
+#: deal/templates/deal/deal_detail.html:79
 #, fuzzy
 #| msgid "creator"
 msgid "create"
 msgstr "Ersteller"
 
-#: deal/templates/deal/deal_detail.html:11
-#: deal/templates/deal/deal_detail.html:49
+#: deal/templates/deal/deal_detail.html:41
+#: deal/templates/deal/deal_detail.html:79
 #, fuzzy
 #| msgid "bids"
 msgid "bid"
 msgstr "Gebote"
 
-#: deal/templates/deal/deal_detail.html:16
-#: deal/templates/deal/deal_detail.html:33
+#: deal/templates/deal/deal_detail.html:46
+#: deal/templates/deal/deal_detail.html:63
 #, fuzzy
 #| msgid "your"
 msgid "you"
 msgstr "dein"
 
-#: deal/templates/deal/deal_detail.html:16
+#: deal/templates/deal/deal_detail.html:46
 msgid "give"
 msgstr "gibst"
 
-#: deal/templates/deal/deal_detail.html:33
+#: deal/templates/deal/deal_detail.html:63
 msgid "take"
 msgstr "nimmst"
 
-#: deal/templates/deal/deal_detail.html:54
+#: deal/templates/deal/deal_detail.html:84
 msgid "update"
 msgstr ""
 
@@ -168,5 +168,5 @@ msgstr "deine"
 msgid "deals"
 msgstr "Tausche"
 
-msgid "matches"
-msgstr "Übereinstimmungen"
+#~ msgid "matches"
+#~ msgstr "Übereinstimmungen"

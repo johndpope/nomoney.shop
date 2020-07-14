@@ -12,6 +12,9 @@ class CategoryListView(LoginRequiredMixin, ListView):
     template_name = 'category/category_list.html'
     context_object_name = 'categories'
 
+    def get_queryset(self):
+        return Category.objects.filter(test=self.request.user.test)
+
 
 class CategoryCreateView(LoginRequiredMixin, CreateView):
     model = Category

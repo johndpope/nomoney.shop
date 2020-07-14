@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-11 20:45+0200\n"
+"POT-Creation-Date: 2020-07-14 12:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,60 @@ msgstr ""
 
 #: user/templates/user/solo/user_form.html:14
 msgid "save"
+msgstr ""
+
+#: user/templates/user/solo/user_objects.html:28
+#: user/templates/user/solo/user_objects.html:94
+#: user/templates/user/solo/user_objects.html:127
+#: user/templates/user/solo/user_objects.html:162
+msgid "_your"
+msgstr ""
+
+#: user/templates/user/solo/user_objects.html:32
+msgid "markets"
+msgstr ""
+
+#: user/templates/user/solo/user_objects.html:37
+msgid "market"
+msgstr ""
+
+#: user/templates/user/solo/user_objects.html:63
+msgid "yours"
+msgstr ""
+
+#: user/templates/user/solo/user_objects.html:63
+msgid "deals"
+msgstr ""
+
+#: user/templates/user/solo/user_objects.html:68
+#: user/templates/user/user_list.html:20
+msgid "deal"
+msgstr ""
+
+#: user/templates/user/solo/user_objects.html:94
+msgid "locations"
+msgstr ""
+
+#: user/templates/user/solo/user_objects.html:99
+msgid "location"
+msgstr ""
+
+#: user/templates/user/solo/user_objects.html:127
+#: user/templates/user/user_list.html:11
+msgid "offerings"
+msgstr ""
+
+#: user/templates/user/solo/user_objects.html:133
+msgid "offer"
+msgstr ""
+
+#: user/templates/user/solo/user_objects.html:162
+#: user/templates/user/user_list.html:12
+msgid "requests"
+msgstr ""
+
+#: user/templates/user/solo/user_objects.html:168
+msgid "seek"
 msgstr ""
 
 #: user/templates/user/user_detail.html:6
@@ -68,64 +122,9 @@ msgstr ""
 msgid "logout"
 msgstr "ausloggen"
 
-#: user/templates/user/user_detail.html:121
-msgid "toggle all"
-msgstr "alle umschalten"
-
-#: user/templates/user/user_detail.html:137
-#: user/templates/user/user_detail.html:201
-#: user/templates/user/user_detail.html:232
-#: user/templates/user/user_detail.html:266
-msgid "_your"
-msgstr ""
-
-#: user/templates/user/user_detail.html:141
-msgid "markets"
-msgstr ""
-
-#: user/templates/user/user_detail.html:145
-msgid "market"
-msgstr ""
-
-#: user/templates/user/user_detail.html:171
-msgid "yours"
-msgstr ""
-
-#: user/templates/user/user_detail.html:171
-msgid "deals"
-msgstr ""
-
-#: user/templates/user/user_detail.html:175
-#: user/templates/user/user_list.html:20
-msgid "deal"
-msgstr ""
-
-#: user/templates/user/user_detail.html:201
-msgid "locations"
-msgstr ""
-
-#: user/templates/user/user_detail.html:205
-msgid "location"
-msgstr ""
-
-#: user/templates/user/user_detail.html:232
-#: user/templates/user/user_list.html:11
-msgid "offerings"
-msgstr ""
-
-#: user/templates/user/user_detail.html:237
-msgid "offer"
-msgstr ""
-
-#: user/templates/user/user_detail.html:266
-#: user/templates/user/user_list.html:12
-msgid "requests"
-msgstr ""
-
-#: user/templates/user/user_detail.html:271
-msgid "seek"
-msgstr ""
-
 #: user/templates/user/user_list.html:10
 msgid "user"
 msgstr ""
+
+#~ msgid "toggle all"
+#~ msgstr "alle umschalten"
