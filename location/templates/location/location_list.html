@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
+{% block help %}
+  {% include 'location/inc/help.html' %}
+{% endblock %}
+
+
 {% block content %}
   {% include 'location/solo/location_list.html' %}
 {% endblock %}

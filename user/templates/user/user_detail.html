@@ -4,7 +4,11 @@
 {% load i18n %}
 
 {% block title %}{% trans 'your'|title %} {% trans 'profile' %}{% endblock %}
-{% block help %}{% endblock %}
+
+{% block help %}
+  {% include 'user/inc/help.html' %}
+{% endblock %}
+
 
 {% block content %}
 <div class="container rounded border p-4">

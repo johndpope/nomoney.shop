@@ -10,14 +10,25 @@
     </div>
   {% endif %}
   {% for deal in deals %}
-  <div class="row border-top mb-3 mb-md-0">
-    <div class="col-12 col-md-4 order-3 order-md-1">{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %} {% endfor %}</div>
-    <div class="col-12 col-md-4 order-4 order-md-1">{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %} {% endfor %}</div>
-    <div class="col-9 col-md-3 order-1 order-md-1">{% with user=deal.partner %}{% include 'user/inc/link.html' %}{% endwith %}</div>
-    <div class="col-3 col-md-1 order-2 order-md-1 d-flex justify-content-end">
-    {% include 'deal/inc/status.html' %}
-      <a class="btn btn-link py-0" href="{% url 'deal_detail' deal.pk %}" title="{% trans 'detail' %}">{{ symbols.detail|safe }}</a>
+    <div class="row border-top mb-3 mb-md-0">
+      <div class="col-12 col-md-4 order-3 order-md-1">{% for listing in deal.pushs %}{% include 'listing/inc/link.html' %} {% endfor %}</div>
+      <div class="col-12 col-md-4 order-4 order-md-1">{% for listing in deal.pulls %}{% include 'listing/inc/link.html' %} {% endfor %}</div>
+      <div class="col-9 col-md-3 order-1 order-md-1">{% with user=deal.partner %}{% include 'user/inc/link.html' %}{% endwith %}</div>
+      <div class="col-3 col-md-1 order-2 order-md-1 d-flex justify-content-end">
+      {% include 'deal/inc/status.html' %}
+        <a class="btn btn-link py-0" href="{% url 'deal_detail' deal.pk %}" title="{% trans 'detail' %}">{{ symbols.detail|safe }}</a>
+      </div>
     </div>
-  </div>
+  {% empty %}
+    <div class="row">
+      <div class="col-12">
+        <p>Noch keine {% trans 'deals' %}.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        {% include 'deal/inc/help.html' %}
+      </div>
+    </div>
   {% endfor %}
 </div>

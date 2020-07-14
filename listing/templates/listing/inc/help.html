@@ -1,0 +1,12 @@
+{% load i18n %}
+{% if type == 'push' %}
+  <p>Ein {% trans 'push' %} ist eine Ware oder Dienstleistung, die du anderen zur Verfügung stellen möchtest.</p>
+{% elif type == 'pull' %}
+  <p>Ein {% trans 'pull' %} ist eine Ware oder Dienstleistung, die du von anderen bekommen möchtest.</p>
+{% else %}
+  <p>Ein {% trans 'push' %} ist eine Ware oder Dienstleistung, die du anderen zur Verfügung stellen möchtest.</p>
+  <p>Ein {% trans 'pull' %} ist eine Ware oder Dienstleistung, die du von anderen bekommen möchtest.</p>
+{% endif %}
+
+<p>Um tauschen zu können musst du zunächst {% trans 'pushs' %} und {% trans 'pulls' %} erstellen.</p>
+<p>Diese sind für andere sichtbar.</p>

@@ -19,5 +19,16 @@
         <a class="btn btn-link py-0" href="{% url 'market_detail' market.pk %}" title="Details">{{ symbols.detail|safe }}</a>
       </div>
     </div>
+  {% empty %}
+    <div class="row">
+      <div class="col-12">
+        <p>Noch keine {% trans 'markets' %}.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        {% include 'market/inc/help.html' %}
+      </div>
+    </div>
   {% endfor %}
 </div>

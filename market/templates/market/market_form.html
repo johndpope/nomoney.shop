@@ -2,6 +2,11 @@
 {% load static %}
 {% load i18n %}
 
+{% block help %}
+  {% include 'market/inc/help.html' %}
+{% endblock %}
+
+
 {% block head %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.css">

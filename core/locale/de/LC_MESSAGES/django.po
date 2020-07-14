@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 12:22+0200\n"
+"POT-Creation-Date: 2020-07-14 16:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,12 +116,12 @@ msgid "donate"
 msgstr "Spenden"
 
 #: core/templates/menu.html:61
-msgid "impressum"
-msgstr "Impressum"
-
-#: core/templates/menu.html:62
 msgid "terms-and-conditions"
 msgstr "AGB"
+
+#: core/templates/menu.html:62
+msgid "impressum"
+msgstr "Impressum"
 
 #: core/templates/menu.html:63
 msgid "about"

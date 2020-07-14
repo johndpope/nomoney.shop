@@ -2,6 +2,11 @@
 {% load static %}
 {% load i18n %}
 
+{% block help %}
+  {% include 'market/inc/help.html' %}
+{% endblock %}
+
+
 {% block content %}
       {% if chat %}
         <a class="btn btn-link float-right" href="{% url 'chat_detail' chat.pk %}">{{ symbols.chat|safe }}</a>
