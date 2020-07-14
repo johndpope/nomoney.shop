@@ -21,6 +21,12 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
     template_name = 'category/category_form.html'
     fields = ['parent', 'title', 'description']
 
+    def get_form(self, form_class=None):
+        form = CreateView.get_form(self, form_class=form_class)
+        test = self.request.user.test
+        form.fields['parent'].queryset = Category.objects.filter(test=test)
+        return form
+
     def get_success_url(self):
         return self.request.GET.get('next', reverse('home'))
 
@@ -34,6 +40,12 @@ class CategoryUpdateView(LoginRequiredMixin, UpdateView):
     model = Category
     template_name = 'category/category_form.html'
     fields = ['parent', 'title', 'description']
+
+    def get_form(self, form_class=None):
+        form = UpdateView.get_form(self, form_class=form_class)
+        test = self.request.user.test
+        form.fields['parent'].queryset = Category.objects.filter(test=test)
+        return form
 
     def get_success_url(self):
         return self.request.GET.get('next', reverse('home'))
