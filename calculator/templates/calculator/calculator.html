@@ -48,6 +48,43 @@
 
 
 {% block content %}
+<div class="container-fluid">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12">
+        <h5><b>Tausch-Möglichkeiten</b></h5>
+      </div>
+      <div class="col mb-1 d-flex align-items-stretch">
+        <div class="card" style="width: 18rem;">
+          <img src="{% static 'images/deal_type_1.svg' %}" class="card-img-top p-3" alt="direct deal">
+          <div class="card-body">
+            <h5 class="card-title">Direkter Tausch</h5>
+            <p class="card-text">Übereinstimmung - direkter Tausch möglich</p>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-1 d-flex align-items-stretch">
+        <div class="card" style="width: 18rem;">
+          <img src="{% static 'images/deal_type_2.svg' %}" class="card-img-top p-3" alt="direct deal">
+          <div class="card-body">
+            <h5 class="card-title">Dreieckstausch</h5>
+            <p class="card-text">Keine Übereinstimmung - tausche zu dritt</p>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-1 d-flex align-items-stretch">
+        <div class="card" style="width: 18rem;">
+          <img src="{% static 'images/deal_type_3.svg' %}" class="card-img-top p-3" alt="direct deal">
+          <div class="card-body">
+            <h5 class="card-title">Spekulativer Tausch</h5>
+            <p class="card-text">A tauscht mit B für Tausch mit C</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="accordion" id="accordionExample">
 
   <div class="card">
@@ -58,7 +95,7 @@
         </button>
       </h2>
     </div>
-    <div id="direct_deals" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+    <div id="direct_deals" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="container">
         <div class="row">
           <div class="col w-100 d-flex justify-content-center" style="height: 100px;">
@@ -73,8 +110,8 @@
 
   <div class="card">
     <div class="card-header" id="headingTwo">
-      <h2 class="mb-0">
-        <button id="triangular_deal_button" class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#triangular_deals" aria-expanded="false" aria-controls="triangular_deals">
+      <h2 class="mb-0" data-toggle="tooltip" title="Noch nicht implementiert!">
+        <button disabled id="triangular_deal_button" class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#triangular_deals" aria-expanded="false" aria-controls="triangular_deals">
           {% trans 'triangle'|title %} {% trans 'deals' %}
         </button>
       </h2>
@@ -94,8 +131,8 @@
 
   <div class="card">
     <div class="card-header" id="headingThree">
-      <h2 class="mb-0">
-        <button id="speculative_deal_button" class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#speculative_deals" aria-expanded="false" aria-controls="speculative_deals">
+      <h2 class="mb-0" data-toggle="tooltip" title="Noch nicht implementiert!">
+        <button disabled id="speculative_deal_button" class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#speculative_deals" aria-expanded="false" aria-controls="speculative_deals">
           {% trans 'speculative'|title %} {% trans 'deals' %}
         </button>
       </h2>
