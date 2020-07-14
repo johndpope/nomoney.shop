@@ -10,7 +10,6 @@ class Market(models.Model):
     location = models.ForeignKey(
         'location.Location', on_delete=models.CASCADE, blank=True, null=True
         )
-    test = models.BooleanField(default=False)
     chat = None
 
     def save(self, *args, **kwargs):

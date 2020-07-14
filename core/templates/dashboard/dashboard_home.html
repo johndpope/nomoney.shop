@@ -11,30 +11,7 @@
 {% block head %}
   <script>
     $(document).ready(function() {
-    	
-      $(function(){
-          initialize_chat();
-          //$("#two-tab").click(function() {
-              $.ajax({
-      	        url : "{% url 'dashboard_ajax_2d' %}",
-      	        type: 'GET',
-      	        success: function(data){
-      	            $('#two').html(data);
-      	        }
-          //    })
-          });
-      })
-      $(function(){
-      	$("#three-tab").click(function() {
-      		$.ajax({
-      			url : "{% url 'dashboard_ajax_3d' %}",
-      			type: 'GET',
-      			success: function(data){
-      				$('#three').html(data);
-      			}
-      		})
-      	});
-      }) 
+      initialize_chat();
     }); 
   </script>
 {% endblock %}

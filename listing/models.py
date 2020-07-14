@@ -37,7 +37,6 @@ class ListingBase(models.Model):
     location = models.ForeignKey(
         'location.Location', on_delete=models.CASCADE, blank=True, null=True
         )
-    test = models.BooleanField(default=False)
     status = models.PositiveSmallIntegerField(
         default=ListingStatus.CREATED, choices=ListingStatus.choices
         )

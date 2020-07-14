@@ -77,7 +77,6 @@ class TestDB:
             last_name=get_last_name(),
             email='demo@nomoney.shop',
             description=cls.sentences_string(),
-            test=True,
             )
         cls.demo.set_password(TestDB.USER_PASSWORD)
         cls.demo.is_superuser = True
@@ -89,7 +88,6 @@ class TestDB:
             last_name=get_last_name(),
             email='demo1@nomoney.shop',
             description=cls.sentences_string(),
-            test=True,
             )
         cls.demo1.set_password(TestDB.USER_PASSWORD)
         cls.demo1.is_superuser = True
@@ -103,7 +101,6 @@ class TestDB:
                 last_name=get_last_name(),
                 email='test{}@local.local'.format(key),
                 description=cls.sentences_string(),
-                test=True,
                 )
             if cls.PRINT_STEPS and not i % 10 and i != 0:
                 print(str(i) + ' users created.')
@@ -116,7 +113,6 @@ class TestDB:
             lon=randint(-180, 180),
             lat=randint(-90, 90),
             description=cls.sentences_string(),
-            test=True,
             )
         Location.objects.create(
             title='Demo1 Zuhause',
@@ -124,7 +120,6 @@ class TestDB:
             lon=randint(-180, 180),
             lat=randint(-90, 90),
             description=cls.sentences_string(),
-            test=True,
             )
         for i in range(cls.LOCATION_COUNT):
             Location.objects.create(
@@ -133,7 +128,6 @@ class TestDB:
                 lon=randint(-180, 180),
                 lat=randint(-90, 90),
                 description=cls.sentences_string(),
-                test=True,
                 )
             if cls.PRINT_STEPS and not i % 100 and i != 0:
                 print(str(i) + ' locations created.')
@@ -146,9 +140,9 @@ class TestDB:
     @classmethod
     def setup_category_db(cls):
         for category_str, sub_categories in cls.CATEGORIES.items():
-            category = Category.objects.create(title=category_str, test=True)
+            category = Category.objects.create(title=category_str)
             for sub_cat in sub_categories:
-                Category.objects.create(parent=category, title=sub_cat, test=True)
+                Category.objects.create(parent=category, title=sub_cat)
 
     @classmethod
     def setup_listing_db(cls):
@@ -170,7 +164,6 @@ class TestDB:
                 quantity=quantity,
                 unit=unit,
                 description=cls.sentences_string(10),
-                test=True,
                 )
             if cls.PRINT_STEPS and not i % 100 and i != 0:
                 print(str(i) + ' listings created.')
@@ -219,7 +212,7 @@ class TestDB:
     def setup_market_db(cls):
         """ create bid for a deal and accept """
         market = Market.objects.create(
-            title=get_word()[0:20], location=cls.location, test=True,
+            title=get_word()[0:20], location=cls.location,
             )
         market.users.add(cls.demo)
         market.users.add(cls.demo1)
@@ -227,7 +220,7 @@ class TestDB:
         market.save()
 
         market = Market.objects.create(
-            title=get_word()[0:20], location=cls.location, test=True,
+            title=get_word()[0:20], location=cls.location,
             )
         market.users.add(cls.demo)
         market.users.add(cls.demo1)
@@ -236,7 +229,7 @@ class TestDB:
         market.save()
 
         market = Market.objects.create(
-            title=get_word()[0:20], location=cls.location, test=True,
+            title=get_word()[0:20], location=cls.location,
             )
         market.users.add(cls.demo)
         market.users.add(cls.demo1)
@@ -247,7 +240,7 @@ class TestDB:
         cls.market = market
 
         market = Market.objects.create(
-            title=get_word()[0:20], location=cls.location, test=True,
+            title=get_word()[0:20], location=cls.location,
             )
         market.users.add(cls.random_object(User))
         market.users.add(cls.random_object(User))

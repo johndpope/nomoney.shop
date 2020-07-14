@@ -10,23 +10,34 @@
   <script>
     $(document).ready(function() {
       $(function(){
-          $("#triangular-tab").click(function() {
+          //$("#direct_deal_button").click(function() {
               $.ajax({
-                url : "{% url 'dashboard_ajax_2d' %}",
+                url : "{% url 'ajax_deals_direct' %}",
                 type: 'GET',
                 success: function(data){
-                    $('#triangular').html(data);
+                    $('#direct_deals').html(data);
                 }
               })
-          });
+          //});
       })
       $(function(){
-        $("#speculative-tab").click(function() {
+        $("#triangular_deal_button").click(function() {
           $.ajax({
-            url : "{% url 'dashboard_ajax_3d' %}",
+            url : "{% url 'ajax_deals_triangular' %}",
             type: 'GET',
             success: function(data){
-              $('#speculative').html(data);
+              $('#triangular_deals').html(data);
+            }
+          })
+        });
+      }) 
+      $(function(){
+        $("#speculative_deal_button").click(function() {
+          $.ajax({
+            url : "{% url 'ajax_deals_speculative' %}",
+            type: 'GET',
+            success: function(data){
+              $('#speculative_deals').html(data);
             }
           })
         });
@@ -37,6 +48,75 @@
 
 
 {% block content %}
+<div class="accordion" id="accordionExample">
+
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button id="direct_deal_button" class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#direct_deals" aria-expanded="true" aria-controls="direct_deals">
+          {% trans 'direct'|title %} {% trans 'deals' %}
+        </button>
+      </h2>
+    </div>
+    <div id="direct_deals" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="container">
+        <div class="row">
+          <div class="col w-100 d-flex justify-content-center" style="height: 100px;">
+            <div class="spinner-border my-auto" role="status">
+              <span class="sr-only">{% trans 'load'|title %} {% trans 'data' %} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button id="triangular_deal_button" class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#triangular_deals" aria-expanded="false" aria-controls="triangular_deals">
+          {% trans 'triangle'|title %} {% trans 'deals' %}
+        </button>
+      </h2>
+    </div>
+    <div id="triangular_deals" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="container">
+        <div class="row">
+          <div class="col w-100 d-flex justify-content-center" style="height: 100px;">
+            <div class="spinner-border my-auto" role="status">
+              <span class="sr-only">{% trans 'load'|title %} {% trans 'data' %} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button id="speculative_deal_button" class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#speculative_deals" aria-expanded="false" aria-controls="speculative_deals">
+          {% trans 'speculative'|title %} {% trans 'deals' %}
+        </button>
+      </h2>
+    </div>
+    <div id="speculative_deals" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="container">
+        <div class="row">
+          <div class="col w-100 d-flex justify-content-center" style="height: 100px;">
+            <div class="spinner-border my-auto" role="status">
+              <span class="sr-only">{% trans 'load'|title %} {% trans 'data' %} ...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- 
 <div class="container">
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
@@ -89,4 +169,5 @@
     </div>
   </div>
 </div>
+ -->
 {% endblock %}
