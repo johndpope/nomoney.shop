@@ -59,6 +59,12 @@ class ListingCreateView(LoginRequiredMixin, CreateView):
             form.instance.category = self.category
         return CreateView.form_valid(self, form)
 
+    def get_form(self, form_class=None):
+        form = CreateView.get_form(self, form_class=form_class)
+        form.fields['category'].queryset = form.fields['category'].queryset.filter(
+            test=self.request.user.test)
+        return form
+
     def get_success_url(self):
         return self.request.GET.get('next', reverse('home'))
 
@@ -74,6 +80,12 @@ class ListingUpdateView(LoginRequiredMixin, UpdateView):
         self.model = {'push': Push, 'pull': Pull}.get(self.type)
         self.extra_context = {'type': self.type}
         return DetailView.dispatch(self, request, *args, **kwargs)
+
+    def get_form(self, form_class=None):
+        form = UpdateView.get_form(self, form_class=form_class)
+        form.fields['category'].queryset = form.fields['category'].queryset.filter(
+            test=self.request.user.test)
+        return form
 
     def get_success_url(self):
         return self.request.GET.get('next', reverse('home'))

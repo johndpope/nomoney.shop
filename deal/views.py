@@ -42,6 +42,15 @@ class DealCreateView(LoginRequiredMixin, CreateView):
     template_name = 'deal/deal_form.html'
     form_class = DealCreateForm
 
+    def get_form(self, form_class=None):
+        form = CreateView.get_form(self, form_class=form_class)
+        form.fields['user2'].queryset = form.fields['user2'].queryset.filter(
+            test=self.request.user.test).exclude(
+            pk=self.request.user.pk)
+        form.fields['location'].queryset = form.fields['location'].queryset.filter(
+            test=self.request.user.test)
+        return form
+
     def form_valid(self, form):
         form.instance.user1 = self.request.user
         return CreateView.form_valid(self, form)
