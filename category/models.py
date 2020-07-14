@@ -7,15 +7,14 @@ class Category(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(null=True, blank=True)
     hidden = models.BooleanField(default=False)
-    test = models.BooleanField(default=False)
 
     @property
     def pushs(self):
-        return self.push_set.filter(test=self.test)
+        return self.push_set.all()
 
     @property
     def pulls(self):
-        return self.pull_set.filter(test=self.test)
+        return self.pull_set.all()
 
     @property
     def count_pushs(self):

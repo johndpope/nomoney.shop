@@ -24,7 +24,6 @@ class User(AbstractUser):
     config = models.OneToOneField(UserConfig, on_delete=models.CASCADE, null=True)
     image = models.ImageField(blank=True, upload_to=image_path)
     beta_user = models.BooleanField(default=False)
-    test = models.BooleanField(default=False)
     description = models.TextField(blank=True)
 
     @property
@@ -37,23 +36,23 @@ class User(AbstractUser):
 
     @property
     def locations(self):
-        return self.location_set.filter(test=self.test)
+        return self.location_set.all()
 
     @property
     def other_users(self):
-        return self.__class__.objects.exclude(pk=self.pk, test=self.test)
+        return self.__class__.objects.exclude(pk=self.pk)
 
     @property
     def pushs(self):
-        return self.push_set.exclude(status=ListingStatus.DELETED).filter(test=self.test)
+        return self.push_set.exclude(status=ListingStatus.DELETED)
 
     @property
     def pulls(self):
-        return self.pull_set.exclude(status=ListingStatus.DELETED).filter(test=self.test)
+        return self.pull_set.exclude(status=ListingStatus.DELETED)
 
     @property
     def markets(self):
-        return self.market_set.filter(test=self.test)
+        return self.market_set.all()
 
     @property
     def listings(self):

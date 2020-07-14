@@ -5,7 +5,7 @@ from django.urls.base import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from bid.forms import BidForm
 from user.models import User
-from core.models import VirtualDeal
+from calculator.models import VirtualDeal
 from .models import Deal
 from .forms import DealCreateForm
 
@@ -44,11 +44,8 @@ class DealCreateView(LoginRequiredMixin, CreateView):
 
     def get_form(self, form_class=None):
         form = CreateView.get_form(self, form_class=form_class)
-        form.fields['user2'].queryset = form.fields['user2'].queryset.filter(
-            test=self.request.user.test).exclude(
+        form.fields['user2'].queryset = form.fields['user2'].queryset.exclude(
             pk=self.request.user.pk)
-        form.fields['location'].queryset = form.fields['location'].queryset.filter(
-            test=self.request.user.test)
         return form
 
     def form_valid(self, form):

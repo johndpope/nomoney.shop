@@ -1,6 +1,5 @@
 from django.urls import path
-from .views import AboutView, Ajax2dView, DashboardHomeView, Ajax3dView, \
-    DonateView, TermsView, ImpressumView
+from .views import AboutView, DashboardHomeView, DonateView, TermsView, ImpressumView
 
 
 urlpatterns = [
@@ -11,6 +10,4 @@ urlpatterns = [
     path('impressum/', ImpressumView.as_view(), name='impressum'),
     path('donate/', DonateView.as_view(), name='donate'),
     path('spende/', AboutView.as_view()),
-    path('dashboard/ajax/2d/', Ajax2dView.as_view(), name='dashboard_ajax_2d'),
-    path('dashboard/ajax/3d/', Ajax3dView.as_view(), name='dashboard_ajax_3d'),
 ]
