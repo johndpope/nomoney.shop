@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 19:06+0200\n"
+"POT-Creation-Date: 2020-07-14 21:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,61 +18,74 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: user/templates/user/inc/admin_tools.html:7
+msgid "prove"
+msgstr "prüfe"
+
+#: user/templates/user/inc/admin_tools.html:7
+msgid "category"
+msgstr ""
+
 #: user/templates/user/solo/user_form.html:14
 msgid "save"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:28
-#: user/templates/user/solo/user_objects.html:94
-#: user/templates/user/solo/user_objects.html:127
-#: user/templates/user/solo/user_objects.html:162
+#: user/templates/user/solo/user_objects.html:7
+#: user/templates/user/solo/user_objects.html:31
+#: user/templates/user/solo/user_objects.html:97
+#: user/templates/user/solo/user_objects.html:130
+#: user/templates/user/solo/user_objects.html:165
 msgid "_your"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:32
+#: user/templates/user/solo/user_objects.html:7
+msgid "objects"
+msgstr "Objekte"
+
+#: user/templates/user/solo/user_objects.html:35
 msgid "markets"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:37
+#: user/templates/user/solo/user_objects.html:40
 msgid "market"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:63
+#: user/templates/user/solo/user_objects.html:66
 msgid "yours"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:63
+#: user/templates/user/solo/user_objects.html:66
 msgid "deals"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:68
+#: user/templates/user/solo/user_objects.html:71
 #: user/templates/user/user_list.html:23
 msgid "deal"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:94
+#: user/templates/user/solo/user_objects.html:97
 msgid "locations"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:99
+#: user/templates/user/solo/user_objects.html:102
 msgid "location"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:127
+#: user/templates/user/solo/user_objects.html:130
 #: user/templates/user/user_list.html:14
 msgid "offerings"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:133
+#: user/templates/user/solo/user_objects.html:136
 msgid "offer"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:162
+#: user/templates/user/solo/user_objects.html:165
 #: user/templates/user/user_list.html:15
 msgid "requests"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:168
+#: user/templates/user/solo/user_objects.html:171
 msgid "seek"
 msgstr ""
 

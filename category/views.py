@@ -32,6 +32,11 @@ class CategoryUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'category/category_form.html'
     fields = ['parent', 'title', 'description']
 
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_staff:
+            self.fields = self.fields + ['status']
+        return LoginRequiredMixin.dispatch(self, request, *args, **kwargs)
+
     def get_success_url(self):
         return self.request.GET.get('next', reverse('home'))
 

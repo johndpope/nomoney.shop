@@ -3,7 +3,10 @@
 {% load i18n %}
 <div class="container">
   <div class="row">
-    <div id="toggler" class="col-12">
+    <div id="toggler" class="col">
+      <h2>{% trans '_your'|title %} {% trans 'objects' %}</h2>
+    </div>
+    <div id="toggler" class="col-auto">
       <button class="toggler-off collapse btn btn-link p-0 text-info py-3 float-right" onclick="$('.toggler').hide();$('.toggler-on').show();$('.toggler-off').hide()">
         <i class="fas fa-toggle-on"></i>
       </button>

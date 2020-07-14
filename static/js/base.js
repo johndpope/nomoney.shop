@@ -56,10 +56,15 @@ $(document).ready(function() {
 	$('#id_text').focus();
 });
 
+function set_menu_height(){
+	var menu_height = $('#main_menu').height();
+	$('#wrapper').css('margin-top', menu_height);
+}
+
 $(document).ready(function() {
+	set_menu_height();
 	$(window).resize(function(){
-		var menu_height = $('#main_menu').height();
-		$('#wrapper').css('margin-top', menu_height);
+		set_menu_height();
 	})
 
 	$(function () {

@@ -5,6 +5,7 @@ from django.db import models
 from statistics import mean
 from chat.models import Chat
 from listing.models import ListingStatus
+from category.models import Category
 
 
 def image_path(instance, filename):
@@ -21,7 +22,9 @@ class User(AbstractUser):
     first_name, last_name, email, is_staff, is_active, date_joined
     REQUIRED_FIELDS = ['email']
     """
-    config = models.OneToOneField(UserConfig, on_delete=models.CASCADE, null=True)
+    config = models.OneToOneField(
+        UserConfig, on_delete=models.CASCADE, null=True
+        )
     image = models.ImageField(blank=True, upload_to=image_path)
     beta_user = models.BooleanField(default=False)
     description = models.TextField(blank=True)
@@ -83,6 +86,12 @@ class User(AbstractUser):
 
     def get_chat_with(self, *users):
         return Chat.by_users(self, *users, create=True)
+
+    def objects_to_prove(self):
+        if self.is_staff:
+            objects = {}
+            objects['categories'] = Category.get_unproved()
+            return objects
 
     def __str__(self):
         return self.username or self.first_name + ' ' + self.last_name

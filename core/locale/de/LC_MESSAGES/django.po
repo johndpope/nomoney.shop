@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 19:06+0200\n"
+"POT-Creation-Date: 2020-07-14 21:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,27 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: core/templates/dashboard/dashboard_home.html:34
+#: core/templates/dashboard/dashboard_home.html:42
 msgid "recommended"
 msgstr "empfohlene"
 
-#: core/templates/dashboard/dashboard_home.html:34
+#: core/templates/dashboard/dashboard_home.html:42
 msgid "actions"
 msgstr "Aktionen"
 
-#: core/templates/dashboard/dashboard_home.html:40
+#: core/templates/dashboard/dashboard_home.html:48
 msgid "location"
 msgstr ""
 
-#: core/templates/dashboard/dashboard_home.html:46
+#: core/templates/dashboard/dashboard_home.html:54
 msgid "push"
 msgstr ""
 
-#: core/templates/dashboard/dashboard_home.html:52
+#: core/templates/dashboard/dashboard_home.html:60
 msgid "pull"
 msgstr ""
 
-#: core/templates/dashboard/dashboard_home.html:58
+#: core/templates/dashboard/dashboard_home.html:66
 msgid "market"
 msgstr ""
 
@@ -55,10 +55,8 @@ msgid "categories"
 msgstr "Kategorien"
 
 #: core/templates/menu.html:28
-#, fuzzy
-#| msgid "calculate"
 msgid "calculator"
-msgstr "berechne"
+msgstr "Rechner"
 
 #: core/templates/menu.html:31
 msgid "chats"
