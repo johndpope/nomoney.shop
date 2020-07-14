@@ -1,12 +1,23 @@
 {% load humanize %}
 {% load i18n %}
 
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12"><h5>{% trans 'further'|title %} {% trans 'pushs' %} {% trans 'of' %} {{ user }}</h5></div>
+  </div>
+</div>
 {% with listings=user.pushs %}
   {% with type='push' %}
     {% include 'listing/solo/listing_type_list.html' %}
   {% endwith %}
 {% endwith %}
 <hr class="py-3">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12"><h5>{% trans 'further'|title %} {% trans 'pulls' %} {% trans 'of' %} {{ user }}</h5></div>
+  </div>
+</div>
 {% with listings=user.pulls %}
   {% with type='pull' %}
     {% include 'listing/solo/listing_type_list.html' %}
