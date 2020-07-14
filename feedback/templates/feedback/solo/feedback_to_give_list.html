@@ -6,11 +6,11 @@
   <div class="row">
     <div class="col-12"><h5>{{ symbols.feedback_regular|safe }} {% trans 'create'|title %} {% trans 'feedback' %}</h5></div>
   {% for feedback in user.open_feedback %}
-    <div class="col-auto border rounded p-0 mr-sm-3">
+    <div class="col-auto border">
       {% if feedback.type == 'user' %}
-        <a class="btn btn-link" href="{% url 'feedback_update' feedback.type feedback.pk %}" role="button"><i class="fas fa-plus"></i> {% trans 'user'|title %}: {{ feedback.user }}</a>
+        <a class="btn btn-warning" href="{% url 'feedback_update' feedback.type feedback.pk %}" role="button"><i class="fas fa-plus"></i> {% trans 'user'|title %}: {{ feedback.user }}</a>
       {% elif feedback.type == 'push' %}
-        <a class="btn btn-link" href="{% url 'feedback_update' feedback.type feedback.pk %}" role="button"><i class="fas fa-plus"></i> {% trans 'offer'|title %}: {{ feedback.push.title }}</a>
+        <a class="btn btn-warning" href="{% url 'feedback_update' feedback.type feedback.pk %}" role="button"><i class="fas fa-plus"></i> {% trans 'offer'|title %}: {{ feedback.push.title }}</a>
       {% endif %}
     </div>
   {% endfor %}
