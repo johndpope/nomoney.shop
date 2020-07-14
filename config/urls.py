@@ -31,6 +31,7 @@ urlpatterns = [
     path('market/', include('market.urls')),
     path('feedback/', include('feedback.urls')),
     path('location/', include('location.urls')),
+    path('calculator/', include('calculator.urls')),
 
     path('', include('pwa.urls')),
     path('admin/', admin.site.urls),
