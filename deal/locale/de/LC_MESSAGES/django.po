@@ -53,13 +53,13 @@ msgstr ""
 
 #: deal/templates/deal/deal_form.html:11
 msgid "start"
-msgstr "starten"
+msgstr "starte"
 
 #: deal/templates/deal/deal_form.html:11
 #: deal/templates/deal/solo/deal_detail.html:2
 #: deal/templates/deal/solo/deal_list_head.html:9
 msgid "deal"
-msgstr "Tausch"
+msgstr "Tauschvorgang"
 
 #: deal/templates/deal/deal_form.html:17
 msgid "save"
@@ -155,8 +155,6 @@ msgid "accept"
 msgstr "akzeptieren"
 
 #: deal/templates/deal/solo/deal_list.html:19
-#, fuzzy
-#| msgid "details"
 msgid "detail"
 msgstr "Details"
 
@@ -166,7 +164,7 @@ msgstr "deine"
 
 #: deal/templates/deal/solo/deal_list_head.html:6
 msgid "deals"
-msgstr "Tausche"
+msgstr "Tauschvorgänge"
 
 #~ msgid "matches"
 #~ msgstr "Übereinstimmungen"

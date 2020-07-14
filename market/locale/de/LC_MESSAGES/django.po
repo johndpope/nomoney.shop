@@ -73,9 +73,6 @@ msgstr "Märkte"
 #~ msgid "calculated"
 #~ msgstr "berechnete"
 
-#~ msgid "deals"
-#~ msgstr "Tausche"
-
 #~ msgid "quality"
 #~ msgstr "Qualität"
 
@@ -85,5 +82,3 @@ msgstr "Märkte"
 #~ msgid "partner"
 #~ msgstr "Partner"
 
-#~ msgid "deal"
-#~ msgstr "Tausch"
