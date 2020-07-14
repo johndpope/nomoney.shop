@@ -64,6 +64,8 @@ class ListingCreateView(LoginRequiredMixin, CreateView):
         if 'category' in form.fields:
             form.fields['category'].queryset = form.fields['category'].queryset.filter(
                 test=self.request.user.test)
+        form.fields['location'].queryset = form.fields['location'].queryset.filter(
+            test=self.request.user.test)
         return form
 
     def get_success_url(self):
@@ -85,6 +87,8 @@ class ListingUpdateView(LoginRequiredMixin, UpdateView):
     def get_form(self, form_class=None):
         form = UpdateView.get_form(self, form_class=form_class)
         form.fields['category'].queryset = form.fields['category'].queryset.filter(
+            test=self.request.user.test)
+        form.fields['location'].queryset = form.fields['location'].queryset.filter(
             test=self.request.user.test)
         return form
 
