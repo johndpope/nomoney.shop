@@ -34,7 +34,9 @@ SYMBOLS = {
 
 def default(request):
     """registered context processor"""
-    ret = {}
-    ret['name'] = NAME
-    ret['symbols'] = SYMBOLS
-    return ret
+    context = {}
+    context['name'] = NAME
+    context['symbols'] = SYMBOLS
+    context['version'] = VERSION
+    context['version_str'] = '.'.join((str(elem) for elem in VERSION))
+    return context

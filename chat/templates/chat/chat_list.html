@@ -4,10 +4,16 @@
 {% block title %}{% trans 'yours'|title %} {% trans 'chats' %}{% endblock %}
 
 {% block head %}
+<script>
+  $(document).ready(function() {
+    load();
+  });
+</script>
 {% endblock %}
 
+
 {% block content %}
-
-{% include 'chat/solo/chat_list.html' %}
-
+  {% include 'chat/solo/chat_list.html' %}
+  <hr class="my-5">
+  {% with chat=lobby %}{% include 'chat/solo/lobby.html' %}{% endwith %}  
 {% endblock %}
