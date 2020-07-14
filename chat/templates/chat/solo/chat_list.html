@@ -24,19 +24,19 @@
   {% for chat in chats %}
     <div class="row border-top">
       <div class="col-4 col-md-2 order-1 order-md-1">
-        {% if chat.type_str == 'lobby' %}
+        {% if chat.type == 100 %}
           <a class="btn btn-link p-0 text-dark" href="{% url 'chat_detail' chat.pk %}" data-toggle="tooltip" title="{% trans 'lobby'|title %} {% trans 'chat' %}">
             {{ symbols.lobby|safe }} {{ symbols.message_regular|safe }}
           </a>
-        {% elif chat.type_str == 'market' %}
+        {% elif chat.type == 20 %}
           <a class="btn btn-link p-0 text-dark" href="{% url 'chat_detail' chat.pk %}" data-toggle="tooltip" title="{% trans 'market'|title %} {% trans 'chat' %}">
             {{ symbols.market|safe }} {{ symbols.message_regular|safe }}
           </a>
-        {% elif chat.type_str == 'user' %}
+        {% elif chat.type == 10 %}
           <a class="btn btn-link p-0 text-dark" href="{% url 'chat_detail' chat.pk %}" data-toggle="tooltip" title="{% trans 'user'|title %} {% trans 'chat' %}">
             {{ symbols.user|safe }} {{ symbols.message_regular|safe }}
           </a>
-        {% elif chat.type_str == 'default' %}
+        {% elif chat.type == 0 %}
           <a class="btn btn-link p-0" href="{% url 'chat_detail' chat.pk %}" data-toggle="tooltip" title="{% trans 'default'|title %} {% trans 'chat' %}">
             default
           </a>

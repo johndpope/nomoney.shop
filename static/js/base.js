@@ -3,6 +3,7 @@ function load() {
 	var url = $('#chat_form').data('url');
 	$.get(url, function(data) {
 		$("#chat_messages").html(data);
+		return false;
 	});
 }
 

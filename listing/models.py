@@ -30,6 +30,10 @@ class Unit(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = _('unit')
+        verbose_name_plural = _('units')
+
 
 class ListingBase(models.Model):
     user = models.ForeignKey(
