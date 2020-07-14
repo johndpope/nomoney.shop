@@ -1,12 +1,13 @@
+from django.utils.translation import gettext_lazy as _
 from django.db import models
 from config.settings import AUTH_USER_MODEL
 
 
 class ChatType(models.IntegerChoices):
-    DEFAULT = 0, 'default'
-    USER = 10, 'user'
-    MARKET = 20, 'market'
-    LOBBY = 100, 'lobby'
+    DEFAULT = 0, _('default')
+    USER = 10, _('user')
+    MARKET = 20, _('market')
+    LOBBY = 100, _('lobby')
 
     @classmethod
     def by_number(cls, number):
@@ -14,10 +15,23 @@ class ChatType(models.IntegerChoices):
 
 
 class ChatMessage(models.Model):
-    chat = models.ForeignKey('chat.Chat', on_delete=models.CASCADE, )
-    creator = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, )
-    created = models.DateTimeField(auto_now_add=True)
-    text = models.TextField()
+    chat = models.ForeignKey(
+        'chat.Chat',
+        on_delete=models.CASCADE,
+        verbose_name=_('chat'),
+        )
+    creator = models.ForeignKey(
+        AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name=_('creator'),
+        )
+    created = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('created'),
+        )
+    text = models.TextField(
+        verbose_name=_('text'),
+        )
 
     @property
     def previous(self):
@@ -28,6 +42,8 @@ class ChatMessage(models.Model):
 
     class Meta:
         ordering = ['-pk']
+        verbose_name = _('message')
+        verbose_name_plural = _('message')
 
 
 class Chat(models.Model):
@@ -37,13 +53,22 @@ class Chat(models.Model):
     Market-Chat: Is created within Market.save
     lobby-chat: Is a single object fetched and created by Chat.get_lobby
     """
-    users = models.ManyToManyField(AUTH_USER_MODEL)
+    users = models.ManyToManyField(
+        AUTH_USER_MODEL,
+        verbose_name=_('text'),
+        )
     type = models.PositiveSmallIntegerField(
         default=ChatType.DEFAULT,
         choices=ChatType.choices,
+        verbose_name=_('type'),
         )
-    market = models.OneToOneField('market.Market', null=True, blank=True,
-                                  on_delete=models.CASCADE)
+    market = models.OneToOneField(
+        'market.Market',
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        verbose_name=_('market'),
+        )
 
     @property
     def type_str(self):
@@ -82,4 +107,9 @@ class Chat(models.Model):
         return None
 
     def __str__(self):
-        return 'Chat [{}]: {}'.format(self.type_str, ', '.join((str(user) for user in self.get_users())))
+        user_str = ', '.join((str(user) for user in self.get_users()))
+        return 'Chat [{}]: {}'.format(self.type_str, user_str)
+
+    class Meta:
+        verbose_name = _('chat')
+        verbose_name_plural = _('chats')

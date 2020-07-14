@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 21:14+0200\n"
+"POT-Creation-Date: 2020-07-14 22:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,67 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: feedback/models.py:7
+msgid "request"
+msgstr "angefordert"
+
+#: feedback/models.py:8
+msgid "sent"
+msgstr "gesendet"
+
+#: feedback/models.py:9
+msgid "canceled"
+msgstr "storniert"
+
+#: feedback/models.py:16 feedback/templates/feedback/solo/list.html:8
+msgid "creator"
+msgstr "Ersteller"
+
+#: feedback/models.py:20 feedback/templates/feedback/solo/list.html:10
+msgid "created"
+msgstr "erstellt"
+
+#: feedback/models.py:25 feedback/templates/feedback/solo/list.html:11
+msgid "score"
+msgstr "Punkte"
+
+#: feedback/models.py:31 feedback/templates/feedback/solo/list.html:13
+msgid "subject"
+msgstr "Betreff"
+
+#: feedback/models.py:36 feedback/templates/feedback/solo/list.html:14
+msgid "text"
+msgstr "Text"
+
+#: feedback/models.py:41
+msgid "status"
+msgstr "Status"
+
+#: feedback/models.py:46 feedback/templates/feedback/solo/list.html:12
+msgid "deal"
+msgstr ""
+
+#: feedback/models.py:75
+#: feedback/templates/feedback/solo/feedback_to_give_list.html:11
+msgid "user"
+msgstr ""
+
+#: feedback/models.py:87
+msgid "userfeedback"
+msgstr "Benutzerbewertung"
+
+#: feedback/models.py:88
+msgid "userfeedbacks"
+msgstr "Benutzerbewertungen"
+
+#: feedback/models.py:104
+msgid "pushfeedback"
+msgstr "Angebotsbewertung"
+
+#: feedback/models.py:105
+msgid "pushfeedbacks"
+msgstr "Angebotsbewertungen"
 
 #: feedback/templates/feedback/feedback_form.html:50
 #: feedback/templates/feedback/solo/feedback_to_give_list.html:7
@@ -30,7 +91,7 @@ msgstr "erstelle"
 
 #: feedback/templates/feedback/feedback_form.html:71
 msgid "save"
-msgstr ""
+msgstr "speichern"
 
 #: feedback/templates/feedback/feedback_list.html:13
 #: feedback/templates/feedback/feedback_list.html:29
@@ -49,10 +110,6 @@ msgstr "für"
 msgid "from"
 msgstr "von"
 
-#: feedback/templates/feedback/solo/feedback_to_give_list.html:11
-msgid "user"
-msgstr ""
-
 #: feedback/templates/feedback/solo/feedback_to_give_list.html:13
 msgid "offer"
 msgstr ""
@@ -60,30 +117,6 @@ msgstr ""
 #: feedback/templates/feedback/solo/list.html:6
 msgid "feedbacked"
 msgstr "bewertet"
-
-#: feedback/templates/feedback/solo/list.html:8
-msgid "creator"
-msgstr "Ersteller"
-
-#: feedback/templates/feedback/solo/list.html:10
-msgid "created"
-msgstr "erstellt"
-
-#: feedback/templates/feedback/solo/list.html:11
-msgid "score"
-msgstr ""
-
-#: feedback/templates/feedback/solo/list.html:12
-msgid "deal"
-msgstr ""
-
-#: feedback/templates/feedback/solo/list.html:13
-msgid "subject"
-msgstr "Betreff"
-
-#: feedback/templates/feedback/solo/list.html:14
-msgid "text"
-msgstr "Text"
 
 #~ msgid "quantity"
 #~ msgstr "Menge"

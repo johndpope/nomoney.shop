@@ -1,8 +1,9 @@
+from statistics import mean
+from django.utils.translation import gettext_lazy as _
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from statistics import mean
 from chat.models import Chat
 from listing.models import ListingStatus
 from category.models import Category
@@ -23,11 +24,20 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['email']
     """
     config = models.OneToOneField(
-        UserConfig, on_delete=models.CASCADE, null=True
+        UserConfig,
+        on_delete=models.CASCADE,
+        null=True,
+        verbose_name=_('config'),
         )
-    image = models.ImageField(blank=True, upload_to=image_path)
-    beta_user = models.BooleanField(default=False)
-    description = models.TextField(blank=True)
+    image = models.ImageField(
+        blank=True,
+        upload_to=image_path,
+        verbose_name=_('image'),
+        )
+    description = models.TextField(
+        blank=True,
+        verbose_name=_('description'),
+        )
 
     @property
     def chats(self):
@@ -95,6 +105,10 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username or self.first_name + ' ' + self.last_name
+
+    class Meta:
+        verbose_name = _('user')
+        verbose_name_plural = _('users')
 
 
 @receiver(pre_save, sender=User)

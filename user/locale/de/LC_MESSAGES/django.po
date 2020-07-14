@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 21:14+0200\n"
+"POT-Creation-Date: 2020-07-14 22:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: user/models.py:30
+msgid "config"
+msgstr "Einstellungen"
+
+#: user/models.py:35
+msgid "image"
+msgstr "Bild"
+
+#: user/models.py:39 user/templates/user/user_detail.html:78
+msgid "description"
+msgstr "beschreibung"
+
+#: user/models.py:110 user/templates/user/user_list.html:13
+msgid "user"
+msgstr "Benutzer"
+
+#: user/models.py:111
+msgid "users"
+msgstr "Benutzer"
 
 #: user/templates/user/inc/admin_tools.html:7
 msgid "prove"
@@ -115,10 +135,6 @@ msgstr "seit"
 msgid "feedback"
 msgstr ""
 
-#: user/templates/user/user_detail.html:78
-msgid "description"
-msgstr "beschreibung"
-
 #: user/templates/user/user_detail.html:97
 msgid "update"
 msgstr ""
@@ -134,10 +150,6 @@ msgstr ""
 #: user/templates/user/user_detail.html:100
 msgid "logout"
 msgstr "ausloggen"
-
-#: user/templates/user/user_list.html:13
-msgid "user"
-msgstr ""
 
 #~ msgid "toggle all"
 #~ msgstr "alle umschalten"

@@ -1,9 +1,9 @@
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls.base import reverse
-from .models import Category
+from .models import Category, CategoryStatus
 
 
 class CategoryListView(LoginRequiredMixin, ListView):
@@ -11,6 +11,9 @@ class CategoryListView(LoginRequiredMixin, ListView):
     model = Category
     template_name = 'category/category_list.html'
     context_object_name = 'categories'
+
+    def get_queryset(self):
+        return ListView.get_queryset(self).exclude(status=CategoryStatus.HIDDEN)
 
 
 class CategoryCreateView(LoginRequiredMixin, CreateView):

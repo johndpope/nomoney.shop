@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 21:14+0200\n"
+"POT-Creation-Date: 2020-07-14 22:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: location/templates/location/inc/help.html:2
+#: location/models.py:9 location/templates/location/location_detail.html:65
+#: location/templates/location/location_detail.html:106
+msgid "title"
+msgstr "Titel"
+
+#: location/models.py:14 location/templates/location/location_detail.html:146
+msgid "user"
+msgstr "Benutzer"
+
+#: location/models.py:20
+msgid "longitude"
+msgstr "Longitude"
+
+#: location/models.py:26
+msgid "latitude"
+msgstr "Latitude"
+
+#: location/models.py:30 location/templates/location/solo/location_list.html:10
+msgid "description"
+msgstr "Beschreibung"
+
+#: location/models.py:54 location/templates/location/inc/help.html:2
 #: location/templates/location/location_detail.html:54
 #: location/templates/location/location_detail.html:95
 #: location/templates/location/location_detail.html:137
@@ -27,7 +48,7 @@ msgstr ""
 msgid "location"
 msgstr "Ort"
 
-#: location/templates/location/inc/help.html:5
+#: location/models.py:55 location/templates/location/inc/help.html:5
 #: location/templates/location/solo/location_list.html:30
 #: location/templates/location/solo/location_list_head.html:6
 msgid "locations"
@@ -35,7 +56,7 @@ msgstr "Orte"
 
 #: location/templates/location/location_detail.html:37
 msgid "back"
-msgstr ""
+msgstr "zurück"
 
 #: location/templates/location/location_detail.html:54
 msgid "offerings"
@@ -55,11 +76,6 @@ msgstr ""
 #: location/templates/location/location_detail.html:62
 #: location/templates/location/location_detail.html:103
 msgid "category"
-msgstr ""
-
-#: location/templates/location/location_detail.html:65
-#: location/templates/location/location_detail.html:106
-msgid "title"
 msgstr ""
 
 #: location/templates/location/location_detail.html:68
@@ -86,10 +102,6 @@ msgstr ""
 
 #: location/templates/location/location_detail.html:141
 msgid "deal"
-msgstr ""
-
-#: location/templates/location/location_detail.html:146
-msgid "user"
 msgstr ""
 
 #: location/templates/location/location_detail.html:147
@@ -141,10 +153,6 @@ msgstr ""
 
 #: location/templates/location/location_form.html:74
 msgid "save"
-msgstr ""
-
-#: location/templates/location/solo/location_list.html:10
-msgid "description"
 msgstr ""
 
 #: location/templates/location/solo/location_list.html:23

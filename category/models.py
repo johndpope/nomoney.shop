@@ -1,23 +1,36 @@
+from django.utils.translation import gettext_lazy as _
 from itertools import chain
 from django.db import models
 
 
 class CategoryStatus(models.IntegerChoices):
-    UNPROVED = 0, 'unproved'
-    PROVED = 10, 'proved'
-    HIDDEN = 20, 'hidden'
-    DELETED = 110, 'deleted'
+    UNPROVED = 0, _('unproved')
+    PROVED = 10, _('proved')
+    HIDDEN = 20, _('hidden')
+    DELETED = 110, _('deleted')
 
 
 class Category(models.Model):
     parent = models.ForeignKey(
-        'self', null=True, blank=True, on_delete=models.CASCADE
+        'self',
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        verbose_name=_('parent'),
         )
-    title = models.CharField(max_length=50)
-    description = models.TextField(null=True, blank=True)
+    title = models.CharField(
+        max_length=50,
+        verbose_name=_('title'),
+        )
+    description = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_('description'),
+        )
     status = models.PositiveSmallIntegerField(
         default=CategoryStatus.UNPROVED,
         choices=CategoryStatus.choices,
+        verbose_name=_('status'),
         )
 
     @property
@@ -57,8 +70,11 @@ class Category(models.Model):
         return len(self.listings) < len(other.listings)
 
     def __str__(self):
+        if self.status == CategoryStatus.HIDDEN:
+            return 'Hidden: ' + self.path
         return self.path
 
     class Meta:
-        verbose_name_plural = "Categories"
+        verbose_name = _('category')
+        verbose_name_plural = _('categories')
         get_latest_by = ['pk']

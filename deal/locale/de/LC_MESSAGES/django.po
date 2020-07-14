@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 21:14+0200\n"
+"POT-Creation-Date: 2020-07-14 22:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,26 +18,70 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: deal/templates/deal/deal_detail.html:46
-#: deal/templates/deal/deal_detail.html:84
-#, fuzzy
-#| msgid "creator"
-msgid "create"
-msgstr "Ersteller"
+#: deal/models.py:11 deal/templates/deal/inc/status.html:5
+msgid "virtual"
+msgstr "virtuell"
+
+#: deal/models.py:12 deal/templates/deal/inc/status.html:9
+msgid "started"
+msgstr "gestartet"
+
+#: deal/models.py:13 deal/templates/deal/inc/status.html:15
+msgid "placed"
+msgstr "plaziert"
+
+#: deal/models.py:14 deal/templates/deal/inc/status.html:20
+msgid "accepted"
+msgstr "akzeptiert"
+
+#: deal/models.py:15 deal/templates/deal/inc/status.html:25
+msgid "canceled"
+msgstr "abgebrochen"
+
+#: deal/models.py:23 deal/models.py:29
+#: deal/templates/deal/solo/deal_detail.html:29
+msgid "user"
+msgstr "Benutzer"
+
+#: deal/models.py:36
+msgid "market"
+msgstr ""
+
+#: deal/models.py:41 deal/templates/deal/solo/deal_detail.html:47
+msgid "status"
+msgstr "Status"
+
+#: deal/models.py:48
+msgid "location"
+msgstr ""
+
+#: deal/models.py:213 deal/templates/deal/deal_form.html:15
+#: deal/templates/deal/inc/help.html:2
+#: deal/templates/deal/solo/deal_detail.html:2
+#: deal/templates/deal/solo/deal_list_head.html:9
+msgid "deal"
+msgstr "Tauschvorgang"
+
+#: deal/models.py:214 deal/templates/deal/inc/help.html:5
+#: deal/templates/deal/solo/deal_list.html:25
+#: deal/templates/deal/solo/deal_list_head.html:6
+msgid "deals"
+msgstr "Tauschvorgänge"
 
 #: deal/templates/deal/deal_detail.html:46
 #: deal/templates/deal/deal_detail.html:84
-#, fuzzy
-#| msgid "bids"
+msgid "create"
+msgstr "erstellen"
+
+#: deal/templates/deal/deal_detail.html:46
+#: deal/templates/deal/deal_detail.html:84
 msgid "bid"
-msgstr "Gebote"
+msgstr "Gebot"
 
 #: deal/templates/deal/deal_detail.html:51
 #: deal/templates/deal/deal_detail.html:68
-#, fuzzy
-#| msgid "your"
 msgid "you"
-msgstr "dein"
+msgstr "du"
 
 #: deal/templates/deal/deal_detail.html:51
 msgid "give"
@@ -55,12 +99,6 @@ msgstr ""
 msgid "start"
 msgstr "starte"
 
-#: deal/templates/deal/deal_form.html:15 deal/templates/deal/inc/help.html:2
-#: deal/templates/deal/solo/deal_detail.html:2
-#: deal/templates/deal/solo/deal_list_head.html:9
-msgid "deal"
-msgstr "Tauschvorgang"
-
 #: deal/templates/deal/deal_form.html:21
 msgid "save"
 msgstr "speichern"
@@ -68,32 +106,6 @@ msgstr "speichern"
 #: deal/templates/deal/deal_form.html:23
 msgid "delete"
 msgstr "löschen"
-
-#: deal/templates/deal/inc/help.html:5
-#: deal/templates/deal/solo/deal_list.html:25
-#: deal/templates/deal/solo/deal_list_head.html:6
-msgid "deals"
-msgstr "Tauschvorgänge"
-
-#: deal/templates/deal/inc/status.html:5
-msgid "virtual"
-msgstr ""
-
-#: deal/templates/deal/inc/status.html:9
-msgid "started"
-msgstr "gestartet"
-
-#: deal/templates/deal/inc/status.html:15
-msgid "placed"
-msgstr "plaziert"
-
-#: deal/templates/deal/inc/status.html:20
-msgid "accepted"
-msgstr "akzeptiert"
-
-#: deal/templates/deal/inc/status.html:25
-msgid "canceled"
-msgstr "abgebrochen"
 
 #: deal/templates/deal/inc/status.html:30
 msgid "unknown"
@@ -127,10 +139,6 @@ msgstr ""
 msgid "match"
 msgstr "Übereinstimmung"
 
-#: deal/templates/deal/solo/deal_detail.html:29
-msgid "user"
-msgstr "Benutzer"
-
 #: deal/templates/deal/solo/deal_detail.html:32
 #: deal/templates/deal/solo/deal_list.html:8
 msgid "partner"
@@ -151,10 +159,6 @@ msgstr "bietet"
 #: deal/templates/deal/solo/deal_detail.html:46
 msgid "takes"
 msgstr "nimmt"
-
-#: deal/templates/deal/solo/deal_detail.html:47
-msgid "status"
-msgstr "Status"
 
 #: deal/templates/deal/solo/deal_detail.html:73
 msgid "accept"

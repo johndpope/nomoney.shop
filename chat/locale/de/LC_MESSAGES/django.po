@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 21:14+0200\n"
+"POT-Creation-Date: 2020-07-14 22:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,18 +18,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: chat/templates/chat/chat_form.html:32
-msgid "save"
+#: chat/models.py:7 chat/templates/chat/solo/chat_list.html:40
+msgid "default"
 msgstr ""
 
-#: chat/templates/chat/chat_list.html:4
-msgid "yours"
+#: chat/models.py:8 chat/templates/chat/solo/chat_list.html:36
+msgid "user"
 msgstr ""
 
-#: chat/templates/chat/chat_list.html:4
-msgid "chats"
-msgstr "Chats"
+#: chat/models.py:9 chat/models.py:70
+#: chat/templates/chat/solo/chat_list.html:32
+msgid "market"
+msgstr ""
 
+#: chat/models.py:10 chat/templates/chat/solo/chat_list.html:28
+#: chat/templates/chat/solo/lobby.html:5
+msgid "lobby"
+msgstr "Lobby"
+
+#: chat/models.py:21 chat/models.py:114
 #: chat/templates/chat/solo/chat_list.html:6
 #: chat/templates/chat/solo/chat_list.html:11
 #: chat/templates/chat/solo/chat_list.html:28
@@ -40,13 +47,41 @@ msgstr "Chats"
 msgid "chat"
 msgstr "Chat"
 
+#: chat/models.py:26
+msgid "creator"
+msgstr "Ersteller"
+
+#: chat/models.py:30
+msgid "created"
+msgstr "erstellt"
+
+#: chat/models.py:33 chat/models.py:58
+msgid "text"
+msgstr "Text"
+
+#: chat/models.py:45 chat/models.py:46
+msgid "message"
+msgstr "Nachricht"
+
+#: chat/models.py:63 chat/templates/chat/solo/chat_list.html:18
+msgid "type"
+msgstr "Typ"
+
+#: chat/models.py:115 chat/templates/chat/chat_list.html:4
+msgid "chats"
+msgstr "Chats"
+
+#: chat/templates/chat/chat_form.html:32
+msgid "save"
+msgstr ""
+
+#: chat/templates/chat/chat_list.html:4
+msgid "yours"
+msgstr ""
+
 #: chat/templates/chat/solo/chat_list.html:6
 msgid "overview"
 msgstr ""
-
-#: chat/templates/chat/solo/chat_list.html:18
-msgid "type"
-msgstr "Typ"
 
 #: chat/templates/chat/solo/chat_list.html:19
 msgid "members"
@@ -55,23 +90,6 @@ msgstr ""
 #: chat/templates/chat/solo/chat_list.html:20
 msgid "messages"
 msgstr "Nachrichten"
-
-#: chat/templates/chat/solo/chat_list.html:28
-#: chat/templates/chat/solo/lobby.html:5
-msgid "lobby"
-msgstr "Lobby"
-
-#: chat/templates/chat/solo/chat_list.html:32
-msgid "market"
-msgstr ""
-
-#: chat/templates/chat/solo/chat_list.html:36
-msgid "user"
-msgstr ""
-
-#: chat/templates/chat/solo/chat_list.html:40
-msgid "default"
-msgstr ""
 
 #: chat/templates/chat/solo/chat_list.html:45
 msgid "all"
