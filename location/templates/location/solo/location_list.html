@@ -24,5 +24,16 @@
       </div>
       <div class="col-12 order-5">{{ location.description }}</div>
     </div>
+  {% empty %}
+    <div class="row">
+      <div class="col-12">
+        <p>Noch keine {% trans 'locations' %}.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        {% include 'location/inc/help.html' %}
+      </div>
+    </div>
   {% endfor %}
 </div>

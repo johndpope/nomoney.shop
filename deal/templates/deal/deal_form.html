@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
+{% block help %}
+  {% include 'deal/inc/help.html' %}
+{% endblock %}
+
 
 {% block content %}
 {% if deal %}

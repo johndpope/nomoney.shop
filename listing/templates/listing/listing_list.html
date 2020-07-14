@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+{% block help %}
+  {% include 'listing/inc/help.html' %}
+{% endblock %}
+
+
 {% block content %}
   {% include 'listing/solo/listing_list.html' %}
 {% endblock %}

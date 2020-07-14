@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 12:22+0200\n"
+"POT-Creation-Date: 2020-07-14 16:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,37 +18,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: market/templates/market/market_delete.html:7
+#: market/templates/market/inc/help.html:2
+#: market/templates/market/market_delete.html:11
 #: market/templates/market/solo/market_list_head.html:16
 msgid "market"
 msgstr "Markt"
 
-#: market/templates/market/market_delete.html:7
-msgid "delete"
-msgstr ""
+#: market/templates/market/inc/help.html:5
+#: market/templates/market/solo/market_list.html:25
+#: market/templates/market/solo/market_list_head.html:12
+msgid "markets"
+msgstr "Märkte"
 
-#: market/templates/market/market_detail.html:12
+#: market/templates/market/inc/help.html:5
+#: market/templates/market/market_detail.html:17
 #: market/templates/market/solo/market_list.html:6
 msgid "members"
 msgstr "Mitglieder"
 
-#: market/templates/market/market_detail.html:16
+#: market/templates/market/market_delete.html:11
+msgid "delete"
+msgstr ""
+
+#: market/templates/market/market_detail.html:21
 msgid "update"
 msgstr "ändern"
 
-#: market/templates/market/market_detail.html:21
+#: market/templates/market/market_detail.html:26
 msgid "member"
 msgstr "Mitglied"
 
-#: market/templates/market/market_detail.html:22
+#: market/templates/market/market_detail.html:27
 msgid "offer"
 msgstr "biete"
 
-#: market/templates/market/market_detail.html:23
+#: market/templates/market/market_detail.html:28
 msgid "seek"
 msgstr "suche"
 
-#: market/templates/market/market_form.html:31
+#: market/templates/market/market_form.html:36
 msgid "save"
 msgstr ""
 
@@ -59,10 +67,6 @@ msgstr "Name"
 #: market/templates/market/solo/market_list_head.html:8
 msgid "_your"
 msgstr ""
-
-#: market/templates/market/solo/market_list_head.html:12
-msgid "markets"
-msgstr "Märkte"
 
 #~ msgid "guild"
 #~ msgstr "Gilde"
@@ -81,4 +85,3 @@ msgstr "Märkte"
 
 #~ msgid "partner"
 #~ msgstr "Partner"
-

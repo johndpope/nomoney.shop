@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
+{% block help %}
+  {% include 'user/inc/help.html' %}
+{% endblock %}
+
 {% block title %}Sign up{% endblock %}
+
 
 {% block content %}
   {% include 'user/solo/user_form.html' %}

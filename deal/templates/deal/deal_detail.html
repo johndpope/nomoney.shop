@@ -2,6 +2,11 @@
 {% load humanize %}
 {% load i18n %}
 
+{% block help %}
+  {% include 'deal/inc/help.html' %}
+{% endblock %}
+
+
 {% block head %}
 <!-- https://seiyria.com/bootstrap-slider -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css" />

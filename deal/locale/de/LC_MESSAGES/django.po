@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 12:22+0200\n"
+"POT-Creation-Date: 2020-07-14 16:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,56 +18,62 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: deal/templates/deal/deal_detail.html:41
-#: deal/templates/deal/deal_detail.html:79
+#: deal/templates/deal/deal_detail.html:46
+#: deal/templates/deal/deal_detail.html:84
 #, fuzzy
 #| msgid "creator"
 msgid "create"
 msgstr "Ersteller"
 
-#: deal/templates/deal/deal_detail.html:41
-#: deal/templates/deal/deal_detail.html:79
+#: deal/templates/deal/deal_detail.html:46
+#: deal/templates/deal/deal_detail.html:84
 #, fuzzy
 #| msgid "bids"
 msgid "bid"
 msgstr "Gebote"
 
-#: deal/templates/deal/deal_detail.html:46
-#: deal/templates/deal/deal_detail.html:63
+#: deal/templates/deal/deal_detail.html:51
+#: deal/templates/deal/deal_detail.html:68
 #, fuzzy
 #| msgid "your"
 msgid "you"
 msgstr "dein"
 
-#: deal/templates/deal/deal_detail.html:46
+#: deal/templates/deal/deal_detail.html:51
 msgid "give"
 msgstr "gibst"
 
-#: deal/templates/deal/deal_detail.html:63
+#: deal/templates/deal/deal_detail.html:68
 msgid "take"
 msgstr "nimmst"
 
-#: deal/templates/deal/deal_detail.html:84
+#: deal/templates/deal/deal_detail.html:89
 msgid "update"
 msgstr ""
 
-#: deal/templates/deal/deal_form.html:11
+#: deal/templates/deal/deal_form.html:15
 msgid "start"
 msgstr "starte"
 
-#: deal/templates/deal/deal_form.html:11
+#: deal/templates/deal/deal_form.html:15 deal/templates/deal/inc/help.html:2
 #: deal/templates/deal/solo/deal_detail.html:2
 #: deal/templates/deal/solo/deal_list_head.html:9
 msgid "deal"
 msgstr "Tauschvorgang"
 
-#: deal/templates/deal/deal_form.html:17
+#: deal/templates/deal/deal_form.html:21
 msgid "save"
 msgstr "speichern"
 
-#: deal/templates/deal/deal_form.html:19
+#: deal/templates/deal/deal_form.html:23
 msgid "delete"
 msgstr "löschen"
+
+#: deal/templates/deal/inc/help.html:5
+#: deal/templates/deal/solo/deal_list.html:25
+#: deal/templates/deal/solo/deal_list_head.html:6
+msgid "deals"
+msgstr "Tauschvorgänge"
 
 #: deal/templates/deal/inc/status.html:5
 msgid "virtual"
@@ -161,10 +167,6 @@ msgstr "Details"
 #: deal/templates/deal/solo/deal_list_head.html:6
 msgid "yours"
 msgstr "deine"
-
-#: deal/templates/deal/solo/deal_list_head.html:6
-msgid "deals"
-msgstr "Tauschvorgänge"
 
 #~ msgid "matches"
 #~ msgstr "Übereinstimmungen"
