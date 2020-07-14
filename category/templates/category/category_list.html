@@ -55,6 +55,7 @@
           <button data-category="{{ category.pk }}" class="category_btn btn btn-link p-0 text-dark" href="" data-toggle="collapse" data-target="#collapse{{ category.pk }}" aria-expanded="true" aria-controls="collapse{{ category.pk }}">
             <i class="fas fa-box"></i> {{ category.title }}
           </button>
+          {% if request.user.is_staff %}<a class="btn btn-link p-0" href="{% url 'category_update' category.pk %}" role="button">{{ symbols.update|safe }}</a>{% endif %}
         </span>
       </div>
       <div class="col-6 col-md-4">

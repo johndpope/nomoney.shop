@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 21:14+0200\n"
+"POT-Creation-Date: 2020-07-14 22:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: market/templates/market/inc/help.html:2
+#: market/models.py:11
+#, fuzzy
+#| msgid "user"
+msgid "users"
+msgstr "Benutzer"
+
+#: market/models.py:15
+msgid "title"
+msgstr "Titel"
+
+#: market/models.py:22
+msgid "location"
+msgstr "Ort"
+
+#: market/models.py:38 market/templates/market/inc/help.html:2
 #: market/templates/market/market_delete.html:11
 #: market/templates/market/solo/market_list_head.html:16
 msgid "market"
 msgstr "Markt"
 
-#: market/templates/market/inc/help.html:5
+#: market/models.py:39 market/templates/market/inc/help.html:5
 #: market/templates/market/solo/market_list.html:25
 #: market/templates/market/solo/market_list_head.html:12
 msgid "markets"
@@ -79,9 +93,6 @@ msgstr ""
 
 #~ msgid "quality"
 #~ msgstr "Qualität"
-
-#~ msgid "user"
-#~ msgstr "Benutzer"
 
 #~ msgid "partner"
 #~ msgstr "Partner"

@@ -1,5 +1,6 @@
 from uuid import uuid4
 from itertools import chain
+from django.utils.translation import gettext_lazy as _
 from django.db import models
 from config.settings import AUTH_USER_MODEL
 from chat.models import Chat
@@ -11,34 +12,77 @@ def image_path(instance, _):
 
 
 class ListingStatus(models.IntegerChoices):
-    CREATED = 0, 'created'
-    PAUSED = 10, 'paused'
-    DELETED = 110, 'deleted'
+    CREATED = 0, _('created')
+    PAUSED = 10, _('paused')
+    DELETED = 110, _('deleted')
 
 
 class Unit(models.Model):
-    title = models.CharField(max_length=20)
-    short = models.CharField(max_length=5)
+    title = models.CharField(
+        max_length=20,
+        verbose_name=_('title'),
+        )
+    short = models.CharField(
+        max_length=5,
+        verbose_name=_('shorttitle'),
+        )
 
     def __str__(self):
         return self.title
 
 
 class ListingBase(models.Model):
-    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, )
-    title = models.CharField(max_length=50)
-    category = models.ForeignKey('category.Category', on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField()
-    unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
-    image = models.ImageField(blank=True, upload_to=image_path)
-    description = models.TextField(null=True, blank=True)
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(
+        AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name=_('user'),
+        )
+    title = models.CharField(
+        max_length=50,
+        verbose_name=_('title'),
+        )
+    category = models.ForeignKey(
+        'category.Category',
+        on_delete=models.CASCADE,
+        verbose_name=_('category'),
+        )
+    quantity = models.PositiveIntegerField(
+        verbose_name=_('quantity'),
+        )
+    unit = models.ForeignKey(
+        Unit,
+        on_delete=models.CASCADE,
+        verbose_name=_('unit'),
+        )
+    image = models.ImageField(
+        blank=True,
+        upload_to=image_path,
+        verbose_name=_('image'),
+        )
+    description = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name=_('description'),
+        )
+    created = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('created'),
+        )
+    modified = models.DateTimeField(
+        auto_now=True,
+        verbose_name=_('modified'),
+        )
     location = models.ForeignKey(
-        'location.Location', on_delete=models.CASCADE, blank=True, null=True
+        'location.Location',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        verbose_name=_('location'),
         )
     status = models.PositiveSmallIntegerField(
-        default=ListingStatus.CREATED, choices=ListingStatus.choices
+        default=ListingStatus.CREATED,
+        choices=ListingStatus.choices,
+        verbose_name=_('status'),
         )
     type = None
 
@@ -97,6 +141,14 @@ class Push(ListingBase):
     def feedbacks(self):
         return self.pushfeedback_set.all()
 
+    class Meta:
+        verbose_name = _('push')
+        verbose_name_plural = _('pushs')
+
 
 class Pull(ListingBase):
     type = 'pull'
+
+    class Meta:
+        verbose_name = _('pull')
+        verbose_name_plural = _('pulls')

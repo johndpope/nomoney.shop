@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 21:14+0200\n"
+"POT-Creation-Date: 2020-07-14 22:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,71 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: bid/models.py:8 bid/templates/bid/inc/status.html:4
+msgid "unseen"
+msgstr "ungesehen"
+
+#: bid/models.py:9 bid/templates/bid/inc/status.html:8
+msgid "seen"
+msgstr "gesehen"
+
+#: bid/models.py:10 bid/templates/bid/inc/status.html:12
+msgid "answered"
+msgstr "beantwortet"
+
+#: bid/models.py:11 bid/templates/bid/inc/status.html:16
+msgid "accepted"
+msgstr "akzeptiert"
+
+#: bid/models.py:12
+msgid "rejected"
+msgstr "abgewiesen"
+
+#: bid/models.py:19
+msgid "push"
+msgstr ""
+
+#: bid/models.py:24 bid/models.py:98 bid/templates/bid/bid_detail.html:12
+#: bid/templates/bid/bid_list.html:28
+msgid "bid"
+msgstr "Gebot"
+
+#: bid/models.py:27
+msgid "quantity"
+msgstr "Menge"
+
+#: bid/models.py:32
+msgid "unit"
+msgstr "Einheit"
+
+#: bid/models.py:40
+msgid "bidposition"
+msgstr "Gebotsposition"
+
+#: bid/models.py:41
+msgid "bidpositions"
+msgstr "Gebotspositionen"
+
+#: bid/models.py:48
+msgid "deal"
+msgstr ""
+
+#: bid/models.py:53
+msgid "creator"
+msgstr "Ersteller"
+
+#: bid/models.py:58
+msgid "time"
+msgstr "Zeit"
+
+#: bid/models.py:63
+msgid "status"
+msgstr "Status"
+
+#: bid/models.py:99
+msgid "bids"
+msgstr "Gebote"
+
 #: bid/templates/bid/bid_detail.html:11
 msgid "update"
 msgstr ""
@@ -25,10 +90,6 @@ msgstr ""
 #: bid/templates/bid/bid_detail.html:12 bid/templates/bid/bid_list.html:28
 msgid "create"
 msgstr ""
-
-#: bid/templates/bid/bid_detail.html:12 bid/templates/bid/bid_list.html:28
-msgid "bid"
-msgstr "Gebot"
 
 #: bid/templates/bid/bid_form.html:8
 msgid "give"
@@ -44,40 +105,24 @@ msgstr ""
 
 #: bid/templates/bid/bid_form.html:36
 msgid "save"
-msgstr ""
+msgstr "speichern"
 
 #: bid/templates/bid/bid_list.html:10
 msgid "from"
-msgstr ""
+msgstr "von"
 
 #: bid/templates/bid/bid_list.html:11
 msgid "partner"
-msgstr ""
+msgstr "Partner"
 
 #: bid/templates/bid/bid_list.html:12
 msgid "created"
-msgstr ""
+msgstr "erstellt"
 
 #: bid/templates/bid/bid_list.html:13
 msgid "current"
 msgstr "aktuell"
 
-#: bid/templates/bid/inc/status.html:4
-msgid "unseen"
-msgstr ""
-
-#: bid/templates/bid/inc/status.html:8
-msgid "seen"
-msgstr ""
-
-#: bid/templates/bid/inc/status.html:12
-msgid "answered"
-msgstr ""
-
-#: bid/templates/bid/inc/status.html:16
-msgid "accepted"
-msgstr ""
-
 #: bid/templates/bid/inc/status.html:20
 msgid "unknown"
-msgstr ""
+msgstr "unbekannt"

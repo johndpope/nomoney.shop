@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from itertools import combinations
 from django.db import models
 from django.db.models import Q
@@ -7,29 +8,44 @@ from chat.models import Chat
 
 
 class DealStatus(models.IntegerChoices):
-    VIRTUAL = 0, 'virtual'
-    STARTED = 10, 'started'
-    PLACED = 20, 'placed'
-    ACCEPTED = 100, 'accepted'
-    CANCELED = 110, 'canceled'
+    VIRTUAL = 0, _('virtual')
+    STARTED = 10, _('started')
+    PLACED = 20, _('placed')
+    ACCEPTED = 100, _('accepted')
+    CANCELED = 110, _('canceled')
 
 
 class Deal(models.Model):
     user1 = models.ForeignKey(
-        AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user1_deals'
+        AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='user1_deals',
+        verbose_name=_('user'),
         )
     user2 = models.ForeignKey(
-        AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user2_deals'
+        AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='user2_deals',
+        verbose_name=_('user'),
         )
     market = models.ForeignKey(
-        'market.Market', on_delete=models.CASCADE, null=True, blank=True
+        'market.Market',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        verbose_name=_('market'),
         )
     status = models.PositiveSmallIntegerField(
         default=DealStatus.STARTED,
         choices=DealStatus.choices,
+        verbose_name=_('status'),
         )
     location = models.ForeignKey(
-        'location.Location', on_delete=models.CASCADE, blank=True, null=True
+        'location.Location',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        verbose_name=_('location'),
         )
 
     pov_user = None
@@ -194,6 +210,8 @@ class Deal(models.Model):
 
     class Meta:
         get_latest_by = ['pk']
+        verbose_name = _('deal')
+        verbose_name_plural = _('deals')
 
 
 class VirtualDeal(Deal):
