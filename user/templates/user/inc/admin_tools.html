@@ -1,0 +1,16 @@
+{% load i18n %}
+
+{% with objects=request.user.objects_to_prove %}
+<div class="container">
+  {% if objects.categories %}
+  <div class="row">
+    <div class="col-12">{% trans 'prove'|title %} {% trans 'category' %}</div>
+  </div>
+  <div class="row">
+    {% for category in objects.categories %}
+      <a class="btn btn-outline-success" href="{% url 'category_update' category.pk %}" role="button">{{ category }}</a>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+{% endwith %}
