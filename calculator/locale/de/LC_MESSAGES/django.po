@@ -1,0 +1,80 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-14 19:06+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: calculator/templates/calculator/ajax/ajax_direct_deals.html:4
+msgid "quality"
+msgstr ""
+
+#: calculator/templates/calculator/ajax/ajax_direct_deals.html:5
+msgid "partner"
+msgstr ""
+
+#: calculator/templates/calculator/ajax/ajax_direct_deals.html:6
+msgid "offer"
+msgstr ""
+
+#: calculator/templates/calculator/ajax/ajax_direct_deals.html:7
+msgid "seek"
+msgstr ""
+
+#: calculator/templates/calculator/ajax/ajax_direct_deals.html:22
+#: calculator/templates/calculator/calculator.html:161
+#: calculator/templates/calculator/calculator.html:165
+#: calculator/templates/calculator/calculator.html:169
+msgid "deal"
+msgstr ""
+
+#: calculator/templates/calculator/calculator.html:94
+#: calculator/templates/calculator/calculator.html:161
+msgid "direct"
+msgstr "direkte"
+
+#: calculator/templates/calculator/calculator.html:94
+#: calculator/templates/calculator/calculator.html:115
+#: calculator/templates/calculator/calculator.html:136
+msgid "deals"
+msgstr ""
+
+#: calculator/templates/calculator/calculator.html:103
+#: calculator/templates/calculator/calculator.html:124
+#: calculator/templates/calculator/calculator.html:145
+#: calculator/templates/calculator/calculator.html:179
+#: calculator/templates/calculator/calculator.html:190
+#: calculator/templates/calculator/calculator.html:201
+msgid "load"
+msgstr ""
+
+#: calculator/templates/calculator/calculator.html:103
+#: calculator/templates/calculator/calculator.html:124
+#: calculator/templates/calculator/calculator.html:145
+#: calculator/templates/calculator/calculator.html:179
+#: calculator/templates/calculator/calculator.html:190
+#: calculator/templates/calculator/calculator.html:201
+msgid "data"
+msgstr ""
+
+#: calculator/templates/calculator/calculator.html:115
+#: calculator/templates/calculator/calculator.html:165
+msgid "triangle"
+msgstr "dreieckige"
+
+#: calculator/templates/calculator/calculator.html:136
+#: calculator/templates/calculator/calculator.html:169
+msgid "speculative"
+msgstr "spekulative"

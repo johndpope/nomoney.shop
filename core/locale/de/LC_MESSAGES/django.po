@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 16:40+0200\n"
+"POT-Creation-Date: 2020-07-14 19:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,78 +18,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: core/templates/dashboard/ajax_2d.html:5
-msgid "calculated"
-msgstr "berechnete"
-
-#: core/templates/dashboard/ajax_2d.html:5
-#: core/templates/dashboard/dashboard_home.html:104
-msgid "deals"
-msgstr ""
-
-#: core/templates/dashboard/ajax_2d.html:9
-msgid "quality"
-msgstr "Qualität"
-
-#: core/templates/dashboard/ajax_2d.html:10
-msgid "partner"
-msgstr ""
-
-#: core/templates/dashboard/ajax_2d.html:11
-msgid "offer"
-msgstr ""
-
-#: core/templates/dashboard/ajax_2d.html:12
-msgid "seek"
-msgstr ""
-
-#: core/templates/dashboard/ajax_2d.html:27
-msgid "deal"
-msgstr ""
-
-#: core/templates/dashboard/dashboard_home.html:57
+#: core/templates/dashboard/dashboard_home.html:34
 msgid "recommended"
 msgstr "empfohlene"
 
-#: core/templates/dashboard/dashboard_home.html:57
+#: core/templates/dashboard/dashboard_home.html:34
 msgid "actions"
 msgstr "Aktionen"
 
-#: core/templates/dashboard/dashboard_home.html:63
+#: core/templates/dashboard/dashboard_home.html:40
 msgid "location"
 msgstr ""
 
-#: core/templates/dashboard/dashboard_home.html:69
-msgid "market"
-msgstr ""
-
-#: core/templates/dashboard/dashboard_home.html:75
+#: core/templates/dashboard/dashboard_home.html:46
 msgid "push"
 msgstr ""
 
-#: core/templates/dashboard/dashboard_home.html:81
+#: core/templates/dashboard/dashboard_home.html:52
 msgid "pull"
 msgstr ""
 
-#: core/templates/dashboard/dashboard_home.html:100
-msgid "home"
+#: core/templates/dashboard/dashboard_home.html:58
+msgid "market"
 msgstr ""
-
-#: core/templates/dashboard/dashboard_home.html:104
-msgid "calculate"
-msgstr "berechne"
-
-#: core/templates/dashboard/dashboard_home.html:120
-#: core/templates/dashboard/dashboard_home.html:131
-#: core/templates/offline.html:14
-msgid "load"
-msgstr "lade"
-
-#: core/templates/dashboard/dashboard_home.html:120
-#: core/templates/dashboard/dashboard_home.html:131
-#: core/templates/offline.html:14
-msgid "data"
-msgstr "Daten"
 
 #: core/templates/menu.html:7
 msgid "signup"
@@ -100,12 +51,14 @@ msgid "login"
 msgstr "einloggen"
 
 #: core/templates/menu.html:25
-msgid "profile"
-msgstr "Profil"
-
-#: core/templates/menu.html:28
 msgid "categories"
 msgstr "Kategorien"
+
+#: core/templates/menu.html:28
+#, fuzzy
+#| msgid "calculate"
+msgid "calculator"
+msgstr "berechne"
 
 #: core/templates/menu.html:31
 msgid "chats"
@@ -116,22 +69,26 @@ msgid "help"
 msgstr "Hilfe"
 
 #: core/templates/menu.html:57
+msgid "profile"
+msgstr "Profil"
+
+#: core/templates/menu.html:58
 msgid "users"
 msgstr "Benutzer"
 
-#: core/templates/menu.html:60
+#: core/templates/menu.html:61
 msgid "donate"
 msgstr "Spenden"
 
-#: core/templates/menu.html:61
+#: core/templates/menu.html:62
 msgid "terms-and-conditions"
 msgstr "AGB"
 
-#: core/templates/menu.html:62
+#: core/templates/menu.html:63
 msgid "impressum"
 msgstr "Impressum"
 
-#: core/templates/menu.html:63
+#: core/templates/menu.html:64
 msgid "about"
 msgstr "Über"
 
@@ -146,6 +103,20 @@ msgstr "bist"
 #: core/templates/offline.html:10
 msgid "offline"
 msgstr "offline"
+
+#: core/templates/offline.html:14
+msgid "load"
+msgstr "lade"
+
+#: core/templates/offline.html:14
+msgid "data"
+msgstr "Daten"
+
+#~ msgid "calculated"
+#~ msgstr "berechnete"
+
+#~ msgid "quality"
+#~ msgstr "Qualität"
 
 #~ msgid "dashboard"
 #~ msgstr "Dashboard"
