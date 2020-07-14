@@ -61,8 +61,9 @@ class ListingCreateView(LoginRequiredMixin, CreateView):
 
     def get_form(self, form_class=None):
         form = CreateView.get_form(self, form_class=form_class)
-        form.fields['category'].queryset = form.fields['category'].queryset.filter(
-            test=self.request.user.test)
+        if 'category' in form.fields:
+            form.fields['category'].queryset = form.fields['category'].queryset.filter(
+                test=self.request.user.test)
         return form
 
     def get_success_url(self):
