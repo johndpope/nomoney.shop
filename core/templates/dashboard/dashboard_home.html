@@ -9,38 +9,84 @@
 
 
 {% block head %}
-<script>
-$(document).ready(function() {
-	
-  $(function(){
-      initialize_chat();
-      //$("#two-tab").click(function() {
-          $.ajax({
-  	        url : "{% url 'dashboard_ajax_2d' %}",
-  	        type: 'GET',
-  	        success: function(data){
-  	            $('#two').html(data);
-  	        }
-      //    })
-      });
-  })
-  $(function(){
-  	$("#three-tab").click(function() {
-  		$.ajax({
-  			url : "{% url 'dashboard_ajax_3d' %}",
-  			type: 'GET',
-  			success: function(data){
-  				$('#three').html(data);
-  			}
-  		})
-  	});
-  }) 
-}); 
-</script>
+  <script>
+    $(document).ready(function() {
+    	
+      $(function(){
+          initialize_chat();
+          //$("#two-tab").click(function() {
+              $.ajax({
+      	        url : "{% url 'dashboard_ajax_2d' %}",
+      	        type: 'GET',
+      	        success: function(data){
+      	            $('#two').html(data);
+      	        }
+          //    })
+          });
+      })
+      $(function(){
+      	$("#three-tab").click(function() {
+      		$.ajax({
+      			url : "{% url 'dashboard_ajax_3d' %}",
+      			type: 'GET',
+      			success: function(data){
+      				$('#three').html(data);
+      			}
+      		})
+      	});
+      }) 
+    }); 
+  </script>
 {% endblock %}
 
 
 {% block content %}
+{% if request.user.open_feedback %}
+  <div class="row mb-5 py-3">
+    <div class="col-12">
+      {% with markets=request.user.markets %}
+        {% include 'feedback/solo/feedback_to_give_list.html' %}
+      {% endwith %}
+    </div>
+  </div>
+{% endif %}
+
+{% if not request.user.locations or not request.user.markets or not request.user.pushs or not request.user.pulls %}
+  <div class="container">
+    <div class="row">
+      <div class="col-auto">{% trans 'recommended'|title %} {% trans 'actions' %}:</div>
+    </div>
+
+    <div class="row">
+      {% if not request.user.locations %}
+        <div class="col-auto">
+          <a class="btn btn-warning" href="{% url 'location_create' %}"><i class="fas fa-plus"></i> {% trans 'location' %}</a>
+        </div>
+      {% endif %}
+  
+      {% if not request.user.pushs %}
+        <div class="col-auto">
+          <a class="btn btn-warning" href="{% url 'listing_create' 'push' %}"><i class="fas fa-plus"></i> {% trans 'push' %}</a>
+        </div>
+      {% endif %}
+  
+      {% if not request.user.pulls %}
+        <div class="col-auto">
+          <a class="btn btn-warning" href="{% url 'listing_create' 'pull' %}"><i class="fas fa-plus"></i> {% trans 'pull' %}</a>
+        </div>
+      {% endif %}
+
+      {% if not request.user.markets %}
+        <div class="col-auto">
+          <a class="btn btn-warning" href="{% url 'market_create' %}"><i class="fas fa-plus"></i> {% trans 'market' %}</a>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+{% endif %}
+
+
 {% if request.user.is_authenticated %}
   {% include 'user/solo/user_objects.html' %}
 {% endif %}
@@ -63,47 +109,6 @@ $(document).ready(function() {
       <div class="container-fluid mt-5">
 
         {% with chat=lobby %}{% include 'chat/solo/lobby.html' %}{% endwith %}  
-        {% if request.user.open_feedback %}
-          <div class="row mb-5 py-3">
-            <div class="col-12">
-              {% with markets=request.user.markets %}
-                {% include 'feedback/solo/feedback_to_give_list.html' %}
-              {% endwith %}
-            </div>
-          </div>
-        {% endif %}
-  
-        {% if not request.user.locations %}
-          <div class="row mb-5 py-3">
-            <div class="col-12">
-              <a class="btn btn-link p-0 text-info" href="{% url 'location_create' %}"><i class="fas fa-plus"></i> {% trans 'location' %}</a>
-            </div>
-          </div>
-        {% endif %}
-  
-        {% if not request.user.markets %}
-          <div class="row mb-5 py-3">
-            <div class="col-12">
-              <a class="btn btn-link p-0 text-info" href="{% url 'market_create' %}"><i class="fas fa-plus"></i> {% trans 'market' %}</a>
-            </div>
-          </div>
-        {% endif %}
-  
-        {% if not request.user.pushs %}
-          <div class="row mb-5 py-3">
-            <div class="col-12">
-              <a class="btn btn-link p-0 text-info" href="{% url 'listing_create' 'push' %}"><i class="fas fa-plus"></i> {% trans 'push' %}</a>
-            </div>
-          </div>
-        {% endif %}
-  
-        {% if not request.user.pulls %}
-          <div class="row mb-5 py-3">
-            <div class="col-12">
-              <a class="btn btn-link p-0 text-info" href="{% url 'listing_create' 'pull' %}"><i class="fas fa-plus"></i> {% trans 'pull' %}</a>
-            </div>
-          </div>
-        {% endif %}
   
       </div>
     </div>
