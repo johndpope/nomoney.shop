@@ -26,14 +26,7 @@
           <div class="row">
             <div class="col">
               <button class="btn btn-link btn-block text-left p-0 text-dark py-3" type="button" data-toggle="collapse" data-target="#markets" aria-expanded="true" aria-controls="markets">
-                {{ symbols.market|safe }}
-                {% if user == request.user %}
-                  {% trans '_your'|title %}
-                {% else %}
-                  {{ user }}'s
-                {% endif %}
-                {% trans 'markets' %}
-                ({{ markets|length }})
+                {{ symbols.market|safe }} {% trans 'markets' %} ({{ markets|length }})
               </button>
             </div>
             <div class="col-auto d-flex justify-content-end">
@@ -63,8 +56,7 @@
           <div class="row">
             <div class="col">
               <button class="btn btn-link btn-block text-left p-0 text-dark py-3" type="button" data-toggle="collapse" data-target="#deals" aria-expanded="true" aria-controls="deals">
-                {{ symbols.deal|safe }} {% trans 'yours'|title %} {% trans 'deals' %}
-                ({{ deals|length }})
+                {{ symbols.deal|safe }} {% trans 'deals' %} ({{ deals|length }})
               </button>
             </div>
             <div class="col-auto d-flex justify-content-end">
@@ -94,8 +86,7 @@
           <div class="row">
             <div class="col">
               <button class="btn btn-link btn-block text-left p-0 text-dark py-3" type="button" data-toggle="collapse" data-target="#locations" aria-expanded="true" aria-controls="locations">
-                {{ symbols.location|safe }} {% trans '_your'|title %} {% trans 'locations' %}
-                ({{ locations|length }})
+                {{ symbols.location|safe }} {% trans 'locations' %} ({{ locations|length }})
               </button>
             </div>
             <div class="col-auto d-flex justify-content-end">
@@ -127,8 +118,7 @@
         <div class="row">
           <div class="col">
             <button class="btn btn-link btn-block text-left p-0 text-dark py-3" type="button" data-toggle="collapse" data-target="#pushs" aria-expanded="true" aria-controls="pushs">
-              {{ symbols.push|safe }} {% if user == request.user %} {% trans '_your'|title %}{% else %} {{ user }}'s{% endif %} {% trans 'offerings' %}
-              ({{ listings|length }})
+              {{ symbols.push|safe }} {% trans 'offerings' %} ({{ listings|length }})
             </button>
           </div>
           <div class="col-auto d-flex justify-content-end">
@@ -162,8 +152,7 @@
         <div class="row">
           <div class="col">
             <button class="btn btn-link btn-block text-left p-0 text-dark py-3" type="button" data-toggle="collapse" data-target="#pulls" aria-expanded="true" aria-controls="pulls">
-              {{ symbols.pull|safe }} {% if user == request.user %} {% trans '_your'|title %}{% else %} {{ user }}'s{% endif %} {% trans 'requests' %}
-              ({{ listings|length }})
+              {{ symbols.pull|safe }} {% trans 'requests' %} ({{ listings|length }})
             </button>
           </div>
           <div class="col-auto d-flex justify-content-end">
