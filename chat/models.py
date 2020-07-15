@@ -1,6 +1,8 @@
 from django.utils.translation import gettext_lazy as _
+from django.db.models.signals import post_save
 from django.db import models
 from config.settings import AUTH_USER_MODEL
+from django.dispatch.dispatcher import receiver
 
 
 class ChatType(models.IntegerChoices):
@@ -15,6 +17,10 @@ class ChatType(models.IntegerChoices):
 
 
 class ChatMessage(models.Model):
+    """
+    creates list of all users that should see this message.
+    when user has seen the message, he will be removed from that list.
+    """
     chat = models.ForeignKey(
         'chat.Chat',
         on_delete=models.CASCADE,
@@ -33,6 +39,12 @@ class ChatMessage(models.Model):
         verbose_name=_('text'),
         )
 
+    unseen_by = models.ManyToManyField(
+        AUTH_USER_MODEL,
+        related_name='unseen_messages',
+        verbose_name=_('unseen_by'),
+        )
+
     @property
     def previous(self):
         message_list = list(ChatMessage.objects.filter(chat=self.chat))
@@ -40,10 +52,25 @@ class ChatMessage(models.Model):
         if index:
             return message_list[index-1]
 
+    def set_seen_by(self, user):
+        self.unseen_by.remove(user)
+        self.save()
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
     class Meta:
         ordering = ['-pk']
         verbose_name = _('message')
         verbose_name_plural = _('message')
+
+
+@receiver(post_save, sender=ChatMessage)
+def create_user_config(sender, instance, created, **kwargs):
+    if created:
+        for user in instance.chat.get_users():
+            instance.unseen_by.add(user)
+        instance.save()
 
 
 class Chat(models.Model):
@@ -77,6 +104,11 @@ class Chat(models.Model):
     @property
     def messages(self):
         return self.chatmessage_set.all()
+
+    def all_messages_seen_by(self, user):
+        for message in self.messages:
+            if user in message.unseen_by.all():
+                message.set_seen_by(user)
 
     def get_users(self):
         if self.type == ChatType.MARKET:

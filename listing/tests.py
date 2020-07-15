@@ -26,7 +26,6 @@ class CategoryTestCase(TestCase):
         self.assertIsInstance(pushs, QuerySet)
         self.assertIsInstance(pulls, QuerySet)
         self.assertIsInstance(category.path, str)
-        self.assertIn('/', str(category))
 
     def test_listing_form(self):
         url = 'listing_create'
