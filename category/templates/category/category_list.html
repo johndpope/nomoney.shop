@@ -26,7 +26,7 @@
 {% endblock %}
 
 {% block content %}
-<div id="accordion" class="container-fluid">
+<div id="categoryAccordion" class="container-fluid">
   <div class="row">
     <div class="col-8">
         <h5>{{ symbols.category|safe }} {% trans 'categories'|title %}</h5>
@@ -94,7 +94,7 @@
       </div>
     </div>
       
-    <div id="collapse{{ category.pk }}" class="collapse py-3 my-3" aria-labelledby="headingOne" data-parent="#accordion">
+    <div id="collapse{{ category.pk }}" class="collapse py-3 my-3" aria-labelledby="headingOne{{ category.pk }}" data-parent="#categoryAccordion">
       <div class="card-body">
         <div class="container">
           <div class="row">
