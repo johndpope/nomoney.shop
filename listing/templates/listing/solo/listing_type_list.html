@@ -49,10 +49,12 @@
         <p>Noch keine {% trans 'listings' %}.</p>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12">
-        {% include 'listing/inc/help.html' %}
+    {% if listing.user == request.user %}
+      <div class="row">
+        <div class="col-12">
+          {% include 'listing/inc/help.html' %}
+        </div>
       </div>
-    </div>
+    {% endif %}
   {% endfor %}
 </div>

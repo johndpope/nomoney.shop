@@ -115,6 +115,9 @@ class ListingBase(models.Model):
         self.status = ListingStatus.DELETED
         self.save()
 
+    def __hash__(self):
+        return hash((self.pk, self.type))
+
     def __eq__(self, other):
         try:
             return self.category == other.category
