@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-12"><h5>{% trans 'further'|title %} {% trans 'pushs' %} {% trans 'of' %} {{ user }}</h5></div>
+    <div class="col-12"><h5>{% trans 'further'|title %} {% trans 'pushs' %} {% trans 'of' %} {{ object.user }}</h5></div>
   </div>
 </div>
 {% with listings=user.pushs %}
