@@ -27,7 +27,12 @@ class ChatListView(LoginRequiredMixin, ListView):
     context_object_name = 'chats'
 
     def get_queryset(self):
-        return self.request.user.chats
+        chats = self.request.user.chats
+        unseen_by_chat = self.request.user.get_unseen_by_chat()
+        for chat in chats:
+            if chat.pk in unseen_by_chat.keys():
+                chat.unseen = unseen_by_chat[chat.pk]
+        return chats
 
     def get_context_data(self, **kwargs):
         context = ListView.get_context_data(self, **kwargs)
@@ -38,6 +43,11 @@ class ChatListView(LoginRequiredMixin, ListView):
 class ChatDetailView(LoginRequiredMixin, DetailView):
     model = Chat
     context_object_name = 'chat'
+
+    def get_object(self, queryset=None):
+        chat = DetailView.get_object(self, queryset=queryset)
+        chat.all_messages_seen_by(self.request.user)
+        return chat
 
     def get_context_data(self, **kwargs):
         kwargs['form'] = ChatMessageForm(self.request.POST)

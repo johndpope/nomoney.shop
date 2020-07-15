@@ -7,6 +7,7 @@ from django.db import models
 from chat.models import Chat
 from listing.models import ListingStatus
 from category.models import Category
+from _collections import defaultdict
 
 
 def image_path(instance, filename):
@@ -81,6 +82,15 @@ class User(AbstractUser):
                 scores.append(feedback.score)
         if scores:
             return mean(scores)
+
+    def get_unseen_messages(self):
+        return self.unseen_messages.all()
+
+    def get_unseen_by_chat(self):
+        unseen_messages = defaultdict(list)
+        for message in self.get_unseen_messages():
+            unseen_messages[message.chat.pk].append(message)
+        return unseen_messages
 
     @property
     def open_feedback(self):

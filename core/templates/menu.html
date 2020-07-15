@@ -28,7 +28,7 @@
           <a class="nav-link px-3" href="{% url 'calculator' %}">{{ symbols.calculator|safe }}<span class="d-none d-sm-inline-block pl-1">{% trans 'calculator' %}</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link px-3" href="{% url 'chat_list' %}">{{ symbols.chat|safe }}<span class="d-none d-sm-inline-block pl-1">{% trans 'chats' %}</span></a>
+            <a class="nav-link px-3" href="{% url 'chat_list' %}">{% if request.user.unseen_messages.all %}<span class="badge badge-secondary position-absolute" style="margin-top: 15px;margin-left: -10px;">{{ request.user.unseen_messages.all|length }}</span>{% endif %}{{ symbols.chat|safe }}<span class="d-none d-sm-inline-block pl-1">{% trans 'chats' %}</span></a>
         </li>
       </ul>
       <ul class="col-auto navbar-nav ml-auto navbar-right pr-0">
