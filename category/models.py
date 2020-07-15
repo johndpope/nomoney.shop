@@ -76,12 +76,18 @@ class Category(models.Model):
     def get_unproved(cls):
         return cls.objects.filter(status=CategoryStatus.UNPROVED)
 
+    @classmethod
+    def get_hidden(cls):
+        return cls.objects.filter(status=CategoryStatus.HIDDEN)
+
+    @classmethod
+    def get_deleted(cls):
+        return cls.objects.filter(status=CategoryStatus.DELETED)
+
     def __lt__(self, other):
         return len(self.listings) < len(other.listings)
 
     def __str__(self):
-        if self.status == CategoryStatus.HIDDEN:
-            return 'Hidden: ' + self.title
         return self.title
 
     class Meta:

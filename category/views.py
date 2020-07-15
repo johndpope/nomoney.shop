@@ -13,7 +13,14 @@ class CategoryListView(LoginRequiredMixin, ListView):
     context_object_name = 'categories'
 
     def get_queryset(self):
-        return sorted(ListView.get_queryset(self).exclude(status=CategoryStatus.HIDDEN), key=lambda x: x.path)
+        queryset = sorted(
+            Category.objects.exclude(
+                status__in=(CategoryStatus.HIDDEN, CategoryStatus.DELETED,)
+                ), key=lambda x: x.path
+            )
+        if self.request.user.is_staff:
+            return queryset + list(Category.get_deleted()) + list(Category.get_hidden())
+        return queryset
 
 
 class CategoryCreateView(LoginRequiredMixin, CreateView):
