@@ -37,6 +37,7 @@ class DashboardHomeView(LoginRequiredMixin, TemplateView):
                 status=0
                 )
             context['lobby'] = Chat.get_lobby()
+            context['chat'] = Chat.get_lobby()
         else:
             self.template_name = 'dashboard/dashboard_anonymous.html'
         return context

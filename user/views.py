@@ -7,6 +7,7 @@ from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.contrib.auth import get_user_model
+from chat.models import Chat
 from .forms import CustomUserCreationForm
 from .models import UserConfig
 
@@ -18,6 +19,10 @@ class UserListView(LoginRequiredMixin, ListView):
     model = User
     context_object_name = 'users'
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = ListView.get_context_data(self, **kwargs)
+        context['chat'] = Chat.get_lobby()
+        return context
 
 class UserCreateView(FormView):
     form_class = CustomUserCreationForm
@@ -45,7 +50,6 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 
 class UserSettingsView(LoginRequiredMixin, UpdateView):
     model = UserConfig
-    #fields = FIELDS
     fields = '__all__'
     template_name = 'user/user_form.html'
     success_url = reverse_lazy('home')

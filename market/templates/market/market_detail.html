@@ -8,18 +8,22 @@
 
 
 {% block content %}
-      {% if chat %}
-        <a class="btn btn-link float-right" href="{% url 'chat_detail' chat.pk %}">{{ symbols.chat|safe }}</a>
-      {% endif %}
 <div class="container-fluid mb-5">
+  <div class="row border-bottom mb-5">
+    <div class="col-auto">
+      <h1>{{ symbols.market|safe }} {% trans 'market'|title %} {{ market }}</h1>
+    </div>
+    {% if request.user in market.users.all %}
+      <div class="col-auto d-flex justify-content-end align-items-end">
+        <a class="btn btn-link p-0 text-info" href="{% url 'market_update' market.pk %}">{{ symbols.update|safe }} {% trans 'update' %}</a>
+      </div>
+    {% endif %}
+  </div>
   <div class="row">
     <div class="col-8">
         <h5>{{ symbols.user|safe }} {% trans 'members' %}</h5>
     </div>
     <div class="col-4 d-md-flex justify-content-end">
-      {% if request.user in market.users.all %}
-        <a class="btn btn-link p-0 text-info" href="{% url 'market_update' market.pk %}">{{ symbols.update|safe }} {% trans 'update' %}</a>
-      {% endif %}
     </div>
   </div>
   <div class="row">
@@ -38,6 +42,6 @@
 
 
 <hr class="my-5">
-{% include 'dashboard/ajax_2d.html' %}
+{% include 'calculator/ajax/ajax_direct_deals.html' %}
 
 {% endblock %}

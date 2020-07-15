@@ -107,6 +107,8 @@ class Chat(models.Model):
         return None
 
     def __str__(self):
+        if self.type == ChatType.LOBBY:
+            return 'Lobby'
         user_str = ', '.join((str(user) for user in self.get_users()))
         return 'Chat [{}]: {}'.format(self.type_str, user_str)
 
