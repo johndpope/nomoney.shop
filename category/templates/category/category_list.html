@@ -52,10 +52,31 @@
     <div class="row border-top mb-2">
       <div class="col-12 col-md-6">
         <span style="white-space: nowrap">
+            {% if request.user.is_staff %}
+              {% if category.status == 0 %}
+                <span class="text-danger" data-toggle="tooltip" title="{% trans 'unseen' %}">
+                  {{ symbols.unseen|safe }}
+                </span>
+              {% elif category.status == 10 %}
+                <span class="text-success" data-toggle="tooltip" title="{% trans 'seen' %}">
+                  {{ symbols.seen|safe }}
+                </span>
+              {% elif category.status == 20 %}
+                <span class="text-secondary" data-toggle="tooltip" title="{% trans 'hidden' %}">
+                  {{ symbols.hidden|safe }}
+                </span>
+              {% elif category.status == 110 %}
+                <span class="text-muted" data-toggle="tooltip" title="{% trans 'deleted' %}">
+                  {{ symbols.deleted|safe }}
+                </span>
+              {% endif %}
+            {% endif %}
           <button data-category="{{ category.pk }}" class="category_btn btn btn-link p-0 text-dark" href="" data-toggle="collapse" data-target="#collapse{{ category.pk }}" aria-expanded="true" aria-controls="collapse{{ category.pk }}">
             <i class="fas fa-box"></i> {{ category.breadcrumbs|join:"/" }} 
           </button>
-          {% if request.user.is_staff %}<a class="btn btn-link p-0" href="{% url 'category_update' category.pk %}" role="button">{{ symbols.update|safe }}</a>{% endif %}
+          {% if request.user.is_staff %}
+            <a class="btn btn-link p-0" href="{% url 'category_update' category.pk %}?next={{ request.path }}" role="button">{{ symbols.update|safe }}</a>
+          {% endif %}
         </span>
       </div>
       <div class="col-4 col-md-2">

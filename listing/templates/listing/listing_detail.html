@@ -17,7 +17,6 @@
         {% elif listing.type == 'pull'%}
           <i class="fas fa-sort-down"></i>
         {% endif %}
-        {{ symbols.listing|safe }}
         {% if listing.type == 'push' %}
           {% trans 'offering' %}
         {% else %}
@@ -121,7 +120,7 @@
   <div class="row">
     <div class="col-12">
       {% if listing.user == request.user %}
-        <a class="float-right" href="{% url 'listing_update' listing.type listing.pk %}">{{ symbols.update|safe }} {% trans 'update'|title %}</a>
+        <a class="float-right" href="{% url 'listing_update' listing.type listing.pk %}?next={{ request.path }}">{{ symbols.update|safe }} {% trans 'update'|title %}</a>
       {% endif %}
     </div>
   </div>
