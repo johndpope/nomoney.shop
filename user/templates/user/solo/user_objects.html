@@ -21,7 +21,7 @@
   {% if user == request.user %}
     {% with markets=request.user.markets %}
     <div class="card">
-      <div class="card-header py-0">
+      <div class="card-header p-0">
         <div class="container-fluid">
           <div class="row">
             <div class="col">
@@ -37,8 +37,8 @@
       </div>
       <div id="markets" class="toggler collapse" aria-labelledby="headingOne" data-parent="#userObjectsAccordion">
         <div class="card-body">
-          <div class="container-fluid">
-            <div class="row mb-5 py-3">
+          <div class="container-fluid p-0">
+            <div class="row">
               <div class="col-12">
                   {% include 'market/solo/market_list.html' %}
               </div>
@@ -51,7 +51,7 @@
   
     {% with deals=request.user.deals %}
     <div class="card">
-      <div class="card-header py-0">
+      <div class="card-header p-0">
         <div class="container-fluid">
           <div class="row">
             <div class="col">
@@ -67,8 +67,8 @@
       </div>
       <div id="deals" class="toggler collapse" aria-labelledby="headingOne" data-parent="#userObjectsAccordion">
         <div class="card-body">
-          <div class="container-fluid">
-            <div class="row mb-5 py-3">
+          <div class="container-fluid p-0">
+            <div class="row py-3">
               <div class="col-12">
                   {% include 'deal/solo/deal_list.html' %}
               </div>
@@ -81,7 +81,7 @@
   
     {% with locations=request.user.locations %}
     <div class="card">
-      <div class="card-header py-0">
+      <div class="card-header p-0">
         <div class="container-fluid">
           <div class="row">
             <div class="col">
@@ -97,8 +97,8 @@
       </div>
       <div id="locations" class="toggler collapse" aria-labelledby="headingOne" data-parent="#userObjectsAccordion">
         <div class="card-body">
-          <div class="container-fluid">
-            <div class="row mb-5 py-3">
+          <div class="container-fluid p-0">
+            <div class="row py-3">
               <div class="col-12">
                   {% include 'location/solo/location_list.html' %}
               </div>
@@ -113,7 +113,7 @@
   {% with listings=user.pushs %}
   {% with type='push' %}
   <div class="card">
-    <div class="card-header py-0">
+    <div class="card-header p-0">
       <div class="container-fluid">
         <div class="row">
           <div class="col">
@@ -131,8 +131,8 @@
     </div>
     <div id="pushs" class="toggler collapse" aria-labelledby="headingOne" data-parent="#userObjectsAccordion">
       <div class="card-body">
-        <div class="container-fluid">
-          <div class="row mb-5 py-3">
+        <div class="container-fluid p-0">
+          <div class="row py-3">
             <div class="col-12">
                   {% include 'listing/solo/listing_type_list.html' %}
             </div>
@@ -147,7 +147,7 @@
   {% with listings=user.pulls %}
   {% with type='pull' %}
   <div class="card">
-    <div class="card-header py-0">
+    <div class="card-header p-0">
       <div class="container-fluid">
         <div class="row">
           <div class="col">
@@ -165,8 +165,8 @@
     </div>
     <div id="pulls" class="toggler collapse" aria-labelledby="headingOne" data-parent="#userObjectsAccordion">
       <div class="card-body">
-        <div class="container-fluid">
-          <div class="row mb-5 py-3">
+        <div class="container-fluid p-0">
+          <div class="row py-3">
             <div class="col-12">
                   {% include 'listing/solo/listing_type_list.html' %}
             </div>
