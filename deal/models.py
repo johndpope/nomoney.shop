@@ -200,6 +200,8 @@ class Deal(models.Model):
                     )
 
     def __eq__(self, other):
+        if not isinstance(self, other.__class__):
+            return False
         return set([self.user1, self.user2]) == set([other.user1, other.user2])
 
     def __hash__(self):

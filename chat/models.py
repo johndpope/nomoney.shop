@@ -113,5 +113,6 @@ class Chat(models.Model):
         return 'Chat [{}]: {}'.format(self.type_str, user_str)
 
     class Meta:
+        ordering = ['-type']
         verbose_name = _('chat')
         verbose_name_plural = _('chats')
