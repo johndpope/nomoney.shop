@@ -36,7 +36,6 @@
   <hr class="my-5">
 {% endif %}
 
-{% if not request.user.locations or not request.user.markets or not request.user.pushs or not request.user.pulls %}
   <div class="container">
     <div class="row">
       <div class="col-auto">{% trans 'recommended'|title %} {% trans 'actions' %}:</div>
@@ -61,16 +60,21 @@
         </div>
       {% endif %}
 
-      {% if not request.user.markets %}
+      {% if not request.user.markets and request.user.pushs and request.user.pulls  %}
         <div class="col-auto mb-1">
           <a class="btn btn-warning" href="{% url 'market_create' %}"><i class="fas fa-plus"></i> {% trans 'market' %}</a>
+        </div>
+      {% endif %}
+
+      {% if not request.user.deals and request.user.pushs and request.user.pulls %}
+        <div class="col-auto mb-1">
+          <a class="btn btn-warning" href="{% url 'calculator' %}"><i class="fas fa-plus"></i> {% trans 'deal' %}</a>
         </div>
       {% endif %}
 
     </div>
   </div>
   <hr class="my-5">
-{% endif %}
 
 
 {% if request.user.is_authenticated %}
