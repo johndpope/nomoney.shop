@@ -92,6 +92,10 @@ class Bid(models.Model):
     def __lt__(self, other):
         return self.datetime < other.datetime
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.deal.set_placed()
+
     class Meta:
         ordering = ['-datetime']
         get_latest_by = ['datetime']
