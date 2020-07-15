@@ -34,6 +34,16 @@ class Category(models.Model):
         )
 
     @property
+    def breadcrumbs(self):
+        breadcrumbs = [self]
+        obj = self
+        while obj.parent:
+            breadcrumbs = [obj.parent] + breadcrumbs
+            obj = obj.parent
+            print(breadcrumbs)
+        return breadcrumbs
+
+    @property
     def pushs(self):
         return self.push_set.all()
 
@@ -71,8 +81,8 @@ class Category(models.Model):
 
     def __str__(self):
         if self.status == CategoryStatus.HIDDEN:
-            return 'Hidden: ' + self.path
-        return self.path
+            return 'Hidden: ' + self.title
+        return self.title
 
     class Meta:
         verbose_name = _('category')

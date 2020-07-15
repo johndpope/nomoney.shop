@@ -36,40 +36,39 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-6 col-md-4"></div>
-    <div class="col-6 col-md-4">
+    <div class="col-12 col-md-6"></div>
+    <div class="col-4 col-md-2">
       <div class="row">
         <div class="col-4"><b>{% trans 'offer' %}</b></div>
         <div class="col-4"><b>{% trans 'seek' %}</b></div>
         <div class="col-4"><b>{% trans 'sum' %}</b></div>
       </div>
     </div>
-    <div class="col-6 col-md-2 d-flex justify-content-end"></div>
-    <div class="col-6 col-md-2 d-flex justify-content-end"></div>
+    <div class="col-4 col-sm-3 col-md-2 d-flex justify-content-end"></div>
+    <div class="col-4 col-sm-3 col-md-2 d-flex justify-content-end"></div>
   </div>
 
   {% for category in categories %}
-    <div class="row border-top">
-      <div class="col-6 col-md-4">
+    <div class="row border-top mb-2">
+      <div class="col-12 col-md-6">
         <span style="white-space: nowrap">
           <button data-category="{{ category.pk }}" class="category_btn btn btn-link p-0 text-dark" href="" data-toggle="collapse" data-target="#collapse{{ category.pk }}" aria-expanded="true" aria-controls="collapse{{ category.pk }}">
-            <i class="fas fa-box"></i> {{ category.title }}
+            <i class="fas fa-box"></i> {{ category.breadcrumbs|join:"/" }} 
           </button>
           {% if request.user.is_staff %}<a class="btn btn-link p-0" href="{% url 'category_update' category.pk %}" role="button">{{ symbols.update|safe }}</a>{% endif %}
         </span>
       </div>
-      <div class="col-6 col-md-4">
+      <div class="col-4 col-md-2">
         <div class="row">
           <div class="col-4">{{ category.pushs|length }}</div>
           <div class="col-4">{{ category.pulls|length }}</div>
           <div class="col-4">{{ category.listings|length }}</div>
         </div>
       </div>
-      <div class="col-6 d-none d-sm-block d-md-none"></div>
-      <div class="col-6 col-sm-3 col-md-2 d-flex justify-content-end">
+      <div class="col-4 col-sm-3 col-md-2 d-flex justify-content-end">
         <a class="text-info" style="white-space:nowrap;" href="{% url 'category_listing_create' 'push' category.pk %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'offer' %}</a>
       </div>
-      <div class="col-6 col-sm-3 col-md-2 d-flex justify-content-end" title="{{ listing.modified }}">
+      <div class="col-4 col-sm-3 col-md-2 d-flex justify-content-end" title="{{ listing.modified }}">
         <a class="text-info" style="white-space:nowrap;" href="{% url 'category_listing_create' 'pull' category.pk %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'seek' %}</a>
       </div>
     </div>
