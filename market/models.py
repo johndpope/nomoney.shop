@@ -1,3 +1,4 @@
+""" models for the market module """
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
@@ -6,6 +7,7 @@ from chat.models import Chat, ChatType
 
 
 class Market(models.Model):
+    """ a market is like a group of users that deal with each other """
     users = models.ManyToManyField(
         AUTH_USER_MODEL,
         verbose_name=_('users'),

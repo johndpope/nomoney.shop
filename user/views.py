@@ -1,7 +1,7 @@
+""" views for the user module """
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, FormView
-from django.views.generic.base import TemplateView
 from django.urls.base import reverse_lazy, reverse
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -15,16 +15,20 @@ User = get_user_model()  # pylint: disable=invalid-name
 FIELDS = ['username', 'first_name', 'last_name', 'email', 'image', 'description']
 
 
+# pylint: disable=too-many-ancestors
 class UserListView(LoginRequiredMixin, ListView):
+    """ ListView to list all users """
     model = User
     context_object_name = 'users'
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = ListView.get_context_data(self, **kwargs)
+    def get_context_data(self, *args, **kwargs):
+        context = ListView.get_context_data(self, *args, **kwargs)
         context['chat'] = Chat.get_lobby()
         return context
 
+
 class UserCreateView(FormView):
+    """ FormView to Create new user """
     form_class = CustomUserCreationForm
     template_name = 'user/user_form.html'
     success_url = reverse_lazy('home')
@@ -36,6 +40,7 @@ class UserCreateView(FormView):
 
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
+    """ UpdateView to update user informations """
     model = User
     fields = FIELDS
     template_name = 'user/user_form.html'
@@ -49,6 +54,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class UserSettingsView(LoginRequiredMixin, UpdateView):
+    """ UpdateView for updating UserConfig """
     model = UserConfig
     fields = '__all__'
     template_name = 'user/user_form.html'
@@ -62,6 +68,7 @@ class UserSettingsView(LoginRequiredMixin, UpdateView):
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
+    """ DetailView to view a single user """
     model = User
     context_object_name = 'user'
 
