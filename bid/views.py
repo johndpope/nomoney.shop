@@ -23,7 +23,7 @@ class BidListView(LoginRequiredMixin, ListView):
 class BidCreateView(LoginRequiredMixin, FormView):
     """ Create new Bid """
     template_name = 'bid/bid_form.html'
-    deal = None
+    deal, bid = 2 * [None]
 
     def setup(self, request, *args, **kwargs):
         FormView.setup(self, request, *args, **kwargs)
@@ -43,30 +43,29 @@ class BidCreateView(LoginRequiredMixin, FormView):
         push_form = BidForm(self.deal.pushs, request.POST)
         pull_form = BidForm(self.deal.partner_pushs, request.POST)
         if push_form.is_valid() and pull_form.is_valid():
-            bid = Bid.objects.create(deal=self.deal, creator=request.user)
-            for key, value in push_form.cleaned_data.items():
-                print(request.POST)
-                if value:
-                    BidPosition.objects.create(
-                        push=push_form.fields[key].listing,
-                        unit=push_form.fields[key].unit,
-                        quantity=value,
-                        bid=bid
-                        )
-            for key, value in pull_form.cleaned_data.items():
-                print(request.POST)
-                if value:
-                    BidPosition.objects.create(
-                        push=pull_form.fields[key].listing,
-                        unit=pull_form.fields[key].unit,
-                        quantity=value,
-                        bid=bid
-                        )
+            self.bid = Bid.objects.create(deal=self.deal, creator=request.user)
+            self.iter_form(push_form)
+            self.iter_form(pull_form)
             return redirect('deal_detail', pk=self.deal.pk)
         return self.render_to_response({
             'push_form': push_form,
             'pull_form': pull_form,
             })
+
+    def iter_form(self, form):
+        """ iterate over form """
+        for key, value in form.cleaned_data.items():
+            if value:
+                self.create_bidposition(form, key, value)
+
+    def create_bidposition(self, form, key, value):
+        """ create bid position """
+        BidPosition.objects.create(
+            push=form.fields[key].listing,
+            unit=form.fields[key].unit,
+            quantity=value,
+            bid=self.bid
+            )
 
 
 class BidDetailView(LoginRequiredMixin, DetailView):

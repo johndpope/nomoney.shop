@@ -22,6 +22,24 @@ class VirtualDeal(Deal):
                 deals.append(cls.by_user(user1, user2, level=0))
         return deals
 
+    @staticmethod
+    def _calculate_max_quality(deals):
+        """
+        :returns: int max quality from a set of deals
+        """
+        return max((deal.quality for deal in deals)) if deals else 0
+
+    @staticmethod
+    def _calculate_quality_pct(deals, max_quality):
+        """ adds deal.quality to each deal """
+        # Calculate Quality Percentage of each deal (for view/css)
+        for deal in deals:
+            deal.max_quality = max_quality
+            if max_quality == 0:
+                deal.quality_pct = 100
+            else:
+                deal.quality_pct = int(deal.quality / max_quality * 100 + 0.5)
+
     @classmethod
     def by_users(cls, me_, other_users, level=2):  # pylint: disable=arguments-differ
         """ get deal between me_ and other_users
@@ -37,19 +55,7 @@ class VirtualDeal(Deal):
             if deal.level >= level:
                 deals.append(deal)
 
-        # Calculate max Quality
-        max_quality = max(
-            (deal.quality for deal in deals)
-            ) if deals else 0
-
-        # Calculate Quality Percentage of each deal (for view/css)
-        for deal in deals:
-            deal.max_quality = max_quality
-            if max_quality == 0:
-                deal.quality_pct = 100
-            else:
-                deal.quality_pct = int(deal.quality / max_quality * 100 + 0.5)
-
+        cls._calculate_quality_pct(deals, cls._calculate_max_quality(deals))
         return sorted(deals, key=lambda x: x.quality, reverse=True)
 
     @classmethod
