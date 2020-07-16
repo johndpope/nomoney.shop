@@ -5,7 +5,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/snake-soft/nomoney.shop/badge.svg?branch=master)](https://coveralls.io/github/snake-soft/nomoney.shop?branch=master)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Maintainability](https://api.codeclimate.com/v1/badges/838b5214d991a99b3e9b/maintainability)](https://codeclimate.com/github/snake-soft/nomoney.shop/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/838b5214d991a99b3e9b/test_coverage)](https://codeclimate.com/github/snake-soft/nomoney.shop/test_coverage)
 ---
 :us: This year, 2020, the world economy as a guarant of wealth is going to get damaged.
 Currently the 'experts' have a huge spread of future predictions.
