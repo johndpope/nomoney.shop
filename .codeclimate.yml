@@ -1,0 +1,5 @@
+plugins:
+  pylint:
+    enabled: true
+    plugins:
+      - django
