@@ -44,7 +44,7 @@ class DealTestCase(TestCase):
             )[0]
         self.assertIsInstance(deal, Deal)
 
-        deal = Deal.get_or_create((self.deal.user2, self.deal.user1))[0]
+        deal = Deal.get_or_create(self.deal.user2, self.deal.user1)[0]
         self.assertEqual(deal, self.deal)
 
         self.deal.set_accepted()
