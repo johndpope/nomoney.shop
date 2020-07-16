@@ -1,8 +1,10 @@
+""" urls for the user module (/user/*) """
 from django.urls import path
-from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
-from user.views import UserListView, UserCreateView, UserUpdateView, UserDetailView, UserSettingsView
-from config import settings
 from django.urls.conf import include
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
+from user.views import UserListView, UserCreateView, UserUpdateView, \
+    UserDetailView, UserSettingsView
+from config import settings
 
 
 urlpatterns = [
@@ -11,8 +13,12 @@ urlpatterns = [
     path('<int:pk>/', UserDetailView.as_view(), name='user_detail'),
     path('update/', UserUpdateView.as_view(), name='user_update'),
     path('settings/', UserSettingsView.as_view(), name='user_settings'),
-    path('pw/', PasswordChangeView.as_view(template_name='user/user_form.html'), name='user_pw'),
-    path('login/', LoginView.as_view(template_name='user/user_login.html'), name='user_login'),
+    path('pw/', PasswordChangeView.as_view(template_name='user/user_form.html'
+                                           ), name='user_pw'),
+
+    path('login/', LoginView.as_view(template_name='user/user_login.html'
+                                     ), name='user_login'),
+
     path('logout/', LogoutView.as_view(), name='user_logout'),
 ]
 

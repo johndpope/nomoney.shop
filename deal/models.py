@@ -236,8 +236,10 @@ class Deal(models.Model):  # pylint: disable=too-many-public-methods
         :returns: QuerySet of deals
         :raises AttributeError: len(users) must be 2
         """
-        if len(users) != 2:
-            raise AttributeError('A deal has exactly 2 users')
+        #=======================================================================
+        # if len(users) != 2:
+        #     raise AttributeError('A deal has exactly 2 users')
+        #=======================================================================
         return cls.by_users(*users, create=True)
 
     @staticmethod

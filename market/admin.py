@@ -1,3 +1,4 @@
+""" admin settings for market module """
 from django.contrib import admin
 from .models import Market
 

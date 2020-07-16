@@ -1,3 +1,4 @@
+""" urls for the market module (/market/*) """
 from django.urls import path
 from .views import MarketListView, MarketDetailView, MarketCreateView, \
     MarketUpdateView, MarketDeleteView

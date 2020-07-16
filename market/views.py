@@ -1,3 +1,4 @@
+""" views for the market module """
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
@@ -7,7 +8,9 @@ from deal.models import VirtualDeal
 from .models import Market
 
 
+# pylint: disable=too-many-ancestors
 class MarketListView(LoginRequiredMixin, ListView):
+    """ ListView of markets """
     model = Market
     context_object_name = 'markets'
 
@@ -16,6 +19,7 @@ class MarketListView(LoginRequiredMixin, ListView):
 
 
 class MarketDetailView(LoginRequiredMixin, DetailView):
+    """ DetailView of a single market """
     model = Market
 
     def get_context_data(self, **kwargs):
@@ -29,6 +33,7 @@ class MarketDetailView(LoginRequiredMixin, DetailView):
 
 
 class MarketCreateView(LoginRequiredMixin, CreateView):
+    """ CreateView for creating new market """
     model = Market
     fields = ['title', 'users', 'location']
 
@@ -52,6 +57,7 @@ class MarketCreateView(LoginRequiredMixin, CreateView):
 
 
 class MarketUpdateView(LoginRequiredMixin, UpdateView):
+    """ UpdateView to update existing market """
     model = Market
     fields = ['title', 'users', 'location']
 
@@ -75,6 +81,7 @@ class MarketUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class MarketDeleteView(LoginRequiredMixin, DeleteView):
+    """ DeleteView to delete a market """
     model = Market
     template_name = 'market/market_delete.html'
 

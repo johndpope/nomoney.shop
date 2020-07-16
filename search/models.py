@@ -1,12 +1,14 @@
-from user.models import User
-from category.models import Category
+""" business models of the search module """
 from abc import ABC
 from django.db.models import Q
 from django.urls.base import reverse
+from user.models import User
 from listing.models import Push, Pull
+from category.models import Category
 
 
-class Result:
+class Result:  # pylint: disable=too-few-public-methods
+    """ this represents a result submitted as context """
     quality = 0
     title = 'title'
     text = 'text'
@@ -22,6 +24,7 @@ class Result:
 
 
 class SearchBase(ABC):
+    """ Base class for a search module """
     model = None
 
     def __init__(self, search_string):
@@ -30,18 +33,26 @@ class SearchBase(ABC):
         self.objects = self.get_result_objects()
 
     def get_query_set(self):
-        """ returns QuerySet """
+        """
+        :returns: QuerySet(all objects of self.model)
+        """
         return self.model.objects.all()
 
     def get_result_objects(self):
-        """ returns List of Objects """
+        """
+        :returns: list of Result objects
+        """
         return self.get_query_set()  # [Result(obj) for obj in self.query_set]
 
     def get_results(self):
+        """
+        :returns: list of Result objects from self.get_result_objects()
+        """
         return self.get_result_objects()
 
 
 class UserSearch(SearchBase):
+    """ module to search for users """
     model = User
     type = 'user'
 
@@ -66,6 +77,7 @@ class UserSearch(SearchBase):
 
 
 class CategorySearch(SearchBase):
+    """ module to search for categories """
     model = Category
     type = 'category'
 
@@ -88,6 +100,7 @@ class CategorySearch(SearchBase):
 
 
 class PushSearch(SearchBase):
+    """ module to search for pushs """
     model = Push
     type = 'push'
 
@@ -111,24 +124,35 @@ class PushSearch(SearchBase):
 
 
 class PullSearch(PushSearch):
+    """ module to search for pulls """
     model = Pull
     type = 'pull'
 
 
 class SearchEngine:
+    """ this is the interface that initiates the search modules """
     modules = [UserSearch, CategorySearch, PushSearch, PullSearch]
 
     def __init__(self, search_string):
         self.search_string = search_string
 
     def search_modules(self):
+        """ fetches the Result objects of the search modules
+        :returns: dict{module_type: [Results]}
+        """
         results = {}
         for module in self.modules:
             results[module.type] = module(self.search_string).get_results()
         return results
 
     def sort_results(self):
+        """ sorts the results
+        :returns: dict{module_type: [Results]} -> sorted
+        """
         return self.search_modules()
 
     def get_results(self):
+        """ get the results - this ist the method to use from outside
+        :returns: dict{module_type: [Results]}
+        """
         return self.sort_results()
