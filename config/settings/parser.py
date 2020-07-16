@@ -41,21 +41,19 @@ if path.isfile(CONFIG_PATH):
         if 'DEBUG' in _base:
             DEBUG = _base['DEBUG'] == 'True'
         if 'ALLOWED_HOSTS' in _base:
-            ALLOWED_HOSTS = remove_bad_chars(_base['ALLOWED_HOSTS'], '\'[]" ').split(',') or ALLOWED_HOSTS
+            ALLOWED_HOSTS = remove_bad_chars(
+                _base['ALLOWED_HOSTS'], '\'[]" '
+                ).split(',') or ALLOWED_HOSTS
+
     if _parser.has_section('DATABASE'):
         _database = _parser['DATABASE']
-        if 'TYPE' in _database:
-            DB_CONFIG['TYPE'] = str(_database['TYPE']) or DB_CONFIG['TYPE']
-        if 'NAME' in _parser['DATABASE']:
-            DB_CONFIG['NAME'] = str(_database['NAME']) or DB_CONFIG['NAME']
-        if 'USER' in _parser['DATABASE']:
-            DB_CONFIG['USER'] = str(_database['USER']) or DB_CONFIG['USER']
+        for field in ['TYPE', 'NAME', 'USER', 'HOST', 'PORT']:
+            if field in _database:
+                DB_CONFIG[field] = str(_database[field]) or DB_CONFIG[field]
+
         if 'PASSWORD' in _parser['DATABASE']:
             DB_CONFIG['PASSWORD'] = str(_database['PASSWORD']) or DB_CONFIG['PASSWORD']
-        if 'HOST' in _parser['DATABASE']:
-            DB_CONFIG['HOST'] = str(_database['HOST']) or DB_CONFIG['HOST']
-        if 'PORT' in _parser['DATABASE']:
-            DB_CONFIG['PORT'] = str(_database['PORT']) or DB_CONFIG['PORT']
+
     else:
         DB_CONFIG = None
 
