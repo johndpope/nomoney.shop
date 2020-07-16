@@ -158,6 +158,14 @@ class Chat(models.Model):
             return cls.objects.create(type=ChatType.LOBBY)
 
     @classmethod
+    def _create_user_object(cls, *users):
+        chat = cls.objects.create(type=ChatType.USER)
+        for user in users:
+            chat.users.add(user)
+        chat.save()
+        return chat
+
+    @classmethod
     def by_users(cls, *users, create=False):
         """ get chat by user constellation
         :returns: Chat or None
@@ -168,12 +176,8 @@ class Chat(models.Model):
                 return chat
 
         if create:
-            chat = cls.objects.create(type=ChatType.USER)
-            for user in users:
-                chat.users.add(user)
-            chat.save()
+            chat = cls._create_user_object(*users)
             return chat
-
         return None
 
     def __str__(self):

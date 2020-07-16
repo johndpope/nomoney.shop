@@ -240,19 +240,22 @@ class Deal(models.Model):  # pylint: disable=too-many-public-methods
             raise AttributeError('A deal has exactly 2 users')
         return cls.by_users(*users, create=True)
 
+    def _create_feedbacks(self):
+        UserFeedback.objects.create(
+            creator=self.user,
+            user=self.partner,
+            deal=self,
+            )
+        UserFeedback.objects.create(
+            creator=self.partner,
+            user=self.user,
+            deal=self
+            )
+
     def save(self, *args, **kwargs):  # pylint: disable=signature-differs
         models.Model.save(self, *args, **kwargs)
         if self.status == DealStatus.ACCEPTED:
-            UserFeedback.objects.create(
-                creator=self.user,
-                user=self.partner,
-                deal=self,
-                )
-            UserFeedback.objects.create(
-                creator=self.partner,
-                user=self.user,
-                deal=self
-                )
+            self._create_feedbacks()
             bid = self.get_latest_bid()
             for bid_position in bid.positions:
                 push = bid_position.push
