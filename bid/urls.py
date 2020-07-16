@@ -1,6 +1,7 @@
+""" urls for the bid module """
 from django.urls import path
-from bid.views import BidListView, BidCreateView, BidDetailView, BidDeleteView
-from django.views.generic.base import TemplateView
+from .views import BidListView, BidCreateView, BidDetailView, BidDeleteView
+
 
 urlpatterns = [
     path('', BidListView.as_view(), name='bid_list'),

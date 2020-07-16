@@ -1,3 +1,4 @@
+""" views for the bid module """
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, FormView
@@ -10,6 +11,7 @@ from .forms import BidForm
 MODEL = Bid
 
 
+# pylint: disable=too-many-ancestors
 class BidListView(LoginRequiredMixin, ListView):
     """ List Bids of me from or to one partner """
     model = MODEL
@@ -61,11 +63,10 @@ class BidCreateView(LoginRequiredMixin, FormView):
                         bid=bid
                         )
             return redirect('deal_detail', pk=self.deal.pk)
-        else:
-            return self.render_to_response({
-                'push_form': push_form,
-                'pull_form': pull_form,
-                })
+        return self.render_to_response({
+            'push_form': push_form,
+            'pull_form': pull_form,
+            })
 
 
 class BidDetailView(LoginRequiredMixin, DetailView):

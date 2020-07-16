@@ -1,8 +1,7 @@
+""" views of chat module """
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
-from django.views.generic import View
-from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls.base import reverse
 from django.shortcuts import render
@@ -11,18 +10,22 @@ from user.models import User
 from .models import Chat
 from .forms import ChatMessageForm
 
-# chat/views.py
 
 def index(request):
+    """ created in channels tutorial """
     return render(request, 'chat/index.html', {})
 
+
 def room(request, room_name):
+    """ created in channels tutorial """
     return render(request, 'chat/room.html', {
         'room_name': room_name
     })
 
 
+# pylint: disable=too-many-ancestors
 class ChatListView(LoginRequiredMixin, ListView):
+    """ ListView of Chats """
     model = Chat
     context_object_name = 'chats'
 
@@ -41,6 +44,7 @@ class ChatListView(LoginRequiredMixin, ListView):
 
 
 class ChatDetailView(LoginRequiredMixin, DetailView):
+    """ DetailView of single chat """
     model = Chat
     context_object_name = 'chat'
 
@@ -55,6 +59,7 @@ class ChatDetailView(LoginRequiredMixin, DetailView):
 
 
 class ChatUserDetailView(LoginRequiredMixin, DetailView):
+    """ DetailView that gets Chat by chat partner """
     model = Chat
     context_object_name = 'chat'
 
@@ -65,6 +70,7 @@ class ChatUserDetailView(LoginRequiredMixin, DetailView):
 
 
 class ChatCreateView(LoginRequiredMixin, CreateView):
+    """ CreateView to create new chat """
     model = Chat
     fields = ['users']
 
@@ -83,6 +89,7 @@ class ChatCreateView(LoginRequiredMixin, CreateView):
 
 
 class ChatNewMessageView(LoginRequiredMixin, CreateView):
+    """ Create new Chat message with Form """
     form_class = ChatMessageForm
 
     def form_valid(self, form):
@@ -97,12 +104,7 @@ class ChatNewMessageView(LoginRequiredMixin, CreateView):
             ))
 
 
-class ChatAjaxStatusView(LoginRequiredMixin, View):
-    def get(self, request, *args, **kwargs):  # future?
-        import pdb; pdb.set_trace()  # <---------
-        return JsonResponse({'foo': 'bar'})
-
-
 class ChatAjaxView(LoginRequiredMixin, DetailView):
+    """ DetailView of a chat to request with ajax """
     model = Chat
     template_name = 'chat/solo/chat_messages_ajax.html'

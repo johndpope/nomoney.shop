@@ -1,5 +1,6 @@
+""" tests for the chat module """
 from tests_abc import TestCase
 
 
 class ChatTestCase(TestCase):
-    pass
+    """ tests for the chat module """
