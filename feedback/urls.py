@@ -1,3 +1,4 @@
+""" urls for feedback module (/feedback/*) """
 from django.urls import path
 from .views import FeedbackUpdateView, FeedbackDeleteView, FeedbackListView, \
     FeedbackTypeListView

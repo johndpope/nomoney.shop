@@ -1,13 +1,14 @@
+""" views for the listing module """
 from copy import copy
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls.base import reverse_lazy, reverse
 from django.views.generic.base import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from category.models import Category
 from calculator.models import VirtualDeal
 from .models import Push, Pull
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 FIELDS = ['title', 'image', 'category', 'quantity', 'unit', 'description', 'location']
@@ -20,10 +21,13 @@ listing_detail
 
 
 class ListingListView(LoginRequiredMixin, TemplateView):
+    """ List of all listings """
     template_name = 'listing/listing_list.html'
 
 
+# pylint: disable=too-many-ancestors
 class ListingTypeListView(LoginRequiredMixin, ListView):
+    """ List of all listings of a type """
     model = None
     template_name = 'listing/listing_list.html'
 
@@ -36,6 +40,7 @@ class ListingTypeListView(LoginRequiredMixin, ListView):
 
 
 class ListingCreateView(LoginRequiredMixin, CreateView):
+    """ CreateView for creating new listings """
     model, category, type = 3 * [None]
     fields = FIELDS
     template_name = 'listing/listing_form.html'
@@ -69,6 +74,7 @@ class ListingCreateView(LoginRequiredMixin, CreateView):
 
 
 class ListingUpdateView(LoginRequiredMixin, UpdateView):
+    """ UpdateView for updating existing listings """
     model, type = 2 * [None]
     template_name = 'listing/listing_form.html'
     fields = FIELDS
@@ -89,7 +95,8 @@ class ListingUpdateView(LoginRequiredMixin, UpdateView):
         return self.request.GET.get('next', reverse('home'))
 
 
-class ListingDetailView(LoginRequiredMixin, DetailView):  # OK
+class ListingDetailView(LoginRequiredMixin, DetailView):
+    """ DetailView to view a single listing """
     model = None
     template_name = 'listing/listing_detail.html'
     context_object_name = 'listing'
@@ -107,6 +114,7 @@ class ListingDetailView(LoginRequiredMixin, DetailView):  # OK
 
 
 class ListingDeleteView(LoginRequiredMixin, DeleteView):
+    """ DeleteView to delete a listing """
     model = None
     template_name = 'listing/listing_delete.html'
     success_url = reverse_lazy('listing_list')

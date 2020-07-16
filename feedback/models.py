@@ -1,15 +1,22 @@
+""" models for feedback module """
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from config.settings import AUTH_USER_MODEL
 
 
 class FeedbackStatus(models.IntegerChoices):
+    """ Status of a feedback
+    REQUEST - Feedback created by system when finishing a deal
+    SENT - Requested feedback was created by user
+    CANCELED - Requested feedback was canceled by user
+    """
     REQUEST = 0, _('request')
     SENT = 100, _('sent')
     CANCELED = 110, _('canceled')
 
 
 class FeedbackBase(models.Model):
+    """ base class for all kind of feedback """
     creator = models.ForeignKey(
         AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -49,13 +56,20 @@ class FeedbackBase(models.Model):
 
     @property
     def object(self):
+        """ returns the object the feedback was created for
+        :returns: User or Push object
+        """
         return self.user or self.push
 
     @property
     def is_editable(self):
+        """ calculates if the feedback is editable
+        :returns: bool
+        """
         return self.status == FeedbackStatus.REQUEST
 
     def set_sent(self):
+        """ set the status to FeedbackStatus.SENT """
         self.status = FeedbackStatus.SENT
         self.save()
 
@@ -67,6 +81,7 @@ class FeedbackBase(models.Model):
 
 
 class UserFeedback(FeedbackBase):
+    """ Feedback for a user """
     type = 'user'
     user = models.ForeignKey(
         AUTH_USER_MODEL,
@@ -77,10 +92,18 @@ class UserFeedback(FeedbackBase):
 
     @classmethod
     def given_by_user(cls, user):
+        """ userfeedbacks given by user
+        :param user: User to fetch feedbacks of
+        :returns: QuerySet(UserFeedback)
+        """
         return cls.objects.filter(creator__pk=user.pk)
 
     @classmethod
     def taken_by_user(cls, user):
+        """ userfeedbacks taken by user
+        :param user: User to fetch feedbacks of
+        :returns: QuerySet(UserFeedback)
+        """
         return cls.objects.filter(user__pk=user.pk)
 
     class Meta:
@@ -89,15 +112,24 @@ class UserFeedback(FeedbackBase):
 
 
 class PushFeedback(FeedbackBase):
+    """ Feedback for a push """
     type = 'push'
     push = models.ForeignKey('listing.Push', on_delete=models.CASCADE)
 
     @classmethod
     def given_by_user(cls, user):
+        """ pushfeedbacks given by user
+        :param user: User to fetch feedbacks of
+        :returns: QuerySet(PushFeedback)
+        """
         return cls.objects.filter(creator__pk=user.pk)
 
     @classmethod
     def taken_by_user(cls, user):
+        """ pushfeedbacks taken by user
+        :param user: User to fetch feedbacks of
+        :returns: QuerySet(PushFeedback)
+        """
         return cls.objects.filter(push__user__pk=user.pk)
 
     class Meta:

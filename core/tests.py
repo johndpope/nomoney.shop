@@ -1,5 +1,6 @@
+""" tests for the core module """
 from tests_abc import TestCase
 
 
 class CoreTestCase(TestCase):
-    pass
+    """ test case for core module """

@@ -1,5 +1,6 @@
+""" tests for the feedback module """
 from tests_abc import TestCase
 
 
 class FeedbackTestCase(TestCase):
-    pass
+    """ tests for the feedback module """

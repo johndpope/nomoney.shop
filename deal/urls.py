@@ -1,5 +1,7 @@
+""" urls for deal module """
 from django.urls import path
-from .views import DealCreateView, DealDetailView, DealListView, DealUserCreateView, DealAcceptedView
+from .views import DealCreateView, DealDetailView, DealListView, \
+    DealUserCreateView, DealAcceptedView
 
 urlpatterns = [
     path('', DealListView.as_view(), name='deal_list'),

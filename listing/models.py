@@ -1,23 +1,31 @@
+""" models of the listing module """
 from uuid import uuid4
 from itertools import chain
+from statistics import mean
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from config.settings import AUTH_USER_MODEL
 from chat.models import Chat
-from statistics import mean
 
 
 def image_path(instance, _):
+    """ calculate the file path for listing images """
     return 'listing/{}/{}'.format(instance.type, uuid4())
 
 
 class ListingStatus(models.IntegerChoices):
+    """ Status of listings
+    CREATED - normal status
+    PAUSED - paused listing should be excluded from all calculations
+    DELETED - deleted listing should be excluded from all calculations
+    """
     CREATED = 0, _('created')
     PAUSED = 10, _('paused')
     DELETED = 110, _('deleted')
 
 
 class Unit(models.Model):
+    """ unit model """
     title = models.CharField(
         max_length=20,
         verbose_name=_('title'),
@@ -36,6 +44,7 @@ class Unit(models.Model):
 
 
 class ListingBase(models.Model):
+    """ Base model for listing types (push and pull) """
     user = models.ForeignKey(
         AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -96,22 +105,36 @@ class ListingBase(models.Model):
 
     @property
     def opposite_class(self):
+        """
+        :returns: Pull or Push class
+        """
         return {'push': Pull, 'pull': Push}.get(self.type)
 
     def get_chat_with_partner(self, partner):
+        """ get the listing related chat
+        :param partner: User that want to chat about this listing
+        :returns: Chat object
+        """
         return Chat.by_users(self.user, partner, create=True)
 
     def get_matches(self):
+        """ calculates matches for this listing
+        :returns: QuerySet(Listing) while listing is Push or Pull object
+        """
         cls = self.opposite_class
         return cls.objects.filter(category=self.category
                                   ).exclude(user=self.user)
 
     @staticmethod
     def get_all():
+        """ gets all pushs and pulls
+        :returns: list(Pushs + Pulls)
+        """
         return list(chain(Push.objects.all(), Pull.objects.all()))
 
     # pylint: disable=signature-differs, unused-argument
     def delete(self, *args, **kwargs):
+        """ when a listing is deleted, it will be only marked as DELETED """
         self.status = ListingStatus.DELETED
         self.save()
 
@@ -121,8 +144,8 @@ class ListingBase(models.Model):
     def __eq__(self, other):
         try:
             return self.category == other.category
-        except AttributeError as e:
-            print(e)
+        except AttributeError as error:
+            print(error)
 
     def __str__(self):
         # pylint: disable=no-member
@@ -133,19 +156,27 @@ class ListingBase(models.Model):
 
 
 class Push(ListingBase):
+    """ A push is a good or service that is provided to the network """
     type = 'push'
 
     @property
     def score(self):
+        """ the score is calculated from the already given feedbacks
+        :returns: int score or None
+        """
         scores = []
         for feedback in self.pushfeedback_set.all():
             if feedback.score:
                 scores.append(feedback.score)
         if scores:
             return mean(scores)
+        return None
 
     @property
     def feedbacks(self):
+        """
+        :returns: all feedbacks for this push
+        """
         return self.pushfeedback_set.all()
 
     class Meta:
@@ -154,6 +185,7 @@ class Push(ListingBase):
 
 
 class Pull(ListingBase):
+    """ A push is a good or service that is requested from the network """
     type = 'pull'
 
     class Meta:

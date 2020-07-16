@@ -1,22 +1,22 @@
-from category.models import Category
+""" tests for the listing module """
 from django.db.models.query import QuerySet
 from tests_abc import TestCase
-from .models import Push, Pull
-from listing.models import Unit
+from category.models import Category
+from .models import Push, Pull, Unit
 
 
-class UserTestCase(TestCase):
+class ListingTestCase(TestCase):
+    """ tests for the listing module """
 
     def test_user_db(self):
+        """ tests for the listing module with user database parts """
         self.assertEqual(
             len(Push.objects.all()) + len(Pull.objects.all()),
             self.testdb.LISTING_COUNT
             )
 
-
-class CategoryTestCase(TestCase):
-
     def test_category_db(self):
+        """ test category related parts """
         category = None
         for category in Category.objects.all():
             if category.parent:
@@ -28,6 +28,7 @@ class CategoryTestCase(TestCase):
         self.assertIsInstance(category.path, str)
 
     def test_listing_form(self):
+        """ test listing form parts """
         url = 'listing_create'
         data = {
             'title': 'testtitle',

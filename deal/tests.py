@@ -1,10 +1,14 @@
+""" tests for the deal module """
 from tests_abc import TestCase
 from deal.models import Deal, DealStatus
 from user.models import User
 
 
 class DealTestCase(TestCase):
+    """ test cases for deal module """
+
     def test_deal_views(self):
+        """ test deal views """
         self.anon.get302('deal_list')
         self.user.get200('deal_list')
 
@@ -23,7 +27,8 @@ class DealTestCase(TestCase):
         self.user.post302('deal_user_create', url_args=self.demo1.pk, data=data)
 
     def test_deal_model(self):
-        # TODO Change procedure to a fresh started deal
+        """ test deal models """
+        # TO DO Change procedure to a fresh started deal
         self.assertEqual(self.deal.status, DealStatus.PLACED)
         self.deal.set_placed()
         self.assertEqual(self.deal.status, DealStatus.PLACED)
@@ -54,4 +59,3 @@ class DealTestCase(TestCase):
             self.deal.can_bid(self.deal.user1),
             self.deal.can_bid(self.deal.user2)
             )
-

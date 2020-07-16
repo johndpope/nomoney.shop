@@ -1,9 +1,11 @@
+""" models for the location module """
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from config.settings.base import AUTH_USER_MODEL
 
 
 class Location(models.Model):
+    """ a location can be a location of push, pull or market (later deal) """
     title = models.CharField(
         max_length=20,
         verbose_name=_('title'),
@@ -33,18 +35,30 @@ class Location(models.Model):
 
     @property
     def deals(self):
+        """ Deals of this location
+        :returns: QuerySet(Deal)
+        """
         return self.deal_set.all()
 
     @property
     def markets(self):
+        """ markets of this location
+        :returns: QuerySet(Market)
+        """
         return self.market_set.all()
 
     @property
     def pushs(self):
+        """ pushs of this location
+        :returns: QuerySet(Push)
+        """
         return self.push_set.all()
 
     @property
     def pulls(self):
+        """ pulls of this location
+        :returns: QuerySet(Pull)
+        """
         return self.pull_set.all()
 
     def __str__(self):

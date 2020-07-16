@@ -1,3 +1,4 @@
+""" urls of listing module """
 from django.urls import path
 from .views import ListingDetailView, ListingCreateView, ListingUpdateView, \
     ListingDeleteView, ListingListView, ListingTypeListView

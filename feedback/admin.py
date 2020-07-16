@@ -1,3 +1,4 @@
+""" admin settings for feedback module """
 from django.contrib import admin
 from .models import PushFeedback, UserFeedback
 
