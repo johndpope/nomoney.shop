@@ -1,6 +1,6 @@
 """ views for the feedback module """
 from operator import attrgetter
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, View
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, UpdateView
 from django import forms
@@ -92,18 +92,6 @@ class FeedbackListView(LoginRequiredMixin, TemplateView):
         return context
 
 
-class FeedbackDetailView(LoginRequiredMixin, DetailView):
-    """ DetailView of a single feedback """
-    model = None
-    type_ = None
-    template_name = 'feedback/feedback_detail.html'
-
-    def setup(self, request, *args, **kwargs):
-        self.type_ = kwargs.get('type')
-        self.model = {'user': UserFeedback, 'push': PushFeedback}.get(self.type_)
-        DetailView.setup(self, request, *args, **kwargs)
-
-
 class FeedbackUpdateView(LoginRequiredMixin, UpdateView):
     """ UpdateView to update a feedback """
     model = None
@@ -139,8 +127,8 @@ class FeedbackUpdateView(LoginRequiredMixin, UpdateView):
         return reverse('feedback_list')
 
 
-class FeedbackDeleteView(LoginRequiredMixin, DeleteView):
-    """ DeleteView to delete a feedback """
+class FeedbackDetailDeleteBase(LoginRequiredMixin, View):
+    """ Baseview for Feedback Detail and Delete View """
     model = None
     type_ = None
     template_name = 'feedback/feedback_detail.html'
@@ -148,4 +136,12 @@ class FeedbackDeleteView(LoginRequiredMixin, DeleteView):
     def setup(self, request, *args, **kwargs):
         self.type_ = kwargs.get('type')
         self.model = {'user': UserFeedback, 'push': PushFeedback}.get(self.type_)
-        DeleteView.setup(self, request, *args, **kwargs)
+        DetailView.setup(self, request, *args, **kwargs)
+
+
+class FeedbackDetailView(FeedbackDetailDeleteBase, DetailView):
+    """ DetailView of a single feedback """
+
+
+class FeedbackDeleteView(FeedbackDetailDeleteBase, DeleteView):
+    """ DeleteView to delete a feedback """

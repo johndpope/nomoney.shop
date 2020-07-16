@@ -67,6 +67,8 @@ class UserTestCase(TestCase):
         self.assertEqual(self.anon.post(reverse('user_logout')).status_code, 302)
         self.assertEqual(self.anon.get(reverse('user_update')).status_code, 302)
 
+    def test_urls_update_detail(self):
+        """ test update and detail urls """
         # user_update
         user = User.objects.get(username=TestDB.USER_NAME)
         kwargs = {'pk': user.pk}
