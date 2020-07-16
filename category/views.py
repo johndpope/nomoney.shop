@@ -1,3 +1,4 @@
+""" views of the category module """
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.detail import DetailView
@@ -6,6 +7,7 @@ from django.urls.base import reverse
 from .models import Category, CategoryStatus
 
 
+# pylint: disable=too-many-ancestors
 class CategoryListView(LoginRequiredMixin, ListView):
     """ list categories in tree form """
     model = Category
@@ -24,6 +26,7 @@ class CategoryListView(LoginRequiredMixin, ListView):
 
 
 class CategoryCreateView(LoginRequiredMixin, CreateView):
+    """ CreateView for new category """
     model = Category
     template_name = 'category/category_form.html'
     fields = ['parent', 'title', 'description']
@@ -33,11 +36,13 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
 
 
 class CategoryDetailView(LoginRequiredMixin, DetailView):
+    """ DetailView of single category - this view ajax loads the listings? """
     model = Category
     template_name = 'category/category_detail.html'
 
 
 class CategoryUpdateView(LoginRequiredMixin, UpdateView):
+    """ UpdateView of a category """
     model = Category
     template_name = 'category/category_form.html'
     fields = ['parent', 'title', 'description']
@@ -52,5 +57,6 @@ class CategoryUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class CategoryAjaxView(LoginRequiredMixin, DetailView):
+    """ DetailView for single category (Not used now) """
     model = Category
     template_name = 'category/solo/category_detail.html'

@@ -1,3 +1,4 @@
+""" urls for the category module """
 from django.urls import path
 from .views import CategoryListView, CategoryCreateView, CategoryDetailView, \
     CategoryUpdateView, CategoryAjaxView
@@ -9,4 +10,3 @@ urlpatterns = [
     path('<int:pk>/update/', CategoryUpdateView.as_view(), name='category_update'),
     path('ajax/<int:pk>/', CategoryAjaxView.as_view(), name='category_details_ajax'),
 ]
-

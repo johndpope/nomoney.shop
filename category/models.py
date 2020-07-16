@@ -1,9 +1,16 @@
-from django.utils.translation import gettext_lazy as _
+""" models of the category module """
 from itertools import chain
+from django.utils.translation import gettext_lazy as _
 from django.db import models
 
 
 class CategoryStatus(models.IntegerChoices):
+    """ Status of the Category object
+    UNPROVED - New created category, not reviewed by admin
+    PROVED - Category was proved by the admin
+    HIDDEN - Category is hidden but active
+    DELETED - Category is deleted (inactive)
+    """
     UNPROVED = 0, _('unproved')
     PROVED = 10, _('proved')
     HIDDEN = 20, _('hidden')
@@ -11,6 +18,7 @@ class CategoryStatus(models.IntegerChoices):
 
 
 class Category(models.Model):
+    """ Categories are used for comparing services and goods """
     parent = models.ForeignKey(
         'self',
         null=True,
@@ -35,6 +43,9 @@ class Category(models.Model):
 
     @property
     def breadcrumbs(self):
+        """ Path of this category with its parents for creating breadcrumbs
+        :returns: list of parents of this category
+        """
         breadcrumbs = [self]
         obj = self
         while obj.parent:
@@ -45,26 +56,30 @@ class Category(models.Model):
 
     @property
     def pushs(self):
+        """ pushs of this category
+        :returns: QuerySet of push objects
+        """
         return self.push_set.all()
 
     @property
     def pulls(self):
+        """ pulls of this category
+        :returns: QuerySet of pull objects
+        """
         return self.pull_set.all()
 
     @property
-    def count_pushs(self):
-        return len(self.pushs)
-
-    @property
-    def count_pulls(self):
-        return len(self.pushs)
-
-    @property
     def listings(self):
+        """ All listings of this category (pushs and pulls)
+        :returns: list of push+pulls
+        """
         return list(chain(self.pushs, self.pulls))
 
     @property
     def path(self):
+        """ Category name as path (DEPRECATED)
+        :returns: str
+        """
         obj = self
         title = self.title
         while obj.parent:
@@ -74,14 +89,23 @@ class Category(models.Model):
 
     @classmethod
     def get_unproved(cls):
+        """ all unproved categories
+        :returns: QuerySet of unproved categories
+        """
         return cls.objects.filter(status=CategoryStatus.UNPROVED)
 
     @classmethod
     def get_hidden(cls):
+        """ all hidden categories
+        :returns: QuerySet of hidden categories
+        """
         return cls.objects.filter(status=CategoryStatus.HIDDEN)
 
     @classmethod
     def get_deleted(cls):
+        """ all deleted categories
+        :returns: QuerySet of deleted categories
+        """
         return cls.objects.filter(status=CategoryStatus.DELETED)
 
     def __lt__(self, other):

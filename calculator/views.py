@@ -1,3 +1,4 @@
+""" views for the calculator module """
 from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from chat.models import Chat
@@ -5,6 +6,7 @@ from .models import VirtualDeal
 
 
 class CalculatorView(TemplateView):
+    """ Main view of the calculator """
     template_name = 'calculator/calculator.html'
 
     def get_context_data(self, **kwargs):
@@ -14,6 +16,7 @@ class CalculatorView(TemplateView):
 
 
 class AjaxDirectDealsView(LoginRequiredMixin, TemplateView):
+    """ ajax view for direct deals """
     template_name = 'calculator/ajax/ajax_direct_deals.html'
 
     def get_context_data(self, **kwargs):
@@ -27,6 +30,7 @@ class AjaxDirectDealsView(LoginRequiredMixin, TemplateView):
 
 
 class AjaxTriangularDealsView(LoginRequiredMixin, TemplateView):
+    """ ajax view for triangular deals """
     template_name = 'calculator/ajax/ajax_triangular_deals.html'
 
     def get_context_data(self, **kwargs):
@@ -35,6 +39,7 @@ class AjaxTriangularDealsView(LoginRequiredMixin, TemplateView):
 
 
 class AjaxSpeculativeDealsView(LoginRequiredMixin, TemplateView):
+    """ ajax view for speculative deals """
     template_name = 'calculator/ajax/ajax_speculative_deals.html'
 
     def get_context_data(self, **kwargs):

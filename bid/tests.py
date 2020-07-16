@@ -1,5 +1,6 @@
+""" Tests for the bid module """
 from tests_abc import TestCase
 
 
 class BidTestCase(TestCase):
-    pass
+    """ prepared for implementing the tests """

@@ -1,11 +1,18 @@
+""" models for chat module """
 from django.utils.translation import gettext_lazy as _
+from django.dispatch.dispatcher import receiver
 from django.db.models.signals import post_save
 from django.db import models
 from config.settings import AUTH_USER_MODEL
-from django.dispatch.dispatcher import receiver
 
 
 class ChatType(models.IntegerChoices):
+    """ Type of the Chat
+    DEFAULT - No chat should become that
+    USER - Chat with user constellation as selector
+    MARKET - Chat that is created by market (dynamic user constellation)
+    LOBBY - One single chat that is used by all (no/dynamic user constellation)
+    """
     DEFAULT = 0, _('default')
     USER = 10, _('user')
     MARKET = 20, _('market')
@@ -13,6 +20,10 @@ class ChatType(models.IntegerChoices):
 
     @classmethod
     def by_number(cls, number):
+        """ select chat type by number
+        :param number: integer of the chat type to select
+        :returns: ChatType.X
+        """
         return cls(number)
 
 
@@ -47,16 +58,23 @@ class ChatMessage(models.Model):
 
     @property
     def previous(self):
+        """ get previous chat message
+        :returns: ChatMessage or None
+        """
         message_list = list(ChatMessage.objects.filter(chat=self.chat))
         index = message_list.index(self)
         if index:
             return message_list[index-1]
+        return None
 
     def set_seen_by(self, user):
+        """ set message seen by
+        :param user: user object that accessed this message
+        """
         self.unseen_by.remove(user)
         self.save()
 
-    def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs):  # pylint: disable=signature-differs
         super().save(*args, **kwargs)
 
     class Meta:
@@ -66,7 +84,9 @@ class ChatMessage(models.Model):
 
 
 @receiver(post_save, sender=ChatMessage)
+# pylint: disable=unused-argument
 def create_user_config(sender, instance, created, **kwargs):
+    """ add all users that should see the chat into unseen_by """
     if created:
         for user in instance.chat.get_users():
             instance.unseen_by.add(user)
@@ -99,24 +119,39 @@ class Chat(models.Model):
 
     @property
     def type_str(self):
+        """ get type as string instead of integer
+        :returns: str
+        """
         return ChatType.by_number(self.type).label
 
     @property
     def messages(self):
+        """ get messages of this chat
+        :returns: QuerySet of ChatMessage objects
+        """
         return self.chatmessage_set.all()
 
     def all_messages_seen_by(self, user):
+        """ mark all messages as seen by user
+        :param user: User object that has seen all chat messages
+        """
         for message in self.messages:
             if user in message.unseen_by.all():
                 message.set_seen_by(user)
 
     def get_users(self):
+        """ get users of this chat
+        :returns: QuerySet of Users
+        """
         if self.type == ChatType.MARKET:
             return self.market.users.all()
         return self.users.all()
 
     @classmethod
     def get_lobby(cls):
+        """ get singleton lobby chat
+        :returns: Chat object
+        """
         try:
             return cls.objects.get(type=ChatType.LOBBY)
         except Chat.DoesNotExist:
@@ -124,6 +159,9 @@ class Chat(models.Model):
 
     @classmethod
     def by_users(cls, *users, create=False):
+        """ get chat by user constellation
+        :returns: Chat or None
+        """
         chats = cls.objects.filter(type=ChatType.USER)
         for chat in chats:
             if set(chat.users.all()) == set(users):
