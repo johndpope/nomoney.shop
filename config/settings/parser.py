@@ -1,16 +1,17 @@
 from os import path, environ
+from snakelib.string import remove_bad_chars
 from configparser import ConfigParser
 from django.core.management.utils import get_random_secret_key
 from . import BASE_DIR
 
 CONFIG_PATH = path.join(BASE_DIR, '.config.txt')
 
-#[BASE]
+# [BASE]
 SECRET_KEY = get_random_secret_key()
 DEBUG = False
 ALLOWED_HOSTS = ['127.0.0.1']
 
-#[DATABASE]
+# [DATABASE]
 DB_CONFIG = {
     'ENGINE': 'django.db.backends.postgresql',
     'NAME': '',
@@ -24,7 +25,7 @@ if 'SECRET_KEY' in environ.keys():
     SECRET_KEY = str(environ.get('SECRET_KEY'))
 
 if 'DEBUG' in environ.keys():
-    DEBUG = eval(environ.get('DEBUG'))
+    DEBUG = environ.get('DEBUG') == 'True'
 
 if 'ALLOWED_HOSTS' in environ.keys():
     ALLOWED_HOSTS = environ.get('ALLOWED_HOSTS').split(',')
@@ -38,10 +39,10 @@ if path.isfile(CONFIG_PATH):
         SECRET_KEY = str(_base.get('SECRET_KEY') or
                          get_random_secret_key())
         if 'DEBUG' in _base:
-            DEBUG = eval(_base['DEBUG'])
+            DEBUG = _base['DEBUG'] == 'True'
         if 'ALLOWED_HOSTS' in _base:
-            ALLOWED_HOSTS = eval(_base['ALLOWED_HOSTS']) or ALLOWED_HOSTS
-
+            ALLOWED_HOSTS = remove_bad_chars(_base['ALLOWED_HOSTS'], '\'[]"').split(',') or ALLOWED_HOSTS
+            print(ALLOWED_HOSTS)
     if _parser.has_section('DATABASE'):
         _database = _parser['DATABASE']
         if 'TYPE' in _database:

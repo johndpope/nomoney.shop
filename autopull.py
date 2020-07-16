@@ -2,7 +2,7 @@ import subprocess as sp
 
 
 def execute(cmd, directory):
-    o, e = sp.Popen(# o = output, e = error
+    o, _ = sp.Popen(  # o = output, e = error
         cmd,
         shell=True,
         stdout=sp.PIPE,

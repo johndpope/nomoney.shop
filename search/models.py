@@ -26,6 +26,8 @@ class Result:  # pylint: disable=too-few-public-methods
 class SearchBase(ABC):
     """ Base class for a search module """
     model = None
+    type = None
+    url_name = None
 
     def __init__(self, search_string):
         self.search_string = search_string
@@ -42,7 +44,14 @@ class SearchBase(ABC):
         """
         :returns: list of Result objects
         """
-        return self.get_query_set()  # [Result(obj) for obj in self.query_set]
+        results = []
+        for obj in self.get_query_set():
+            result = Result(obj)
+            result.type = self.type
+            result.title = obj.username
+            result.url = reverse(self.url_name, args=(obj.pk,))
+            results.append(result)
+        return results
 
     def get_results(self):
         """
@@ -55,6 +64,7 @@ class UserSearch(SearchBase):
     """ module to search for users """
     model = User
     type = 'user'
+    url_name = 'user_detail'
 
     def get_query_set(self):
         result = self.model.objects.filter(
@@ -65,21 +75,12 @@ class UserSearch(SearchBase):
             )
         return result
 
-    def get_result_objects(self):
-        results = []
-        for obj in self.get_query_set():
-            result = Result(obj)
-            result.type = self.type
-            result.title = obj.username
-            result.url = reverse('user_detail', args=(obj.pk,))
-            results.append(result)
-        return results
-
 
 class CategorySearch(SearchBase):
     """ module to search for categories """
     model = Category
     type = 'category'
+    url_name = 'category_detail'
 
     def get_query_set(self):
         result = self.model.objects.filter(
@@ -88,21 +89,12 @@ class CategorySearch(SearchBase):
             )
         return result
 
-    def get_result_objects(self):
-        results = []
-        for obj in self.get_query_set():
-            result = Result(obj)
-            result.type = self.type
-            result.title = obj.title
-            result.url = reverse('category_detail', args=(obj.pk,))
-            results.append(result)
-        return results
-
 
 class PushSearch(SearchBase):
     """ module to search for pushs """
     model = Push
     type = 'push'
+    url_name = 'category_detail'
 
     def get_query_set(self):
         result = self.model.objects.filter(
@@ -111,16 +103,6 @@ class PushSearch(SearchBase):
             Q(category__title__icontains=self.search_string)
             )
         return result
-
-    def get_result_objects(self):
-        results = []
-        for obj in self.get_query_set():
-            result = Result(obj)
-            result.type = self.type
-            result.title = obj.title
-            result.url = reverse('category_detail', args=(obj.pk,))
-            results.append(result)
-        return results
 
 
 class PullSearch(PushSearch):
