@@ -51,11 +51,16 @@ Have a look at the [documentation](https://nomoneyshop.readthedocs.io/en/latest/
 
 
 ### Prerequisites
-It should work with lower Python versions but tests are running on 3.5 and 3.8.
+Tests are running on 3.6, 3.7 and 3.8.
+This project needs Django 3.0+ (Python 3.6+) because of using django.db.models.IntegerChoices.
 
 This project makes use of the following libraries:
-* [Django](https://docs.djangoproject.com/en/) - The web framework for perfectionists with deadlines.
-
+* [Django](https://github.com/django/django/) - The web framework for perfectionists with deadlines
+* [Django-PWA](https://github.com/silviolleite/django-pwa/) - Looks like an app, feels like an app, but IS NOT an app
+* [Channels](https://github.com/django/channels/) - Developer-friendly asynchrony for Django 
+* [Bootstrap](https://github.com/twbs/bootstrap/) - The most popular HTML, CSS, and JS library in the world.
+* [Leaflet](https://github.com/Leaflet/Leaflet/) - JavaScript library for mobile-friendly interactive maps
+* [Font Awesome](https://github.com/FortAwesome/Font-Awesome/) -  The iconic SVG, font, and CSS toolkit 
 
 ### Installing
 Local install running the development server:
@@ -68,48 +73,29 @@ source venv/bin/activate
 
 pip install -r requirements.txt
 
-python3 manage.py createsuperuser
 python3 manage.py migrate
+python3 manage.py createsuperuser
 python3 manage.py runserver
 ```
 
-After that go into config/settings directory. 
-Copy data_sample.py to data.py, open and modify the data inside.
-
-
-You can install the latest release from pip:
-```
-pip install nomoney.shop
-```
-
-
-### Short example
-```python
-...
-```
+Rename sample.config.txt to .config.txt and enter your Data.
 
 
 ## Running the tests
-Rename 'secrets.sample.py' in tests directory to 'secrets.py' and include your e-mail account for testing.
-Then run this inside root directory:
 ```
-...
+coverage run --source='.' manage.py test && coverage report -m --skip-covered
 ```
-or run it with coverage:
-```
-...
-```
+
 
 
 ### And coding style tests
-Code style is not finished, mostly because of missing docstrings.
 ```
-...
+pylint --load-plugins pylint_django ./*/*.py
 ```
 
 
 ## Deployment
-This project is not ready to be deployed productive
+This project is deployed productive at [nomoney.shop](https://nomoney.shop)
 
 
 ## Contributing
