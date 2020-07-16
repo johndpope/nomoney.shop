@@ -2,6 +2,7 @@
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.db.models import Q
+from abc import ABC, ABCMeta
 from snakelib.list import intersection
 from config.settings import AUTH_USER_MODEL
 from feedback.models import PushFeedback, UserFeedback
@@ -23,8 +24,7 @@ class DealStatus(models.IntegerChoices):
     CANCELED = 110, _('canceled')
 
 
-class Deal(models.Model):  # pylint: disable=too-many-public-methods
-    """ deal is an exchange case """
+class DealBase(models.Model):
     user1 = models.ForeignKey(
         AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -61,16 +61,6 @@ class Deal(models.Model):  # pylint: disable=too-many-public-methods
     _level = None
     _quality = None
 
-    def set_accepted(self):
-        """ set this deal status to accepted """
-        self.status = DealStatus.ACCEPTED
-        self.save()
-
-    def set_placed(self):
-        """ set this deal status to placed """
-        self.status = DealStatus.PLACED
-        self.save()
-
     @property
     def user(self):
         """ return the user of this deal. it recognizes pov_user
@@ -88,14 +78,6 @@ class Deal(models.Model):  # pylint: disable=too-many-public-methods
         if self.user == self.user2:
             return self.user1
         return self.user2
-
-    def set_pov(self, pov_user):
-        """ sets the pov_user ("point-of-view-user")
-        :param pov_user: User that is the user that acesses the deal as main user
-        :returns: self
-        """
-        self.pov_user = pov_user
-        return self
 
     @property
     def chat(self):
@@ -142,6 +124,34 @@ class Deal(models.Model):  # pylint: disable=too-many-public-methods
         """
         # pylint: disable=no-member
         return list(intersection(self.partner.pulls, self.user.pushs))
+
+    class Meta:
+        abstract = True
+        get_latest_by = ['pk']
+        verbose_name = _('deal')
+        verbose_name_plural = _('deals')
+
+
+class Deal(DealBase):  # pylint: disable=too-many-public-methods
+    """ deal is an exchange case """
+
+    def set_accepted(self):
+        """ set this deal status to accepted """
+        self.status = DealStatus.ACCEPTED
+        self.save()
+
+    def set_placed(self):
+        """ set this deal status to placed """
+        self.status = DealStatus.PLACED
+        self.save()
+
+    def set_pov(self, pov_user):
+        """ sets the pov_user ("point-of-view-user")
+        :param pov_user: User that is the user that acesses the deal as main user
+        :returns: self
+        """
+        self.pov_user = pov_user
+        return self
 
     @property
     def level(self):
@@ -277,7 +287,3 @@ class Deal(models.Model):  # pylint: disable=too-many-public-methods
     def __str__(self):
         return '{} vs. {}'.format(self.user1, self.user2)
 
-    class Meta:
-        get_latest_by = ['pk']
-        verbose_name = _('deal')
-        verbose_name_plural = _('deals')
