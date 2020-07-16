@@ -1,135 +1,9 @@
 """ models of deal module """
-from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.db.models import Q
-from abc import ABC, ABCMeta
-from snakelib.list import intersection
-from config.settings import AUTH_USER_MODEL
 from feedback.models import PushFeedback, UserFeedback
-from chat.models import Chat
-
-
-class DealStatus(models.IntegerChoices):
-    """ Status of a deal
-    VIRTUAL - default, not used so far
-    STARTET - deal is started
-    PLACED - deal has placed bids
-    ACCEPTED - deal is accepted
-    CANCELED - deal is canceled
-    """
-    VIRTUAL = 0, _('virtual')
-    STARTED = 10, _('started')
-    PLACED = 20, _('placed')
-    ACCEPTED = 100, _('accepted')
-    CANCELED = 110, _('canceled')
-
-
-class DealBase(models.Model):
-    user1 = models.ForeignKey(
-        AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name='user1_deals',
-        verbose_name=_('user'),
-        )
-    user2 = models.ForeignKey(
-        AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name='user2_deals',
-        verbose_name=_('user'),
-        )
-    market = models.ForeignKey(
-        'market.Market',
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-        verbose_name=_('market'),
-        )
-    status = models.PositiveSmallIntegerField(
-        default=DealStatus.STARTED,
-        choices=DealStatus.choices,
-        verbose_name=_('status'),
-        )
-    location = models.ForeignKey(
-        'location.Location',
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True,
-        verbose_name=_('location'),
-        )
-
-    pov_user = None  # "point-of-view-user"
-    _level = None
-    _quality = None
-
-    @property
-    def user(self):
-        """ return the user of this deal. it recognizes pov_user
-        :returns: User1 or pov_user
-        """
-        if self.pov_user and self.pov_user == self.user2:
-            return self.user2
-        return self.user1
-
-    @property
-    def partner(self):
-        """ return the partner of this deal. it recognizes pov_user
-        :returns: User2 or not pov_user
-        """
-        if self.user == self.user2:
-            return self.user1
-        return self.user2
-
-    @property
-    def chat(self):
-        """ returns the chat according to the users
-        :returns: Chat object of user1 and user2
-        """
-        return Chat.by_users(self.user1, self.user2, create=True)
-
-    @property
-    def bids(self):
-        """ bids for this deal
-        :returns: Bid object
-        """
-        return self.bid_set.all()
-
-    @property
-    def pushs(self):
-        """ pushs of this deal
-        :returns: list of intersecting pushs of pov_user
-        """
-        # pylint: disable=no-member
-        return list(intersection(self.user.pushs, self.partner.pulls))
-
-    @property
-    def pulls(self):
-        """ pulls of this deal
-        :returns: list of intersecting pulls of pov_user
-        """
-        # pylint: disable=no-member
-        return list(intersection(self.user.pulls, self.partner.pushs))
-
-    @property
-    def partner_pushs(self):
-        """ pushs of this deal
-        :returns: list of intersecting pushs of pov_user's partner
-        """
-        # pylint: disable=no-member
-        return list(intersection(self.partner.pushs, self.user.pulls))
-
-    @property
-    def partner_pulls(self):
-        """ pulls of this deal
-        :returns: list of intersecting pulls of pov_user's partner
-        """
-        # pylint: disable=no-member
-        return list(intersection(self.partner.pulls, self.user.pushs))
-
-    class Meta:
-        abstract = True
-        get_latest_by = ['pk']
-        verbose_name = _('deal')
-        verbose_name_plural = _('deals')
+from .deal_status import DealStatus
+from .deal_base import DealBase
 
 
 class Deal(DealBase):  # pylint: disable=too-many-public-methods
@@ -262,19 +136,21 @@ class Deal(DealBase):  # pylint: disable=too-many-public-methods
             deal=self
             )
 
+    def _iterate_bidpositions(self, bid):
+        for bid_position in bid.positions:
+            push = bid_position.push
+            creator = self.user1 if self.user2 == push.user else self.user2
+            PushFeedback.objects.create(
+                push=push,
+                creator=creator,
+                deal=self
+                )
+
     def save(self, *args, **kwargs):  # pylint: disable=signature-differs
         models.Model.save(self, *args, **kwargs)
         if self.status == DealStatus.ACCEPTED:
             self._create_feedbacks()
-            bid = self.get_latest_bid()
-            for bid_position in bid.positions:
-                push = bid_position.push
-                creator = self.user1 if self.user2 == push.user else self.user2
-                PushFeedback.objects.create(
-                    push=push,
-                    creator=creator,
-                    deal=self
-                    )
+            self._iterate_bidpositions(self.get_latest_bid())
 
     def __eq__(self, other):
         if not isinstance(self, other.__class__):
