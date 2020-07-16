@@ -15,11 +15,12 @@ class VirtualDeal(Deal):
         :returns: list of deals
         """
         deals = []
-        for user1, user2 in combinations(users, 2):
-            if user1 and user2:
-                if me_ and user2 == me_:
-                    user1, user2 = user2, user1
-                deals.append(cls.by_user(user1, user2, level=0))
+        combis = [combi for combi in combinations(users, 2)
+                  if combi[0] and combi[1]]
+        for user1, user2 in combis:
+            if me_ and user2 == me_:
+                user1, user2 = user2, user1
+            deals.append(cls.by_user(user1, user2, level=0))
         return deals
 
     @staticmethod
