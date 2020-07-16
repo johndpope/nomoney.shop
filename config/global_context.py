@@ -1,3 +1,4 @@
+""" global context processor """
 from config.settings import VERSION, NAME
 
 

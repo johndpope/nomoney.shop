@@ -1,3 +1,4 @@
+""" urls for core module - these are the root urls """
 from django.urls import path
 from .views import AboutView, DashboardHomeView, DonateView, TermsView, ImpressumView
 

@@ -1,25 +1,31 @@
+""" views of the core module """
 from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from chat.models import Chat
 
 
 class AboutView(TemplateView):
+    """ /about/ """
     template_name = 'sites/about.html'
 
 
 class DonateView(TemplateView):
+    """ /donate/ """
     template_name = 'sites/donate.html'
 
 
 class TermsView(TemplateView):
+    """ /terms-and-conditions/ """
     template_name = 'sites/terms.html'
 
 
 class ImpressumView(TemplateView):
+    """ /impressum/ """
     template_name = 'sites/impressum.html'
 
 
 class DashboardHomeView(LoginRequiredMixin, TemplateView):
+    """ / """
     template_name = 'dashboard/dashboard_home.html'
 
     def get_context_data(self, **kwargs):

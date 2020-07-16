@@ -1,3 +1,4 @@
+""" admin settings for location module """
 from django.contrib import admin
 from .models import Location
 

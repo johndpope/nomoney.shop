@@ -1,6 +1,8 @@
+""" urls for location module """
 from django.urls import path
 from .views import LocationCreateView, LocationDeleteView, LocationDetailView,\
     LocationListView, LocationUpdateView
+
 
 urlpatterns = [
     path('', LocationListView.as_view(), name='location_list'),

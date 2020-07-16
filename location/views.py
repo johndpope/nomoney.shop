@@ -1,3 +1,4 @@
+""" views of the location module """
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
@@ -6,7 +7,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Location
 
 
+# pylint: disable=too-many-ancestors
 class LocationListView(LoginRequiredMixin, ListView):
+    """ ListView of locations """
     model = Location
     context_object_name = 'locations'
 
@@ -15,11 +18,13 @@ class LocationListView(LoginRequiredMixin, ListView):
 
 
 class LocationDetailView(LoginRequiredMixin, DetailView):
+    """ DetailView of a single location """
     model = Location
     context_object_name = 'location'
 
 
 class LocationCreateView(LoginRequiredMixin, CreateView):
+    """ CreateView for a new location """
     model = Location
     fields = ['title', 'lat', 'lon', 'description']
 
@@ -32,6 +37,7 @@ class LocationCreateView(LoginRequiredMixin, CreateView):
 
 
 class LocationUpdateView(LoginRequiredMixin, UpdateView):
+    """ UpdateView for a existing location """
     model = Location
     fields = ['title', 'lon', 'lat', 'description']
 
@@ -40,6 +46,7 @@ class LocationUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class LocationDeleteView(LoginRequiredMixin, DeleteView):
+    """ DeleteView for a location """
     model = Location
     template_name = 'market/market_delete.html'
 

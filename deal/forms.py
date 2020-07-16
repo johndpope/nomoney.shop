@@ -1,8 +1,10 @@
+""" forms for deal module """
 from django import forms
 from .models import Deal
 
 
 class DealCreateForm(forms.ModelForm):
+    """ form for creating new deal """
 
     class Meta:
         model = Deal
@@ -10,6 +12,7 @@ class DealCreateForm(forms.ModelForm):
 
 
 class DealAcceptForm(forms.ModelForm):
+    """ form for accepting deal """
 
     class Meta:
         model = Deal

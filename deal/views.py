@@ -1,3 +1,4 @@
+""" views for the deal module """
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, CreateView
@@ -10,7 +11,8 @@ from .models import Deal
 from .forms import DealCreateForm
 
 
-class DealListView(LoginRequiredMixin, ListView):
+class DealListView(LoginRequiredMixin, ListView):  # pylint: disable=too-many-ancestors
+    """ ListView for deal objects """
     template_name = 'deal/deal_list.html'
     context_object_name = 'deals'
 
@@ -19,6 +21,7 @@ class DealListView(LoginRequiredMixin, ListView):
 
 
 class DealDetailView(LoginRequiredMixin, DetailView):
+    """ DetailView of a single deal """
     model = Deal
     template_name = 'deal/deal_detail.html'
 
@@ -39,6 +42,7 @@ class DealDetailView(LoginRequiredMixin, DetailView):
 
 
 class DealCreateView(LoginRequiredMixin, CreateView):
+    """ CreateView for creating new deals """
     template_name = 'deal/deal_form.html'
     form_class = DealCreateForm
 
@@ -57,9 +61,11 @@ class DealCreateView(LoginRequiredMixin, CreateView):
 
 
 class DealUserCreateView(LoginRequiredMixin, CreateView):
+    """ CreateView for creating deals directly with a user """
     template_name = 'deal/deal_form.html'
     model = Deal
     fields = []
+    user1, user2 = 2 * [None]
 
     def get_form(self, form_class=None):
         form = CreateView.get_form(self, form_class=form_class)
@@ -81,7 +87,7 @@ class DealUserCreateView(LoginRequiredMixin, CreateView):
 
 
 class DealAcceptedView(LoginRequiredMixin, UpdateView):
-    #form_class = DealAcceptForm
+    """ UpdateView for accepting a deal """
     model = Deal
     http_method_names = ['post']
     fields = []
