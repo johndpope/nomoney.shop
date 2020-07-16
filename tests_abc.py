@@ -16,30 +16,34 @@ class Client(BaseClient):
         self.tester = DummyTestCase()
         super(Client, self).__init__(*args, **kwargs)
 
+    def test_url(self, url, method, status_code, data=None):
+        data = data or {}
+        if method.lower() == 'get':
+            response = self.get(url)
+        elif method.lower() == 'post':
+            response = self.post(url, data=data)
+        self.tester.assertEqual(response.status_code, status_code)
+        return response
+
     def get200(self, url_name, url_args=None, url_kwargs=None):
         url = self.url(url_name, url_args, url_kwargs)
-        response = self.get(url)
-        self.tester.assertIs(response.status_code, 200)
-        return response
+        return self.test_url(url, 'get', 200)
 
     def get302(self, url_name, url_args=None, url_kwargs=None):
         url = self.url(url_name, url_args, url_kwargs)
-        response = self.get(url)
-        self.tester.assertEqual(response.status_code, 302)
-        return response
+        return self.test_url(url, 'get', 302)
 
-    def post302(self, url_name, url_args=None, url_kwargs=None, data={}):
+    def post302(self, url_name, url_args=None, url_kwargs=None, data=None):
         url = self.url(url_name, url_args, url_kwargs)
-        response = self.post(url, data=data)
-        self.tester.assertEqual(response.status_code, 302)
-        return response
+        return self.test_url(url, 'post', 302, data=data)
 
-    def getpost(self, url_name, url_args=None, url_kwargs=None, data={}):
+    def getpost(self, url_name, url_args=None, url_kwargs=None, data=None):
         self.get200(url_name, url_args=url_args, url_kwargs=url_kwargs)
         self.post302(url_name, url_args=url_args, url_kwargs=url_kwargs,
                      data=data)
 
-    def url(self, url_name, url_args=None, url_kwargs=None):
+    @staticmethod
+    def url(url_name, url_args=None, url_kwargs=None):
         url_args = (str(url_args), ) if isinstance(url_args, (str, int, )) \
             else url_args
         return reverse(url_name, args=url_args, kwargs=url_kwargs)

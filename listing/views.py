@@ -33,24 +33,24 @@ class ListingTypeListView(LoginRequiredMixin, ListView):
 
     def dispatch(self, request, *args, **kwargs):
         self.model = {'push': Push, 'pull': Pull}.get(kwargs.get('type'))
-        return DetailView.dispatch(self, request, *args, **kwargs)
+        return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         return self.model.objects.all()
 
 
-class ListingCreateView(LoginRequiredMixin, CreateView):
-    """ CreateView for creating new listings """
+class ListingCreateUpdateBase(LoginRequiredMixin, CreateView):
+    """ base class for create and update view """
     model, category, type = 3 * [None]
-    fields = FIELDS
     template_name = 'listing/listing_form.html'
-    success_url = reverse_lazy('listing_list')
+    fields = FIELDS
     category = None
 
     def setup(self, request, *args, **kwargs):
         CreateView.setup(self, request, *args, **kwargs)
         self.type = kwargs.get('type')
         self.model = {'push': Push, 'pull': Pull}.get(self.type)
+        self.extra_context = {'type': self.type}
         if 'category_pk' in self.kwargs:
             self.category = Category.objects.get(
                 pk=self.kwargs.get('category_pk')
@@ -58,41 +58,27 @@ class ListingCreateView(LoginRequiredMixin, CreateView):
             self.fields = copy(ListingCreateView.fields)
             self.fields.remove('category')
 
+    def get_form(self, form_class=None):
+        form = CreateView.get_form(self, form_class=form_class)
+        form.fields['location'].queryset = self.request.user.locations
+        return form
+
+    def get_success_url(self):
+        return self.request.GET.get('next', reverse('home'))
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         if self.category:
             form.instance.category = self.category
-        return CreateView.form_valid(self, form)
-
-    def get_form(self, form_class=None):
-        form = CreateView.get_form(self, form_class=form_class)
-        form.fields['location'].queryset = self.request.user.locations
-        return form
-
-    def get_success_url(self):
-        return self.request.GET.get('next', reverse('home'))
+        return super().form_valid(form)
 
 
-class ListingUpdateView(LoginRequiredMixin, UpdateView):
+class ListingCreateView(ListingCreateUpdateBase, CreateView):
+    """ CreateView for creating new listings """
+
+
+class ListingUpdateView(ListingCreateUpdateBase, UpdateView):
     """ UpdateView for updating existing listings """
-    model, type = 2 * [None]
-    template_name = 'listing/listing_form.html'
-    fields = FIELDS
-    success_url = reverse_lazy('listing_list')
-
-    def dispatch(self, request, *args, **kwargs):
-        self.type = kwargs.get('type')
-        self.model = {'push': Push, 'pull': Pull}.get(self.type)
-        self.extra_context = {'type': self.type}
-        return DetailView.dispatch(self, request, *args, **kwargs)
-
-    def get_form(self, form_class=None):
-        form = CreateView.get_form(self, form_class=form_class)
-        form.fields['location'].queryset = self.request.user.locations
-        return form
-
-    def get_success_url(self):
-        return self.request.GET.get('next', reverse('home'))
 
 
 class ListingDetailView(LoginRequiredMixin, DetailView):
