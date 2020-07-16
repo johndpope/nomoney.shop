@@ -1,10 +1,11 @@
 """ views for the market module """
-from django.views.generic.edit import DeleteView, UpdateView, CreateView
+from django.views.generic.edit import DeleteView, UpdateView, CreateView,\
+    FormView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.urls.base import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
-from deal.models import VirtualDeal
+from calculator.models import VirtualDeal
 from .models import Market
 
 
@@ -32,8 +33,8 @@ class MarketDetailView(LoginRequiredMixin, DetailView):
         return context
 
 
-class MarketCreateView(LoginRequiredMixin, CreateView):
-    """ CreateView for creating new market """
+class MarketCreateUpdateBase(LoginRequiredMixin, FormView):
+    """ Base for CreateView and UpdateView """
     model = Market
     fields = ['title', 'users', 'location']
 
@@ -56,28 +57,12 @@ class MarketCreateView(LoginRequiredMixin, CreateView):
         return self.request.GET.get('next', reverse('home'))
 
 
-class MarketUpdateView(LoginRequiredMixin, UpdateView):
+class MarketCreateView(MarketCreateUpdateBase, CreateView):
+    """ CreateView for creating new market """
+
+
+class MarketUpdateView(MarketCreateUpdateBase, UpdateView):
     """ UpdateView to update existing market """
-    model = Market
-    fields = ['title', 'users', 'location']
-
-    def get_form(self, form_class=None):
-        form = UpdateView.get_form(self, form_class=form_class)
-        form.fields['users'].widget.attrs['class'] = 'chosen-select'
-        form.fields['users'].widget.attrs['data-placeholder'] = \
-            'Benutzer auswählen ...'
-        form.fields['users'].queryset = form.fields['users'].queryset.exclude(
-            pk=self.request.user.pk)
-        return form
-
-    def form_valid(self, form):
-        response = UpdateView.form_valid(self, form)
-        form.instance.users.add(self.request.user)
-        form.instance.save()
-        return response
-
-    def get_success_url(self):
-        return self.request.GET.get('next', reverse('home'))
 
 
 class MarketDeleteView(LoginRequiredMixin, DeleteView):
