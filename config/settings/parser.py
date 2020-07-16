@@ -41,8 +41,7 @@ if path.isfile(CONFIG_PATH):
         if 'DEBUG' in _base:
             DEBUG = _base['DEBUG'] == 'True'
         if 'ALLOWED_HOSTS' in _base:
-            ALLOWED_HOSTS = remove_bad_chars(_base['ALLOWED_HOSTS'], '\'[]"').split(',') or ALLOWED_HOSTS
-            print(ALLOWED_HOSTS)
+            ALLOWED_HOSTS = remove_bad_chars(_base['ALLOWED_HOSTS'], '\'[]" ').split(',') or ALLOWED_HOSTS
     if _parser.has_section('DATABASE'):
         _database = _parser['DATABASE']
         if 'TYPE' in _database:
