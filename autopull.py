@@ -10,7 +10,7 @@ class Main:
             self.execute_venv('pip install --upgrade git+git@github.com:snake-soft/snakelib.git')
             self.execute_venv('manage.py collectstatic --noinput')
             self.execute_venv('manage.py compilemessages')
-            self.execute_venv('manage.py migrate')
+            # self.execute_venv('manage.py migrate')
             self.execute('systemctl restart nomoney.shop')
 
     def execute_venv(self, cmd):
