@@ -77,6 +77,9 @@ class ChatMessage(models.Model):
     def save(self, *args, **kwargs):  # pylint: disable=signature-differs
         super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.text
+
     class Meta:
         ordering = ['-pk']
         verbose_name = _('message')
