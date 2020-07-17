@@ -106,7 +106,9 @@ class TestDB:
 
     @classmethod
     def setup_location_db(cls):
-        for user, title in [(cls.demo, 'Demos Treffpunkt'), (cls.demo1, 'Demo1 Zuhause')]:
+        """ set up location db """
+        combis = [(cls.demo, 'Demos Treffpunkt'), (cls.demo1, 'Demo1 Zuhause')]
+        for user, title in combis:
             cls.location = Location.objects.create(
                 user=user,
                 title=title,
@@ -127,11 +129,13 @@ class TestDB:
 
     @classmethod
     def setup_unit_db(cls):
+        """ set up unit db """
         for title, short in cls.UNITS:
             Unit.objects.create(title=title, short=short)
 
     @classmethod
     def setup_category_db(cls):
+        """ set up category db """
         for category_str, sub_categories in cls.CATEGORIES.items():
             category = Category.objects.create(title=category_str)
             for sub_cat in sub_categories:
@@ -162,6 +166,7 @@ class TestDB:
 
     @classmethod
     def setup_deal_db(cls):
+        """ set up deal db """
         cls.deal = Deal.objects.create(user1=cls.demo, user2=cls.demo1)
         cls.deal = Deal.objects.create(
             user1=cls.demo, user2=cls.random_object(User)
@@ -240,6 +245,10 @@ class TestDB:
 
     @staticmethod
     def sentences_string(runs=5):
+        """ create string of a multiple sentences
+        :param runs: int how many sentences to concatenate
+        :returns: str
+        """
         sentence = ''
         for _ in range(runs):
             sentence += get_sentence() + ' '
@@ -247,10 +256,19 @@ class TestDB:
 
     @staticmethod
     def random_object(model):
+        """ random object from that model
+        :param model: model to get random object
+        :returns: random object of model
+        """
         objects = model.objects.all()
         return objects[randint(0, len(objects)-1)]
 
     @staticmethod
     def print_steps(i, print_every, title):
+        """ print current step
+        :param i: int, current iteration
+        :param print_every: print only every Xth
+        :param title: name of what has been created
+        """
         if not i % print_every and i != 0:
             print('{} {} created.'.format(str(i), title))

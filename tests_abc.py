@@ -78,7 +78,12 @@ class TestCase(ABC, BaseTestCase):
         self.location = TestDB.location
         self.market = TestDB.market
 
-    def random_object(self, model):
+    @staticmethod
+    def random_object(model):
+        """ get a random object of that model
+        :param model: model to get object off
+        :returns: random object of model
+        """
         return TestDB.random_object(model)
 
     def test_apps(self):
