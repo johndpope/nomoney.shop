@@ -1,6 +1,7 @@
 """ models for the calculator module """
 from itertools import combinations
 from deal.models import Deal
+from config.settings.base import LOGGER
 
 
 class VirtualDeal(Deal):
@@ -57,6 +58,9 @@ class VirtualDeal(Deal):
                 deals.append(deal)
 
         cls._calculate_quality_pct(deals, cls._calculate_max_quality(deals))
+        if deals:
+            log_str = 'Calculator: Found {} possible deals.'.format(str(len(deals)))
+            LOGGER.info(log_str)
         return sorted(deals, key=lambda x: x.quality, reverse=True)
 
     @classmethod

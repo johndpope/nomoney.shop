@@ -1,7 +1,7 @@
 """ models for feedback module """
 from django.utils.translation import gettext_lazy as _
 from django.db import models
-from config.settings import AUTH_USER_MODEL
+from config.settings import AUTH_USER_MODEL, LOGGER
 
 
 class FeedbackStatus(models.IntegerChoices):
@@ -72,6 +72,18 @@ class FeedbackBase(models.Model):
         """ set the status to FeedbackStatus.SENT """
         self.status = FeedbackStatus.SENT
         self.save()
+
+    def save(self, *args, **kwargs):  # pylint: disable=signature-differs
+        log_string = 'Feedback {}: type={} creator={} object={} score={} status={}'.format(
+            'updated' if self.pk else 'created',
+            str(self.type),
+            str(self.creator),
+            str(self.object),
+            str(self.score),
+            str(self.status),
+            )
+        LOGGER.info(log_string)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return '{}: {}'.format(self.type, self.object)

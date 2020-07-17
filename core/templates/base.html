@@ -28,7 +28,7 @@
 <body style="background-color:#15202b;">
   {% analytical_body_top %}
   {% include "menu.html" %}
-  <div id="wrapper" class="container bg-white border shadow mb-5 pb-5">
+  <div id="wrapper" class="container bg-white border shadow mb-5 pb-5" style="margin-top: 42px;">
     <div class="row">
       <div class="col-12 mt-3">
         <div id="help_block" style="display:none; min-height:50px;" class="alert alert-light alert-dismissible fade show p-0 pt-4 border-bottom" role="alert">
@@ -63,7 +63,9 @@
       {% endif %}
     </div>
     <div class="row">
-      <div class="col-12 px-1 px-sm-2 px-md-3 px-lg-4">{% block content %}{% endblock %}</div>
+      <div class="col-12 px-1 px-sm-2 px-md-3 px-lg-4 mt-3">
+        {% block content %}{% endblock %}
+      </div>
     </div>
   </div>
   {% analytical_body_bottom %}
