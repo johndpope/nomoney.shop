@@ -7,6 +7,7 @@ class Main:
         result = self.execute_wwwdata('git pull')
         if result[0] != u'Bereits aktuell.':
             self.execute_venv('pip install -r requirements.txt')
+            self.execute_venv('pip install --upgrade git+git@github.com:snake-soft/snakelib.git')
             self.execute_venv('manage.py collectstatic --noinput')
             self.execute_venv('manage.py compilemessages')
             self.execute_venv('manage.py migrate')
