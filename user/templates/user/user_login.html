@@ -20,7 +20,10 @@ function login_demo(){
 {% endblock %}
 
 {% block content %}
-<div class="row justify-content-center mb-5">
+<div class="row mb-5 mt-3">
+<div class="col-12 d-flex justify-content-center" style="font-size:xx-large;">Willkommen bei</div>
+</div>
+<div class="row justify-content-center mb-5 mt-3">
   <div class="col-10 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
     <div class="row">
       <div class="col-12">
@@ -33,9 +36,12 @@ function login_demo(){
   </div>
 </div>
 <hr class="my-5">
-<div class="container-fluid">
-  <div class="row">
-    {% include 'user/solo/user_form.html' %}
-  </div>
+<div class="row">
+<div class="col"><h1>Login</h1></div>
+<div class="col-auto d-flex justify-content-end"><a class="btn btn-link text-info mt-2" href="{% url 'user_create' %}"><i class="fas fa-user-plus"></i> {% trans 'signup'|title %}</a></div>
 </div>
+<div class="row">
+  {% include 'user/solo/user_form.html' %}
+</div>
+
 {% endblock %}
