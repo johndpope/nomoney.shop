@@ -2,6 +2,7 @@
 from itertools import chain
 from django.utils.translation import gettext_lazy as _
 from django.db import models
+from config.settings.base import LOGGER
 
 
 class CategoryStatus(models.IntegerChoices):
@@ -51,7 +52,6 @@ class Category(models.Model):
         while obj.parent:
             breadcrumbs = [obj.parent] + breadcrumbs
             obj = obj.parent
-            print(breadcrumbs)
         return breadcrumbs
 
     @property
@@ -107,6 +107,15 @@ class Category(models.Model):
         :returns: QuerySet of deleted categories
         """
         return cls.objects.filter(status=CategoryStatus.DELETED)
+
+    def save(self, *args, **kwargs):  # pylint: disable=signature-differs
+        log_string = 'Category {}: path={} status={}'.format(
+            'updated' if self.pk else 'created',
+            '.'.join((str(breadcrumb) for breadcrumb in self.breadcrumbs)),
+            str(self.status),
+            )
+        LOGGER.info(log_string)
+        super().save(*args, **kwargs)
 
     def __lt__(self, other):
         return len(self.listings) < len(other.listings)

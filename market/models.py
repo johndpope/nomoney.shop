@@ -1,8 +1,9 @@
 """ models for the market module """
 from django.utils.translation import gettext_lazy as _
 from django.db import models
-from django.core.exceptions import ObjectDoesNotExist
-from config.settings import AUTH_USER_MODEL
+from django.db.models.signals import post_save
+from django.dispatch.dispatcher import receiver
+from config.settings import AUTH_USER_MODEL, LOGGER
 from chat.models import Chat, ChatType
 
 
@@ -26,12 +27,13 @@ class Market(models.Model):
     chat = None
 
     def save(self, *args, **kwargs):  # pylint: disable=signature-differs
+        log_string = 'Market {}: title={} location={}'.format(
+            'updated' if self.pk else 'created',
+            str(self.title),
+            str(self.location),
+            )
+        LOGGER.info(log_string)
         models.Model.save(self, *args, **kwargs)
-        try:
-            self.chat
-        except ObjectDoesNotExist:
-            self.chat = Chat.objects.create(
-                type=ChatType.MARKET, market=self)
 
     def __str__(self):
         return self.title
@@ -39,3 +41,13 @@ class Market(models.Model):
     class Meta:
         verbose_name = _('market')
         verbose_name_plural = _('markets')
+
+
+@receiver(post_save, sender=Market)
+# pylint: disable=unused-argument
+def create_chat(sender, instance, created, **kwargs):
+    """ create market chat after creating market """
+    if created:
+        instance.chat = Chat.objects.create(
+            type=ChatType.MARKET, market=instance)
+        instance.save()

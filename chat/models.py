@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django.dispatch.dispatcher import receiver
 from django.db.models.signals import post_save
 from django.db import models
-from config.settings import AUTH_USER_MODEL
+from config.settings import AUTH_USER_MODEL, LOGGER
 
 
 class ChatType(models.IntegerChoices):
@@ -182,6 +182,15 @@ class Chat(models.Model):
             chat = cls._create_user_object(*users)
             return chat
         return None
+
+    def save(self, *args, **kwargs):  # pylint: disable=signature-differs
+        log_string = 'Chat {}: type={} market={}'.format(
+            'updated' if self.pk else 'created',
+            str(self.type),
+            str(self.market),
+            )
+        LOGGER.info(log_string)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         if self.type == ChatType.LOBBY:

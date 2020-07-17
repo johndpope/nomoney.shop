@@ -1,7 +1,7 @@
 """ models for the location module """
 from django.utils.translation import gettext_lazy as _
 from django.db import models
-from config.settings.base import AUTH_USER_MODEL
+from config.settings.base import AUTH_USER_MODEL, LOGGER
 
 
 class Location(models.Model):
@@ -60,6 +60,17 @@ class Location(models.Model):
         :returns: QuerySet(Pull)
         """
         return self.pull_set.all()
+
+    def save(self, *args, **kwargs):  # pylint: disable=signature-differs
+        log_string = 'Location {}: title={} user={} lon={} lat={}'.format(
+            'updated' if self.pk else 'created',
+            str(self.title),
+            str(self.user),
+            str(self.lon),
+            str(self.lat),
+            )
+        LOGGER.info(log_string)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

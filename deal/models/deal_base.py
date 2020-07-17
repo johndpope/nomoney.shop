@@ -2,7 +2,7 @@
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from snakelib.iterable import intersection
-from config.settings import AUTH_USER_MODEL
+from config.settings import AUTH_USER_MODEL, LOGGER
 from chat.models import Chat
 from .deal_status import DealStatus
 
@@ -87,8 +87,8 @@ class DealBase(models.Model):
         # pylint: disable=no-member
         try:
             return list(intersection(self.user.pushs, self.partner.pulls))
-        except AttributeError as e:
-            import pdb; pdb.set_trace()  # <---------
+        except AttributeError as err:
+            LOGGER.exception(err)
 
     @property
     def pulls(self):
@@ -113,6 +113,18 @@ class DealBase(models.Model):
         """
         # pylint: disable=no-member
         return list(intersection(self.partner.pulls, self.user.pushs))
+
+    def save(self, *args, **kwargs):  # pylint: disable=signature-differs
+        log_string = 'Deal {}: user1={} user2={} market={} status={} location={}'.format(
+            'updated' if self.pk else 'created',
+            str(self.user1),
+            str(self.user2),
+            str(self.market),
+            str(self.status),
+            str(self.location),
+            )
+        LOGGER.info(log_string)
+        super().save(*args, **kwargs)
 
     class Meta:
         abstract = True

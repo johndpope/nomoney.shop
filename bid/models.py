@@ -2,7 +2,7 @@
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.utils.timezone import now
-from config.settings import AUTH_USER_MODEL
+from config.settings import AUTH_USER_MODEL, LOGGER
 
 
 class BidStatus(models.IntegerChoices):
@@ -126,6 +126,13 @@ class Bid(models.Model):
         return self.datetime < other.datetime
 
     def save(self, *args, **kwargs):  # pylint: disable=signature-differs
+        log_string = 'Bid {}: deal={} creator={} status={}'.format(
+            'updated' if self.pk else 'created',
+            str(self.deal),
+            str(self.creator),
+            str(self.status),
+            )
+        LOGGER.info(log_string)
         super().save(*args, **kwargs)
         self.deal.set_placed()
 

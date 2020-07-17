@@ -9,6 +9,7 @@ from chat.models import Chat
 from listing.models import ListingStatus
 from category.models import Category
 from _collections import defaultdict
+from config.settings import LOGGER
 
 
 def image_path(instance, filename):
@@ -27,7 +28,7 @@ class UserConfig(models.Model):
 class User(AbstractUser):
     """ The user is the central object
 
-    first_name, last_name, email, is_staff, is_active, date_joined
+    username, first_name, last_name, email, is_staff, is_active, date_joined
     REQUIRED_FIELDS = ['email']
     """
     config = models.OneToOneField(
@@ -161,6 +162,14 @@ class User(AbstractUser):
             objects['categories'] = Category.get_unproved()
             return objects
         return None
+
+    def save(self, *args, **kwargs):  # pylint: disable=signature-differs
+        log_string = 'User {}: username={}'.format(
+            'updated' if self.pk else 'created',
+            str(self.username),
+            )
+        LOGGER.info(log_string)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.username or self.first_name + ' ' + self.last_name

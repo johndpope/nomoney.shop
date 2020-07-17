@@ -142,7 +142,7 @@ class Deal(DealBase):  # pylint: disable=too-many-public-methods
                 )
 
     def save(self, *args, **kwargs):  # pylint: disable=signature-differs
-        models.Model.save(self, *args, **kwargs)
+        super().save(*args, **kwargs)
         if self.status == DealStatus.ACCEPTED:
             self._create_feedbacks()
             self._iterate_bidpositions(self.get_latest_bid())

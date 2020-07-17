@@ -4,7 +4,7 @@ from itertools import chain
 from statistics import mean
 from django.utils.translation import gettext_lazy as _
 from django.db import models
-from config.settings import AUTH_USER_MODEL
+from config.settings import AUTH_USER_MODEL, LOGGER
 from chat.models import Chat
 
 
@@ -138,14 +138,27 @@ class ListingBase(models.Model):
         self.status = ListingStatus.DELETED
         self.save()
 
+    def save(self, *args, **kwargs):  # pylint: disable=signature-differs
+        log_string = 'Listing {}: type={} user={} category={} quantity={}{} status={}'.format(
+            'updated' if self.pk else 'created',
+            str(self.type),
+            str(self.user),
+            str(self.category),
+            str(self.quantity),
+            str(self.unit.short),
+            str(self.status),
+            )
+        LOGGER.info(log_string)
+        super().save(*args, **kwargs)
+
     def __hash__(self):
         return hash((self.pk, self.type))
 
     def __eq__(self, other):
         try:
             return self.category == other.category
-        except AttributeError as error:
-            print(error)
+        except AttributeError as err:
+            LOGGER.exception(err)
 
     def __str__(self):
         # pylint: disable=no-member
