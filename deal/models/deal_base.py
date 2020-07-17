@@ -1,7 +1,7 @@
 """ models of deal module """
 from django.utils.translation import gettext_lazy as _
 from django.db import models
-from snakelib.list import intersection
+from snakelib.iterable import intersection
 from config.settings import AUTH_USER_MODEL
 from chat.models import Chat
 from .deal_status import DealStatus
@@ -85,7 +85,10 @@ class DealBase(models.Model):
         :returns: list of intersecting pushs of pov_user
         """
         # pylint: disable=no-member
-        return list(intersection(self.user.pushs, self.partner.pulls))
+        try:
+            return list(intersection(self.user.pushs, self.partner.pulls))
+        except AttributeError as e:
+            import pdb; pdb.set_trace()  # <---------
 
     @property
     def pulls(self):

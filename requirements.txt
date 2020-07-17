@@ -16,3 +16,4 @@ daphne
 channels_redis
 redis
 django-db-logger
+prospector

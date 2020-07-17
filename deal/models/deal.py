@@ -162,4 +162,3 @@ class Deal(DealBase):  # pylint: disable=too-many-public-methods
 
     def __str__(self):
         return '{} vs. {}'.format(self.user1, self.user2)
-
