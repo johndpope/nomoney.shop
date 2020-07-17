@@ -28,7 +28,7 @@
   <div class="row">
     <div class="col-auto">
       <div class="rounded border d-flex justify-content-center" style="width:200px;height:200px;">
-        <img class="img-thumbnail" src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'images/default_user.png' %}{% endif %}" style="object-fit: cover;">
+        <img class="img-thumbnail" src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'images/default_user.png' %}{% endif %}" style="object-fit: cover;{% if not listing.image %}opacity: 0.3;{% endif %}">
       </div>
     </div>
     <div class="col-12 col-md">
