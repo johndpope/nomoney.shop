@@ -27,6 +27,16 @@ urlpatterns = [
         ListingDetailView.as_view(),
         name='listing_detail'
         ),
+    path(
+        'push/<int:pk>/',
+        ListingDetailView.as_view(),
+        name='push_detail'
+        ),
+    path(
+        'pull/<int:pk>/',
+        ListingDetailView.as_view(),
+        name='pull_detail'
+        ),
 
     path(
         '<slug:type>/<int:pk>/update/',
