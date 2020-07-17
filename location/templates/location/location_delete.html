@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block help %}
+  {% include 'market/inc/help.html' %}
+{% endblock %}
+
+
+{% block content %}
+<form method="post">{% csrf_token %}
+    <p>{% trans 'market' %} "{{ object }}" {% trans 'delete' %}?</p>
+    <input type="submit" value="Bestätigen">
+</form>
+{% endblock %}

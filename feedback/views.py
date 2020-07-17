@@ -11,7 +11,46 @@ from listing.models import Push
 from .models import UserFeedback, PushFeedback
 
 
-class FeedbackTypeListView(LoginRequiredMixin, TemplateView):
+class FeedbackContextMixin(TemplateView):
+    """ dry """
+    @staticmethod
+    def get_feedback_by_user(user):
+        """ fetch the feedback lists
+        :returns: list[[UserFeedback.taken],[PushFeedback.taken],
+                                    [UserFeedback.given],[PushFeedback.given]]
+        """
+        methods = (
+            UserFeedback.taken_by_user,
+            PushFeedback.taken_by_user,
+            UserFeedback.given_by_user,
+            PushFeedback.given_by_user
+            )
+        return [list(method_(user).exclude(status=0)) for method_ in methods]
+
+    @classmethod
+    def get_feedback(cls, user):
+        """ sorts the objects from get_feedback_by_user and gives them back
+        :returns: [feedback_given], [feedback_taken]
+        """
+        user_taken, push_taken, user_given, push_given = cls.get_feedback_by_user(user)
+        return sorted((user_taken + push_taken), key=attrgetter('created'), reverse=True), \
+            sorted((user_given + push_given), key=attrgetter('created'), reverse=True)
+
+    def get_context_data(self, **kwargs):
+        context = TemplateView.get_context_data(self, **kwargs)
+        user = self.request.user
+        if self.type == 'push':
+            push = Push.objects.get(pk=self.pk_)
+            context['push_feedback_taken'] = push.pushfeedback_set.exclude(status=0)
+            context['push'] = push
+        else:
+            context['user_feedback_given'], context['user_feedback_taken'] = \
+                self.get_feedback(user)
+        context['user'] = user
+        return context
+
+
+class FeedbackTypeListView(FeedbackContextMixin, LoginRequiredMixin, TemplateView):
     """ List feedback objects of type for direct access """
     template_name = 'feedback/feedback_list.html'
     user = None
@@ -22,74 +61,10 @@ class FeedbackTypeListView(LoginRequiredMixin, TemplateView):
         self.pk_ = kwargs.get('pk')
         ListView.setup(self, request, *args, **kwargs)
 
-    def get_context_data(self, **kwargs):
-        context = TemplateView.get_context_data(self, **kwargs)
-        if self.type == 'push':
-            push = Push.objects.get(pk=self.pk_)
-            context['push_feedback_taken'] = push.pushfeedback_set.exclude(status=0)
-            context['push'] = push
-        elif self.type == 'user':
-            user = self.request.user
-            user_feedback_given = list(UserFeedback.given_by_user(user).exclude(status=0))
-            push_feedback_given = list(PushFeedback.given_by_user(user).exclude(status=0))
-            context['user_feedback_given'] = sorted(
-                (user_feedback_given + push_feedback_given), key=attrgetter('created'),
-                reverse=True
-                )
 
-            user_feedback_taken = list(UserFeedback.taken_by_user(user).exclude(status=0))
-            push_feedback_taken = list(PushFeedback.taken_by_user(user).exclude(status=0))
-            context['user_feedback_taken'] = sorted(
-                (user_feedback_taken + push_feedback_taken),
-                key=attrgetter('created'),
-                reverse=True
-                ) #requestuser
-        else:
-            user = self.request.user
-            user_feedback_given = list(UserFeedback.given_by_user(user).exclude(status=0))
-            push_feedback_given = list(PushFeedback.given_by_user(user).exclude(status=0))
-            context['user_feedback_given'] = sorted(
-                (user_feedback_given + push_feedback_given),
-                key=attrgetter('created'),
-                reverse=True
-                )
-
-            user_feedback_taken = list(UserFeedback.taken_by_user(user).exclude(status=0))
-            push_feedback_taken = list(PushFeedback.taken_by_user(user).exclude(status=0))
-            context['user_feedback_taken'] = sorted(
-                (user_feedback_taken + push_feedback_taken),
-                key=attrgetter('created'),
-                reverse=True
-                ) #requestuser
-        return context
-
-
-
-class FeedbackListView(LoginRequiredMixin, TemplateView):
+class FeedbackListView(FeedbackContextMixin, LoginRequiredMixin, TemplateView):
     """ List feedback """
     template_name = 'feedback/feedback_list.html'
-
-    def get_context_data(self, **kwargs):
-        user = self.request.user
-        context = TemplateView.get_context_data(self, **kwargs)
-        user_feedback_given = list(UserFeedback.given_by_user(user).exclude(status=0))
-        push_feedback_given = list(PushFeedback.given_by_user(user).exclude(status=0))
-        context['user_feedback_given'] = sorted(
-            (user_feedback_given + push_feedback_given),
-            key=attrgetter('created'),
-            reverse=True
-            )
-
-        user_feedback_taken = list(UserFeedback.taken_by_user(user).exclude(status=0))
-        push_feedback_taken = list(PushFeedback.taken_by_user(user).exclude(status=0))
-        context['user_feedback_taken'] = sorted(
-            (user_feedback_taken + push_feedback_taken),
-            key=attrgetter('created'),
-            reverse=True
-            )
-
-        context['user'] = user
-        return context
 
 
 class FeedbackUpdateView(LoginRequiredMixin, UpdateView):

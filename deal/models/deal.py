@@ -89,12 +89,7 @@ class Deal(DealBase):  # pylint: disable=too-many-public-methods
         :param user: user to check rights of
         :returns: bool
         """
-        latest_bid = self.get_latest_bid()
-        if not latest_bid:
-            return True
-        if latest_bid.creator != user:
-            return True
-        return False
+        return self.can_accept(user)
 
     @classmethod
     def by_users(cls, user1, user2, create=False):
