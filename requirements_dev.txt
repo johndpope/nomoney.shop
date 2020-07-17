@@ -14,3 +14,4 @@ django-analytical
 daphne
 channels_redis
 redis
+django-db-logger
