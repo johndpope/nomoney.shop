@@ -4,6 +4,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, CreateView
 from django.urls.base import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from snakelib.django.forms import field_queryset_exclude
 from bid.forms import BidForm
 from user.models import User
 from calculator.models import VirtualDeal
@@ -48,8 +49,7 @@ class DealCreateView(LoginRequiredMixin, CreateView):
 
     def get_form(self, form_class=None):
         form = CreateView.get_form(self, form_class=form_class)
-        form.fields['user2'].queryset = form.fields['user2'].queryset.exclude(
-            pk=self.request.user.pk)
+        field_queryset_exclude(form.fields['user2'], self.request.user)
         return form
 
     def form_valid(self, form):
