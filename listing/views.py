@@ -89,14 +89,16 @@ class ListingDetailView(LoginRequiredMixin, DetailView):
 
     def dispatch(self, request, *args, **kwargs):
         self.model = {'push': Push, 'pull': Pull}.get(kwargs.get('type'))
-        listing = self.model.objects.get(pk=kwargs.get('pk'))
-        user = request.user
-        partner = listing.user
-        self.extra_context = {
-            'deal': VirtualDeal.by_user(user, partner),
-            'chat': listing.get_chat_with_partner(partner),
-            }
         return DetailView.dispatch(self, request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        user = self.request.user
+        listing = self.model.objects.get(pk=kwargs.get('pk'))
+        partner = listing.user
+        context = DetailView.get_context_data(self, **kwargs)
+        context['deal'] = VirtualDeal.by_user(user, partner)
+        context['chat'] = listing.get_chat_with_partner(partner)
+        return context
 
 
 class ListingDeleteView(LoginRequiredMixin, DeleteView):
