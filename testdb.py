@@ -102,25 +102,19 @@ class TestDB:
                 email='test{}@local.local'.format(key),
                 description=cls.sentences_string(),
                 )
-            if cls.PRINT_STEPS and not i % 10 and i != 0:
-                print(str(i) + ' users created.')
+            cls.print_steps(i, 10, 'users')
 
     @classmethod
     def setup_location_db(cls):
-        cls.location = Location.objects.create(
-            title='Demos Treffpunkt',
-            user=cls.demo,
-            lon=randint(-180, 180),
-            lat=randint(-90, 90),
-            description=cls.sentences_string(),
-            )
-        Location.objects.create(
-            title='Demo1 Zuhause',
-            user=cls.demo1,
-            lon=randint(-180, 180),
-            lat=randint(-90, 90),
-            description=cls.sentences_string(),
-            )
+        for user, title in [(cls.demo, 'Demos Treffpunkt'), (cls.demo1, 'Demo1 Zuhause')]:
+            cls.location = Location.objects.create(
+                user=user,
+                title=title,
+                lon=randint(-180, 180),
+                lat=randint(-90, 90),
+                description=cls.sentences_string(),
+                )
+
         for i in range(cls.LOCATION_COUNT):
             Location.objects.create(
                 title=get_word()[0:20],
@@ -129,8 +123,7 @@ class TestDB:
                 lat=randint(-90, 90),
                 description=cls.sentences_string(),
                 )
-            if cls.PRINT_STEPS and not i % 100 and i != 0:
-                print(str(i) + ' locations created.')
+            cls.print_steps(i, 100, 'locations')
 
     @classmethod
     def setup_unit_db(cls):
@@ -165,8 +158,7 @@ class TestDB:
                 unit=unit,
                 description=cls.sentences_string(10),
                 )
-            if cls.PRINT_STEPS and not i % 100 and i != 0:
-                print(str(i) + ' listings created.')
+            cls.print_steps(i, 100, 'listings')
 
     @classmethod
     def setup_deal_db(cls):
@@ -183,30 +175,21 @@ class TestDB:
                 user1=cls.demo,
                 user2=cls.random_object(User)
                 )
-            if cls.PRINT_STEPS and not i % 100 and i != 0:
-                print(str(i) + ' deals created.')
+            cls.print_steps(i, 100, 'deals')
+
+    @classmethod
+    def _create_bidpositions(cls, creator):
+        bid = Bid.objects.create(deal=cls.deal, creator=creator)
+        for push in bid.pushs.union(bid.pulls):
+            BidPosition.objects.create(
+                push=push, bid=bid, quantity=randint(0, 100), unit=push.unit
+                )
 
     @classmethod
     def setup_bid_db(cls):
         """ create bid for a deal and accept """
-        bid = Bid.objects.create(deal=cls.deal, creator=cls.demo)
-        for push in bid.pushs:
-            BidPosition.objects.create(
-                push=push, bid=bid, quantity=randint(0, 100), unit=push.unit
-                )
-        for push in bid.pulls:
-            BidPosition.objects.create(
-                push=push, bid=bid, quantity=randint(0, 100), unit=push.unit
-                )
-        bid = Bid.objects.create(deal=cls.deal, creator=cls.deal.user2)
-        for push in bid.pushs:
-            BidPosition.objects.create(
-                push=push, bid=bid, quantity=randint(0, 100), unit=push.unit
-                )
-        for push in bid.pulls:
-            BidPosition.objects.create(
-                push=push, bid=bid, quantity=randint(0, 100), unit=push.unit
-                )
+        for creator in [cls.demo, cls.deal.user2]:
+            cls._create_bidpositions(creator)
 
     @classmethod
     def setup_market_db(cls):
@@ -250,12 +233,10 @@ class TestDB:
     @classmethod
     def setup_feedback_db(cls):
         """ create feedback after bid accepted in previous step """
-        pass
 
     @classmethod
     def setup_chat_db(cls):
         """ dont know what to test here """
-        pass
 
     @staticmethod
     def sentences_string(runs=5):
@@ -268,3 +249,8 @@ class TestDB:
     def random_object(model):
         objects = model.objects.all()
         return objects[randint(0, len(objects)-1)]
+
+    @staticmethod
+    def print_steps(i, print_every, title):
+        if not i % print_every and i != 0:
+            print('{} {} created.'.format(str(i), title))

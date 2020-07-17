@@ -33,15 +33,7 @@ class AjaxTriangularDealsView(LoginRequiredMixin, TemplateView):
     """ ajax view for triangular deals """
     template_name = 'calculator/ajax/ajax_triangular_deals.html'
 
-    def get_context_data(self, **kwargs):
-        context = TemplateView.get_context_data(self, **kwargs)
-        return context
-
 
 class AjaxSpeculativeDealsView(LoginRequiredMixin, TemplateView):
     """ ajax view for speculative deals """
     template_name = 'calculator/ajax/ajax_speculative_deals.html'
-
-    def get_context_data(self, **kwargs):
-        context = TemplateView.get_context_data(self, **kwargs)
-        return context

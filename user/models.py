@@ -128,13 +128,23 @@ class User(AbstractUser):
             unseen_messages[message.chat.pk].append(message)
         return unseen_messages
 
+
+
+    @property
+    def open_user_feedback(self):
+        return self.userfeedback_set.filter(status=0)
+
+    @property
+    def open_push_feedback(self):
+        return self.pushfeedback_set.filter(status=0)
+
     @property
     def open_feedback(self):
         """ All open feedback of this user (user + push)
         :returns: list(open_userfeedback + open_pushfeedback)
         """
-        return list(self.userfeedback_set.filter(status=0)) + \
-            list(self.pushfeedback_set.filter(status=0))
+        return list(self.open_user_feedback) + \
+            list(self.open_push_feedback)
 
     @property
     def deals(self):

@@ -48,7 +48,7 @@ class LocationUpdateView(LoginRequiredMixin, UpdateView):
 class LocationDeleteView(LoginRequiredMixin, DeleteView):
     """ DeleteView for a location """
     model = Location
-    template_name = 'market/market_delete.html'
+    template_name = 'location/location_delete.html'
 
     def get_success_url(self):
         return self.request.GET.get('next', reverse('home'))
