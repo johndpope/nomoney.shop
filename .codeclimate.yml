@@ -1,8 +1,2 @@
-plugins:
-  pylint:
-    enabled: true
-    plugins:
-      - django
-
 exclude_patterns:
 - "*/migrations/*"
