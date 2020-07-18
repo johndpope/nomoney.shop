@@ -79,8 +79,9 @@ class ChatCreateView(LoginRequiredMixin, CreateView):
         form.fields['users'].widget.attrs['class'] = 'chosen-select'
         form.fields['users'].widget.attrs['data-placeholder'] = \
             'Benutzer auswählen ...'
-        form.fields['users'].queryset = form.fields['users'].queryset.exclude(
-            pk=self.request.user.pk)
+        form.fields['users'].queryset = User.get_users().exclude(
+            pk=self.request.user.pk
+            )
         return form
 
     def form_valid(self, form):

@@ -5,8 +5,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.urls.base import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
-from snakelib.django.forms import field_queryset_exclude
 from calculator.models import VirtualDeal
+from user.models import User
 from .models import Market
 
 
@@ -44,8 +44,7 @@ class MarketCreateUpdateBase(LoginRequiredMixin, FormView):
         form.fields['users'].widget.attrs['class'] = 'chosen-select'
         form.fields['users'].widget.attrs['data-placeholder'] = \
             'Benutzer auswählen ...'
-        field_queryset_exclude(form.fields['users'], self.request.user)
-        form.fields['users'].queryset = form.fields['users'].queryset.exclude(
+        form.fields['users'].queryset = User.get_users().exclude(
             pk=self.request.user.pk)
         return form
 

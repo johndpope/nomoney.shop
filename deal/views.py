@@ -49,7 +49,9 @@ class DealCreateView(LoginRequiredMixin, CreateView):
 
     def get_form(self, form_class=None):
         form = CreateView.get_form(self, form_class=form_class)
-        field_queryset_exclude(form.fields['user2'], self.request.user)
+        form.fields['user2'].queryset = User.get_users().exclude(
+            pk=self.request.user.pk
+            )
         return form
 
     def form_valid(self, form):

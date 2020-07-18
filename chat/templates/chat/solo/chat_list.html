@@ -2,15 +2,8 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-8">
+    <div class="col-12">
         <h5>{{ symbols.chat|safe }} {% trans 'chat'|title %} {% trans 'overview' %}</h5>
-    </div>
-    <div class="col-4 d-flex justify-content-end">
-        {% if user == request.user %}
-          <a class="btn btn-link p-0 text-info" href="{% url 'chat_create' %}">
-            <i class="fas fa-plus"></i> {% trans 'chat' %}
-          </a>
-        {% endif %}
     </div>
   </div>
   {% if chats %}

@@ -39,8 +39,8 @@
     <div class="col-12 col-md-6"></div>
     <div class="col-4 col-md-2">
       <div class="row">
-        <div class="col-4"><b>{% trans 'offer' %}</b></div>
-        <div class="col-4"><b>{% trans 'seek' %}</b></div>
+        <div class="col-4 text-success"><b>{% trans 'offer' %}</b></div>
+        <div class="col-4 text-danger"><b>{% trans 'seek' %}</b></div>
         <div class="col-4"><b>{% trans 'sum' %}</b></div>
       </div>
     </div>
@@ -81,8 +81,8 @@
       </div>
       <div class="col-4 col-md-2">
         <div class="row">
-          <div class="col-4">{{ category.pushs|length }}</div>
-          <div class="col-4">{{ category.pulls|length }}</div>
+          <div class="col-4 text-success">{{ category.pushs|length }}</div>
+          <div class="col-4 text-danger">{{ category.pulls|length }}</div>
           <div class="col-4">{{ category.listings|length }}</div>
         </div>
       </div>

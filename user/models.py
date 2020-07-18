@@ -172,6 +172,15 @@ class User(AbstractUser):
         LOGGER.info(log_string)
         super().save(*args, **kwargs)
 
+    @classmethod
+    def get_users(cls, hide_invisible=True):
+        """ get users with this method to make it easier to filter
+        :param hide_invisible: bool if invisible should be hidden
+        """
+        if hide_invisible:
+            return cls.objects.filter(invisible=False)
+        return cls.objects.all()
+
     def __str__(self):
         return self.username or self.first_name + ' ' + self.last_name
 
