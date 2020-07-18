@@ -46,6 +46,7 @@ class User(AbstractUser):
         blank=True,
         verbose_name=_('description'),
         )
+    invisible = models.BooleanField(default=False)
 
     @property
     def chats(self):
