@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 22:53+0200\n"
+"POT-Creation-Date: 2020-07-18 19:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,55 +18,55 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: deal/models.py:11 deal/templates/deal/inc/status.html:5
-msgid "virtual"
-msgstr "virtuell"
-
-#: deal/models.py:12 deal/templates/deal/inc/status.html:9
-msgid "started"
-msgstr "gestartet"
-
-#: deal/models.py:13 deal/templates/deal/inc/status.html:15
-msgid "placed"
-msgstr "plaziert"
-
-#: deal/models.py:14 deal/templates/deal/inc/status.html:20
-msgid "accepted"
-msgstr "akzeptiert"
-
-#: deal/models.py:15 deal/templates/deal/inc/status.html:25
-msgid "canceled"
-msgstr "abgebrochen"
-
-#: deal/models.py:23 deal/models.py:29
+#: deal/models/deal_base.py:18 deal/models/deal_base.py:24
 #: deal/templates/deal/solo/deal_detail.html:29
 msgid "user"
 msgstr "Benutzer"
 
-#: deal/models.py:36
+#: deal/models/deal_base.py:31
 msgid "market"
 msgstr ""
 
-#: deal/models.py:41 deal/templates/deal/solo/deal_detail.html:47
+#: deal/models/deal_base.py:36 deal/templates/deal/solo/deal_detail.html:47
 msgid "status"
 msgstr "Status"
 
-#: deal/models.py:48
+#: deal/models/deal_base.py:43
 msgid "location"
 msgstr ""
 
-#: deal/models.py:213 deal/templates/deal/deal_form.html:15
+#: deal/models/deal_base.py:132 deal/templates/deal/deal_form.html:15
 #: deal/templates/deal/inc/help.html:2
 #: deal/templates/deal/solo/deal_detail.html:2
 #: deal/templates/deal/solo/deal_list_head.html:9
 msgid "deal"
 msgstr "Tauschvorgang"
 
-#: deal/models.py:214 deal/templates/deal/inc/help.html:5
+#: deal/models/deal_base.py:133 deal/templates/deal/inc/help.html:5
 #: deal/templates/deal/solo/deal_list.html:25
 #: deal/templates/deal/solo/deal_list_head.html:6
 msgid "deals"
 msgstr "Tauschvorgänge"
+
+#: deal/models/deal_status.py:14 deal/templates/deal/inc/status.html:4
+msgid "virtual"
+msgstr "virtuell"
+
+#: deal/models/deal_status.py:15 deal/templates/deal/inc/status.html:9
+msgid "started"
+msgstr "gestartet"
+
+#: deal/models/deal_status.py:16 deal/templates/deal/inc/status.html:14
+msgid "placed"
+msgstr "plaziert"
+
+#: deal/models/deal_status.py:17 deal/templates/deal/inc/status.html:19
+msgid "accepted"
+msgstr "akzeptiert"
+
+#: deal/models/deal_status.py:18 deal/templates/deal/inc/status.html:24
+msgid "canceled"
+msgstr "abgebrochen"
 
 #: deal/templates/deal/deal_detail.html:46
 #: deal/templates/deal/deal_detail.html:84

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 22:53+0200\n"
+"POT-Creation-Date: 2020-07-18 19:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,64 +18,64 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: feedback/models.py:7
+#: feedback/models.py:13
 msgid "request"
 msgstr "angefordert"
 
-#: feedback/models.py:8
+#: feedback/models.py:14
 msgid "sent"
 msgstr "gesendet"
 
-#: feedback/models.py:9
+#: feedback/models.py:15
 msgid "canceled"
 msgstr "storniert"
 
-#: feedback/models.py:16 feedback/templates/feedback/solo/list.html:8
+#: feedback/models.py:23 feedback/templates/feedback/solo/list.html:8
 msgid "creator"
 msgstr "Ersteller"
 
-#: feedback/models.py:20 feedback/templates/feedback/solo/list.html:10
+#: feedback/models.py:27 feedback/templates/feedback/solo/list.html:10
 msgid "created"
 msgstr "erstellt"
 
-#: feedback/models.py:25 feedback/templates/feedback/solo/list.html:11
+#: feedback/models.py:32 feedback/templates/feedback/solo/list.html:11
 msgid "score"
 msgstr "Punkte"
 
-#: feedback/models.py:31 feedback/templates/feedback/solo/list.html:13
+#: feedback/models.py:38 feedback/templates/feedback/solo/list.html:13
 msgid "subject"
 msgstr "Betreff"
 
-#: feedback/models.py:36 feedback/templates/feedback/solo/list.html:14
+#: feedback/models.py:43 feedback/templates/feedback/solo/list.html:14
 msgid "text"
 msgstr "Text"
 
-#: feedback/models.py:41
+#: feedback/models.py:48
 msgid "status"
 msgstr "Status"
 
-#: feedback/models.py:46 feedback/templates/feedback/solo/list.html:12
+#: feedback/models.py:53 feedback/templates/feedback/solo/list.html:12
 msgid "deal"
 msgstr ""
 
-#: feedback/models.py:75
+#: feedback/models.py:102
 #: feedback/templates/feedback/solo/feedback_to_give_list.html:11
 msgid "user"
 msgstr ""
 
-#: feedback/models.py:87
+#: feedback/models.py:122
 msgid "userfeedback"
 msgstr "Benutzerbewertung"
 
-#: feedback/models.py:88
+#: feedback/models.py:123
 msgid "userfeedbacks"
 msgstr "Benutzerbewertungen"
 
-#: feedback/models.py:104
+#: feedback/models.py:148
 msgid "pushfeedback"
 msgstr "Angebotsbewertung"
 
-#: feedback/models.py:105
+#: feedback/models.py:149
 msgid "pushfeedbacks"
 msgstr "Angebotsbewertungen"
 

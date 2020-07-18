@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 22:53+0200\n"
+"POT-Creation-Date: 2020-07-18 19:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,68 +18,68 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bid/models.py:8 bid/templates/bid/inc/status.html:4
+#: bid/models.py:16 bid/templates/bid/inc/status.html:4
 msgid "unseen"
 msgstr "ungesehen"
 
-#: bid/models.py:9 bid/templates/bid/inc/status.html:8
+#: bid/models.py:17 bid/templates/bid/inc/status.html:8
 msgid "seen"
 msgstr "gesehen"
 
-#: bid/models.py:10 bid/templates/bid/inc/status.html:12
+#: bid/models.py:18 bid/templates/bid/inc/status.html:12
 msgid "answered"
 msgstr "beantwortet"
 
-#: bid/models.py:11 bid/templates/bid/inc/status.html:16
+#: bid/models.py:19 bid/templates/bid/inc/status.html:16
 msgid "accepted"
 msgstr "akzeptiert"
 
-#: bid/models.py:12
+#: bid/models.py:20
 msgid "rejected"
 msgstr "abgewiesen"
 
-#: bid/models.py:19
+#: bid/models.py:28
 msgid "push"
 msgstr ""
 
-#: bid/models.py:24 bid/models.py:98 bid/templates/bid/bid_detail.html:12
+#: bid/models.py:33 bid/models.py:142 bid/templates/bid/bid_detail.html:12
 #: bid/templates/bid/bid_list.html:28
 msgid "bid"
 msgstr "Gebot"
 
-#: bid/models.py:27
+#: bid/models.py:36
 msgid "quantity"
 msgstr "Menge"
 
-#: bid/models.py:32
+#: bid/models.py:41
 msgid "unit"
 msgstr "Einheit"
 
-#: bid/models.py:40
+#: bid/models.py:50
 msgid "bidposition"
 msgstr "Gebotsposition"
 
-#: bid/models.py:41
+#: bid/models.py:51
 msgid "bidpositions"
 msgstr "Gebotspositionen"
 
-#: bid/models.py:48
+#: bid/models.py:59
 msgid "deal"
 msgstr ""
 
-#: bid/models.py:53
+#: bid/models.py:64
 msgid "creator"
 msgstr "Ersteller"
 
-#: bid/models.py:58
+#: bid/models.py:69
 msgid "time"
 msgstr "Zeit"
 
-#: bid/models.py:63
+#: bid/models.py:74
 msgid "status"
 msgstr "Status"
 
-#: bid/models.py:99
+#: bid/models.py:143
 msgid "bids"
 msgstr "Gebote"
 

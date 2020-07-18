@@ -18,3 +18,4 @@ redis
 django-db-logger
 prospector
 python-decouple
+django-oauth-toolkit

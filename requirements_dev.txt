@@ -16,3 +16,4 @@ channels_redis
 redis
 django-db-logger
 python-decouple
+django-oauth-toolkit

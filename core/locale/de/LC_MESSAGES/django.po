@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 22:53+0200\n"
+"POT-Creation-Date: 2020-07-18 19:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,28 +18,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: core/templates/dashboard/dashboard_home.html:42
+#: core/templates/dashboard/dashboard_home.html:41
 msgid "recommended"
 msgstr "empfohlene"
 
-#: core/templates/dashboard/dashboard_home.html:42
+#: core/templates/dashboard/dashboard_home.html:41
 msgid "actions"
 msgstr "Aktionen"
 
-#: core/templates/dashboard/dashboard_home.html:48
+#: core/templates/dashboard/dashboard_home.html:47
 msgid "location"
 msgstr ""
 
-#: core/templates/dashboard/dashboard_home.html:54
+#: core/templates/dashboard/dashboard_home.html:53
 msgid "push"
 msgstr ""
 
-#: core/templates/dashboard/dashboard_home.html:60
+#: core/templates/dashboard/dashboard_home.html:59
 msgid "pull"
 msgstr ""
 
-#: core/templates/dashboard/dashboard_home.html:66
+#: core/templates/dashboard/dashboard_home.html:65
 msgid "market"
+msgstr ""
+
+#: core/templates/dashboard/dashboard_home.html:71
+msgid "deal"
 msgstr ""
 
 #: core/templates/menu.html:7

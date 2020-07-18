@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 22:53+0200\n"
+"POT-Creation-Date: 2020-07-18 19:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,45 +18,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: category/models.py:7
+#: category/models.py:15
 msgid "unproved"
 msgstr "ungeprüft"
 
-#: category/models.py:8
+#: category/models.py:16
 msgid "proved"
 msgstr "geprüft"
 
-#: category/models.py:9
+#: category/models.py:17 category/templates/category/category_list.html:65
 msgid "hidden"
 msgstr "ausgeblendet"
 
-#: category/models.py:10
+#: category/models.py:18 category/templates/category/category_list.html:69
 msgid "deleted"
 msgstr "gelöscht"
 
-#: category/models.py:19
+#: category/models.py:28
 msgid "parent"
 msgstr "übergeordnet"
 
-#: category/models.py:23
+#: category/models.py:32
 msgid "title"
 msgstr "Titel"
 
-#: category/models.py:28
+#: category/models.py:37
 msgid "description"
 msgstr "Beschreibung"
 
-#: category/models.py:33
+#: category/models.py:42
 msgid "status"
 msgstr "Status"
 
-#: category/models.py:78 category/templates/category/category_detail.html:4
+#: category/models.py:127 category/templates/category/category_detail.html:4
 #: category/templates/category/category_detail.html:12
 #: category/templates/category/category_form.html:5
 msgid "category"
 msgstr "Kategorie"
 
-#: category/models.py:79 category/templates/category/category_list.html:6
+#: category/models.py:128 category/templates/category/category_list.html:6
 #: category/templates/category/category_list.html:32
 #: category/templates/category/category_list.html:35
 msgid "categories"
@@ -75,13 +75,13 @@ msgid "save"
 msgstr "speichern"
 
 #: category/templates/category/category_list.html:42
-#: category/templates/category/category_list.html:70
+#: category/templates/category/category_list.html:90
 #: category/templates/category/solo/category_detail.html:6
 msgid "offer"
 msgstr ""
 
 #: category/templates/category/category_list.html:43
-#: category/templates/category/category_list.html:73
+#: category/templates/category/category_list.html:93
 #: category/templates/category/solo/category_detail.html:10
 msgid "seek"
 msgstr ""
@@ -90,11 +90,19 @@ msgstr ""
 msgid "sum"
 msgstr "gesamt"
 
-#: category/templates/category/category_list.html:83
+#: category/templates/category/category_list.html:57
+msgid "unseen"
+msgstr ""
+
+#: category/templates/category/category_list.html:61
+msgid "seen"
+msgstr ""
+
+#: category/templates/category/category_list.html:103
 msgid "load"
 msgstr ""
 
-#: category/templates/category/category_list.html:83
+#: category/templates/category/category_list.html:103
 msgid "data"
 msgstr ""
 

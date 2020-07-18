@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 from decouple import AutoConfig, Csv
 import logging
 import os
+import sys
 from pathlib import Path
 from django.contrib.messages import constants as message_constants
 from django.urls.base import reverse_lazy
@@ -39,10 +40,10 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 # Database configuration
 _DB = {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': config('NAME'),
-    'USER': config('USER'),
-    'PASSWORD': config('PASSWORD'),
-    'HOST': config('HOST'),
+    'NAME': config('NAME', default=None),
+    'USER': config('USER', default=None),
+    'PASSWORD': config('PASSWORD', default=None),
+    'HOST': config('HOST', default=None),
     'PORT': config('PORT', default=5432),
     }
 
@@ -93,6 +94,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
     'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
@@ -109,13 +111,33 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
+
                 'config.global_context.default'
             ],
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.instagram.InstagramOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+for provider in ('GOOGLE', 'GITHUB', 'TWITTER', 'FACEBOOK', 'INSTAGRAM'):
+    # pylint: disable=invalid-name
+    _key = 'SOCIAL_AUTH_{}_KEY'.format(provider)
+    setattr(sys.modules[__name__], _key, config(_key, default=None))
+    # pylint: disable=invalid-name
+    _secret = 'SOCIAL_AUTH_{}_SECRET'.format(provider)
+    setattr(sys.modules[__name__], _secret, config(_secret, default=None))
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
@@ -169,15 +191,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'user.User'
-AUTHENTICATION_BACKENDS = (
-    'social_core.backends.open_id.OpenIdAuth',
-    'social_core.backends.google.GoogleOpenId',
-    'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.google.GoogleOAuth',
-    'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.yahoo.YahooOpenId',
-    'django.contrib.auth.backends.ModelBackend',
-)
 
 # Bootstrap fix:
 MESSAGE_TAGS = {

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 22:53+0200\n"
+"POT-Creation-Date: 2020-07-18 19:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,87 +18,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: listing/models.py:15 listing/models.py:73
-#: listing/templates/listing/listing_detail.html:79
+#: listing/models.py:22 listing/models.py:82
+#: listing/templates/listing/listing_detail.html:78
 msgid "created"
 msgstr ""
 
-#: listing/models.py:16
+#: listing/models.py:23
 msgid "paused"
 msgstr "pausiert"
 
-#: listing/models.py:17
+#: listing/models.py:24
 msgid "deleted"
 msgstr "gelöscht"
 
-#: listing/models.py:23 listing/models.py:46
+#: listing/models.py:31 listing/models.py:55
 #: listing/templates/listing/solo/listing_type_list.html:11
 msgid "title"
 msgstr "Titel"
 
-#: listing/models.py:27
+#: listing/models.py:35
 msgid "shorttitle"
 msgstr "Kurztitel"
 
-#: listing/models.py:34 listing/models.py:59
+#: listing/models.py:42 listing/models.py:68
 msgid "unit"
 msgstr "Einheit"
 
-#: listing/models.py:35
+#: listing/models.py:43
 msgid "units"
 msgstr "Einheiten"
 
-#: listing/models.py:42
+#: listing/models.py:51
 msgid "user"
 msgstr "Benutzer"
 
-#: listing/models.py:51 listing/templates/listing/listing_detail.html:55
+#: listing/models.py:60 listing/templates/listing/listing_detail.html:54
 #: listing/templates/listing/solo/listing_type_list.html:8
 msgid "category"
 msgstr "Kategorie"
 
-#: listing/models.py:54 listing/templates/listing/listing_detail.html:67
+#: listing/models.py:63 listing/templates/listing/listing_detail.html:66
 #: listing/templates/listing/solo/listing_type_list.html:14
 msgid "quantity"
 msgstr "Menge"
 
-#: listing/models.py:64
+#: listing/models.py:73
 msgid "image"
 msgstr "Bild"
 
-#: listing/models.py:69 listing/templates/listing/listing_detail.html:105
+#: listing/models.py:78 listing/templates/listing/listing_detail.html:104
 msgid "description"
 msgstr ""
 
-#: listing/models.py:77 listing/templates/listing/listing_detail.html:91
+#: listing/models.py:86 listing/templates/listing/listing_detail.html:90
 #: listing/templates/listing/solo/listing_type_list.html:17
 msgid "modified"
 msgstr "geändert"
 
-#: listing/models.py:84
+#: listing/models.py:93
 msgid "location"
 msgstr "Ort"
 
-#: listing/models.py:89
+#: listing/models.py:98
 msgid "status"
 msgstr "Status"
 
-#: listing/models.py:149 listing/templates/listing/inc/help.html:3
+#: listing/models.py:196 listing/templates/listing/inc/help.html:3
 #: listing/templates/listing/inc/help.html:7
 msgid "push"
 msgstr "Angebot"
 
-#: listing/models.py:150 listing/templates/listing/inc/help.html:11
+#: listing/models.py:197 listing/templates/listing/inc/help.html:11
 #: listing/templates/listing/solo/listing_list.html:7
 msgid "pushs"
 msgstr "Angebote"
 
-#: listing/models.py:157 listing/templates/listing/inc/help.html:5
+#: listing/models.py:205 listing/templates/listing/inc/help.html:5
 #: listing/templates/listing/inc/help.html:8
 msgid "pull"
 msgstr "Nachfrage"
 
-#: listing/models.py:158 listing/templates/listing/inc/help.html:11
+#: listing/models.py:206 listing/templates/listing/inc/help.html:11
 #: listing/templates/listing/solo/listing_list.html:18
 msgid "pulls"
 msgstr "Nachfragen"
@@ -108,23 +108,23 @@ msgstr "Nachfragen"
 msgid "delete"
 msgstr "löschen"
 
-#: listing/templates/listing/listing_detail.html:22
+#: listing/templates/listing/listing_detail.html:21
 msgid "offering"
 msgstr "Angebot"
 
-#: listing/templates/listing/listing_detail.html:24
+#: listing/templates/listing/listing_detail.html:23
 msgid "request"
 msgstr "Nachfrage"
 
-#: listing/templates/listing/listing_detail.html:26
+#: listing/templates/listing/listing_detail.html:25
 msgid "from"
 msgstr "von"
 
-#: listing/templates/listing/listing_detail.html:41
+#: listing/templates/listing/listing_detail.html:40
 msgid "feedback"
 msgstr "Bewertung"
 
-#: listing/templates/listing/listing_detail.html:124
+#: listing/templates/listing/listing_detail.html:123
 #: listing/templates/listing/listing_form.html:12
 #: listing/templates/listing/solo/listing_type_list.html:41
 msgid "update"
