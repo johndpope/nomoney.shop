@@ -33,6 +33,7 @@ urlpatterns = [
     path('location/', include('location.urls')),
     path('calculator/', include('calculator.urls')),
 
+    path('', include('social_django.urls', namespace='social')),
     path('', include('pwa.urls')),
     path('admin/', admin.site.urls),
 
