@@ -37,6 +37,7 @@ $(document).ready(function() {
 	$('#id_text').focus();
 });
 
+
 $(document).ready(function() {
 	// send Chat input via Ajax and reload chat
 	$('#chat_form').submit(function() {
@@ -56,6 +57,7 @@ $(document).ready(function() {
     });
 	$('#id_text').focus();
 });
+
 
 function set_menu_height(){
 	var menu_height = $('#main_menu').height();
