@@ -19,65 +19,67 @@
 
 <div class="accordion" id="userObjectsAccordion">
   {% if user == request.user %}
-    {% with markets=request.user.markets %}
-    <div class="card">
-      <div class="card-header p-0">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col">
-              <button class="btn btn-link btn-block text-left p-0 text-dark py-3" type="button" data-toggle="collapse" data-target="#markets" aria-expanded="true" aria-controls="markets">
-                {{ symbols.market|safe }} {% trans 'markets' %} ({{ markets|length }})
-              </button>
-            </div>
-            <div class="col-auto d-flex justify-content-end">
-              <a class="btn btn-link p-0 text-info py-3" href="{% url 'market_create' %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'market' %}</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="markets" class="toggler collapse" aria-labelledby="headingOne" data-parent="#userObjectsAccordion">
-        <div class="card-body">
-          <div class="container-fluid p-0">
+    {% if request.user.pushs and request.user.pulls %}
+      {% with markets=request.user.markets %}
+      <div class="card">
+        <div class="card-header p-0">
+          <div class="container-fluid">
             <div class="row">
-              <div class="col-12">
-                  {% include 'market/solo/market_list.html' %}
+              <div class="col">
+                <button class="btn btn-link btn-block text-left p-0 text-dark py-3" type="button" data-toggle="collapse" data-target="#markets" aria-expanded="true" aria-controls="markets">
+                  {{ symbols.market|safe }} {% trans 'markets' %} ({{ markets|length }})
+                </button>
+              </div>
+              <div class="col-auto d-flex justify-content-end">
+                <a class="btn btn-link p-0 text-info py-3" href="{% url 'market_create' %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'market' %}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="markets" class="toggler collapse" aria-labelledby="headingOne" data-parent="#userObjectsAccordion">
+          <div class="card-body">
+            <div class="container-fluid p-0">
+              <div class="row">
+                <div class="col-12">
+                    {% include 'market/solo/market_list.html' %}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    {% endwith %}
+      {% endwith %}
   
-    {% with deals=request.user.deals %}
-    <div class="card">
-      <div class="card-header p-0">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col">
-              <button class="btn btn-link btn-block text-left p-0 text-dark py-3" type="button" data-toggle="collapse" data-target="#deals" aria-expanded="true" aria-controls="deals">
-                {{ symbols.deal|safe }} {% trans 'deals' %} ({{ deals|length }})
-              </button>
-            </div>
-            <div class="col-auto d-flex justify-content-end">
-              <a class="btn btn-link p-0 text-info text-nowrap py-3" href="{% url 'deal_create' %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'deal' %}</a>
+      {% with deals=request.user.deals %}
+      <div class="card">
+        <div class="card-header p-0">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-link btn-block text-left p-0 text-dark py-3" type="button" data-toggle="collapse" data-target="#deals" aria-expanded="true" aria-controls="deals">
+                  {{ symbols.deal|safe }} {% trans 'deals' %} ({{ deals|length }})
+                </button>
+              </div>
+              <div class="col-auto d-flex justify-content-end">
+                <a class="btn btn-link p-0 text-info text-nowrap py-3" href="{% url 'deal_create' %}?next={{ request.path }}"><i class="fas fa-plus"></i> {% trans 'deal' %}</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div id="deals" class="toggler collapse" aria-labelledby="headingOne" data-parent="#userObjectsAccordion">
-        <div class="card-body">
-          <div class="container-fluid p-0">
-            <div class="row py-3">
-              <div class="col-12">
-                  {% include 'deal/solo/deal_list.html' %}
+        <div id="deals" class="toggler collapse" aria-labelledby="headingOne" data-parent="#userObjectsAccordion">
+          <div class="card-body">
+            <div class="container-fluid p-0">
+              <div class="row py-3">
+                <div class="col-12">
+                    {% include 'deal/solo/deal_list.html' %}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    {% endwith %}
+      {% endwith %}
+    {% endif %}
   
     {% with locations=request.user.locations %}
     <div class="card">
