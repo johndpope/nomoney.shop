@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-18 19:07+0200\n"
+"POT-Creation-Date: 2020-07-19 01:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,15 +26,15 @@ msgstr "Einstellungen"
 msgid "image"
 msgstr "Bild"
 
-#: user/models.py:47 user/templates/user/user_detail.html:78
+#: user/models.py:47 user/templates/user/user_detail.html:84
 msgid "description"
 msgstr "beschreibung"
 
-#: user/models.py:178 user/templates/user/user_list.html:13
+#: user/models.py:188 user/templates/user/user_list.html:13
 msgid "user"
 msgstr "Benutzer"
 
-#: user/models.py:179
+#: user/models.py:189
 msgid "users"
 msgstr "Benutzer"
 
@@ -47,12 +47,13 @@ msgid "category"
 msgstr ""
 
 #: user/templates/user/solo/user_form.html:14
-#: user/templates/user/user_login.html:50
-#: user/templates/user/user_login.html:53
-#: user/templates/user/user_login.html:56
-#: user/templates/user/user_login.html:59
 msgid "account"
 msgstr "Konto"
+
+#: user/templates/user/solo/user_form.html:14
+#: user/templates/user/user_detail.html:103
+msgid "update"
+msgstr ""
 
 #: user/templates/user/solo/user_form.html:14
 msgid "create"
@@ -135,42 +136,42 @@ msgstr "seit"
 msgid "feedback"
 msgstr ""
 
-#: user/templates/user/user_detail.html:97
-msgid "update"
-msgstr ""
+#: user/templates/user/user_detail.html:74
+msgid "no data"
+msgstr "keine Daten"
 
-#: user/templates/user/user_detail.html:98
+#: user/templates/user/user_detail.html:104
 msgid "settings"
 msgstr "Einstellungen"
 
-#: user/templates/user/user_detail.html:99
+#: user/templates/user/user_detail.html:105
 msgid "password"
 msgstr ""
 
-#: user/templates/user/user_detail.html:100
+#: user/templates/user/user_detail.html:106
 msgid "logout"
 msgstr "ausloggen"
 
-#: user/templates/user/user_login.html:41
-#: user/templates/user/user_login.html:83
+#: user/templates/user/user_login.html:46
+#: user/templates/user/user_login.html:113
 msgid "login"
 msgstr ""
 
-#: user/templates/user/user_login.html:47
+#: user/templates/user/user_login.html:52
 msgid "with"
 msgstr "mit"
 
-#: user/templates/user/user_login.html:64
+#: user/templates/user/user_login.html:94
 #, fuzzy
 #| msgid "your"
 msgid "or"
 msgstr "dein"
 
-#: user/templates/user/user_login.html:67
+#: user/templates/user/user_login.html:97
 msgid "free"
 msgstr "kostenlos"
 
-#: user/templates/user/user_login.html:67
+#: user/templates/user/user_login.html:97
 msgid "signup"
 msgstr ""
 
