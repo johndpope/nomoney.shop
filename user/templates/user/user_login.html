@@ -17,6 +17,11 @@ function login_demo(){
 	$('#user_form').submit();
 }
 </script>
+<style>
+.text-shadow{
+  text-shadow: 5px 5px 5px #b9b9b9;
+}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -47,16 +52,31 @@ function login_demo(){
     <h2 class="align-self-center m-0">{% trans 'with' %}</h2>
   </div>
   <div class="col">
-    <a class="btn btn-link mt-2 d-flex" href="{% url 'social:begin' 'google-oauth2' %}"><i class="fab fa-google-plus-square fa-2x" style="color:#4285f4;"></i><span class="d-none d-md-block align-self-center pl-1 text-info">Google</span></a>
+    <a class="btn btn-link mt-2 d-flex text-shadow" href="{% url 'social:begin' 'google-oauth2' %}">
+      <i class="fab fa-google-plus-square fa-3x" style="color:#4285f4;"></i>
+      <span class="d-none d-md-block align-self-center pl-2 text-info"><b>Google</b></span>
+    </a>
   </div>
   <div class="col">
-    <a class="btn btn-link mt-2 d-flex" href="{% url 'social:begin' 'github' %}"><i class="fab fa-github-square fa-2x" style="color:#171515;"></i><span class="d-none d-md-block align-self-center pl-1 text-info">Github</span></a>
+    <a class="btn btn-link mt-2 d-flex text-shadow" href="{% url 'social:begin' 'github' %}">
+      <i class="fab fa-github-square fa-3x" style="color:#171515;"></i>
+      <span class="d-none d-md-block align-self-center pl-2 text-info"><b>Github</b></span>
+    </a>
   </div>
   <div class="col">
-    <a class="btn btn-link mt-2 d-flex" href="{% url 'social:begin' 'twitter' %}"><i class="fab fa-twitter-square fa-2x" style="color:#1dabdd;"></i><span class="d-none d-md-block align-self-center pl-1 text-info">Twitter</span></a>
+    <a class="btn btn-link mt-2 d-flex text-shadow" href="{% url 'social:begin' 'twitter' %}">
+      <i class="fab fa-twitter-square fa-3x" style="color:#1dabdd;"></i>
+      <span class="d-none d-md-block align-self-center pl-2 text-info"><b>Twitter</b></span>
+    </a>
   </div>
   <div class="col">
-    <a class="btn btn-link mt-2 d-flex" href="{% url 'social:begin' 'facebook' %}"><i class="fab fa-facebook-square fa-2x" style="color:#3b579d;"></i><span class="d-none d-md-block align-self-center pl-1 text-info">Facebook</span></a>
+    <a class="btn btn-link mt-2 d-flex text-shadow" href="{% url 'social:begin' 'facebook' %}">
+      <i class="fab fa-facebook-square fa-3x" style="color:#3b579d;"></i>
+      <span class="d-none d-md-block align-self-center pl-2 text-info"><b>Facebook</b></span>
+    </a>
+  </div>
+  <div class="col-12">
+    <hr class="m-0">
   </div>
 </div>
 <div class="row">
