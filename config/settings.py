@@ -24,7 +24,8 @@ from django.core.management.utils import get_random_secret_key
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = str(Path(__file__).resolve().parent.parent)
 config = AutoConfig(BASE_DIR)
-
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 with open(os.path.join(BASE_DIR, 'version.txt')) as v_file:
     VERSION = v_file.read().strip().split('.')
@@ -40,11 +41,11 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 # Database configuration
 _DB = {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': config('NAME', default=None),
-    'USER': config('USER', default=None),
-    'PASSWORD': config('PASSWORD', default=None),
-    'HOST': config('HOST', default=None),
-    'PORT': config('PORT', default=5432),
+    'NAME': config('DB_NAME', default=None),
+    'USER': config('DB_USER', default=None),
+    'PASSWORD': config('DB_PASSWORD', default=None),
+    'HOST': config('DB_HOST', default=None),
+    'PORT': config('DB_PORT', default=5432),
     }
 
 if not all((_DB['NAME'], _DB['USER'], _DB['PASSWORD'], _DB['HOST'])):
