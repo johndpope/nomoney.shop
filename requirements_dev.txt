@@ -17,3 +17,4 @@ redis
 django-db-logger
 python-decouple
 django-oauth-toolkit
+social-auth-app-django
