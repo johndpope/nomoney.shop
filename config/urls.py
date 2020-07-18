@@ -35,6 +35,7 @@ urlpatterns = [
     path('calculator/', include('calculator.urls')),
 
     url(r'^oauth/', include('social_django.urls', namespace='social')),
+    path('', include('social_django.urls', namespace='social')),
     path('', include('pwa.urls')),
     path('admin/', admin.site.urls),
 
