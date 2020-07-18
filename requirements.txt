@@ -17,3 +17,4 @@ channels_redis
 redis
 django-db-logger
 prospector
+python-decouple

@@ -2,7 +2,7 @@
 from itertools import chain
 from django.utils.translation import gettext_lazy as _
 from django.db import models
-from config.settings.base import LOGGER
+from config.settings import LOGGER
 
 
 class CategoryStatus(models.IntegerChoices):

@@ -9,24 +9,52 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
+from decouple import AutoConfig, Csv
 import logging
 import os
 from pathlib import Path
 from django.contrib.messages import constants as message_constants
 from django.urls.base import reverse_lazy
-
+from django.core.management.utils import get_random_secret_key
 
 # VERSION = '0.3.0'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = str(Path(__file__).resolve().parent.parent.parent)
+BASE_DIR = str(Path(__file__).resolve().parent.parent)
+config = AutoConfig(BASE_DIR)
+
 
 with open(os.path.join(BASE_DIR, 'version.txt')) as v_file:
     VERSION = v_file.read().strip().split('.')
 VERSION = [int(field) for field in VERSION]
 NAME = 'nomoney.shop'
 # Application definition
+
+SECRET_KEY = config('SECRET_KEY', default=get_random_secret_key())
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=['127.0.0.1', 'localhost'], cast=Csv())
+DEBUG = config('DEBUG', default=False, cast=bool)
+
+
+# Database configuration
+_DB = {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': config('NAME'),
+    'USER': config('USER'),
+    'PASSWORD': config('PASSWORD'),
+    'HOST': config('HOST'),
+    'PORT': config('PORT', default=5432),
+    }
+
+if not all((_DB['NAME'], _DB['USER'], _DB['PASSWORD'], _DB['HOST'])):
+    _DB = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+
+DATABASES = {
+    'default': _DB
+}
 
 
 INSTALLED_APPS = [
@@ -121,9 +149,15 @@ USE_L10N = True
 USE_TZ = True
 
 
+if DEBUG is True:
+    DEBUG_TOOLBAR_CONFIG = {
+        'SHOW_TOOLBAR_CALLBACK': lambda x: DEBUG
+    }
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware'] + MIDDLEWARE
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
@@ -141,7 +175,7 @@ MESSAGE_LEVEL = message_constants.DEBUG
 
 # LOGIN_URL = '/'
 LOGIN_URL = reverse_lazy('user_login')
-LOGIN_REDIRECT_URL = reverse_lazy('home')#reverse_lazy('user_login')#'/'
+LOGIN_REDIRECT_URL = reverse_lazy('home')  # reverse_lazy('user_login')#'/'
 LOGOUT_REDIRECT_URL = LOGIN_URL
 
 MATOMO_DOMAIN_PATH = 'nomoney.shop/x'
@@ -183,3 +217,33 @@ LOGGING = {
 }
 
 LOGGER = logging.getLogger('db')
+
+PWA_APP_NAME = 'nomoney.shop'
+PWA_APP_DESCRIPTION = 'Plattform to exchange goods and services and calculate possible deals direct and indirect'
+PWA_APP_THEME_COLOR = '#1da1f2'
+PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'any'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/logo.png',
+        'sizes': '160x160'
+    }
+]
+PWA_APP_ICONS_APPLE = [
+    {
+        'src': '/static/logo.png',
+        'sizes': '160x160'
+    }
+]
+PWA_APP_SPLASH_SCREEN = [
+    {
+        'src': '/static/logo.png',
+        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+    }
+]
+PWA_APP_DIR = 'ltr'
+PWA_APP_LANG = 'de-DE'

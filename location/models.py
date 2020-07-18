@@ -1,7 +1,7 @@
 """ models for the location module """
 from django.utils.translation import gettext_lazy as _
 from django.db import models
-from config.settings.base import AUTH_USER_MODEL, LOGGER
+from config.settings import AUTH_USER_MODEL, LOGGER
 
 
 class Location(models.Model):

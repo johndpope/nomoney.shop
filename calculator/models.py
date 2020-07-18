@@ -1,7 +1,7 @@
 """ models for the calculator module """
 from itertools import combinations
 from deal.models import Deal
-from config.settings.base import LOGGER
+from config.settings import LOGGER
 
 
 class VirtualDeal(Deal):
