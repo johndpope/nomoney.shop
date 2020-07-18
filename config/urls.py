@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
+from django.conf.urls import url
 from config import settings
 
 
@@ -33,7 +34,7 @@ urlpatterns = [
     path('location/', include('location.urls')),
     path('calculator/', include('calculator.urls')),
 
-    path('', include('social_django.urls', namespace='social')),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
     path('', include('pwa.urls')),
     path('admin/', admin.site.urls),
 

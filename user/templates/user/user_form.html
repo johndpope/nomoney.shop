@@ -10,5 +10,8 @@
 
 {% block content %}
   {% include 'user/solo/user_form.html' %}
-  <a href="{% url "social:begin" "google-oauth2" %}">Google+</a>
+  <a href="{% url 'social:begin' 'google-oauth2' %}">Google+</a>
+  <a href="{% url 'social:begin' 'github' %}">GitHub</a><br>
+  <a href="{% url 'social:begin' 'twitter' %}">Twitter</a><br>
+  <a href="{% url 'social:begin' 'facebook' %}">Facebook</a>
 {% endblock %}
