@@ -66,9 +66,12 @@ class Level(Enum):
     def by_exp(cls, exp):
         """ select level by number
         :param exp:
-        :returns: ChatType.X
+        :returns: Level
         """
-        return max(level for level in cls.levels() if level.value[0] < Exp(exp))
+        seq = [level for level in cls.levels() if level.value[0] < Exp(exp)]
+        if seq:
+            return max(seq)
+        return cls.ROOKIE
 
     def __lt__(self, other):
         # pylint: disable=unsubscriptable-object
