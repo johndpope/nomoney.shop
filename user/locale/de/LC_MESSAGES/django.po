@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-19 05:45+0200\n"
+"POT-Creation-Date: 2020-07-19 05:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,11 +30,11 @@ msgstr "Bild"
 msgid "description"
 msgstr "beschreibung"
 
-#: user/models.py:201 user/templates/user/user_list.html:13
+#: user/models.py:210 user/templates/user/user_list.html:13
 msgid "user"
 msgstr "Benutzer"
 
-#: user/models.py:202
+#: user/models.py:211
 msgid "users"
 msgstr "Benutzer"
 
@@ -130,7 +130,7 @@ msgstr ""
 
 #: user/templates/user/user_detail.html:63
 msgid "experience"
-msgstr ""
+msgstr "Erfahrung"
 
 #: user/templates/user/user_detail.html:75
 msgid "member"
@@ -182,6 +182,10 @@ msgstr "kostenlos"
 #: user/templates/user/user_login.html:97
 msgid "signup"
 msgstr ""
+
+#: user/views.py:77
+msgid "PROFILE_VISITED"
+msgstr "Profil besucht"
 
 #~ msgid "toggle all"
 #~ msgstr "alle umschalten"

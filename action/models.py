@@ -7,15 +7,17 @@ from action.models import tasks
 action = tasks.add('PROFILE_VISITED', 1).action(user=request.user)
 
 Pass request with action() to add a message to the request:
+from django.utils.translation import gettext_lazy as _
 msg = 'UNIQUE_STRING'
+_(msg)
 tasks.add(msg, 1).action(user=request.user, request=request)
 """
 from enum import Enum
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.contrib import messages
-from config.settings import AUTH_USER_MODEL, LOGGER
 from django.utils.safestring import mark_safe
+from config.settings import AUTH_USER_MODEL, LOGGER
 
 
 __all__ = ['Exp', 'Action', 'tasks', 'messages']

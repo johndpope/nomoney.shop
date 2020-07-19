@@ -51,14 +51,23 @@ class User(AbstractUser):
 
     @property
     def exp(self):
+        """
+        :returns: current experience sum
+        """
         return Exp(self.actions.aggregate(models.Sum('exp'))['exp__sum'])
 
     @property
     def level(self):
+        """
+        :returns: Current Level according to the exp value
+        """
         return self.exp.level
 
     @property
     def actions(self):
+        """
+        :returns: all actions of self
+        """
         return self.action_set.all()
 
     @property

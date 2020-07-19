@@ -1,4 +1,5 @@
 """ views for the user module """
+from django.utils.translation import gettext_lazy as _
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, FormView
@@ -74,6 +75,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'user'
 
     def get(self, request, *args, **kwargs):
+        _('PROFILE_VISITED')
         tasks.add('PROFILE_VISITED', 1).action(user=request.user, request=request)
         return DetailView.get(self, request, *args, **kwargs)
 
