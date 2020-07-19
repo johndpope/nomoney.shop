@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.contrib.auth import get_user_model
 from chat.models import Chat
+from action.models import tasks
 from .forms import CustomUserCreationForm
 from .models import UserConfig
 
@@ -71,6 +72,10 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     """ DetailView to view a single user """
     model = User
     context_object_name = 'user'
+
+    def get(self, request, *args, **kwargs):
+        tasks.add('PROFILE_VISITED', 1).action(user=request.user, request=request)
+        return DetailView.get(self, request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = DetailView.get_context_data(self, **kwargs)

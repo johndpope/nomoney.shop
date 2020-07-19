@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-19 01:12+0200\n"
+"POT-Creation-Date: 2020-07-19 05:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,23 +18,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: user/models.py:38
+#: user/models.py:39
 msgid "config"
 msgstr "Einstellungen"
 
-#: user/models.py:43
+#: user/models.py:44
 msgid "image"
 msgstr "Bild"
 
-#: user/models.py:47 user/templates/user/user_detail.html:84
+#: user/models.py:48 user/templates/user/user_detail.html:108
 msgid "description"
 msgstr "beschreibung"
 
-#: user/models.py:188 user/templates/user/user_list.html:13
+#: user/models.py:201 user/templates/user/user_list.html:13
 msgid "user"
 msgstr "Benutzer"
 
-#: user/models.py:189
+#: user/models.py:202
 msgid "users"
 msgstr "Benutzer"
 
@@ -51,7 +51,7 @@ msgid "account"
 msgstr "Konto"
 
 #: user/templates/user/solo/user_form.html:14
-#: user/templates/user/user_detail.html:103
+#: user/templates/user/user_detail.html:127
 msgid "update"
 msgstr ""
 
@@ -67,46 +67,46 @@ msgstr ""
 msgid "objects"
 msgstr "Objekte"
 
-#: user/templates/user/solo/user_objects.html:29
+#: user/templates/user/solo/user_objects.html:30
 msgid "markets"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:33
+#: user/templates/user/solo/user_objects.html:34
 msgid "market"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:59
+#: user/templates/user/solo/user_objects.html:60
 msgid "deals"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:63
+#: user/templates/user/solo/user_objects.html:64
 #: user/templates/user/user_list.html:23
 msgid "deal"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:89
+#: user/templates/user/solo/user_objects.html:91
 msgid "locations"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:93
+#: user/templates/user/solo/user_objects.html:95
 msgid "location"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:121
+#: user/templates/user/solo/user_objects.html:123
 #: user/templates/user/user_list.html:14
 msgid "offerings"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:126
+#: user/templates/user/solo/user_objects.html:128
 msgid "offer"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:155
+#: user/templates/user/solo/user_objects.html:157
 #: user/templates/user/user_list.html:15
 msgid "requests"
 msgstr ""
 
-#: user/templates/user/solo/user_objects.html:160
+#: user/templates/user/solo/user_objects.html:162
 msgid "seek"
 msgstr ""
 
@@ -125,30 +125,38 @@ msgid "name"
 msgstr ""
 
 #: user/templates/user/user_detail.html:51
+msgid "level"
+msgstr ""
+
+#: user/templates/user/user_detail.html:63
+msgid "experience"
+msgstr ""
+
+#: user/templates/user/user_detail.html:75
 msgid "member"
 msgstr ""
 
-#: user/templates/user/user_detail.html:51
+#: user/templates/user/user_detail.html:75
 msgid "since"
 msgstr "seit"
 
-#: user/templates/user/user_detail.html:62
+#: user/templates/user/user_detail.html:86
 msgid "feedback"
 msgstr ""
 
-#: user/templates/user/user_detail.html:74
+#: user/templates/user/user_detail.html:98
 msgid "no data"
 msgstr "keine Daten"
 
-#: user/templates/user/user_detail.html:104
+#: user/templates/user/user_detail.html:128
 msgid "settings"
 msgstr "Einstellungen"
 
-#: user/templates/user/user_detail.html:105
+#: user/templates/user/user_detail.html:129
 msgid "password"
 msgstr ""
 
-#: user/templates/user/user_detail.html:106
+#: user/templates/user/user_detail.html:130
 msgid "logout"
 msgstr "ausloggen"
 

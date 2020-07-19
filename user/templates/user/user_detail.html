@@ -48,6 +48,30 @@
         <div class="col">
           <div class="row">
             <div class="col">
+              <b>{% trans 'level'|title %}:</b>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              {{ user.level }}
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <b>{% trans 'experience'|title %}:</b>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              {{ user.exp }}
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col">
               <b>{% trans 'member'|title %} {% trans 'since' %}:</b>
             </div>
           </div>

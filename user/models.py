@@ -10,6 +10,7 @@ from listing.models import ListingStatus
 from category.models import Category
 from _collections import defaultdict
 from config.settings import LOGGER
+from action.models import Exp
 
 
 def image_path(instance, filename):
@@ -47,6 +48,18 @@ class User(AbstractUser):
         verbose_name=_('description'),
         )
     invisible = models.BooleanField(default=False)
+
+    @property
+    def exp(self):
+        return Exp(self.actions.aggregate(models.Sum('exp'))['exp__sum'])
+
+    @property
+    def level(self):
+        return self.exp.level
+
+    @property
+    def actions(self):
+        return self.action_set.all()
 
     @property
     def chats(self):

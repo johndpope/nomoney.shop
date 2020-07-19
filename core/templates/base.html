@@ -55,6 +55,16 @@
       </div>
     </div>
   
+    {% if messages %}
+      {% for message in messages %}
+          <div class="my-3 alert-dismissible fade show alert alert-{{ message.tags }}" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+      {% endfor %}
+    {% endif %}
     <div class="row">
       <div class="col-12 p-3 p-xl-5 p-xl-5">{% block content %}{% endblock %}</div>
     </div>

@@ -84,6 +84,7 @@ INSTALLED_APPS = [
     'deal',
     'location',
     'calculator',
+    'action',
 ]
 
 
@@ -194,6 +195,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AUTH_USER_MODEL = 'user.User'
 
 # Bootstrap fix:
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 MESSAGE_TAGS = {
     message_constants.ERROR: 'danger',
     message_constants.DEBUG: 'dark'

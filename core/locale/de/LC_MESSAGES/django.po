@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-19 01:12+0200\n"
+"POT-Creation-Date: 2020-07-19 05:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,42 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: core/templates/base.html:9 core/templates/dashboard/dashboard_home.html:53
+msgid "push"
+msgstr ""
+
+#: core/templates/base.html:9 core/templates/dashboard/dashboard_home.html:59
+msgid "pull"
+msgstr ""
+
+#: core/templates/base.html:9 core/templates/dashboard/dashboard_home.html:65
+msgid "market"
+msgstr ""
+
+#: core/templates/base.html:9 core/templates/dashboard/dashboard_home.html:47
+msgid "location"
+msgstr ""
+
+#: core/templates/base.html:9 core/templates/dashboard/dashboard_home.html:71
+msgid "deal"
+msgstr ""
+
+#: core/templates/base.html:9
+#, fuzzy
+#| msgid "feedbacks"
+msgid "feedback"
+msgstr "Bewertungen"
+
+#: core/templates/base.html:9
+#, fuzzy
+#| msgid "chats"
+msgid "chat"
+msgstr "Chats"
+
+#: core/templates/base.html:9 core/templates/menu.html:28
+msgid "calculator"
+msgstr "Rechner"
+
 #: core/templates/dashboard/dashboard_home.html:41
 msgid "recommended"
 msgstr "empfohlene"
@@ -25,26 +61,6 @@ msgstr "empfohlene"
 #: core/templates/dashboard/dashboard_home.html:41
 msgid "actions"
 msgstr "Aktionen"
-
-#: core/templates/dashboard/dashboard_home.html:47
-msgid "location"
-msgstr ""
-
-#: core/templates/dashboard/dashboard_home.html:53
-msgid "push"
-msgstr ""
-
-#: core/templates/dashboard/dashboard_home.html:59
-msgid "pull"
-msgstr ""
-
-#: core/templates/dashboard/dashboard_home.html:65
-msgid "market"
-msgstr ""
-
-#: core/templates/dashboard/dashboard_home.html:71
-msgid "deal"
-msgstr ""
 
 #: core/templates/menu.html:7
 msgid "signup"
@@ -57,10 +73,6 @@ msgstr "einloggen"
 #: core/templates/menu.html:25
 msgid "categories"
 msgstr "Kategorien"
-
-#: core/templates/menu.html:28
-msgid "calculator"
-msgstr "Rechner"
 
 #: core/templates/menu.html:31
 msgid "chats"
@@ -140,9 +152,6 @@ msgstr "Daten"
 
 #~ msgid "guilds"
 #~ msgstr "Gilden"
-
-#~ msgid "feedbacks"
-#~ msgstr "Bewertungen"
 
 #~ msgid "listings"
 #~ msgstr "Einträge"
