@@ -74,11 +74,6 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
     context_object_name = 'user'
 
-    def get(self, request, *args, **kwargs):
-        _('PROFILE_VISITED')
-        tasks.add('PROFILE_VISITED', 1).action(user=request.user, request=request)
-        return DetailView.get(self, request, *args, **kwargs)
-
     def get_context_data(self, **kwargs):
         context = DetailView.get_context_data(self, **kwargs)
         if self.object != self.request.user:
