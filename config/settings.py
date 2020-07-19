@@ -34,7 +34,7 @@ NAME = 'nomoney.shop'
 # Application definition
 
 SECRET_KEY = config('SECRET_KEY', default=get_random_secret_key())
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=['127.0.0.1', 'localhost'], cast=Csv())
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1,localhost', cast=Csv())
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 
@@ -54,10 +54,7 @@ if not all((_DB['NAME'], _DB['USER'], _DB['PASSWORD'], _DB['HOST'])):
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 
-DATABASES = {
-    'default': _DB
-}
-
+DATABASES = {'default': _DB}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -133,33 +130,17 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-for provider in ('GOOGLE', 'GITHUB', 'TWITTER', 'FACEBOOK', 'INSTAGRAM'):
-    # pylint: disable=invalid-name
-    _key = 'SOCIAL_AUTH_{}_KEY'.format(provider)
-    setattr(sys.modules[__name__], _key, config(_key, default=None))
-    # pylint: disable=invalid-name
-    _secret = 'SOCIAL_AUTH_{}_SECRET'.format(provider)
-    setattr(sys.modules[__name__], _secret, config(_secret, default=None))
 
-WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
 ]
 
 
@@ -167,15 +148,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 LANGUAGE_CODE = 'de'
-
 TIME_ZONE = 'Europe/Berlin'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
+ASGI_APPLICATION = 'config.routing.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 if DEBUG is True:
     DEBUG_TOOLBAR_CONFIG = {
@@ -210,7 +189,6 @@ LOGOUT_REDIRECT_URL = LOGIN_URL
 MATOMO_DOMAIN_PATH = 'nomoney.shop/x'
 MATOMO_SITE_ID = '2'
 
-ASGI_APPLICATION = 'config.routing.application'
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
