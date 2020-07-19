@@ -55,7 +55,7 @@ class User(AbstractUser):
         :returns: current experience sum
         """
         exp = self.actions.aggregate(models.Sum('exp'))['exp__sum']
-        return Exp(exp) if sum else Exp(0)
+        return Exp(exp) if exp else Exp(0)
 
     @property
     def level(self):
