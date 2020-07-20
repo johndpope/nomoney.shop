@@ -12,6 +12,7 @@ class Main:
             self.execute_venv('manage.py compilemessages')
             # self.execute_venv('manage.py migrate')
             self.execute('systemctl restart nomoney.shop')
+            # TODO: implement wall (write all) messages
 
     def execute_venv(self, cmd):
         """ execute in the context of the virtualenv

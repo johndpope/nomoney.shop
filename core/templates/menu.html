@@ -1,8 +1,8 @@
 {% load static %}
 {% load i18n %}
-
+<ul class="col-auto navbar-nav mr-auto d-flex flex-wrap pr-0" style="height:50px;">
 <li class="nav-item">
-  <a class="nav-link p-0" href="{% url 'dashboard_home' %}">
+  <a class="nav-link p-2" href="{% url 'dashboard_home' %}">
     <!-- <img src="{% static 'images/logo.svg' %}" class="d-inline-block align-top" style="height:40px;" alt=""> -->
     <span class="nav-link pl-1 pt-1">
       <!-- <img src="{% static 'images/nomoney.shop.svg' %}" class="d-inline-block align-top" style="height:35px;" alt=""> -->
@@ -13,52 +13,59 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link px-3" href="{% url 'category_list' %}">{{ symbols.category|safe }}<span class="d-none d-sm-inline-block pl-1">{% trans 'categories' %}</span></a>
+  <a class="nav-link p-3" href="{% url 'category_list' %}">{{ symbols.category|safe }}<span class="d-none d-sm-inline-block pl-1">{% trans 'categories' %}</span></a>
 </li>
 <li class="nav-item">
-  <a class="nav-link px-3" href="{% url 'calculator' %}">{{ symbols.calculator|safe }}<span class="d-none d-sm-inline-block pl-1">{% trans 'calculator' %}</span></a>
+  <a class="nav-link p-3" href="{% url 'calculator' %}">{{ symbols.calculator|safe }}<span class="d-none d-sm-inline-block pl-1">{% trans 'calculator' %}</span></a>
 </li>
 <li class="nav-item">
-    <a class="nav-link px-3" href="{% url 'chat_list' %}">{% if request.user.unseen_messages.all %}<span class="badge badge-secondary position-absolute" style="margin-top: 15px;margin-left: -10px;">{{ request.user.unseen_messages.all|length }}</span>{% endif %}{{ symbols.chat|safe }}<span class="d-none d-sm-inline-block pl-1">{% trans 'chats' %}</span></a>
-  </li>
-</ul>
-<ul class="col-auto navbar-nav ml-auto navbar-right pr-0">
-  <li class="nav-item" title="{% trans 'help' %}">
-    <button class="nav-link btn btn-link help_button"><i class="fas fa-info-circle"></i></button>
-  </li>
-  <li class="nav-item">
-    <div id="search_box" class="collapse d-lg-block panel-collapse width float-right">
-    <fieldset{% if not request.user.is_authenticated %} disabled{% endif %}>
-      <form action="{% url 'search_basic' %}" class="form-inline" method="POST">{% csrf_token %}
-        <input name="text" id="live_search" class="nav-link form-control mr-sm-2" type="search" placeholder="Suche ..." aria-label="Search" autocomplete="off">
-      </form>
-    </fieldset>
-    </div>
-  </li>
-  <li class="nav-item d-inline-block d-lg-none">
-    <a href="#search_box" class="nav-link" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="search_box">
-      {{ symbols.search|safe }}
+    <a class="nav-link p-3" href="{% url 'chat_list' %}">
+      {% if request.user.unseen_messages.all %}
+        <span class="badge badge-secondary position-absolute" style="margin-top: 15px;margin-left: -10px;">
+          {{ request.user.unseen_messages.all|length }}
+        </span>
+      {% endif %}
+      {{ symbols.chat|safe }}
+      <span class="d-none d-sm-inline-block pl-1">{% trans 'chats' %}</span>
     </a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link dropdown-toggle{% if request.user.image %} p-0{% endif %}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+</ul>
+<ul class="col-auto navbar-nav ml-auto navbar-right pr-0 my-auto" style="height:50px;">
+  <li class="nav-item d-flex" title="{% trans 'help' %}">
+    <button class="nav-link btn btn-link help_button"><i class="fas fa-info-circle"></i></button>
+  </li>
+  <li class="nav-item d-flex">
+    <div id="search_box" class="collapse d-lg-flex panel-collapse width">
+      <input name="text" id="live_search" class="nav-link form-control my-auto" type="search" placeholder="Suche ..." aria-label="Search" autocomplete="off" style="border-radius:0;">
+    </div>
+  </li>
+  <li class="nav-item d-flex d-lg-none">
+    <a href="#search_box" class="nav-link align-self-center" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="search_box">
+      <span class="">
+        {{ symbols.search|safe }}
+      </span>
+    </a>
+  </li>
+  <li class="nav-item d-flex">
+    <a class="nav-link{% if request.user.image %} p-0{% endif %}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       {% if request.user.image %}
-        <img src="{{ request.user.image.url }}" class="border shadow" style="width:40px;" alt=""></span>
-    {% else %}
-      <i class="fas fa-stream"></i>
-    {% endif %}
-  </a>
-  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-    <a class="dropdown-item" href="{% url 'user_detail' request.user.pk %}">{{ symbols.user|safe }} {% trans 'profile' %}</a>
-    <a class="dropdown-item" href="{% url 'user_list' %}">{{ symbols.users|safe }} {% trans 'users' %}</a>
-    <div class="dropdown-divider"></div>
-    <h6 class="dropdown-header">nomoney.shop</h6>
-    <a class="dropdown-item" href="{% url 'donate' %}"><i class="fas fa-hand-holding-heart"></i>&nbsp;{% trans 'donate'|title %}</a>
-    <a class="dropdown-item" href="{% url 'terms' %}"><i class="far fa-handshake"></i>&nbsp;{% trans 'terms-and-conditions'|title %}</a>
-    <a class="dropdown-item" href="{% url 'impressum' %}"><i class="fas fa-align-left"></i>&nbsp;{% trans 'impressum'|title %}</a>
-    <a class="dropdown-item" href="{% url 'about' %}"><img src="{% static 'images/logo.svg' %}" class="" style="width:16px;" alt="">&nbsp;{% trans 'about' %}</a>
-  </div>
-</li>
-
+        <img src="{{ request.user.image.url }}" class="" style="width:50px;" alt=""></img>
+        <span class="position-absolute" style="right:16px;bottom:-20px;font-size:large;"><i class="far fa-caret-square-down text-success" style="text-shadow: 0px 0px 10px #fff;"></i></span>
+      {% else %}
+        <span class="" style="font-size:25px;"><i class="far fa-caret-square-down text-light"></i></span>
+      {% endif %}
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="{% url 'user_detail' request.user.pk %}">{{ symbols.user|safe }} {% trans 'profile' %}</a>
+      <a class="dropdown-item" href="{% url 'user_list' %}">{{ symbols.users|safe }} {% trans 'users' %}</a>
+      <div class="dropdown-divider"></div>
+      <h6 class="dropdown-header">nomoney.shop</h6>
+      <a class="dropdown-item" href="{% url 'donate' %}"><i class="fas fa-hand-holding-heart"></i>&nbsp;{% trans 'donate'|title %}</a>
+      <a class="dropdown-item" href="{% url 'terms' %}"><i class="far fa-handshake"></i>&nbsp;{% trans 'terms-and-conditions'|title %}</a>
+      <a class="dropdown-item" href="{% url 'impressum' %}"><i class="fas fa-align-left"></i>&nbsp;{% trans 'impressum'|title %}</a>
+      <a class="dropdown-item" href="{% url 'about' %}"><img src="{% static 'images/logo.svg' %}" class="" style="width:16px;" alt="">&nbsp;{% trans 'about' %}</a>
+    </div>
+  </li>
+</ul>
 
       

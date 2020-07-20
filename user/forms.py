@@ -16,7 +16,10 @@ class CustomUserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update({
-            'placeholder': _('email'),
+            'placeholder': '{} / {}'.format(
+                _('email'),
+                _('username'),
+                ),
             'style': 'height:100%;'
             })
         self.fields['username'].label = ''

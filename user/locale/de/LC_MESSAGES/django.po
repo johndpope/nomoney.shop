@@ -182,7 +182,7 @@ msgstr "kostenlos"
 
 #: user/templates/user/user_login.html:93
 msgid "signup"
-msgstr ""
+msgstr "registrieren"
 
 #~ msgid "PROFILE_VISITED"
 #~ msgstr "Profil besucht"
