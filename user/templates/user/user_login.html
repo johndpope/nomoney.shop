@@ -19,19 +19,85 @@ function login_demo(){
 </script>
 <style>
 .text-shadow{
-  text-shadow: 5px 5px 5px #b9b9b9;
+  text-shadow: 0px 0px 10px #fff;
 }
 </style>
 {% endblock %}
 
+
+{% block login_menu %}
+  <div class="row w-100">
+    <div class="col-auto my-auto">
+      <div class="row">
+        <form id="user_form" class="form-inline pl-1" method="post" enctype="multipart/form-data">{% csrf_token %}
+          <div class="col p-0">
+            {{ form.username }}
+          </div>
+          <div class="col-auto d-none d-sm-block"></div>
+          <div class="col p-0">
+            {{ form.password }}
+          </div>
+          <div class="col-auto btn-group btn-group-sm p-0">
+            <button class="btn btn-secondary" type="submit" data-toggle="tooltip" title="login"><i class="fas fa-sign-in-alt"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+    <div class="col d-flex justify-content-center">
+        <div class="col d-flex pr-0 d-flex justify-content-center">
+          <i class="align-self-center fas fa-arrow-right text-light"></i>
+        </div>
+        <div class="col d-flex pr-0 d-flex justify-content-center">
+          <b class="align-self-center m-0 text-nowrap text-light">{% trans 'or' %} {% trans 'login' %} {% trans 'with' %}</b>
+        </div>
+        <div class="col d-flex pr-0 d-flex justify-content-center">
+          <i class="align-self-center fas fa-arrow-right text-light"></i>
+        </div>
+    </div>
+    
+    <div class="col d-flex justify-content-end">
+      <div class="row">
+        <div class="col-auto d-flex justify-content-end">
+          <a class="btn btn-link p-0 m-0 d-flex text-shadow" href="{% url 'social:begin' 'github' %}">
+            <i class="fab fa-github-square fa-2x" style="color:#171515;"></i>
+            <span class="align-self-center pl-2 text-light"><b>Github</b></span>
+          </a>
+        </div>
+        <div class="col-auto d-flex justify-content-end">
+          <a class="btn btn-link p-0 m-0 d-flex text-shadow" href="{% url 'social:begin' 'twitter' %}">
+            <i class="fab fa-twitter-square fa-2x" style="color:#1dabdd;"></i>
+            <span class="align-self-center pl-2 text-light"><b>Twitter</b></span>
+          </a>
+        </div>
+        <div class="col-auto d-flex justify-content-end">
+          <a class="btn btn-link p-0 m-0 d-flex text-shadow" href="{% url 'social:begin' 'facebook' %}">
+            <i class="fab fa-facebook-square fa-2x" style="color:#3b579d;"></i>
+            <span class="align-self-center pl-2 text-light"><b>Facebook</b></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
 {% block content %}
+{% if form.errors %}
+  <div class="alert alert-danger" role="alert">
+    {{ form.errors }}
+  </div>
+{% endif %}
 <div class="row mb-5 mt-3">
+  <div class="col-auto align-items-end">
+    <a class="btn btn-link text-info mt-2" href="{% url 'user_create' %}"><i class="fas fa-user-plus"></i> {% trans 'free'|title %} {% trans 'signup' %}</a>
+  </div>
 <div class="col-12 d-flex justify-content-center" style="font-size:xx-large;">Willkommen bei</div>
 </div>
 <div class="row justify-content-center mb-5 mt-3">
   <div class="col-10 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 card shadow p-4">
         <img src="{% static 'images/logo_full.svg' %}" class="" style="width: 100%;" alt="">
       </div>      
       <div class="col-12 d-flex justify-content-end mt-3">
@@ -39,79 +105,5 @@ function login_demo(){
       </div>      
     </div>
   </div>
-</div>
-<hr class="my-5">
-<div class="row">
-  <div class="col">
-    <h1 class="m-0">{% trans 'login'|title %}</h1>
-    <hr class="m-0">
-  </div>
-</div>
-<div class="row">
-  <div class="col-12 col-lg d-flex">
-    <h2 class="align-self-center m-0">{% trans 'with' %}</h2>
-  </div>
-  <!-- 
-  <div class="col px-0 px-sm-3 d-flex justify-content-center">
-    <a class="btn btn-link mt-2 d-flex text-shadow" href="{% url 'social:begin' 'google-oauth2' %}">
-      <i class="fab fa-google-plus-square fa-3x" style="color:#4285f4;"></i>
-      <span class="d-none d-md-block align-self-center pl-2 text-info"><b>Google</b></span>
-    </a>
-  </div>
-  <div class="col px-0 px-sm-3 d-flex justify-content-center">
-    <a class="btn btn-link mt-2 d-flex text-shadow" href="{% url 'social:begin' 'github' %}">
-      <i class="fab fa-github-square fa-3x" style="color:#171515;"></i>
-      <span class="d-none d-md-block align-self-center pl-2 text-info"><b>Github</b></span>
-    </a>
-  </div>
-  <div class="col px-0 px-sm-3 d-flex justify-content-center">
-    <a class="btn btn-link mt-2 d-flex text-shadow" href="{% url 'social:begin' 'twitter' %}">
-      <i class="fab fa-twitter-square fa-3x" style="color:#1dabdd;"></i>
-      <span class="d-none d-md-block align-self-center pl-2 text-info"><b>Twitter</b></span>
-    </a>
-  </div>
-  <div class="col px-0 px-sm-3 d-flex justify-content-center">
-    <a class="btn btn-link mt-2 d-flex text-shadow" href="{% url 'social:begin' 'facebook' %}">
-      <i class="fab fa-facebook-square fa-3x" style="color:#3b579d;"></i>
-      <span class="d-none d-md-block align-self-center pl-2 text-info"><b>Facebook</b></span>
-    </a>
-  </div>
-   -->
-  <!-- 
-  <div class="col px-0 px-sm-3 d-flex justify-content-center">
-    <a class="btn btn-link mt-2 d-flex text-shadow" href="{% url 'social:begin' 'instagram' %}">
-      <i class="fab fa-instagram-square fa-3x" style="color:#d22158;"></i>
-      <span class="d-none d-md-block align-self-center pl-2 text-info"><b>Instagram</b></span>
-    </a>
-  </div>
-   -->
-  <div class="col-12">
-    <hr class="m-0">
-  </div>
-</div>
-<div class="row">
-  <div class="col d-flex">
-    <h2 class="align-self-center m-0">{% trans 'or' %}</h2>
-  </div>
-  <div class="col-auto d-flex justify-content-end align-items-end">
-    <a class="btn btn-link text-info mt-2" href="{% url 'user_create' %}"><i class="fas fa-user-plus"></i> {% trans 'free'|title %} {% trans 'signup' %}</a>
-  </div>
-</div>
-<div class="row">
-  <div class="container">
-	<form id="user_form"  method="post" enctype="multipart/form-data">
-		{% if form.errors %}
-		<div class="alert alert-danger" role="alert">
-			{{ form.errors }}
-			</div>
-		{% else %}
-		{% endif %}
-		{% csrf_token %}
-		<table class="table table-striped table-bordered table-hover">
-			{{ form.as_table }}
-		</table>
-		<button class="btn btn-primary btn-block" type="submit">{% trans 'login'|title %}</button>
-	</form>
-</div>
 </div>
 {% endblock %}

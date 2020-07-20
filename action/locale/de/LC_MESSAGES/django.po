@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-19 05:55+0200\n"
+"POT-Creation-Date: 2020-07-20 04:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,70 +18,70 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: action/models.py:39
+#: action/models.py:41
 msgid "rookie"
 msgstr ""
 
-#: action/models.py:40
+#: action/models.py:42
 msgid "beginner"
 msgstr "Anfänger"
 
-#: action/models.py:41
+#: action/models.py:43
 msgid "arrived"
 msgstr "Angekommener"
 
-#: action/models.py:42
+#: action/models.py:44
 msgid "middle"
 msgstr "Mitte"
 
-#: action/models.py:43
+#: action/models.py:45
 msgid "advanced"
 msgstr "Fortgeschrittener"
 
-#: action/models.py:44
+#: action/models.py:46
 msgid "semipro"
 msgstr "Semi-Profi"
 
-#: action/models.py:45
+#: action/models.py:47
 msgid "profi"
 msgstr "Profi"
 
-#: action/models.py:46
+#: action/models.py:48
 msgid "legend"
 msgstr "Legende"
 
-#: action/models.py:47
+#: action/models.py:49
 msgid "immortal"
 msgstr "Unsterblich"
 
-#: action/models.py:109
+#: action/models.py:114
 msgid "you earned"
 msgstr "Du verdienst"
 
-#: action/models.py:111
+#: action/models.py:116
 msgid "exp"
 msgstr "erf"
 
-#: action/models.py:151
+#: action/models.py:156
 msgid "user"
 msgstr ""
 
-#: action/models.py:155
+#: action/models.py:160
 msgid "title"
 msgstr ""
 
-#: action/models.py:159
+#: action/models.py:164
 msgid "experience"
 msgstr "Erfahrung"
 
-#: action/models.py:164
+#: action/models.py:169
 msgid "seen_by"
 msgstr "gesehen von"
 
-#: action/models.py:198
+#: action/models.py:203
 msgid "action"
 msgstr "Aktion"
 
-#: action/models.py:199
+#: action/models.py:204
 msgid "actions"
 msgstr "Aktionen"

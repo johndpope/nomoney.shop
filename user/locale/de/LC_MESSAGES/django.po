@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-19 05:55+0200\n"
+"POT-Creation-Date: 2020-07-20 04:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: user/forms.py:19
+msgid "email"
+msgstr "E-Mail"
+
+#: user/forms.py:25 user/templates/user/user_detail.html:129
+msgid "password"
+msgstr ""
 
 #: user/models.py:39
 msgid "config"
@@ -30,11 +38,11 @@ msgstr "Bild"
 msgid "description"
 msgstr "beschreibung"
 
-#: user/models.py:210 user/templates/user/user_list.html:13
+#: user/models.py:211 user/templates/user/user_list.html:13
 msgid "user"
 msgstr "Benutzer"
 
-#: user/models.py:211
+#: user/models.py:212
 msgid "users"
 msgstr "Benutzer"
 
@@ -152,16 +160,15 @@ msgstr "keine Daten"
 msgid "settings"
 msgstr "Einstellungen"
 
-#: user/templates/user/user_detail.html:129
-msgid "password"
-msgstr ""
-
 #: user/templates/user/user_detail.html:130
 msgid "logout"
 msgstr "ausloggen"
 
-#: user/templates/user/user_login.html:46
-#: user/templates/user/user_login.html:113
+#: user/templates/user/user_login.html:52
+msgid "or"
+msgstr "oder"
+
+#: user/templates/user/user_login.html:52
 msgid "login"
 msgstr ""
 
@@ -169,23 +176,16 @@ msgstr ""
 msgid "with"
 msgstr "mit"
 
-#: user/templates/user/user_login.html:94
-#, fuzzy
-#| msgid "your"
-msgid "or"
-msgstr "dein"
-
-#: user/templates/user/user_login.html:97
+#: user/templates/user/user_login.html:93
 msgid "free"
 msgstr "kostenlos"
 
-#: user/templates/user/user_login.html:97
+#: user/templates/user/user_login.html:93
 msgid "signup"
 msgstr ""
 
-#: user/views.py:77
-msgid "PROFILE_VISITED"
-msgstr "Profil besucht"
+#~ msgid "PROFILE_VISITED"
+#~ msgstr "Profil besucht"
 
 #~ msgid "toggle all"
 #~ msgstr "alle umschalten"

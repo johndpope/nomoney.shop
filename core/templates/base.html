@@ -27,7 +27,17 @@
 </head>
 <body style="background-color:#15202b;">
   {% analytical_body_top %}
-  {% include "menu.html" %}
+  <nav id="main_menu" class="navbar navbar-expand shadow d-flex flex-wrap position-fixed w-100" style="min-height:42px;z-index:10;top:0;background-color:rgb(29, 161, 242);">
+      {% if request.user.pk %}
+        <ul class="col-auto navbar-nav mr-auto d-flex flex-wrap pr-0">
+          {% include "menu.html" %}
+        </ul>
+      {% else %}
+        <div class="container-fluid">
+          {% block login_menu %}{% endblock %}
+        </div>
+      {% endif %}
+  </nav>
   <div id="wrapper" class="container bg-white border shadow" style="margin-top:42px;">
     <div class="row">
       <div class="col-12 mt-3">

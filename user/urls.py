@@ -3,7 +3,7 @@ from django.urls import path
 from django.urls.conf import include
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from user.views import UserListView, UserCreateView, UserUpdateView, \
-    UserDetailView, UserSettingsView
+    UserDetailView, UserSettingsView, UserLoginView
 from config import settings
 
 
@@ -16,8 +16,7 @@ urlpatterns = [
     path('pw/', PasswordChangeView.as_view(template_name='user/user_form.html'
                                            ), name='user_pw'),
 
-    path('login/', LoginView.as_view(template_name='user/user_login.html'
-                                     ), name='user_login'),
+    path('login/', UserLoginView.as_view(), name='user_login'),
 
     path('logout/', LogoutView.as_view(), name='user_logout'),
 ]
