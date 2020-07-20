@@ -7,15 +7,13 @@ from django.urls.base import reverse_lazy, reverse
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
-from django.contrib.auth import get_user_model
 from django.contrib.auth.views import LoginView
 from chat.models import Chat
 from action.models import tasks
 from .forms import CustomUserCreationForm, CustomUserLoginForm
-from .models import UserConfig
+from .models import User, UserConfig
 
 
-User = get_user_model()  # pylint: disable=invalid-name
 FIELDS = ['username', 'first_name', 'last_name', 'email', 'image', 'description']
 
 
@@ -29,6 +27,9 @@ class UserListView(LoginRequiredMixin, ListView):
     """ ListView to list all users """
     model = User
     context_object_name = 'users'
+
+    def get_queryset(self):
+        return User.get_users()
 
     def get_context_data(self, *args, **kwargs):
         context = ListView.get_context_data(self, *args, **kwargs)
