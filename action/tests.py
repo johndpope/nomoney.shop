@@ -1,3 +1,7 @@
-from django.test import TestCase
+""" tests for the action module """
+from tests_abc import TestCase
+from .models import Action
 
-# Create your tests here.
+
+class ActionTestCase(TestCase):
+    """ tests for the action module """

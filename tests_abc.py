@@ -60,9 +60,9 @@ class TestCase(ABC, BaseTestCase):
 
     def setUp(self):
         self.testdb = TestDB
-        self.testdb.USER_COUNT = 10
-        self.testdb.DEAL_COUNT = 10
-        self.testdb.LISTING_COUNT = 50
+        self.testdb.USER_COUNT = 3
+        self.testdb.DEAL_COUNT = 5
+        self.testdb.LISTING_COUNT = 20
         self.testdb.PRINT_STEPS = False
         self.testdb.setup()
         self.user = Client()

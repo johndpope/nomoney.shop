@@ -1,7 +1,5 @@
 """ business models of the search module """
 from abc import ABC
-import operator
-from functools import reduce
 from django.db.models import Q
 from django.urls.base import reverse
 from user.models import User

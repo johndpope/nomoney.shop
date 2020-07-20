@@ -61,7 +61,27 @@ class ChatMessage(models.Model):
         """ get previous chat message
         :returns: ChatMessage or None
         """
-        message_list = list(ChatMessage.objects.filter(chat=self.chat))
+        # erstelle liste mit allen objekten
+        # index von self
+        message_list = sorted(
+            list(self.chat.chatmessage_set.all()),
+            key=lambda x: x.pk,
+            )
+        index = message_list.index(self)
+        if index and index != len(message_list):
+            return message_list[index-1]
+        return None
+
+    @property
+    def next(self):
+        """ get previous chat message
+        :returns: ChatMessage or None
+        """
+        message_list = sorted(
+            list(self.chat.chatmessage_set.all()),
+            key=lambda x: x.pk,
+            reverse=True,
+            )
         index = message_list.index(self)
         if index:
             return message_list[index-1]
@@ -88,7 +108,7 @@ class ChatMessage(models.Model):
 
 @receiver(post_save, sender=ChatMessage)
 # pylint: disable=unused-argument
-def create_user_config(sender, instance, created, **kwargs):
+def create_user_unseen(sender, instance, created, **kwargs):
     """ add all users that should see the chat into unseen_by """
     if created:
         for user in instance.chat.get_users():
@@ -133,6 +153,14 @@ class Chat(models.Model):
         :returns: QuerySet of ChatMessage objects
         """
         return self.chatmessage_set.all()
+
+    def add_message(self, creator, text):
+        """ create a chat message from this chat
+        :param creator: user object
+        :param text: string
+        :returns: ChatMessage
+        """
+        return ChatMessage.objects.create(chat=self, creator=creator, text=text)
 
     def all_messages_seen_by(self, user):
         """ mark all messages as seen by user

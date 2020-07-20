@@ -5,12 +5,11 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from chat.models import Chat
-from listing.models import ListingStatus
 from category.models import Category
 from _collections import defaultdict
 from config.settings import LOGGER
 from action.models import Exp
+from chat.models import Chat
 
 
 def image_path(instance, filename):
@@ -101,14 +100,14 @@ class User(AbstractUser):
         """ Pushs of this user that are not marked as DELETED
         :returns: QuerySet(Push)
         """
-        return self.push_set.exclude(status=ListingStatus.DELETED)
+        return self.push_set.exclude(status=110)
 
     @property
     def pulls(self):
         """ Pulls of this user that are not marked as DELETED
         :returns: QuerySet(Pull)
         """
-        return self.pull_set.exclude(status=ListingStatus.DELETED)
+        return self.pull_set.exclude(status=110)
 
     @property
     def markets(self):
@@ -172,7 +171,7 @@ class User(AbstractUser):
         return deals
 
     def get_chat_with(self, *users):
-        """ All chats of this user
+        """ All chats with users
         :returns: QuerySet(Chat)
         """
         return Chat.by_users(self, *users, create=True)

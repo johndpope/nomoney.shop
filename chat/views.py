@@ -66,32 +66,13 @@ class ChatUserDetailView(LoginRequiredMixin, DetailView):
     def get_object(self, queryset=None):
         user_pk = self.request.resolver_match.kwargs.get('user_pk')
         user = User.objects.get(pk=user_pk)
-        return Chat.by_users(self.request.user, user)
-
-
-class ChatCreateView(LoginRequiredMixin, CreateView):
-    """ CreateView to create new chat """
-    model = Chat
-    fields = ['users']
-
-    def get_form(self, form_class=None):
-        form = CreateView.get_form(self, form_class=form_class)
-        form.fields['users'].widget.attrs['class'] = 'chosen-select'
-        form.fields['users'].widget.attrs['data-placeholder'] = \
-            'Benutzer auswählen ...'
-        form.fields['users'].queryset = User.get_users().exclude(
-            pk=self.request.user.pk
-            )
-        return form
-
-    def form_valid(self, form):
-        chat = Chat.by_users(*form.cleaned_data['users'], self.request.user, create=True)
-        return HttpResponseRedirect(reverse('chat_detail', args=(chat.pk,)))
+        return Chat.by_users(self.request.user, user, create=True)
 
 
 class ChatNewMessageView(LoginRequiredMixin, CreateView):
     """ Create new Chat message with Form """
     form_class = ChatMessageForm
+    http_method_names = ['post']
 
     def form_valid(self, form):
         chat_pk = self.request.resolver_match.kwargs.get('pk')
