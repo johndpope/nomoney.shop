@@ -254,3 +254,12 @@ PWA_APP_SPLASH_SCREEN = [
 ]
 PWA_APP_DIR = 'ltr'
 PWA_APP_LANG = 'de-DE'
+
+for provider in ('GOOGLE', 'GITHUB', 'TWITTER', 'FACEBOOK', 'INSTAGRAM'):
+    # pylint: disable=invalid-name
+    _key = 'SOCIAL_AUTH_{}_KEY'.format(provider)
+    setattr(sys.modules[__name__], _key, config(_key, default=None))
+    # pylint: disable=invalid-name
+    _secret = 'SOCIAL_AUTH_{}_SECRET'.format(provider)
+    setattr(sys.modules[__name__], _secret, config(_secret, default=None))
+
