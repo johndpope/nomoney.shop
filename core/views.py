@@ -2,11 +2,17 @@
 from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from chat.models import Chat
+from action.models import create_action, TASKS
 
 
 class AboutView(TemplateView):
     """ /about/ """
     template_name = 'sites/about.html'
+
+    def get_context_data(self, **kwargs):
+        context = TemplateView.get_context_data(self, **kwargs)
+        context['tasks'] = TASKS
+        return context
 
 
 class DonateView(TemplateView):
@@ -29,6 +35,8 @@ class DashboardHomeView(LoginRequiredMixin, TemplateView):
     template_name = 'dashboard/dashboard_home.html'
 
     def get_context_data(self, **kwargs):
+        if self.request.user.is_authenticated:
+            create_action(self.request.user, 'DAILY_VISIT')
         context = TemplateView.get_context_data(self, **kwargs)
         user = self.request.user
         if user.is_authenticated:

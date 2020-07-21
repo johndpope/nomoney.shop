@@ -1,15 +1,16 @@
 """ models for user module """
 from statistics import mean
 from django.utils.translation import gettext_lazy as _
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from category.models import Category
 from _collections import defaultdict
 from config.settings import LOGGER
-from action.models import Exp
 from chat.models import Chat
+from action.exp import Exp, Level
+from action.models import create_action
 
 
 def image_path(instance, filename):
@@ -61,7 +62,7 @@ class User(AbstractUser):
         """
         :returns: Current Level according to the exp value
         """
-        return self.exp.level
+        return Level.by_exp(self.exp)
 
     @property
     def actions(self):
@@ -218,3 +219,8 @@ def create_user_config(sender, instance, **kwargs):
     Maybe it would be better to use User.save method if possible
     """
     instance.config = UserConfig.objects.create()
+
+
+@receiver(post_save, sender=User)
+def create_new_user_action(sender, instance, created, **kwargs):
+    create_action(instance, 'USER_CREATED')

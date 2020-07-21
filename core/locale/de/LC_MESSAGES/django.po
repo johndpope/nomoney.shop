@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-20 04:11+0200\n"
+"POT-Creation-Date: 2020-07-22 01:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,35 +66,35 @@ msgstr "Aktionen"
 msgid "categories"
 msgstr "Kategorien"
 
-#: core/templates/menu.html:22
+#: core/templates/menu.html:29
 msgid "chats"
 msgstr "Chats"
 
-#: core/templates/menu.html:26
+#: core/templates/menu.html:34
 msgid "help"
 msgstr "Hilfe"
 
-#: core/templates/menu.html:52
+#: core/templates/menu.html:59
 msgid "profile"
 msgstr "Profil"
 
-#: core/templates/menu.html:53
+#: core/templates/menu.html:60
 msgid "users"
 msgstr "Benutzer"
 
-#: core/templates/menu.html:56
+#: core/templates/menu.html:63
 msgid "donate"
 msgstr "Spenden"
 
-#: core/templates/menu.html:57
+#: core/templates/menu.html:64
 msgid "terms-and-conditions"
 msgstr "AGB"
 
-#: core/templates/menu.html:58
+#: core/templates/menu.html:65
 msgid "impressum"
 msgstr "Impressum"
 
-#: core/templates/menu.html:59
+#: core/templates/menu.html:66
 msgid "about"
 msgstr "Über"
 
@@ -117,6 +117,30 @@ msgstr "lade"
 #: core/templates/offline.html:14
 msgid "data"
 msgstr "Daten"
+
+#: core/templates/solo/about.html:51
+msgid "experience points system"
+msgstr "Erfahrungspunkte System"
+
+#: core/templates/solo/about.html:53
+msgid "type"
+msgstr ""
+
+#: core/templates/solo/about.html:54
+msgid "title"
+msgstr ""
+
+#: core/templates/solo/about.html:55
+msgid "experience"
+msgstr ""
+
+#: core/templates/solo/about.html:61
+msgid "exp"
+msgstr ""
+
+#: core/templates/solo/about.html:65
+msgid "No, you cant buy anything from it."
+msgstr "Nein, du kannst dafür nichts kaufen."
 
 #~ msgid "signup"
 #~ msgstr "registrieren"

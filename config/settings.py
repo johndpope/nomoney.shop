@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-from decouple import AutoConfig, Csv
 import logging
 import os
 import sys
@@ -17,6 +16,7 @@ from pathlib import Path
 from django.contrib.messages import constants as message_constants
 from django.urls.base import reverse_lazy
 from django.core.management.utils import get_random_secret_key
+from decouple import AutoConfig, Csv
 
 # VERSION = '0.3.0'
 
@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'django_db_logger',
     'channels',
     'social_django',
+    'user_messages',
     'analytical',
     'pwa',
     'core',
@@ -110,6 +111,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'user_messages.context_processors.messages',
 
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
@@ -234,18 +236,8 @@ PWA_APP_SCOPE = '/'
 PWA_APP_ORIENTATION = 'any'
 PWA_APP_START_URL = '/'
 PWA_APP_STATUS_BAR_COLOR = 'default'
-PWA_APP_ICONS = [
-    {
-        'src': '/static/logo.png',
-        'sizes': '160x160'
-    }
-]
-PWA_APP_ICONS_APPLE = [
-    {
-        'src': '/static/logo.png',
-        'sizes': '160x160'
-    }
-]
+PWA_APP_ICONS = [{'src': '/static/logo.png', 'sizes': '160x160'}]
+PWA_APP_ICONS_APPLE = [{'src': '/static/logo.png', 'sizes': '160x160'}]
 PWA_APP_SPLASH_SCREEN = [
     {
         'src': '/static/logo.png',

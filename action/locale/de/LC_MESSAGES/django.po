@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-20 04:11+0200\n"
+"POT-Creation-Date: 2020-07-22 01:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,70 +18,197 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: action/models.py:41
+#: action/exp.py:21
 msgid "rookie"
-msgstr ""
+msgstr "Neu"
 
-#: action/models.py:42
+#: action/exp.py:22
 msgid "beginner"
 msgstr "Anfänger"
 
-#: action/models.py:43
+#: action/exp.py:23
 msgid "arrived"
 msgstr "Angekommener"
 
-#: action/models.py:44
+#: action/exp.py:24
 msgid "middle"
 msgstr "Mitte"
 
-#: action/models.py:45
+#: action/exp.py:25
 msgid "advanced"
 msgstr "Fortgeschrittener"
 
-#: action/models.py:46
+#: action/exp.py:26
 msgid "semipro"
 msgstr "Semi-Profi"
 
-#: action/models.py:47
+#: action/exp.py:27
 msgid "profi"
 msgstr "Profi"
 
-#: action/models.py:48
+#: action/exp.py:28
 msgid "legend"
 msgstr "Legende"
 
-#: action/models.py:49
+#: action/exp.py:29
 msgid "immortal"
 msgstr "Unsterblich"
 
-#: action/models.py:114
-msgid "you earned"
-msgstr "Du verdienst"
+#: action/models.py:28
+msgid "DAILY_VISIT"
+msgstr "Täglicher Besuch"
 
-#: action/models.py:116
-msgid "exp"
-msgstr "erf"
+#: action/models.py:29
+msgid "USER_CREATED"
+msgstr "Neuen Benutzer erstellt"
 
-#: action/models.py:156
+#: action/models.py:31
+msgid "PUSH_CREATED"
+msgstr "Neues Angebot erstellt"
+
+#: action/models.py:32
+msgid "FIRST_PUSH_CREATED"
+msgstr "Erstes Angebot erstellt"
+
+#: action/models.py:34
+msgid "PULL_CREATED"
+msgstr "Neue Nachfrage erstellt"
+
+#: action/models.py:35
+msgid "FIRST_PUll_CREATED"
+msgstr "Erstes Nachfrage erstellt"
+
+#: action/models.py:37
+msgid "PROFILE_UPDATED"
+msgstr "Profil aktualisiert"
+
+#: action/models.py:38
+msgid "PROFILE_COMPLETE"
+msgstr "Profil vollständig"
+
+#: action/models.py:40
+msgid "LOCATION_CREATED"
+msgstr "Neuen Ort erstellt"
+
+#: action/models.py:41
+msgid "FIRST_LOCATION_CREATED"
+msgstr "Erster Ort erstellt"
+
+#: action/models.py:43
+msgid "DEAL_CREATED"
+msgstr "Neuen Tauschvorgang erstellt"
+
+#: action/models.py:44
+msgid "BID_CREATED"
+msgstr "Neues Gebot erstellt"
+
+#: action/models.py:45
+msgid "BID_ANSWERED"
+msgstr "Gebot beantwortet"
+
+#: action/models.py:46
+msgid "DEAL_FINISHED"
+msgstr "Deal durchgeführt"
+
+#: action/models.py:48
+msgid "MARKET_CREATED"
+msgstr "Neuen Markt erstellt"
+
+#: action/models.py:49
+msgid "FIRST_MARKET_CREATED"
+msgstr "Ersten Markt erstellt"
+
+#: action/models.py:51
+msgid "CATEGORY_CREATED"
+msgstr "Neue Kategorie erstellt und verifiziert"
+
+#: action/models.py:52
+msgid "FIRST_CATEGORY_CREATED"
+msgstr "Erste Kategorie erstellt und verifiziert"
+
+#: action/models.py:54
+msgid "FIRST_CHAT_MESSAGE"
+msgstr "Erste Chatnachricht erstellt"
+
+#: action/models.py:56
+msgid "USER_FEEDBACK_TAKEN"
+msgstr "Benutzer Bewertung erhalten"
+
+#: action/models.py:57
+msgid "PUSH_FEEDBACK_TAKEN"
+msgstr "Angebots Bewertung erhalten"
+
+#: action/models.py:58
+msgid "USER_FEEDBACK_GIVEN"
+msgstr "Benutzer Bewertung abgegeben"
+
+#: action/models.py:59
+msgid "PUSH_FEEDBACK_GIVEN"
+msgstr "Angebots Bewertung abgegeben"
+
+#: action/models.py:61
+msgid "FIRST_CALC_DIRECT"
+msgstr "Erste Berechnung von Direkten Tauschvorgängen"
+
+#: action/models.py:62
+msgid "FIRST_CALC_TRIANGULAR"
+msgstr "Erste Berechnung von Dreiecks Tauschvorgängen"
+
+#: action/models.py:63
+msgid "FIRST_CALC_SPECULATIVE"
+msgstr "Erste Berechnung von Spekulativen Tauschvorgängen"
+
+#: action/models.py:86
 msgid "user"
 msgstr ""
 
-#: action/models.py:160
-msgid "title"
-msgstr ""
+#: action/models.py:91
+msgid "task"
+msgstr "Aufgabe"
 
-#: action/models.py:164
+#: action/models.py:95
 msgid "experience"
 msgstr "Erfahrung"
 
-#: action/models.py:169
-msgid "seen_by"
-msgstr "gesehen von"
+#: action/models.py:100
+msgid "time"
+msgstr "Zeit"
 
-#: action/models.py:203
+#: action/models.py:134
+#, python-format
+msgid "You earned %(exp)d experience point"
+msgid_plural "You earned %(exp)d experience points"
+msgstr[0] "Du hast %(exp)d Erfahrungspunkt verdient"
+msgstr[1] "Du hast %(exp)d Erfahrungspunkte verdient"
+
+#: action/models.py:152
 msgid "action"
 msgstr "Aktion"
 
-#: action/models.py:204
+#: action/models.py:153
 msgid "actions"
 msgstr "Aktionen"
+
+#: action/task.py:14
+msgid "default"
+msgstr "regulär"
+
+#: action/task.py:45
+msgid "daily"
+msgstr "täglich"
+
+#: action/task.py:57
+msgid "onetime"
+msgstr "einmalig"
+
+#~ msgid "experience points system"
+#~ msgstr "Erfahrungspunkte System"
+
+#~ msgid "you earned"
+#~ msgstr "Du verdienst"
+
+#~ msgid "exp"
+#~ msgstr "erf"
+
+#~ msgid "seen_by"
+#~ msgstr "gesehen von"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-20 04:11+0200\n"
+"POT-Creation-Date: 2020-07-22 01:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "user"
 msgstr ""
 
-#: chat/models.py:18 chat/models.py:120 chat/templates/chat/inc/link.html:7
+#: chat/models.py:18 chat/models.py:140 chat/templates/chat/inc/link.html:7
 msgid "market"
 msgstr ""
 
@@ -35,7 +35,7 @@ msgstr ""
 msgid "lobby"
 msgstr "Lobby"
 
-#: chat/models.py:38 chat/models.py:203 chat/templates/chat/inc/link.html:3
+#: chat/models.py:38 chat/models.py:231 chat/templates/chat/inc/link.html:3
 #: chat/templates/chat/inc/link.html:7 chat/templates/chat/inc/link.html:11
 #: chat/templates/chat/inc/link.html:15
 #: chat/templates/chat/solo/chat_list.html:6
@@ -51,7 +51,7 @@ msgstr "Ersteller"
 msgid "created"
 msgstr "erstellt"
 
-#: chat/models.py:50 chat/models.py:108
+#: chat/models.py:50 chat/models.py:128
 msgid "text"
 msgstr "Text"
 
@@ -59,15 +59,15 @@ msgstr "Text"
 msgid "unseen_by"
 msgstr ""
 
-#: chat/models.py:85 chat/models.py:86
+#: chat/models.py:105 chat/models.py:106
 msgid "message"
 msgstr "Nachricht"
 
-#: chat/models.py:113 chat/templates/chat/solo/chat_list.html:11
+#: chat/models.py:133 chat/templates/chat/solo/chat_list.html:11
 msgid "type"
 msgstr "Typ"
 
-#: chat/models.py:204 chat/templates/chat/chat_list.html:4
+#: chat/models.py:232 chat/templates/chat/chat_list.html:4
 msgid "chats"
 msgstr "Chats"
 

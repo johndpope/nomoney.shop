@@ -1,5 +1,4 @@
 """ views for the user module """
-from django.utils.translation import gettext_lazy as _
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, FormView
@@ -9,10 +8,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.contrib.auth.views import LoginView
 from chat.models import Chat
-from action.models import tasks
 from .forms import CustomUserCreationForm, CustomUserLoginForm
 from .models import User, UserConfig
-
+from action.models import create_action
 
 FIELDS = ['username', 'first_name', 'last_name', 'email', 'image', 'description']
 
@@ -83,6 +81,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'user'
 
     def get_context_data(self, **kwargs):
+        create_action(self.request.user, 'USER_CREATED')
         context = DetailView.get_context_data(self, **kwargs)
         if self.object != self.request.user:
             context['chat'] = self.object.get_chat_with(self.request.user)

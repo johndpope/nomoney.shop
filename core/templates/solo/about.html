@@ -45,3 +45,25 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-12 d-flex align-items-stretch">
+    <div class="alert alert-warning w-100" role="alert">
+      <h5><b>{% trans 'experience points system' %}</b></h5>
+      <div class="row mt-3">
+        <div class="col-auto"><b>{% trans 'type' %}</b></div>
+        <div class="col d-flex justify-content-center"><b>{% trans 'title' %}</b></div>
+        <div class="col-auto d-flex justify-content-end"><b>{% trans 'experience' %}</b></div>
+      </div>
+      {% for task in tasks %}
+        <div class="row border-top">
+          <div class="col-auto">{{ task.type }}</div>
+          <div class="col d-flex justify-content-center text-center">{{ task.title }}</div>
+          <div class="col-auto d-flex justify-content-end">{{ task.exp }} {% trans 'exp' %}.</div>
+        </div>
+      {% endfor %}
+      <div class="row mt-3">
+        <div class="container"><small>PS: {% trans 'No, you cant buy anything from it.' %}</small></div>
+      </div>
+    </div>
+  </div>
+</div>
