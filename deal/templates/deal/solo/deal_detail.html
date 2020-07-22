@@ -1,5 +1,12 @@
 {% load i18n %}
-<h2>{% trans 'deal'|title %} {% trans 'details' %}{% if deal.accepted %} <span class="badge badge-success"><i class="fas fa-check"></i></span>{% endif %}</h2>
+<hr class="my-5">
+<h2>
+  {% if deal.is_virtual %}
+    {% trans 'calculated'|title %} {% trans 'possible' %} {% trans 'deal' %}
+  {% else %}
+    {% trans 'deal'|title %} {% trans 'details' %}{% if deal.accepted %} <span class="badge badge-success"><i class="fas fa-check"></i></span>{% endif %}
+  {% endif %}
+</h2>
 <h3 class="mt-5">{% trans 'overview' %}</h3>
 <div class="container-fluid mb-5">
   <div class="row">

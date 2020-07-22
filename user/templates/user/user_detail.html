@@ -133,7 +133,7 @@
   </div>
 </div>
 
-{% if request.user.open_feedback %}
+{% if request.user.open_feedback and request.user == user %}
   <div class="container">
     <div class="row border rounded mb-5 py-3">
       <div class="col-12">
@@ -145,7 +145,11 @@
   </div>
 {% endif %}
 
-  {% include 'user/solo/user_objects.html' %}
+{% include 'user/solo/user_objects.html' %}
+
+{% if deal and user != request.user %}
+  {% include 'deal/solo/deal_detail.html' %}
+{% endif %}
 
 {% endblock %}
 

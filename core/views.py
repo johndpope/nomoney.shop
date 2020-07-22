@@ -3,6 +3,7 @@ from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from chat.models import Chat
 from action.models import create_action, TASKS
+from action.exp import Level
 
 
 class AboutView(TemplateView):
@@ -12,6 +13,7 @@ class AboutView(TemplateView):
     def get_context_data(self, **kwargs):
         context = TemplateView.get_context_data(self, **kwargs)
         context['tasks'] = sorted(TASKS)
+        context['levels'] = Level.levels()
         return context
 
 

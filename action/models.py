@@ -23,10 +23,10 @@ TASKS = [  # never change the index numbers, thei're db relevant !!!
     DailyTask(1, _('DAILY_VISIT'), 2),
     OneTimeTask(2, _('USER_CREATED'), 5),
 
-    DefaultTask(3, _('PUSH_CREATED'), 5),
+    DailyTask(3, _('PUSH_CREATED'), 5),
     OneTimeTask(4, _('FIRST_PUSH_CREATED'), 10),
 
-    DefaultTask(5, _('PULL_CREATED'), 4),
+    DailyTask(5, _('PULL_CREATED'), 4),
     OneTimeTask(6, _('FIRST_PUll_CREATED'), 10),
 
     OneTimeTask(7, _('PROFILE_UPDATED'), 5),

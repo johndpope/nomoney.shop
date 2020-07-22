@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-22 02:48+0200\n"
+"POT-Creation-Date: 2020-07-22 19:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,150 +18,150 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: action/exp.py:21
+#: action/exp.py:20
 msgid "ROOKIE"
 msgstr "Neu"
 
-#: action/exp.py:22
+#: action/exp.py:21
 msgid "BEGINNER"
 msgstr "Anfänger"
 
-#: action/exp.py:23
+#: action/exp.py:22
 msgid "ARRIVED"
 msgstr "Angekommen"
 
-#: action/exp.py:24
+#: action/exp.py:23
 msgid "MIDDLE"
 msgstr "Mitte"
 
-#: action/exp.py:25
+#: action/exp.py:24
 msgid "ADVANCED"
-msgstr "Fortgeschrittener"
+msgstr "Fortgeschritten"
 
-#: action/exp.py:26
+#: action/exp.py:25
 msgid "SEMIPRO"
 msgstr "Semi-Profi"
 
-#: action/exp.py:27
+#: action/exp.py:26
 msgid "PROFI"
 msgstr "Profi"
 
-#: action/exp.py:28
-msgid "legend"
+#: action/exp.py:27
+msgid "LEGEND"
 msgstr "Legende"
 
-#: action/exp.py:29
+#: action/exp.py:28
 msgid "IMMORTAL"
 msgstr "Unsterblich"
 
-#: action/models.py:28
+#: action/models.py:23
 msgid "DAILY_VISIT"
 msgstr "Täglicher Besuch"
 
-#: action/models.py:29
+#: action/models.py:24
 msgid "USER_CREATED"
 msgstr "Neuen Benutzer erstellt"
 
-#: action/models.py:31
+#: action/models.py:26
 msgid "PUSH_CREATED"
 msgstr "Neues Angebot erstellt"
 
-#: action/models.py:32
+#: action/models.py:27
 msgid "FIRST_PUSH_CREATED"
 msgstr "Erstes Angebot erstellt"
 
-#: action/models.py:34
+#: action/models.py:29
 msgid "PULL_CREATED"
 msgstr "Neue Nachfrage erstellt"
 
-#: action/models.py:35
+#: action/models.py:30
 msgid "FIRST_PUll_CREATED"
 msgstr "Erstes Nachfrage erstellt"
 
-#: action/models.py:37
+#: action/models.py:32
 msgid "PROFILE_UPDATED"
 msgstr "Profil aktualisiert"
 
-#: action/models.py:38
+#: action/models.py:33
 msgid "PROFILE_COMPLETE"
 msgstr "Profil vollständig"
 
-#: action/models.py:40
+#: action/models.py:35
 msgid "LOCATION_CREATED"
 msgstr "Neuen Ort erstellt"
 
-#: action/models.py:41
+#: action/models.py:36
 msgid "FIRST_LOCATION_CREATED"
 msgstr "Erster Ort erstellt"
 
-#: action/models.py:43
+#: action/models.py:38
 msgid "DEAL_CREATED"
 msgstr "Neuen Tauschvorgang erstellt"
 
-#: action/models.py:44
+#: action/models.py:39
 msgid "BID_CREATED"
 msgstr "Neues Gebot erstellt"
 
-#: action/models.py:48
+#: action/models.py:43
 msgid "MARKET_CREATED"
 msgstr "Neuen Markt erstellt"
 
-#: action/models.py:49
+#: action/models.py:44
 msgid "FIRST_MARKET_CREATED"
 msgstr "Ersten Markt erstellt"
 
-#: action/models.py:54
+#: action/models.py:49
 msgid "FIRST_CHAT_MESSAGE"
 msgstr "Erste Chatnachricht erstellt"
 
-#: action/models.py:56
+#: action/models.py:51
 msgid "USER_FEEDBACK_TAKEN"
 msgstr "Benutzer Bewertung erhalten"
 
-#: action/models.py:57
+#: action/models.py:52
 msgid "PUSH_FEEDBACK_TAKEN"
 msgstr "Angebots Bewertung erhalten"
 
-#: action/models.py:58
+#: action/models.py:53
 msgid "USER_FEEDBACK_GIVEN"
 msgstr "Benutzer Bewertung abgegeben"
 
-#: action/models.py:59
+#: action/models.py:54
 msgid "PUSH_FEEDBACK_GIVEN"
 msgstr "Angebots Bewertung abgegeben"
 
-#: action/models.py:61
+#: action/models.py:56
 msgid "FIRST_CALC_DIRECT"
 msgstr "Erste Berechnung von Direkten Tauschvorgängen"
 
-#: action/models.py:91
+#: action/models.py:86
 msgid "user"
 msgstr ""
 
-#: action/models.py:96
+#: action/models.py:91
 msgid "task"
 msgstr "Aufgabe"
 
-#: action/models.py:100
+#: action/models.py:95
 msgid "experience"
 msgstr "Erfahrung"
 
-#: action/models.py:105
+#: action/models.py:100
 msgid "time"
 msgstr "Zeit"
 
-#: action/models.py:139
+#: action/models.py:140
 #, python-format
 msgid "You earned %(exp)d experience point"
 msgid_plural "You earned %(exp)d experience points"
 msgstr[0] "Du hast %(exp)d Erfahrungspunkt verdient"
 msgstr[1] "Du hast %(exp)d Erfahrungspunkte verdient"
 
-#: action/models.py:157
+#: action/models.py:158
 msgid "action"
 msgstr "Aktion"
 
-#: action/models.py:158
+#: action/models.py:159
 msgid "actions"
 msgstr "Aktionen"
 

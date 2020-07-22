@@ -46,7 +46,26 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-12 d-flex align-items-stretch">
+  <div class="col-12 col-lg-auto d-flex align-items-stretch">
+    <div class="alert alert-info w-100" role="alert">
+      <h5><b>{% trans 'experience levels' %}</b></h5>
+      <div class="row">
+        <div class="col">
+          {% trans 'title'|title %}
+        </div>
+        <div class="col d-flex justify-content-end">
+          {% trans 'experience' %}
+        </div>
+      </div>
+      {% for level in levels %}
+        <div class="row">
+          <div class="col text-nowrap">{% trans level.name %}</div>
+          <div class="col d-flex justify-content-end">{{ level.value }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-12 col-lg d-flex align-items-stretch">
     <div class="alert alert-warning w-100" role="alert">
       <h5><b>{% trans 'experience points system' %}</b></h5>
       <div class="row mt-3">

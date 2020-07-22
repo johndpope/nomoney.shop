@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-22 02:48+0200\n"
+"POT-Creation-Date: 2020-07-22 19:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: deal/models/deal_base.py:19 deal/models/deal_base.py:25
-#: deal/templates/deal/solo/deal_detail.html:29
+#: deal/templates/deal/solo/deal_detail.html:36
 msgid "user"
 msgstr "Benutzer"
 
@@ -27,7 +27,7 @@ msgstr "Benutzer"
 msgid "market"
 msgstr ""
 
-#: deal/models/deal_base.py:37 deal/templates/deal/solo/deal_detail.html:47
+#: deal/models/deal_base.py:37 deal/templates/deal/solo/deal_detail.html:54
 msgid "status"
 msgstr "Status"
 
@@ -37,7 +37,8 @@ msgstr ""
 
 #: deal/models/deal_base.py:134 deal/templates/deal/deal_form.html:15
 #: deal/templates/deal/inc/help.html:2
-#: deal/templates/deal/solo/deal_detail.html:2
+#: deal/templates/deal/solo/deal_detail.html:5
+#: deal/templates/deal/solo/deal_detail.html:7
 #: deal/templates/deal/solo/deal_list_head.html:9
 msgid "deal"
 msgstr "Tauschvorgang"
@@ -111,56 +112,64 @@ msgstr "löschen"
 msgid "unknown"
 msgstr "unbekannt"
 
-#: deal/templates/deal/solo/deal_detail.html:2
-msgid "details"
-msgstr "Details"
+#: deal/templates/deal/solo/deal_detail.html:5
+msgid "calculated"
+msgstr ""
 
-#: deal/templates/deal/solo/deal_detail.html:3
-msgid "overview"
-msgstr "Übersicht"
-
-#: deal/templates/deal/solo/deal_detail.html:6
-msgid "member"
+#: deal/templates/deal/solo/deal_detail.html:5
+msgid "possible"
 msgstr ""
 
 #: deal/templates/deal/solo/deal_detail.html:7
-#: deal/templates/deal/solo/deal_detail.html:30
+msgid "details"
+msgstr "Details"
+
+#: deal/templates/deal/solo/deal_detail.html:10
+msgid "overview"
+msgstr "Übersicht"
+
+#: deal/templates/deal/solo/deal_detail.html:13
+msgid "member"
+msgstr ""
+
+#: deal/templates/deal/solo/deal_detail.html:14
+#: deal/templates/deal/solo/deal_detail.html:37
 #: deal/templates/deal/solo/deal_list.html:6
 msgid "offer"
 msgstr ""
 
-#: deal/templates/deal/solo/deal_detail.html:8
-#: deal/templates/deal/solo/deal_detail.html:31
+#: deal/templates/deal/solo/deal_detail.html:15
+#: deal/templates/deal/solo/deal_detail.html:38
 #: deal/templates/deal/solo/deal_list.html:7
 msgid "seek"
 msgstr ""
 
-#: deal/templates/deal/solo/deal_detail.html:26
+#: deal/templates/deal/solo/deal_detail.html:33
 msgid "match"
 msgstr "Übereinstimmung"
 
-#: deal/templates/deal/solo/deal_detail.html:32
+#: deal/templates/deal/solo/deal_detail.html:39
 #: deal/templates/deal/solo/deal_list.html:8
 msgid "partner"
 msgstr "Partner"
 
-#: deal/templates/deal/solo/deal_detail.html:41
+#: deal/templates/deal/solo/deal_detail.html:48
 msgid "bids"
 msgstr "Gebote"
 
-#: deal/templates/deal/solo/deal_detail.html:44
+#: deal/templates/deal/solo/deal_detail.html:51
 msgid "creator"
 msgstr "Ersteller"
 
-#: deal/templates/deal/solo/deal_detail.html:45
+#: deal/templates/deal/solo/deal_detail.html:52
 msgid "offers"
 msgstr "bietet"
 
-#: deal/templates/deal/solo/deal_detail.html:46
+#: deal/templates/deal/solo/deal_detail.html:53
 msgid "takes"
 msgstr "nimmt"
 
-#: deal/templates/deal/solo/deal_detail.html:73
+#: deal/templates/deal/solo/deal_detail.html:80
 msgid "accept"
 msgstr "akzeptieren"
 

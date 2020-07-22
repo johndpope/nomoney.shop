@@ -1,5 +1,4 @@
 """ models of deal module """
-from django.db import models
 from django.db.models import Q
 from feedback.models import PushFeedback, UserFeedback
 from .deal_status import DealStatus

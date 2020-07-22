@@ -6,7 +6,7 @@ from config.settings import LOGGER
 
 class VirtualDeal(Deal):
     """ proxy model for deal to calculate deals that not (need to) exist """
-    status = 0
+    is_virtual = True
 
     @classmethod
     def combinated(cls, *users, me_=None):
@@ -15,6 +15,8 @@ class VirtualDeal(Deal):
         :param me_: User as point of view
         :returns: list of deals
         """
+        if me_ not in users:
+            users = [*users] + [me_]
         deals = []
         combis = [combi for combi in combinations(users, 2)
                   if combi[0] and combi[1]]
@@ -75,7 +77,7 @@ class VirtualDeal(Deal):
         return deals[0] if deals else None
 
     def save(self):  # pylint: disable=arguments-differ
-        pass
+        return
 
     class Meta:
         proxy = True

@@ -8,9 +8,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.contrib.auth.views import LoginView
 from chat.models import Chat
+from action.models import create_action
+from calculator.models import VirtualDeal
 from .forms import CustomUserCreationForm, CustomUserLoginForm
 from .models import User, UserConfig
-from action.models import create_action
 
 FIELDS = ['username', 'first_name', 'last_name', 'email', 'image', 'description']
 
@@ -85,4 +86,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
         context = DetailView.get_context_data(self, **kwargs)
         if self.object != self.request.user:
             context['chat'] = self.object.get_chat_with(self.request.user)
+            context['deal'] = VirtualDeal.combinated(
+                self.object, me_=self.request.user
+            )[0]
         return context

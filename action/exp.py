@@ -1,4 +1,3 @@
-from enum import Enum
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -18,15 +17,15 @@ class Level(models.IntegerChoices):
     """ these are the exp values to reach level
     CONST = Exp(0), _('const')
     """
-    ROOKIE = Exp(0), _('rookie')
-    BEGINNER = Exp(10), _('beginner')
-    ARRIVED = Exp(50), _('arrived')
-    MIDDLE = Exp(100), _('middle')
-    ADVANCED = Exp(250), _('advanced')
-    SEMIPRO = Exp(1000), _('semipro')
-    PROFI = Exp(5000), _('profi')
-    LEGEND = Exp(10000), _('legend')
-    IMMORTAL = Exp(100000), _('immortal')
+    ROOKIE = Exp(0), _('ROOKIE')
+    BEGINNER = Exp(10), _('BEGINNER')
+    ARRIVED = Exp(50), _('ARRIVED')
+    MIDDLE = Exp(100), _('MIDDLE')
+    ADVANCED = Exp(250), _('ADVANCED')
+    SEMIPRO = Exp(1000), _('SEMIPRO')
+    PROFI = Exp(5000), _('PROFI')
+    LEGEND = Exp(10000), _('LEGEND')
+    IMMORTAL = Exp(100000), _('IMMORTAL')
 
     def get_value(self):
         return self.value

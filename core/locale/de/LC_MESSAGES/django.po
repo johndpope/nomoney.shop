@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-22 02:48+0200\n"
+"POT-Creation-Date: 2020-07-22 19:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,10 +39,8 @@ msgid "deal"
 msgstr ""
 
 #: core/templates/base.html:9
-#, fuzzy
-#| msgid "feedbacks"
 msgid "feedback"
-msgstr "Bewertungen"
+msgstr "Bewertung"
 
 #: core/templates/base.html:9
 #, fuzzy
@@ -79,8 +77,8 @@ msgid "profile"
 msgstr "Profil"
 
 #: core/templates/menu.html:60
-msgid "users"
-msgstr "Benutzer"
+msgid "userslist"
+msgstr "Benutzerliste"
 
 #: core/templates/menu.html:63
 msgid "donate"
@@ -119,26 +117,30 @@ msgid "data"
 msgstr "Daten"
 
 #: core/templates/solo/about.html:51
-msgid "experience points system"
-msgstr "Erfahrungspunkte System"
+msgid "experience levels"
+msgstr "Erfahrungsstufen"
 
-#: core/templates/solo/about.html:53
-msgid "type"
-msgstr ""
-
-#: core/templates/solo/about.html:54
+#: core/templates/solo/about.html:54 core/templates/solo/about.html:73
 msgid "title"
 msgstr ""
 
-#: core/templates/solo/about.html:55
+#: core/templates/solo/about.html:57 core/templates/solo/about.html:74
 msgid "experience"
 msgstr ""
 
-#: core/templates/solo/about.html:61
+#: core/templates/solo/about.html:70
+msgid "experience points system"
+msgstr "Erfahrungspunkte System"
+
+#: core/templates/solo/about.html:72
+msgid "type"
+msgstr ""
+
+#: core/templates/solo/about.html:80
 msgid "exp"
 msgstr ""
 
-#: core/templates/solo/about.html:65
+#: core/templates/solo/about.html:84
 msgid "No, you cant buy anything from it."
 msgstr "Nein, du kannst dafür nichts kaufen."
 
