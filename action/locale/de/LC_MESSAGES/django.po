@@ -19,31 +19,31 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: action/exp.py:21
-msgid "rookie"
+msgid "ROOKIE"
 msgstr "Neu"
 
 #: action/exp.py:22
-msgid "beginner"
+msgid "BEGINNER"
 msgstr "Anfänger"
 
 #: action/exp.py:23
-msgid "arrived"
-msgstr "Angekommener"
+msgid "ARRIVED"
+msgstr "Angekommen"
 
 #: action/exp.py:24
-msgid "middle"
+msgid "MIDDLE"
 msgstr "Mitte"
 
 #: action/exp.py:25
-msgid "advanced"
+msgid "ADVANCED"
 msgstr "Fortgeschrittener"
 
 #: action/exp.py:26
-msgid "semipro"
+msgid "SEMIPRO"
 msgstr "Semi-Profi"
 
 #: action/exp.py:27
-msgid "profi"
+msgid "PROFI"
 msgstr "Profi"
 
 #: action/exp.py:28
@@ -51,7 +51,7 @@ msgid "legend"
 msgstr "Legende"
 
 #: action/exp.py:29
-msgid "immortal"
+msgid "IMMORTAL"
 msgstr "Unsterblich"
 
 #: action/models.py:28
