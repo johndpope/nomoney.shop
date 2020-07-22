@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from django.db import models
 from config.settings import AUTH_USER_MODEL, LOGGER
 from chat.models import Chat
+from action.models import create_action
 
 
 def image_path(instance, _):
@@ -149,6 +150,12 @@ class ListingBase(models.Model):
             str(self.status),
             )
         LOGGER.info(log_string)
+        if self.type == 'push':
+            if not create_action(self.user, 'FIRST_PUSH_CREATED'):
+                create_action(self.user, 'PUSH_CREATED')
+        elif self.type == 'pull':
+            if not create_action(self.user, 'FIRST_PULL_CREATED'):
+                create_action(self.user, 'PULL_CREATED')
         super().save(*args, **kwargs)
 
     def __hash__(self):

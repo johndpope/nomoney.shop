@@ -2,6 +2,7 @@
 from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from chat.models import Chat
+from action.models import create_action
 from .models import VirtualDeal
 
 
@@ -20,6 +21,7 @@ class AjaxDirectDealsView(LoginRequiredMixin, TemplateView):
     template_name = 'calculator/ajax/ajax_direct_deals.html'
 
     def get_context_data(self, **kwargs):
+        create_action(self.request.user, 'FIRST_CALC_DIRECT')
         context = TemplateView.get_context_data(self, **kwargs)
         context['is_virtual'] = True
         context['deals_2d'] = VirtualDeal.by_users(

@@ -138,6 +138,19 @@ class User(AbstractUser):
             return mean(scores)
         return None
 
+    @property
+    def is_complete(self):
+        """
+        :returns: True if all fields are filled
+        """
+        return all((
+            len(self.description) >= 10,
+            self.first_name,
+            self.last_name,
+            self.image,
+            self.email,
+            ))
+
     def get_unseen_messages(self):
         """ All unseen messages of this user
         :returns: QuerySet(ChatMessage)
@@ -204,6 +217,12 @@ class User(AbstractUser):
             return cls.objects.filter(invisible=False)
         return cls.objects.all()
 
+    @classmethod
+    def initialize_user_created_actions(cls):
+        """ can be removed somethimes, its only to make sure all are actioned """
+        for user in cls.objects.all():
+            create_action(user, 'USER_CREATED')
+
     def __str__(self):
         return self.username or self.first_name + ' ' + self.last_name
 
@@ -222,5 +241,13 @@ def create_user_config(sender, instance, **kwargs):
 
 
 @receiver(post_save, sender=User)
+# pylint: disable=unused-argument
 def create_new_user_action(sender, instance, created, **kwargs):
-    create_action(instance, 'USER_CREATED')
+    """ create actions after saving """
+    User.initialize_user_created_actions()
+    if created:
+        create_action(instance, 'USER_CREATED')
+    else:
+        create_action(instance, 'PROFILE_UPDATED')
+        if instance.is_complete:
+            create_action(instance, 'PROFILE_COMPLETE')

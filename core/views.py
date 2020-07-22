@@ -11,7 +11,7 @@ class AboutView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = TemplateView.get_context_data(self, **kwargs)
-        context['tasks'] = TASKS
+        context['tasks'] = sorted(TASKS)
         return context
 
 

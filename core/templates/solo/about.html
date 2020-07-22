@@ -55,7 +55,7 @@
         <div class="col-auto d-flex justify-content-end"><b>{% trans 'experience' %}</b></div>
       </div>
       {% for task in tasks %}
-        <div class="row border-top">
+        <div class="row {% ifchanged task.type %}border-top{% endifchanged %}">
           <div class="col-auto">{{ task.type }}</div>
           <div class="col d-flex justify-content-center text-center">{{ task.title }}</div>
           <div class="col-auto d-flex justify-content-end">{{ task.exp }} {% trans 'exp' %}.</div>

@@ -5,6 +5,7 @@ from snakelib.iterable import intersection
 from config.settings import AUTH_USER_MODEL, LOGGER
 from chat.models import Chat
 from .deal_status import DealStatus
+from action.models import create_action
 
 
 class DealBase(models.Model):
@@ -124,6 +125,7 @@ class DealBase(models.Model):
             str(self.location),
             )
         LOGGER.info(log_string)
+        create_action(self.user, 'DEAL_CREATED')
         super().save(*args, **kwargs)
 
     class Meta:

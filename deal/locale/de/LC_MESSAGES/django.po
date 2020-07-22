@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-22 01:41+0200\n"
+"POT-Creation-Date: 2020-07-22 02:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,31 +18,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: deal/models/deal_base.py:18 deal/models/deal_base.py:24
+#: deal/models/deal_base.py:19 deal/models/deal_base.py:25
 #: deal/templates/deal/solo/deal_detail.html:29
 msgid "user"
 msgstr "Benutzer"
 
-#: deal/models/deal_base.py:31
+#: deal/models/deal_base.py:32
 msgid "market"
 msgstr ""
 
-#: deal/models/deal_base.py:36 deal/templates/deal/solo/deal_detail.html:47
+#: deal/models/deal_base.py:37 deal/templates/deal/solo/deal_detail.html:47
 msgid "status"
 msgstr "Status"
 
-#: deal/models/deal_base.py:43
+#: deal/models/deal_base.py:44
 msgid "location"
 msgstr ""
 
-#: deal/models/deal_base.py:132 deal/templates/deal/deal_form.html:15
+#: deal/models/deal_base.py:134 deal/templates/deal/deal_form.html:15
 #: deal/templates/deal/inc/help.html:2
 #: deal/templates/deal/solo/deal_detail.html:2
 #: deal/templates/deal/solo/deal_list_head.html:9
 msgid "deal"
 msgstr "Tauschvorgang"
 
-#: deal/models/deal_base.py:133 deal/templates/deal/inc/help.html:5
+#: deal/models/deal_base.py:135 deal/templates/deal/inc/help.html:5
 #: deal/templates/deal/solo/deal_list.html:25
 #: deal/templates/deal/solo/deal_list_head.html:6
 msgid "deals"

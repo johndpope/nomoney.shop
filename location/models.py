@@ -2,6 +2,7 @@
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from config.settings import AUTH_USER_MODEL, LOGGER
+from action.models import create_action
 
 
 class Location(models.Model):
@@ -70,6 +71,8 @@ class Location(models.Model):
             str(self.lat),
             )
         LOGGER.info(log_string)
+        if not create_action(self.user, 'FIRST_LOCATION_CREATED'):
+            create_action(self.user, 'LOCATION_CREATED')
         super().save(*args, **kwargs)
 
     def __str__(self):

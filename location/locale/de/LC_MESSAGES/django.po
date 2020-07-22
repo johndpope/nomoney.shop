@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-22 01:41+0200\n"
+"POT-Creation-Date: 2020-07-22 02:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,33 +18,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: location/models.py:11
+#: location/models.py:12
 msgid "title"
 msgstr "Titel"
 
-#: location/models.py:16
+#: location/models.py:17
 msgid "user"
 msgstr "Benutzer"
 
-#: location/models.py:22
+#: location/models.py:23
 msgid "longitude"
 msgstr "Longitude"
 
-#: location/models.py:28
+#: location/models.py:29
 msgid "latitude"
 msgstr "Latitude"
 
-#: location/models.py:32 location/templates/location/location_detail.html:48
+#: location/models.py:33 location/templates/location/location_detail.html:48
 #: location/templates/location/solo/location_list.html:10
 msgid "description"
 msgstr "Beschreibung"
 
-#: location/models.py:79 location/templates/location/inc/help.html:2
+#: location/models.py:82 location/templates/location/inc/help.html:2
 #: location/templates/location/solo/location_list_head.html:9
 msgid "location"
 msgstr "Ort"
 
-#: location/models.py:80 location/templates/location/inc/help.html:5
+#: location/models.py:83 location/templates/location/inc/help.html:5
 #: location/templates/location/solo/location_list.html:30
 #: location/templates/location/solo/location_list_head.html:6
 msgid "locations"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-22 01:41+0200\n"
+"POT-Creation-Date: 2020-07-22 02:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,24 +18,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: chat/models.py:16 chat/templates/chat/inc/link.html:15
+#: chat/models.py:17 chat/templates/chat/inc/link.html:15
 msgid "default"
 msgstr ""
 
-#: chat/models.py:17 chat/templates/chat/inc/link.html:11
+#: chat/models.py:18 chat/templates/chat/inc/link.html:11
 msgid "user"
 msgstr ""
 
-#: chat/models.py:18 chat/models.py:140 chat/templates/chat/inc/link.html:7
+#: chat/models.py:19 chat/models.py:142 chat/templates/chat/inc/link.html:7
 msgid "market"
 msgstr ""
 
-#: chat/models.py:19 chat/templates/chat/inc/link.html:3
+#: chat/models.py:20 chat/templates/chat/inc/link.html:3
 #: chat/templates/chat/solo/lobby.html:5
 msgid "lobby"
 msgstr "Lobby"
 
-#: chat/models.py:38 chat/models.py:231 chat/templates/chat/inc/link.html:3
+#: chat/models.py:39 chat/models.py:233 chat/templates/chat/inc/link.html:3
 #: chat/templates/chat/inc/link.html:7 chat/templates/chat/inc/link.html:11
 #: chat/templates/chat/inc/link.html:15
 #: chat/templates/chat/solo/chat_list.html:6
@@ -43,31 +43,31 @@ msgstr "Lobby"
 msgid "chat"
 msgstr "Chat"
 
-#: chat/models.py:43
+#: chat/models.py:44
 msgid "creator"
 msgstr "Ersteller"
 
-#: chat/models.py:47
+#: chat/models.py:48
 msgid "created"
 msgstr "erstellt"
 
-#: chat/models.py:50 chat/models.py:128
+#: chat/models.py:51 chat/models.py:130
 msgid "text"
 msgstr "Text"
 
-#: chat/models.py:56
+#: chat/models.py:57
 msgid "unseen_by"
 msgstr ""
 
-#: chat/models.py:105 chat/models.py:106
+#: chat/models.py:107 chat/models.py:108
 msgid "message"
 msgstr "Nachricht"
 
-#: chat/models.py:133 chat/templates/chat/solo/chat_list.html:11
+#: chat/models.py:135 chat/templates/chat/solo/chat_list.html:11
 msgid "type"
 msgstr "Typ"
 
-#: chat/models.py:232 chat/templates/chat/chat_list.html:4
+#: chat/models.py:234 chat/templates/chat/chat_list.html:4
 msgid "chats"
 msgstr "Chats"
 

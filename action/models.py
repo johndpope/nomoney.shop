@@ -3,14 +3,9 @@
 Experience is gained from doing actions
 
 create actions from everywher like:
-from action.models import tasks
-action = tasks.add('PROFILE_VISITED', 1).action(user=request.user)
 
-Pass request with action() to add a message to the request:
-from django.utils.translation import gettext_lazy as _
-msg = 'UNIQUE_STRING'
-_(msg)
-tasks.add(msg, 1).action(user=request.user, request=request)
+create_action(self.request.user, 'DAILY_VISIT')
+or create_action(self.request.user, 1)
 """
 from django.utils.translation import ngettext, gettext_lazy as _
 from django.db import models
@@ -41,15 +36,15 @@ TASKS = [  # never change the index numbers, thei're db relevant !!!
     OneTimeTask(10, _('FIRST_LOCATION_CREATED'), 5),
 
     DefaultTask(11, _('DEAL_CREATED'), 3),
-    OneTimeTask(12, _('BID_CREATED'), 1),
-    DefaultTask(13, _('BID_ANSWERED'), 1),
-    OneTimeTask(14, _('DEAL_FINISHED'), 10),
+    DefaultTask(12, _('BID_CREATED'), 1),
+    # DefaultTask(13, _('BID_ANSWERED'), 1),
+    # OneTimeTask(14, _('DEAL_FINISHED'), 10),
 
     DefaultTask(15, _('MARKET_CREATED'), 5),
     OneTimeTask(16, _('FIRST_MARKET_CREATED'), 10),
 
-    DefaultTask(17, _('CATEGORY_CREATED'), 2),  # After review! needs db change
-    OneTimeTask(18, _('FIRST_CATEGORY_CREATED'), 2),
+    # DefaultTask(17, _('CATEGORY_CREATED'), 2),  # After review! needs db change
+    # OneTimeTask(18, _('FIRST_CATEGORY_CREATED'), 2),#dito
 
     OneTimeTask(19, _('FIRST_CHAT_MESSAGE'), 5),
 
@@ -59,8 +54,8 @@ TASKS = [  # never change the index numbers, thei're db relevant !!!
     DefaultTask(23, _('PUSH_FEEDBACK_GIVEN'), 2),
 
     OneTimeTask(24, _('FIRST_CALC_DIRECT'), 3),
-    OneTimeTask(25, _('FIRST_CALC_TRIANGULAR'), 4),
-    OneTimeTask(26, _('FIRST_CALC_SPECULATIVE'), 5),
+    # OneTimeTask(25, _('FIRST_CALC_TRIANGULAR'), 4),  # not yet implemented
+    # OneTimeTask(26, _('FIRST_CALC_SPECULATIVE'), 5),  # not yet implemented
 ]
 
 TASKS_CHOICES = [(obj.index, obj.title) for obj in TASKS]
@@ -72,6 +67,7 @@ def create_action(user, index_or_title):
     :param index_or_title: int(task.index) or str(unique_name-untranslated)
     :returns: True if it is created
     """
+    action = False
     if isinstance(index_or_title, int):
         task = [task for task in TASKS if task.index == index_or_title]
     elif isinstance(index_or_title, str):
@@ -111,9 +107,15 @@ class Action(models.Model):
         return [task for task in TASKS if task.index == self.task][0]
 
     def get_unique_name(self):
+        """
+        :returns: unique name of task
+        """
         return self.get_task().unique_name
 
     def get_title(self):
+        """
+        :returns: task title str
+        """
         return self.get_task().title
 
     def get_exp(self):

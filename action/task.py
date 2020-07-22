@@ -12,6 +12,7 @@ class DefaultTask:
     :param max_level: maximum level for this task (defaults to None)
     """
     type = _('default')
+    order = 1
 
     def __init__(self, index, title, exp, *args):
         self.index = index
@@ -36,13 +37,22 @@ class DefaultTask:
         """
         return True
 
+    def __lt__(self, other):
+        if self.order < other.order:
+            return True
+        elif self.order > other.order:
+            return False
+        else:
+            return self.title < other.title
+
     def __str__(self):
         return str(_(self.title))
 
 
-class DailyTask(DefaultTask):
+class DailyTask(DefaultTask):  # pylint: disable=too-few-public-methods
     """ This objects can be actioned once per day """
     type = _('daily')
+    order = 2
 
     def is_allowed(self, user):
         today_actions = user.actions.filter(
@@ -52,9 +62,10 @@ class DailyTask(DefaultTask):
         return not today_actions  # True if not today_actions
 
 
-class OneTimeTask(DefaultTask):
+class OneTimeTask(DefaultTask):  # pylint: disable=too-few-public-methods
     """ This task can only be actioned once per user """
     type = _('onetime')
+    order = 3
 
     def is_allowed(self, user):
         return self.index not in user.actions.values_list('task', flat=True)

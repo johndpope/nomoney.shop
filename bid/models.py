@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.utils.timezone import now
 from config.settings import AUTH_USER_MODEL, LOGGER
+from action.models import create_action
 
 
 class BidStatus(models.IntegerChoices):
@@ -134,6 +135,9 @@ class Bid(models.Model):
             )
         LOGGER.info(log_string)
         super().save(*args, **kwargs)
+        # TODO: Verbessern, DEAL_FINISHED BID_ANSWERED
+        # if self.status == BidStatus:
+        create_action(self.creator, 'BID_CREATED')
         self.deal.set_placed()
 
     class Meta:

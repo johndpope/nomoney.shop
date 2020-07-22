@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch.dispatcher import receiver
 from config.settings import AUTH_USER_MODEL, LOGGER
 from chat.models import Chat, ChatType
+from action.models import create_action
 
 
 class Market(models.Model):
@@ -51,3 +52,6 @@ def create_chat(sender, instance, created, **kwargs):
         instance.chat = Chat.objects.create(
             type=ChatType.MARKET, market=instance)
         instance.save()
+        for user in instance.users.all():
+            if not create_action(user, 'FIRST_MARKET_CREATED'):
+                create_action(user, 'MARKET_CREATED')

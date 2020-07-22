@@ -4,6 +4,7 @@ from django.dispatch.dispatcher import receiver
 from django.db.models.signals import post_save
 from django.db import models
 from config.settings import AUTH_USER_MODEL, LOGGER
+from action.models import create_action
 
 
 class ChatType(models.IntegerChoices):
@@ -96,6 +97,7 @@ class ChatMessage(models.Model):
 
     def save(self, *args, **kwargs):  # pylint: disable=signature-differs
         super().save(*args, **kwargs)
+        create_action(self.creator, 'FIRST_CHAT_MESSAGE')
 
     def __str__(self):
         return self.text

@@ -2,6 +2,7 @@
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from config.settings import AUTH_USER_MODEL, LOGGER
+from action.models import create_action
 
 
 class FeedbackStatus(models.IntegerChoices):
@@ -118,6 +119,11 @@ class UserFeedback(FeedbackBase):
         """
         return cls.objects.filter(user__pk=user.pk)
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        create_action(self.creator, 'USER_FEEDBACK_GIVEN')
+        create_action(self.user, 'USER_FEEDBACK_TAKEN')
+
     class Meta:
         verbose_name = _('userfeedback')
         verbose_name_plural = _('userfeedbacks')
@@ -143,6 +149,11 @@ class PushFeedback(FeedbackBase):
         :returns: QuerySet(PushFeedback)
         """
         return cls.objects.filter(push__user__pk=user.pk)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        create_action(self.creator, 'PUSH_FEEDBACK_GIVEN')
+        create_action(self.push.user, 'PUSH_FEEDBACK_TAKEN')
 
     class Meta:
         verbose_name = _('pushfeedback')
