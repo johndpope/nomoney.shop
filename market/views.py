@@ -46,6 +46,7 @@ class MarketCreateUpdateBase(LoginRequiredMixin, FormView):
             'Benutzer auswählen ...'
         form.fields['users'].queryset = User.get_users().exclude(
             pk=self.request.user.pk)
+        form.fields['location'].queryset = self.request.user.locations
         return form
 
     def form_valid(self, form):
