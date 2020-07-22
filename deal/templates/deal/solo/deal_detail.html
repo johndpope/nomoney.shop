@@ -2,7 +2,7 @@
 <hr class="my-5">
 <h2>
   {% if deal.is_virtual %}
-    {% trans 'calculated'|title %} {% trans 'possible' %} {% trans 'deal' %}
+    {% trans 'calculated'|title %} {% trans 'possible' %} {% trans 'deals' %}
   {% else %}
     {% trans 'deal'|title %} {% trans 'details' %}{% if deal.accepted %} <span class="badge badge-success"><i class="fas fa-check"></i></span>{% endif %}
   {% endif %}

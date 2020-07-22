@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-22 19:21+0200\n"
+"POT-Creation-Date: 2020-07-22 20:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,7 @@ msgid "deal"
 msgstr "Tauschvorgang"
 
 #: deal/models/deal_base.py:135 deal/templates/deal/inc/help.html:5
-#: deal/templates/deal/solo/deal_list.html:25
+#: deal/templates/deal/solo/deal_list.html:31
 #: deal/templates/deal/solo/deal_list_head.html:6
 msgid "deals"
 msgstr "Tauschvorgänge"
@@ -114,11 +114,11 @@ msgstr "unbekannt"
 
 #: deal/templates/deal/solo/deal_detail.html:5
 msgid "calculated"
-msgstr ""
+msgstr "berechete"
 
 #: deal/templates/deal/solo/deal_detail.html:5
 msgid "possible"
-msgstr ""
+msgstr "mögliche"
 
 #: deal/templates/deal/solo/deal_detail.html:7
 msgid "details"
@@ -173,7 +173,7 @@ msgstr "nimmt"
 msgid "accept"
 msgstr "akzeptieren"
 
-#: deal/templates/deal/solo/deal_list.html:19
+#: deal/templates/deal/solo/deal_list.html:25
 msgid "detail"
 msgstr "Details"
 

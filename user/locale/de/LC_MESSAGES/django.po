@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-22 19:21+0200\n"
+"POT-Creation-Date: 2020-07-22 20:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,14 +23,12 @@ msgid "email"
 msgstr "E-Mail"
 
 #: user/forms.py:21
-#, fuzzy
-#| msgid "user"
 msgid "username"
-msgstr "Benutzer"
+msgstr "Benutzername"
 
 #: user/forms.py:28 user/templates/user/user_detail.html:129
 msgid "password"
-msgstr ""
+msgstr "Passwort"
 
 #: user/models.py:39
 msgid "config"
