@@ -19,4 +19,4 @@ django-db-logger
 prospector
 python-decouple
 social-auth-app-django
-user_messages
+django-user-messages
